@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://wnjx0277ks75"]
+
+[ext_resource type="FontFile" uid="uid://dwpy8iyssyhv1" path="res://Assets/fonts/Cowboy-Western-All/Cowboy_Western_Monospaced.ttf" id="1_5gxwd"]
+
+[resource]
+Button/fonts/font = ExtResource("1_5gxwd")

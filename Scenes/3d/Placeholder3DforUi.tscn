@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://7iukt2vlfaaf"]
+
+[ext_resource type="PackedScene" uid="uid://cnl3r1l1rfr5n" path="res://Scenes/menus/pen/Flooor.glb" id="1_wxwfb"]
+
+[sub_resource type="Environment" id="Environment_wxwfb"]
+
+[node name="Placeholder3DforUi" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wxwfb")
+
+[node name="Flooor" parent="." instance=ExtResource("1_wxwfb")]
+transform = Transform3D(1.4648161, 0, 0, 0, 1.4648161, 0, 0, 0, 1.4648161, 0.95390195, 0, 0.30638456)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24.083975, 3.5760834, 0)
+fov = 83.58761
