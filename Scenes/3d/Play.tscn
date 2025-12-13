@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://x2y5w8pwjbrc"]
+
+[node name="Play" type="Node3D"]
+editor_description = "This is where all of the 3D stuff will be"

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://brl11g3oxo4y1"]
+
+[node name="Settings" type="Control"]
+editor_description = "This is where all the settings should be (maybe exclusive to MainMenu?)"
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

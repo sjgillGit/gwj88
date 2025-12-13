@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ramn8byuilg"]
+
+[ext_resource type="Script" uid="uid://lw5x5rqamc3f" path="res://Scenes/menus/main/main_menu.gd" id="1_y1eug"]
+[ext_resource type="ButtonGroup" uid="uid://bg48yv2vi1t8a" path="res://Scenes/menus/main/button_group_main_menu.tres" id="2_03yk2"]
+
+[node name="MainMenu" type="Control"]
+editor_description = "This is where all the main menu stuff should be"
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_y1eug")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -68.0
+offset_bottom = 68.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PLAY" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_03yk2")
+text = "=================="
+
+[node name="CREDITS" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_03yk2")
+text = "==================
+"
+
+[node name="SETTINGS" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_03yk2")
+text = "==================
+"
+
+[node name="QUIT" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_03yk2")
+text = "=================="
