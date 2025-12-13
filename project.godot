@@ -15,10 +15,14 @@ run/main_scene="res://Scenes/root/RootNode.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-GlobalPreloader="*res://Scripts/autoloads/global_preloader.gd"
-
 [display]
 
 window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/3d/": "red",
+"res://Scenes/menus/": "green",
+"res://Scenes/root/": "gray"
+}

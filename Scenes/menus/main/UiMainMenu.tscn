@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1ramn8byuilg"]
+[gd_scene load_steps=4 format=3 uid="uid://c1ramn8byuilg"]
 
-[ext_resource type="Script" uid="uid://lw5x5rqamc3f" path="res://Scenes/menus/main/main_menu.gd" id="1_y1eug"]
-[ext_resource type="ButtonGroup" uid="uid://bg48yv2vi1t8a" path="res://Scenes/menus/main/button_group_main_menu.tres" id="2_03yk2"]
+[ext_resource type="Script" uid="uid://lw5x5rqamc3f" path="res://Scenes/menus/main/ui_main_menu.gd" id="1_va1bd"]
+[ext_resource type="ButtonGroup" uid="uid://bg48yv2vi1t8a" path="res://Scenes/menus/main/button_group_main_menu.tres" id="2_3udur"]
+[ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Scenes/menus/main/theme_general.tres" id="2_6ur10"]
 
-[node name="MainMenu" type="Control"]
+[node name="UiMainMenu" type="Control"]
 editor_description = "This is where all the main menu stuff should be"
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-script = ExtResource("1_y1eug")
+script = ExtResource("1_va1bd")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -27,29 +28,42 @@ grow_vertical = 2
 [node name="PLAY" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_6ur10")
 toggle_mode = true
-button_group = ExtResource("2_03yk2")
+button_group = ExtResource("2_3udur")
 text = "=================="
 
 [node name="CREDITS" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_6ur10")
 toggle_mode = true
-button_group = ExtResource("2_03yk2")
+button_group = ExtResource("2_3udur")
 text = "==================
 "
 
 [node name="SETTINGS" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_6ur10")
 toggle_mode = true
-button_group = ExtResource("2_03yk2")
+button_group = ExtResource("2_3udur")
+text = "==================
+"
+
+[node name="PEN" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_6ur10")
+toggle_mode = true
+button_group = ExtResource("2_3udur")
 text = "==================
 "
 
 [node name="QUIT" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("2_6ur10")
 toggle_mode = true
-button_group = ExtResource("2_03yk2")
+button_group = ExtResource("2_3udur")
 text = "=================="
