@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Scenes/menus/main/theme_general.tres" id="1_c2nn8"]
 
-[node name="Settings" type="Control"]
+[node name="UiSettings" type="Control" groups=["ui"]]
 editor_description = "This is where all the settings should be (maybe exclusive to MainMenu?)"
 layout_mode = 3
 anchors_preset = 15

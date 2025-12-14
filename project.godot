@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/root/RootNode.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalAudioPlayer="*res://Scenes/global/GlobalAudioPlayer.tscn"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -23,6 +27,11 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://Scenes/3d/": "red",
+"res://Scenes/global/": "gray",
 "res://Scenes/menus/": "green",
 "res://Scenes/root/": "gray"
 }
+
+[global_group]
+
+ui=""

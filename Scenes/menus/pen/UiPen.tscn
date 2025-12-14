@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Scenes/menus/main/theme_general.tres" id="1_s3urb"]
 
-[node name="UiPen" type="Control"]
+[node name="UiPen" type="Control" groups=["ui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

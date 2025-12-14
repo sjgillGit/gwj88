@@ -1,6 +1,67 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://wnjx0277ks75"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://wnjx0277ks75"]
 
-[ext_resource type="FontFile" uid="uid://dwpy8iyssyhv1" path="res://Assets/fonts/Cowboy-Western-All/Cowboy_Western_Monospaced.ttf" id="1_5gxwd"]
+[ext_resource type="Texture2D" uid="uid://cwp3o24gxdowj" path="res://Assets/Mini-Medieval-User-Interface-8x8/Frames.png" id="2_2x4uk"]
+[ext_resource type="FontFile" uid="uid://br8526wyvqdrk" path="res://Assets/fonts/Disco-Party-All/Disco_Party.ttf" id="2_hxft3"]
+[ext_resource type="StyleBox" uid="uid://dagvxksushulb" path="res://Scenes/menus/pause/styleBox_button_hover.tres" id="2_y7583"]
+[ext_resource type="Texture2D" uid="uid://budb2prl270mc" path="res://Assets/Mini-Medieval-User-Interface-8x8/Banners.png" id="3_2x4uk"]
+[ext_resource type="StyleBox" uid="uid://bxqhjcwxjpq6j" path="res://Scenes/menus/pause/styleBox_button_normal.tres" id="3_y7583"]
+[ext_resource type="FontFile" uid="uid://dxkvfvt32k2u" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Ribs.ttf" id="6_l4iio"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x4uk"]
+atlas = ExtResource("3_2x4uk")
+region = Rect2(200, 278, 48, 2)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mtws8"]
+texture = SubResource("AtlasTexture_2x4uk")
+texture_margin_left = 10.0
+texture_margin_top = 1.0
+texture_margin_right = 10.0
+texture_margin_bottom = 1.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gxwd"]
+atlas = ExtResource("2_2x4uk")
+region = Rect2(44, 84, 32, 33)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxft3"]
+texture = SubResource("AtlasTexture_5gxwd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxft3"]
+atlas = ExtResource("3_2x4uk")
+region = Rect2(67, 392, 2, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2x4uk"]
+texture = SubResource("AtlasTexture_hxft3")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
 [resource]
-Button/fonts/font = ExtResource("1_5gxwd")
+default_font = ExtResource("2_hxft3")
+default_font_size = 24
+Button/colors/font_color = Color(1, 0.94509804, 0.6627451, 1)
+Button/colors/font_hover_color = Color(0.3254902, 0.27450982, 0.39215687, 1)
+Button/colors/font_hover_pressed_color = Color(0.3254902, 0.27450982, 0.39215687, 1)
+Button/colors/font_outline_color = Color(0.3254902, 0.27450982, 0.39215687, 1)
+Button/fonts/font = ExtResource("2_hxft3")
+Button/styles/disabled = ExtResource("2_y7583")
+Button/styles/focus = ExtResource("2_y7583")
+Button/styles/hover = ExtResource("2_y7583")
+Button/styles/normal = ExtResource("3_y7583")
+Button/styles/pressed = ExtResource("2_y7583")
+HSeparator/styles/separator = SubResource("StyleBoxTexture_mtws8")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("2_hxft3")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_hxft3")
+RichTextLabel/colors/default_color = Color(0.92156863, 0.72156864, 0.35686275, 1)
+RichTextLabel/font_sizes/normal_font_size = 44
+RichTextLabel/fonts/normal_font = ExtResource("6_l4iio")
+VSeparator/styles/separator = SubResource("StyleBoxTexture_2x4uk")

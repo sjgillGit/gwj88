@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Scenes/menus/main/theme_general.tres" id="1_fml7s"]
 
-[node name="UiPlay" type="Control"]
+[node name="UiPlay" type="Control" groups=["ui"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
