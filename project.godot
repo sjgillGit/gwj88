@@ -23,6 +23,7 @@ buses/default_bus_layout="res://Assets/audio/default_bus_layout.tres"
 
 GlobalAudioPlayer="*res://Scenes/global/GlobalAudioPlayer.tscn"
 GameState="*res://Scripts/singletons/autoloads/GameState.gd"
+GameStats="*res://Scripts/singletons/autoloads/GameStats.gd"
 
 [display]
 

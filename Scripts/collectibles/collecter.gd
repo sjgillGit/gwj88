@@ -6,4 +6,5 @@ signal item_collected(item: Item)
 func _on_area_entered(area) -> void:
 	if area is Collectible:
 		item_collected.emit(area.item)
+		GameStats.collect_item(area.item)
 		area.queue_free()
