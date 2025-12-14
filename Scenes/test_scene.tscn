@@ -1,0 +1,321 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhtbn1mo8fk"]
+
+[ext_resource type="PackedScene" uid="uid://daqockmvu44lh" path="res://Scenes/player.tscn" id="1_q6fdj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nl7fu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nl7fu"]
+size = Vector3(114.40918, 0.5207825, 221.9403)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q6fdj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8smnd"]
+size = Vector3(5.008362, 4.8703957, 6.351181)
+
+[node name="TestScene" type="Node"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(112.64461, 0, 0, 0, 0.4905283, 0, 0, 0, 213.49934, 0, 0, -51.367733)
+mesh = SubResource("BoxMesh_nl7fu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3215332, 0, -51.361023)
+shape = SubResource("BoxShape3D_nl7fu")
+
+[node name="Player" parent="." instance=ExtResource("1_q6fdj")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 80.28267, -200.26495)
+
+[node name="FloatingObjects" type="Node" parent="."]
+
+[node name="FloatingObject" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -50.706146, -99.936134, -440.76996)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject2" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.197037, -100.44543, -431.0935)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject2"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject3" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.579224, -104.7273, -562.89606)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject3"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject4" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.696648, -93.43954, -507.20966)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject4"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject5" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -50.706146, -99.936134, -654.69965)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject5"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject6" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.197037, -100.44543, -645.02313)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject6"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject7" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.579224, -104.7273, -776.8256)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject7"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject8" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.696648, -93.43954, -721.1392)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject8"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject9" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -50.706146, -99.936134, -867.0634)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject9"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject10" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.197037, -100.44543, -857.387)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject10"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject11" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.579224, -104.7273, -989.1895)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject11"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject12" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.696648, -93.43954, -933.5031)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject12"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject13" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -50.706146, -99.936134, -1145.556)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject13"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject14" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.197037, -100.44543, -1135.8796)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject14"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject15" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.579224, -104.7273, -1267.6821)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject15"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject16" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.696648, -93.43954, -1211.9957)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject16"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject17" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -50.706146, -99.936134, -1359.4857)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject17"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject18" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.197037, -100.44543, -1349.8092)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject18"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject19" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.579224, -104.7273, -1481.6117)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject19"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject20" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.696648, -93.43954, -1425.9253)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject20"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject21" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -50.706146, -99.936134, -1571.8495)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject21"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject22" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.197037, -100.44543, -1562.1731)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject22"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject23" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.579224, -104.7273, -1693.9756)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject23"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
+
+[node name="FloatingObject24" type="StaticBody3D" parent="FloatingObjects"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.696648, -93.43954, -1638.2892)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloatingObjects/FloatingObject24"]
+transform = Transform3D(4.8674827, 0, 0, 0, 4.62801, 0, 0, 0, 6.2026796, 0, 0, 0)
+mesh = SubResource("BoxMesh_q6fdj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingObjects/FloatingObject24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027191162, 0.06931305, -0.005302429)
+shape = SubResource("BoxShape3D_8smnd")
