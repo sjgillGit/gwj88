@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://yyy0f5q0vchc"]
+
+[ext_resource type="Script" uid="uid://cdk5afho4f2d" path="res://Scenes/ui/ui_root_node.gd" id="1_ub05m"]
+[ext_resource type="PackedScene" uid="uid://cw8iq2glcu535" path="res://Scenes/ui/startup.tscn" id="2_m1hfg"]
+[ext_resource type="PackedScene" uid="uid://hdloxc6hwt41" path="res://Scenes/ui/main_menu.tscn" id="3_m1hfg"]
+
+[node name="UiRootNode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ub05m")
+
+[node name="Startup" parent="." instance=ExtResource("2_m1hfg")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="MainMenu" parent="." instance=ExtResource("3_m1hfg")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
