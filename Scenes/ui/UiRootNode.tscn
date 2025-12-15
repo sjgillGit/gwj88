@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://d13aagks3romy"]
+
+[ext_resource type="PackedScene" uid="uid://c7rtap1601thy" path="res://Scenes/ui/UiCredits.tscn" id="1_i65he"]
+[ext_resource type="Script" uid="uid://dtacnowi6gr7v" path="res://Scripts/ui/ui_root_node.gd" id="1_ilje2"]
+[ext_resource type="PackedScene" uid="uid://c1ramn8byuilg" path="res://Scenes/ui/UiMainMenu.tscn" id="2_ilje2"]
+[ext_resource type="PackedScene" uid="uid://dmab3p3co23bb" path="res://Scenes/ui/UiPause.tscn" id="3_ex7ef"]
+[ext_resource type="PackedScene" uid="uid://i4hgl17h5n1r" path="res://Scenes/ui/UiPen.tscn" id="4_scill"]
+[ext_resource type="PackedScene" uid="uid://b7g5whk4u801n" path="res://Scenes/ui/UiPlay.tscn" id="5_gmsvu"]
+[ext_resource type="PackedScene" uid="uid://brl11g3oxo4y1" path="res://Scenes/ui/UiSettings.tscn" id="6_evsfa"]
+[ext_resource type="PackedScene" uid="uid://gcxcsrk5oihi" path="res://Scenes/ui/UiStartup.tscn" id="7_3cys0"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ilje2"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ex7ef"]
+
+[node name="UiRootNode" type="Control" groups=["ui"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ilje2")
+
+[node name="UiCredits" parent="." instance=ExtResource("1_i65he")]
+visible = false
+layout_mode = 1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="RichTextLabel" parent="UiCredits" index="0"]
+offset_left = 5.0
+offset_top = -2081.0
+offset_right = 5.0
+offset_bottom = -1.0
+
+[node name="UiMainMenu" parent="." instance=ExtResource("2_ilje2")]
+visible = false
+layout_mode = 0
+
+[node name="PLAY" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="1"]
+button_group = SubResource("ButtonGroup_ilje2")
+
+[node name="CREDITS" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="3"]
+button_group = SubResource("ButtonGroup_ilje2")
+
+[node name="SETTINGS" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="5"]
+button_group = SubResource("ButtonGroup_ilje2")
+
+[node name="PEN" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="7"]
+button_group = SubResource("ButtonGroup_ilje2")
+
+[node name="QUIT" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="9"]
+button_group = SubResource("ButtonGroup_ilje2")
+
+[node name="UiPause" parent="." instance=ExtResource("3_ex7ef")]
+visible = false
+layout_mode = 1
+
+[node name="MAIN_MENU" parent="UiPause/HBoxContainer" index="0"]
+button_group = SubResource("ButtonGroup_ex7ef")
+
+[node name="QUIT" parent="UiPause/HBoxContainer" index="1"]
+button_group = SubResource("ButtonGroup_ex7ef")
+
+[node name="UiPen" parent="." instance=ExtResource("4_scill")]
+visible = false
+layout_mode = 1
+
+[node name="UiPlay" parent="." instance=ExtResource("5_gmsvu")]
+visible = false
+layout_mode = 1
+
+[node name="UiSettings" parent="." instance=ExtResource("6_evsfa")]
+visible = false
+layout_mode = 1
+
+[node name="UiStartup" parent="." groups=["ui"] instance=ExtResource("7_3cys0")]
+visible = false
+layout_mode = 1
+
+[connection signal="hidden" from="UiStartup" to="UiCredits" method="_on_ui_startup_hidden"]
+
+[editable path="UiCredits"]
+[editable path="UiMainMenu"]
+[editable path="UiPause"]
+[editable path="UiPen"]
+[editable path="UiPlay"]
+[editable path="UiSettings"]
+[editable path="UiStartup"]
