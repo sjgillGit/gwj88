@@ -1,9 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=21 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://PhysicsTest/deer_body_physmat.tres" id="1_gimdj"]
 [ext_resource type="Material" uid="uid://b13ie36bwv7v7" path="res://PhysicsTest/deer_fur_mat.tres" id="1_uavrq"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://PhysicsTest/deer.gd" id="2_eltju"]
+[ext_resource type="PackedScene" uid="uid://3t06e673ici5" path="res://PhysicsTest/deer_legs.tscn" id="3_5mwn2"]
 [ext_resource type="PackedScene" uid="uid://bc8mts2tx04hn" path="res://PhysicsTest/Reindeer.glb" id="3_eltju"]
+[ext_resource type="Script" uid="uid://cla8131ss3orj" path="res://PhysicsTest/deer_legs.gd" id="4_wqsbj"]
+[ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://PhysicsTest/follow_cam.gd" id="7_nv1pf"]
+
+[sub_resource type="Curve" id="Curve_wqsbj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.20157066, 1), 0.0, 0.0, 0, 0, Vector2(0.7984293, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mhl8m"]
 material = ExtResource("1_uavrq")
@@ -15,15 +22,78 @@ radial_segments = 16
 radius = 0.25976563
 height = 1.3544922
 
-[sub_resource type="BoxMesh" id="BoxMesh_eltju"]
-size = Vector3(0.1, 0.25, 0.25)
+[sub_resource type="CylinderMesh" id="CylinderMesh_5mwn2"]
+top_radius = 0.05
+bottom_radius = 0.1
+height = 0.5
+radial_segments = 16
 
-[node name="DeerPhysicsTest" type="VehicleBody3D"]
+[sub_resource type="Gradient" id="Gradient_wqsbj"]
+offsets = PackedFloat32Array(0, 0.1118421, 0.23026316, 0.5986842, 0.90789473, 1)
+colors = PackedColorArray(1, 0.59461164, 0.5178461, 1, 1, 0, 0.05490196, 0.78039217, 0.9783165, 0.38954568, 4.3317676e-05, 1, 1, 0.9254902, 0, 0.3529412, 0, 0, 0, 0.37226278, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nv1pf"]
+gradient = SubResource("Gradient_wqsbj")
+
+[sub_resource type="Curve" id="Curve_5mwn2"]
+_data = [Vector2(0, 0.7334138), 0.0, 0.0, 0, 0, Vector2(0.28787878, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.11399281), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wqsbj"]
+curve = SubResource("Curve_5mwn2")
+
+[sub_resource type="Curve" id="Curve_t54us"]
+_data = [Vector2(0, 0.28648978), 0.0, 0.0, 0, 0, Vector2(0.18787879, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.059107423), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xvt68"]
+curve = SubResource("Curve_t54us")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5mwn2"]
+emission_shape = 1
+emission_sphere_radius = 0.25
+angle_min = -89.99999
+angle_max = 90.000015
+direction = Vector3(0, 0, -1)
+spread = 12.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = 43.03998
+angular_velocity_max = 43.03998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_xvt68")
+color_ramp = SubResource("GradientTexture1D_nv1pf")
+emission_curve = SubResource("CurveTexture_wqsbj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqsbj"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_nv1pf"]
+material = SubResource("StandardMaterial3D_wqsbj")
+size = Vector2(0.1, 0.1)
+
+[node name="DeerMissile" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
+mass = 50.0
 physics_material_override = ExtResource("1_gimdj")
-angular_damp = 0.01
+contact_monitor = true
+max_contacts_reported = 10
+angular_damp = 0.1
 script = ExtResource("2_eltju")
+control_envelope = SubResource("Curve_wqsbj")
+
+[node name="DeerLegs" parent="." instance=ExtResource("3_5mwn2")]
+script = ExtResource("4_wqsbj")
+main_body = NodePath("..")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.9106859e-15, -4.371139e-08, -1, -0.9955554, 0.094177775, -4.1166435e-09, 0.094177775, 0.9955554, -4.3517108e-08, 0, 0.46994323, 0.040073633)
@@ -37,46 +107,40 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 0.080442436, -0.99675924, 0, 0.99675924, 0.080442436, 0, 0.46994323, 0.040937603)
 shape = SubResource("CapsuleShape3D_e1i74")
 
-[node name="VehicleWheel3D" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.08331394, -0.49228993)
-wheel_radius = 0.1
-suspension_stiffness = 1.0
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+depth = 0.75
+polygon = PackedVector2Array(0.8477053, -0.00057055056, 0.9509317, -0.113535166, 0.8671822, -0.1778082, 0.7912232, -0.2264998, 0.6957876, -0.2615578, 0.59840435, -0.28298217, 0.22055706, -0.29856348, -0.7747007, -0.30051112, -0.68705577, -0.16806984)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D"]
-mesh = SubResource("BoxMesh_eltju")
+[node name="DebugUi" type="BoxContainer" parent="."]
+unique_name_in_owner = true
+offset_top = 90.0
+offset_right = 127.0
+offset_bottom = 141.0
 
-[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.08331394, -0.49228993)
-wheel_radius = 0.1
-suspension_stiffness = 1.0
+[node name="PhysicsStats" type="Label" parent="DebugUi"]
+unique_name_in_owner = true
+layout_mode = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D2"]
-mesh = SubResource("BoxMesh_eltju")
+[node name="FollowCamera" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4305115e-06, 0.8681183, -2.3872833)
+current = true
+script = ExtResource("7_nv1pf")
+attach_point = NodePath("../CameraFollowMark")
 
-[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.08331394, 0.43465495)
-use_as_traction = true
-use_as_steering = true
-wheel_radius = 0.1
+[node name="CameraFollowMark" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4305115e-06, 0.8681183, -2.3872833)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D3"]
-mesh = SubResource("BoxMesh_eltju")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.24752323, -0.96888196, 0, 0.96888196, 0.24752323, -5.9604645e-08, 0.65621865, -0.37504655)
+mesh = SubResource("CylinderMesh_5mwn2")
+skeleton = NodePath("ThrustParticles")
 
-[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.08331394, 0.43465495)
-use_as_traction = true
-use_as_steering = true
-wheel_radius = 0.1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleWheel3D4"]
-mesh = SubResource("BoxMesh_eltju")
-
-[node name="MoveButton" type="Button" parent="."]
-offset_left = 38.0
-offset_top = 33.0
-offset_right = 165.0
-offset_bottom = 64.0
-text = "MoveDeerBody"
-
-[connection signal="button_down" from="MoveButton" to="." method="_on_move_button_button_down"]
-[connection signal="button_up" from="MoveButton" to="." method="_on_move_button_button_up"]
+[node name="ThrustParticles" type="GPUParticles3D" parent="MeshInstance3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.30041146, 0)
+emitting = false
+amount = 100
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_5mwn2")
+draw_pass_1 = SubResource("QuadMesh_nv1pf")

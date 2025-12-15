@@ -16,11 +16,7 @@ radius = 0.05
 [sub_resource type="BoxShape3D" id="BoxShape3D_851as"]
 size = Vector3(0.1, 0.1, 0.1)
 
-[node name="DeerLegs" type="RigidBody3D"]
-collision_layer = 0
-collision_mask = 0
-freeze = true
-freeze_mode = 1
+[node name="DeerLegs" type="Node3D"]
 
 [node name="LegJoint1" type="ConeTwistJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20517719, 0.40742832, 0.4068948)

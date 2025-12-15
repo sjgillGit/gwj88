@@ -4,11 +4,16 @@ extends Camera3D
 @export var min_distance := 2.0
 @export var max_distance := 40.0
 @export var angle_v_adjust := 0.0
+@export var max_attached_velocity := 5.0
+@export var max_fov := 100
 
 @export var height := 1.5
-@export_node_path var attach_point
+@export_node_path var attach_point: NodePath
+
 var _collision_exception: Array[RID] = []
 var _attach_point: Node3D
+
+@onready var _base_fov := fov
 
 func _ready():
 	_attach_point = get_node_or_null(attach_point) if attach_point else null
@@ -27,11 +32,13 @@ func _ready():
 
 func _physics_process(_delta):
 	var body := get_parent() as RigidBody3D
-	if body.angular_velocity.length() < 10.0 && _attach_point != null:
+	if body.angular_velocity.length() < max_attached_velocity && _attach_point != null:
 		assert(_attach_point.get_parent() == get_parent(), "attach_point should be a sibling otherwise we need better math")
 		transform = _attach_point.transform
 		top_level = false
+		fov = clampf(_base_fov + body.linear_velocity.length(), _base_fov, max_fov)
 	else:
+		fov = _base_fov
 		top_level = true
 		var target = get_parent().get_global_transform().origin
 		var pos = get_global_transform().origin
