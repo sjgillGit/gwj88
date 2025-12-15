@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://daqockmvu44lh"]
+
+[ext_resource type="Script" uid="uid://drvrvuhyiray7" path="res://Scenes/player.gd" id="1_1sht0"]
+[ext_resource type="PackedScene" uid="uid://d2i2w88xsn74" path="res://Assets/ReindeerWIP.fbx" id="1_3l5as"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1sht0"]
+size = Vector3(3.0552979, 0.75600815, 4.996643)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_1sht0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07086182, 0.51065135, 0.19577026)
+shape = SubResource("BoxShape3D_1sht0")
+
+[node name="Model" parent="." instance=ExtResource("1_3l5as")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8630343, 0.5051454, 0, -0.5051454, 0.8630343, 0, 10.6951885, 8.577126)
