@@ -6,10 +6,11 @@ class Buttons:
 	const on_button_pressed_TIME: float = 0.14
 
 
-	static func setup_buttons(buttons: ButtonGroup) -> void:
+	static func setup_buttons(buttons: ButtonGroup, call_func: Callable) -> void:
 		for button: Button in buttons.get_buttons():
 			button.mouse_entered.connect(on_button_hoverd)
 			button.pressed.connect(on_button_pressed)
+		buttons.pressed.connect(call_func)
 
 
 	static func on_button_hoverd() -> void:

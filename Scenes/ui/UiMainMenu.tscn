@@ -84,17 +84,6 @@ toggle_mode = true
 button_group = ExtResource("3_85x37")
 text = "SETTINGS"
 
-[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="PEN" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_7c5qm")
-toggle_mode = true
-button_group = ExtResource("3_85x37")
-text = "PEN"
-
 [node name="HSeparator4" type="HSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 

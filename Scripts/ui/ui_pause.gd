@@ -9,8 +9,7 @@ extends Control
 
 
 func _ready() -> void:
-	UiLib.Buttons.setup_buttons(button_group)
-	button_group.pressed.connect(_on_button_pressed)
+	UiLib.Buttons.setup_buttons(button_group, Callable(self, &"_on_button_pressed"))
 
 
 func _on_button_pressed(button: BaseButton) -> void:
