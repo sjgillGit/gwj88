@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://dv6ucdxrqdyki"]
+
+[ext_resource type="Script" uid="uid://tknl0opas2c" path="res://Scenes/flight_mode/test/float_test.gd" id="1_xmlaq"]
+[ext_resource type="PackedScene" uid="uid://d1t0irvo1tq7i" path="res://Scenes/flight_mode/deer_missile.tscn" id="2_1yha8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cecf1"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wddfa"]
+emission_enabled = true
+emission = Color(0.92535293, 0.9253528, 0.9253529, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_st08m"]
+material = SubResource("StandardMaterial3D_wddfa")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ysx3j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cecf1"]
+noise = SubResource("FastNoiseLite_ysx3j")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8ypq"]
+cull_mode = 1
+albedo_texture = SubResource("NoiseTexture2D_cecf1")
+uv1_scale = Vector3(0.025, 0.025, 0.025)
+uv1_offset = Vector3(0.5, 0.5, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wddfa"]
+material = SubResource("StandardMaterial3D_x8ypq")
+size = Vector3(50, 50, 300)
+
+[node name="FloatTest" type="Node3D"]
+script = ExtResource("1_xmlaq")
+
+[node name="DeerMissile" parent="." instance=ExtResource("2_1yha8")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="DeerMissile"]
+amount = 100
+lifetime = 15.0
+process_material = SubResource("ParticleProcessMaterial_cecf1")
+draw_pass_1 = SubResource("SphereMesh_st08m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.900345, 0, 0)
+mesh = SubResource("BoxMesh_wddfa")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Reset"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 4.975794, 23.429222)
+current = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

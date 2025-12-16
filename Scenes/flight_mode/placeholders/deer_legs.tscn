@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://3t06e673ici5"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_851as"]
+[ext_resource type="Material" uid="uid://b13ie36bwv7v7" path="res://Scenes/flight_mode/placeholders/deer_fur_mat.tres" id="2_yc7rp"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sq2c6"]
+top_radius = 0.05
+bottom_radius = 0.025
+height = 0.75
+radial_segments = 16
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eltju"]
+height = 0.5
+radius = 0.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_851as"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="DeerLegs" type="Node3D"]
+
+[node name="LegJoint1" type="ConeTwistJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20517719, 0.40742832, 0.4068948)
+node_a = NodePath("..")
+node_b = NodePath("../LegBody1")
+
+[node name="LegBody1" type="RigidBody3D" parent="."]
+transform = Transform3D(3.5527137e-15, -4.3711385e-08, -1, -1.0658141e-14, 1, -4.371139e-08, 1, 1.23001695e-14, 0, 0.2, 0.06994322, 0.4)
+collision_layer = 0
+collision_mask = 2
+mass = 0.01
+physics_material_override = ExtResource("1_851as")
+
+[node name="Leg1" type="MeshInstance3D" parent="LegBody1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 4.3698974e-29, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_sq2c6")
+skeleton = NodePath("../../../Body")
+surface_material_override/0 = ExtResource("2_yc7rp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LegBody1"]
+shape = SubResource("CylinderShape3D_eltju")
+
+[node name="LegJoint2" type="ConeTwistJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205, 0.4069432, 0.407)
+node_a = NodePath("..")
+node_b = NodePath("../LegBody2")
+
+[node name="LegBody2" type="RigidBody3D" parent="."]
+transform = Transform3D(3.5527137e-15, -4.3711385e-08, -1, -1.0658141e-14, 1, -4.371139e-08, 1, 1.23001695e-14, 0, -0.2, 0.06994322, 0.4)
+collision_layer = 0
+collision_mask = 2
+mass = 0.01
+physics_material_override = ExtResource("1_851as")
+
+[node name="Leg1" type="MeshInstance3D" parent="LegBody2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 4.3698974e-29, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_sq2c6")
+skeleton = NodePath("../../../Body")
+surface_material_override/0 = ExtResource("2_yc7rp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LegBody2"]
+shape = SubResource("CylinderShape3D_eltju")
+
+[node name="LegJoint3" type="ConeTwistJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205, 0.4069432, -0.39471477)
+node_a = NodePath("..")
+node_b = NodePath("../LegBody3")
+
+[node name="LegBody3" type="RigidBody3D" parent="."]
+transform = Transform3D(3.5527137e-15, -4.3711385e-08, -1, -1.0658141e-14, 1, -4.371139e-08, 1, 1.23001695e-14, 0, -0.2, 0.06994322, -0.4017148)
+collision_layer = 0
+collision_mask = 2
+mass = 0.01
+physics_material_override = ExtResource("1_851as")
+
+[node name="Leg1" type="MeshInstance3D" parent="LegBody3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 4.3698974e-29, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_sq2c6")
+skeleton = NodePath("../../../Body")
+surface_material_override/0 = ExtResource("2_yc7rp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LegBody3"]
+shape = SubResource("CylinderShape3D_eltju")
+
+[node name="LegJoint4" type="ConeTwistJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.205, 0.4069432, -0.395)
+node_a = NodePath("..")
+node_b = NodePath("../LegBody4")
+
+[node name="LegBody4" type="RigidBody3D" parent="."]
+transform = Transform3D(3.5527137e-15, -4.3711385e-08, -1, -1.0658141e-14, 1, -4.371139e-08, 1, 1.23001695e-14, 0, 0.2, 0.06994322, -0.402)
+collision_layer = 0
+collision_mask = 2
+mass = 0.01
+physics_material_override = ExtResource("1_851as")
+
+[node name="Leg1" type="MeshInstance3D" parent="LegBody4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 4.3698974e-29, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_sq2c6")
+skeleton = NodePath("../../../Body")
+surface_material_override/0 = ExtResource("2_yc7rp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LegBody4"]
+shape = SubResource("CylinderShape3D_eltju")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_851as")

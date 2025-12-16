@@ -1,0 +1,2 @@
+class_name PhysicalRamp
+extends CSGPolygon3D

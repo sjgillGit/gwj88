@@ -1,0 +1,2 @@
+class_name Ground
+extends StaticBody3D

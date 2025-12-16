@@ -1,0 +1,2 @@
+class_name TopPlatform
+extends StaticBody3D
