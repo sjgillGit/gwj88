@@ -39,3 +39,7 @@ folder_colors={
 [global_group]
 
 ui=""
+
+[layer_names]
+
+3d_physics/layer_5="Collectable"
