@@ -1,0 +1,19 @@
+[gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://dagvxksushulb"]
+
+[ext_resource type="Texture2D" uid="uid://djrv7as55p2o7" path="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Other.png" id="1_bjxuo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtws8"]
+atlas = ExtResource("1_bjxuo")
+region = Rect2(65, 121, 5, 6)
+
+[resource]
+texture = SubResource("AtlasTexture_mtws8")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+modulate_color = Color(0.78039217, 0.79607844, 0.79607844, 1)
