@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4ditbj0i6sgt"]
+[gd_scene load_steps=18 format=3 uid="uid://c4ditbj0i6sgt"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_d7dld"]
 [ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="2_c746f"]
 [ext_resource type="Script" uid="uid://m410she5703r" path="res://Scenes/flight_mode/ground.gd" id="3_3e0yg"]
 [ext_resource type="PackedScene" uid="uid://cvaagkgc834hv" path="res://Scenes/flight_mode/placeholders/Canes.glb" id="3_s1l5i"]
 [ext_resource type="Script" uid="uid://cq8tnxuq7c0ab" path="res://Scenes/flight_mode/top_platform.gd" id="5_d7dld"]
-[ext_resource type="PackedScene" uid="uid://bc8mts2tx04hn" path="res://Scenes/flight_mode/placeholders/Reindeer.glb" id="6_wl4wa"]
 [ext_resource type="Script" uid="uid://ci5fibeb4q8ya" path="res://Scenes/flight_mode/physical_ramp.gd" id="7_jure0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ld0ly"]
@@ -110,10 +109,6 @@ shape = SubResource("BoxShape3D_uyybt")
 [node name="DeerEmitter" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.988857, 34.259937, 35.230007)
-
-[node name="Reindeer" parent="." instance=ExtResource("6_wl4wa")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 6.8989406, 33.98067, 34.751442)
-visible = false
 
 [node name="PhysicalRamp" type="CSGPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.970608, 33.474567)

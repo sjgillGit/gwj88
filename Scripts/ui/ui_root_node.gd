@@ -10,19 +10,29 @@ extends Control
 @onready var settings: Control = $UiSettings
 @onready var startup: Control = $UiStartup
 
+static var instance: UiRootNode
+
 func _ready() -> void:
+	assert(!instance, "There can be only one!")
+	instance = self
 	GameState.new_state.connect(_on_new_state)
 	GameState.current = GameState.current # This ensures the Main Menu appears
 
 func _on_new_state(next_state: GameState.State, _old_state: GameState.State) -> void:
 	for child: Node in get_children():
 		child.hide()
-	match next_state:
-		GameState.State.STARTUP:    startup.show()
-		GameState.State.MAIN_MENU:  main_menu.show()
-		GameState.State.SETTINGS:   settings.show()
-		GameState.State.CREDITS:    credits.show()
-		GameState.State.PLAY:       play.show()
-		GameState.State.PEN:        pen.show()
-		GameState.State.PAUSE:      pause.show()
+	var menu = get_menu_for_state(next_state)
+	if menu:
+		menu.show()
+
+func get_menu_for_state(state: GameState.State):
+	match state:
+		GameState.State.STARTUP:    return startup
+		GameState.State.MAIN_MENU:  return main_menu
+		GameState.State.SETTINGS:   return settings
+		GameState.State.CREDITS:    return credits
+		GameState.State.PLAY:       return play
+		GameState.State.PEN:        return pen
+		GameState.State.PAUSE:      return pause
 		GameState.State.QUIT:       print_debug("This should not have been called")
+	return null

@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=15 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
-[ext_resource type="PackedScene" uid="uid://3t06e673ici5" path="res://Scenes/flight_mode/placeholders/deer_legs.tscn" id="3_uf6lm"]
-[ext_resource type="Script" uid="uid://cla8131ss3orj" path="res://Scenes/flight_mode/placeholders/deer_legs.gd" id="4_gx8te"]
-[ext_resource type="Material" uid="uid://b13ie36bwv7v7" path="res://Scenes/flight_mode/placeholders/deer_fur_mat.tres" id="5_t15k7"]
-[ext_resource type="PackedScene" uid="uid://bc8mts2tx04hn" path="res://Scenes/flight_mode/placeholders/Reindeer.glb" id="6_bjseb"]
+[ext_resource type="PackedScene" uid="uid://cfqy04vblriqj" path="res://Assets/Reindeer.glb" id="3_wfu7b"]
+[ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrade.gd" id="4_g2hql"]
+[ext_resource type="PackedScene" uid="uid://bjqetj7ue2x0s" path="res://Scenes/upgrades/rockets_1.tscn" id="5_g2hql"]
 [ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
@@ -13,73 +12,36 @@ _limits = [0.0, 1.0, 0.0, 1000.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10.685663, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mhl8m"]
-material = ExtResource("5_t15k7")
-radius = 0.25
-height = 1.3
-radial_segments = 16
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2hql"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6trtm"]
+animation = &"Running"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_0j4hg"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_eftuo"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5a4eb"]
+graph_offset = Vector2(-51.530273, -43.367096)
+nodes/output/position = Vector2(720, 120)
+nodes/running/node = SubResource("AnimationNodeBlend2_eftuo")
+nodes/running/position = Vector2(460, 80)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_g2hql")
+nodes/Idle/position = Vector2(220, 20)
+nodes/Running/node = SubResource("AnimationNodeAnimation_6trtm")
+nodes/Running/position = Vector2(60, 240)
+nodes/run_timescale/node = SubResource("AnimationNodeTimeScale_0j4hg")
+nodes/run_timescale/position = Vector2(220, 200)
+node_connections = [&"output", 0, &"running", &"running", 0, &"Idle", &"running", 1, &"run_timescale", &"run_timescale", 0, &"Running"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e1i74"]
+radius = 0.27490234
+height = 1.2705078
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2hql"]
 radius = 0.25976563
-height = 1.3544922
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5mwn2"]
-top_radius = 0.05
-bottom_radius = 0.1
-height = 0.5
-radial_segments = 16
-
-[sub_resource type="Gradient" id="Gradient_wqsbj"]
-offsets = PackedFloat32Array(0, 0.1118421, 0.23026316, 0.5986842, 0.90789473, 1)
-colors = PackedColorArray(1, 0.59461164, 0.5178461, 1, 1, 0, 0.05490196, 0.78039217, 0.9783165, 0.38954568, 4.3317676e-05, 1, 1, 0.9254902, 0, 0.3529412, 0, 0, 0, 0.37226278, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_nv1pf"]
-gradient = SubResource("Gradient_wqsbj")
-
-[sub_resource type="Curve" id="Curve_5mwn2"]
-_data = [Vector2(0, 0.7334138), 0.0, 0.0, 0, 0, Vector2(0.28787878, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.11399281), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_wqsbj"]
-curve = SubResource("Curve_5mwn2")
-
-[sub_resource type="Curve" id="Curve_t54us"]
-_data = [Vector2(0, 0.28648978), 0.0, 0.0, 0, 0, Vector2(0.18787879, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.059107423), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_xvt68"]
-curve = SubResource("Curve_t54us")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5mwn2"]
-emission_shape = 1
-emission_sphere_radius = 0.25
-angle_min = -89.99999
-angle_max = 90.000015
-direction = Vector3(0, 0, -1)
-spread = 12.0
-initial_velocity_min = 5.0
-initial_velocity_max = 5.0
-angular_velocity_min = 43.03998
-angular_velocity_max = 43.03998
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_xvt68")
-color_ramp = SubResource("GradientTexture1D_nv1pf")
-emission_curve = SubResource("CurveTexture_wqsbj")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqsbj"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-vertex_color_use_as_albedo = true
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_nv1pf"]
-material = SubResource("StandardMaterial3D_wqsbj")
-size = Vector2(0.1, 0.1)
+height = 0.829834
 
 [node name="DeerMissile" type="RigidBody3D"]
 collision_layer = 3
@@ -92,21 +54,117 @@ angular_damp = 0.1
 script = ExtResource("2_vmpjy")
 control_envelope = SubResource("Curve_wqsbj")
 
-[node name="DeerLegs" parent="." instance=ExtResource("3_uf6lm")]
-script = ExtResource("4_gx8te")
-main_body = NodePath("..")
+[node name="Reindeer2" parent="." instance=ExtResource("3_wfu7b")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.32360464, 0.040073633)
 
-[node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.9106859e-15, -4.371139e-08, -1, -0.9955554, 0.094177775, -4.1166435e-09, 0.094177775, 0.9955554, -4.3517108e-08, 0, 0.46994323, 0.040073633)
-mesh = SubResource("CapsuleMesh_mhl8m")
+[node name="Skeleton3D" parent="Reindeer2/metarig" index="0"]
+bones/1/rotation = Quaternion(-0.8504499, -2.3621762e-07, -1.5642765e-07, 0.5260562)
+bones/7/rotation = Quaternion(-0.30341318, -0.020015553, 0.0051926407, 0.9526347)
+bones/8/rotation = Quaternion(-0.053103592, -0.019476365, 0.013078787, 0.9983134)
+bones/9/rotation = Quaternion(0.50663435, 0.047880013, -0.043760605, 0.8597175)
+bones/12/position = Vector3(0.07800421, 0.23866656, -0.055951495)
+bones/13/rotation = Quaternion(0.15164685, -0.08267973, 0.16027063, 0.971844)
+bones/14/rotation = Quaternion(-0.239304, -0.011373571, 0.02532204, 0.97054785)
+bones/15/rotation = Quaternion(0.1561811, 0.0093012, -0.021979969, 0.98744005)
+bones/16/rotation = Quaternion(-0.0032911533, 0.8425977, -0.53849554, -0.006389158)
+bones/17/position = Vector3(-0.07800387, 0.23866647, -0.05595185)
+bones/18/rotation = Quaternion(0.26540452, 0.06677904, -0.16694595, 0.94722235)
+bones/19/rotation = Quaternion(-0.4311422, 0.010898058, -0.03609188, 0.90149593)
+bones/20/rotation = Quaternion(0.3760831, -0.012571175, 0.03269732, 0.92592347)
+bones/21/rotation = Quaternion(-0.01141782, 0.8726666, -0.488182, -0.0010151076)
+bones/24/position = Vector3(-2.3227673e-07, 0.4435206, 0.1367059)
+bones/24/rotation = Quaternion(-0.3518341, -0.0045467853, -0.00402981, 0.93604267)
+bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
+bones/27/rotation = Quaternion(0.78819597, -5.5020682e-05, 0.0025588067, 0.6154191)
+bones/28/rotation = Quaternion(0.48518148, -0.014431166, 0.018890511, 0.8740903)
+bones/29/rotation = Quaternion(-0.25651655, 0.019744752, -0.017562559, 0.96617854)
+bones/30/rotation = Quaternion(-0.0012271551, 0.9098178, -0.41499218, -0.003403524)
+bones/31/rotation = Quaternion(0.7706889, 0.00059126597, -0.0063357023, 0.63718)
+bones/32/rotation = Quaternion(0.44601715, 0.01766315, -0.012629737, 0.894761)
+bones/33/rotation = Quaternion(-0.527281, -0.019313084, 0.013572032, 0.8493631)
+bones/34/rotation = Quaternion(-0.005938012, 0.91721743, -0.39831752, 0.004490519)
+bones/36/position = Vector3(1.752792e-07, 0.25353417, -0.100360975)
+bones/36/rotation = Quaternion(0.07580732, -1.0224089e-06, 9.415771e-08, 0.9971225)
 
-[node name="Reindeer" parent="." instance=ExtResource("6_bjseb")]
-transform = Transform3D(-0.25, 0, 2.1855694e-08, 0, 0.25, 0, -2.1855694e-08, 0, -0.25, 1.1172327, -0.28298306, 0.07150647)
+[node name="DeerFluff" parent="Reindeer2/metarig/Skeleton3D" index="4"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.00025665687, 0.0012023449, -0.0012749657)
+
+[node name="U AntlersBIG UPGRADE" parent="Reindeer2/metarig/Skeleton3D" index="5"]
+script = ExtResource("4_g2hql")
+upgrade_name = "Big Antlers"
+id = "antlers2"
+requires = "antlers1"
+enabled = true
+category = 2
+
+[node name="U AntlersSMALL" parent="Reindeer2/metarig/Skeleton3D" index="6"]
 visible = false
+script = ExtResource("4_g2hql")
+upgrade_name = "Antlers"
+id = "antlers1"
+category = 2
+
+[node name="U Collar UPGRADE" parent="Reindeer2/metarig/Skeleton3D" index="7"]
+visible = false
+script = ExtResource("4_g2hql")
+upgrade_name = "Collar"
+id = "collar"
+category = 1
+
+[node name="U Ornaments UPGRADE" parent="Reindeer2/metarig/Skeleton3D" index="8"]
+visible = false
+script = ExtResource("4_g2hql")
+upgrade_name = "Ornaments"
+id = "ornaments"
+requires = "antler2"
+
+[node name="U Sadle UPGRADE" parent="Reindeer2/metarig/Skeleton3D" index="9"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+script = ExtResource("4_g2hql")
+upgrade_name = "Saddle"
+id = "saddle"
+enabled = true
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Reindeer2/metarig/Skeleton3D" index="10"]
+transform = Transform3D(0.9999998, -6.7277625e-08, -2.8330123e-07, -2.8499278e-07, -0.026288949, -0.99966985, 5.980901e-08, 0.9996546, -0.026285782, -1.4965966e-09, 1.1926429, -0.23170209)
+bone_name = "spine.015"
+bone_idx = 36
+
+[node name="Rockets1" parent="Reindeer2/metarig/Skeleton3D/BoneAttachment3D" instance=ExtResource("5_g2hql")]
+transform = Transform3D(1.0000004, -7.327062e-07, -1.929351e-09, -1.9017158e-07, -0.26208833, 0.9650445, -7.0759955e-07, -0.96504456, -0.2620883, 5.633666e-08, 0.012068301, 0.18472284)
+upgrade_name = "Rocket JR 500"
+id = "rocket1"
+description = ""
+requires = "saddle"
+cost = 1000
+enabled = true
+category = 5
+thrust = 500.0
+lift = 0
+drag = 0
+mass = 1.0
+holiday_spirit = 0.0
+toughness = 0.0
+
+[node name="AnimationPlayer" parent="Reindeer2" index="2"]
+root_node = NodePath("../../Reindeer2")
+autoplay = "Idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="Reindeer2"]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_5a4eb")
+anim_player = NodePath("../AnimationPlayer")
+parameters/running/blend_amount = 0.5
+parameters/run_timescale/scale = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.080442436, -0.99675924, 0, 0.99675924, 0.080442436, 0, 0.46994323, 0.040937603)
+transform = Transform3D(1, 0, 0, 0, 0.080442436, -0.99675924, 0, 0.99675924, 0.080442436, 0, 0.47332117, 0.0827937)
 shape = SubResource("CapsuleShape3D_e1i74")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.44430682, -0.89587474, 0, 0.89587474, 0.44430682, 0, 0.83254254, 0.6660558)
+shape = SubResource("CapsuleShape3D_g2hql")
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
@@ -124,24 +182,17 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="FollowCamera" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4305115e-06, 0.8681183, -2.3872833)
+transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, -8.8081435e-09, 0.9786563, 0.20550394, 1.4214126e-07, 0.20550394, -0.9786563, 1.4305115e-06, 1.4324219, -2.0072045)
 current = true
 script = ExtResource("7_62wey")
 attach_point = NodePath("../CameraFollowMark")
 
 [node name="CameraFollowMark" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4305115e-06, 0.8681183, -2.3872833)
+transform = Transform3D(-1, 2.202999e-08, -1.47773e-07, -8.8081435e-09, 0.9786563, 0.20550394, 1.4914622e-07, 0.20550394, -0.9786563, 1.4305115e-06, 1.4324219, -2.0072045)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.24752323, -0.96888196, 0, 0.96888196, 0.24752323, -5.9604645e-08, 0.65621865, -0.37504655)
-mesh = SubResource("CylinderMesh_5mwn2")
-skeleton = NodePath("ThrustParticles")
+[node name="FlightStateTimer" type="Timer" parent="."]
+autostart = true
 
-[node name="ThrustParticles" type="GPUParticles3D" parent="MeshInstance3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.30041146, 0)
-emitting = false
-amount = 100
-lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_5mwn2")
-draw_pass_1 = SubResource("QuadMesh_nv1pf")
+[connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
+
+[editable path="Reindeer2"]

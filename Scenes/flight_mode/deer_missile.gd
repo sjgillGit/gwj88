@@ -2,22 +2,23 @@ class_name DeerMissile
 extends RigidBody3D
 
 signal distance_updated()
+signal flight_state_changed(state: FlightState)
 
-# todo: make this lower but let them push forward to move when
-# they are on the ramp/platform
-@export var base_thrust := 200.0
+const FlightState = preload("res://Scripts/flight_state.gd").FlightState
+
+@export var base_thrust := 5.0
 @export var base_lift := 0.0
 @export var base_drag := 1.0
-##
 @export var base_mass := 50.0
 ## Amount of control you have over flight.. should be between 0 and 1
 @export var base_control := 0.9
 ## speeds at which we have flight control
 @export var control_envelope: Curve
 
-@export var pitch_speed := 100.0
-@export var roll_speed := 100.0
-@export var yaw_speed := 100.0
+@export var walk_speed := 5.0
+@export var pitch_speed := 1.0
+@export var roll_speed := 1.0
+@export var yaw_speed := 1.0
 
 @export var show_debug_ui := true:
 	set(value):
@@ -40,12 +41,15 @@ var _thrust_vector := Vector3()
 var _upgrade_thrust := 0.0
 var _upgrade_lift := 0.0
 var _upgrade_drag := 0.0
-var _upgrade_mass := 0.0
 var _upgrade_control := 0.0
 var _player_inputs: Vector3
 var _on_ramp := true
 var _stats := {}
 var _landed := false
+var _launch_upgrades: Array[Upgrade]
+
+var _overlapping_areas: Array[int]
+var _last_flight_state := FlightState.PRE_FLIGHT
 
 
 func _ready():
@@ -57,18 +61,46 @@ func _ready():
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
 	show_debug_ui = show_debug_ui
-	_apply_upgrade_stats()
+	_launch_upgrades = get_upgrades().filter(func(u): return u.enabled)
+
+
+func get_flight_state() -> FlightState:
+	if _landed && linear_velocity.length() < 0.001:
+		return FlightState.POST_FLIGHT
+	if _launch_point != Vector3.ZERO:
+		return FlightState.FLIGHT
+	return FlightState.PRE_FLIGHT
+
+
+func get_upgrades() -> Array[Upgrade]:
+	var result: Array[Upgrade]
+	for c in find_children("*", "Node3D"):
+		if c is Upgrade:
+			result.append(c)
+	return result
 
 
 func _apply_upgrade_stats():
 	# TODO: add up stats from current upgrades and save them in `_upgrade_x` vars
-	_upgrade_mass = 0 # (no upgrades yet!)
+	var _upgrade_mass = 0 # (no upgrades yet!)
+	_upgrade_lift = 0
+	_upgrade_thrust = 0
+	_upgrade_drag = 0
+	for u in _launch_upgrades:
+		_upgrade_mass += u.get_mass()
+		_upgrade_thrust += u.get_thrust()
+		_upgrade_lift += u.get_lift()
+		_upgrade_drag += u.get_drag()
+
+	# mass is the only builtin stat on RigidBody3D
 	mass = base_mass + _upgrade_mass
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var _distance_updated := false
 	_on_ramp = false
+	_apply_upgrade_stats()
+
 	var cb := get_colliding_bodies()
 	for b in cb:
 		if b is PhysicalRamp:
@@ -81,8 +113,15 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			if !_landed:
 				_impact_point = global_position
 				_distance_updated = true
-			_landed = true
+				_landed = true
 		elif b is TopPlatform:
+			_on_ramp = true
+
+	for a_id in _overlapping_areas:
+		var a := instance_from_id(a_id)
+		if a && a is LaunchZone:
+			# probably redundant, above code worked ok to detect _on_ramp status
+			# but this is how to add boost areas also..
 			_on_ramp = true
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
@@ -94,19 +133,29 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	if _on_ramp:
 		# X inputs rotate around the Y axis (yaw) when we aren't flying
-		state.apply_torque_impulse(global_basis * (Vector3.BACK * _player_inputs.x * roll_speed * state.step))
+		state.apply_torque_impulse(global_basis * (Vector3.DOWN * _player_inputs.x * roll_speed * state.step * mass))
+		# Y inputs move forward/back when we aren't flying
+		state.apply_central_impulse(global_basis * (Vector3.FORWARD * _player_inputs.y * walk_speed * state.step * mass))
 	else:
 		# X inputs rotate around the Z axis (roll)
-		state.apply_torque_impulse(global_basis * (Vector3.BACK * _player_inputs.x * roll_speed * state.step))
-	# Y inputs rotate around the X axis (pitch)
-	state.apply_torque_impulse(global_basis * (Vector3.LEFT * _player_inputs.y * pitch_speed * state.step))
+		state.apply_torque_impulse(global_basis * (Vector3.BACK * _player_inputs.x * roll_speed * state.step * mass))
+		# Y inputs rotate around the X axis (pitch)
+		state.apply_torque_impulse(global_basis * (Vector3.LEFT * _player_inputs.y * pitch_speed * state.step * mass))
 	# Z inputs rotate around the Y axis (yaw)
 	# we don't actually have any inputs for this yet
-	state.apply_torque_impulse(global_basis * (Vector3.UP * _player_inputs.z * state.step * yaw_speed))
+	state.apply_torque_impulse(global_basis * (Vector3.UP * _player_inputs.z * state.step * yaw_speed * mass))
 	if _distance_updated:
 		_update_distances()
+	var lv := state.linear_velocity
+	var forward_speed := (state.transform.basis * state.linear_velocity).z
+	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
+	if abs(forward_speed) < 0.001:
+		forward_speed = 0
+
+	var at := %AnimationTree
+	at.set("parameters/running/blend_amount", absf(forward_speed))
+	at.set("parameters/run_timescale/scale", forward_speed * 3)
 	_print_stats()
-		
 
 
 func _apply_drag(state: PhysicsDirectBodyState3D):
@@ -133,6 +182,7 @@ func _apply_lift(state: PhysicsDirectBodyState3D):
 		_stats.lift = "%.3f" % [lift_amount]
 	else:
 		_stats.lift = "0.0"
+
 
 # Control affects the ability to adjust your direction and keep going 'forward' instead of tumbling
 func _apply_control(state: PhysicsDirectBodyState3D):
@@ -195,7 +245,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		_player_inputs += Vector3.DOWN * Input.get_action_strength("move_up")
 		_thrust_vector = Vector3.BACK * Input.get_action_strength("move_forward")
 	
-	%ThrustParticles.amount_ratio = 0.5 +  _thrust_vector.length()
-	%ThrustParticles.emitting = _thrust_vector.length() > 0.1
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
+
+
+func add_area(area: Area3D):
+	_overlapping_areas.append(area.get_instance_id())
+
+
+func remove_area(area: Area3D):
+	_overlapping_areas.erase(area.get_instance_id())
+
+
+func is_thrusting() -> bool:
+	return _thrust_vector.length() > 0
+
+
+func _on_flight_state_timer_timeout() -> void:
+	var flight_state := get_flight_state()
+	if flight_state != _last_flight_state:
+		_last_flight_state = flight_state
+		flight_state_changed.emit(flight_state)

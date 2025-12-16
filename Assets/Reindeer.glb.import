@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bc8mts2tx04hn"
-path="res://.godot/imported/Reindeer.glb-d66c83db481511c5b23c467a465f4cf3.scn"
+uid="uid://cfqy04vblriqj"
+path="res://.godot/imported/Reindeer.glb-bff746f31a3e148383fc56260f9e0cdb.scn"
 
 [deps]
 
-source_file="res://Scenes/flight_mode/placeholders/Reindeer.glb"
-dest_files=["res://.godot/imported/Reindeer.glb-d66c83db481511c5b23c467a465f4cf3.scn"]
+source_file="res://Assets/Reindeer.glb"
+dest_files=["res://.godot/imported/Reindeer.glb-bff746f31a3e148383fc56260f9e0cdb.scn"]
 
 [params]
 
@@ -17,7 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.75
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
@@ -39,4 +39,4 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={}
 gltf/naming_version=2
-gltf/embedded_image_handling=1
+gltf/embedded_image_handling=2
