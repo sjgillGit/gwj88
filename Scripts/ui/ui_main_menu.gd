@@ -6,12 +6,12 @@ extends Control
 @onready var button_group: ButtonGroup = %PLAY.button_group
 
 func _ready() -> void:
-	Lib.Buttons.setup_buttons(button_group)
+	UiLib.Buttons.setup_buttons(button_group)
 	button_group.pressed.connect(_on_button_pressed)
 
 
 func _on_button_pressed(button: BaseButton) -> void:
-	await Lib.Buttons.button_delay(button)
+	await UiLib.Buttons.button_delay(button)
 	match button.name:
 		"PLAY":
 			GameState.current = GameState.State.PLAY

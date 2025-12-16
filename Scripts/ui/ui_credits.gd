@@ -9,7 +9,7 @@ extends Control
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		&"scroll":
-			RootNode.root_ref.current_mode = RootNode.root_ref.GameMode.MAIN_MENU
+			GameState.current = GameState.State.MAIN_MENU
 
 
 func _on_visibility_changed() -> void:

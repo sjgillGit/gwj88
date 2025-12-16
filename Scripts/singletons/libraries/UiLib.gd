@@ -1,10 +1,8 @@
 
-class_name Lib
+class_name UiLib
 extends Node
 
 class Buttons:
-
-
 	const on_button_pressed_TIME: float = 0.14
 
 
