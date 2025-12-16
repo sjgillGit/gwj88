@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://flpf4ya8guhb"
-path="res://.godot/imported/Collectable SNOWMAN.glb-2d1f687da6ed201e65925cb31e0f7ef4.scn"
+uid="uid://ci6c7qf2dk80p"
+path="res://.godot/imported/Collectable STAR COIN.glb-9c0bc2345cc0b7a027ffda006ee2749a.scn"
 
 [deps]
 
-source_file="res://Assets/Collectable SNOWMAN.glb"
-dest_files=["res://.godot/imported/Collectable SNOWMAN.glb-2d1f687da6ed201e65925cb31e0f7ef4.scn"]
+source_file="res://Assets/collectibles/Collectable STAR COIN.glb"
+dest_files=["res://.godot/imported/Collectable STAR COIN.glb-9c0bc2345cc0b7a027ffda006ee2749a.scn"]
 
 [params]
 

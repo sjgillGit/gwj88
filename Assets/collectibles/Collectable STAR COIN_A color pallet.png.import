@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dyti0r3x3i7qo"
-path.s3tc="res://.godot/imported/Collectable STAR COIN_A color pallet.png-0b45fdb0d3028036582b10431ebd16ce.s3tc.ctex"
+path.s3tc="res://.godot/imported/Collectable STAR COIN_A color pallet.png-28a0a0c55b64e1ce9bf10fe2b41a89b6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Assets/Collectable STAR COIN_A color pallet.png"
-dest_files=["res://.godot/imported/Collectable STAR COIN_A color pallet.png-0b45fdb0d3028036582b10431ebd16ce.s3tc.ctex"]
+source_file="res://Assets/collectibles/Collectable STAR COIN_A color pallet.png"
+dest_files=["res://.godot/imported/Collectable STAR COIN_A color pallet.png-28a0a0c55b64e1ce9bf10fe2b41a89b6.s3tc.ctex"]
 
 [params]
 
