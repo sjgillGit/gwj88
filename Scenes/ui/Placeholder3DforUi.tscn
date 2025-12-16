@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://7iukt2vlfaaf"]
+[gd_scene load_steps=5 format=3 uid="uid://7iukt2vlfaaf"]
 
 [ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/placeholder_3_dfor_ui.gd" id="1_2iqpr"]
-[ext_resource type="PackedScene" uid="uid://cnl3r1l1rfr5n" path="res://Assets/ui/pen/Flooor.glb" id="1_wxwfb"]
+[ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Scenes/ui/pen_updated.tscn" id="2_vj4pu"]
+[ext_resource type="PackedScene" uid="uid://cfqy04vblriqj" path="res://Assets/Reindeer.glb" id="3_vj4pu"]
 
 [sub_resource type="Environment" id="Environment_wxwfb"]
 
@@ -15,14 +16,23 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wxwfb")
 
-[node name="Flooor" parent="." instance=ExtResource("1_wxwfb")]
-transform = Transform3D(1.4648161, 0, 0, 0, 1.4648161, 0, 0, 0, 1.4648161, 0.95390195, 0, 0.30638456)
+[node name="Pen_Updated" parent="." instance=ExtResource("2_vj4pu")]
 
-[node name="MainMenuCamera" type="Camera3D" parent="."]
-transform = Transform3D(-0.21575806, -0.31469148, 0.9243472, -1.40874015e-08, 0.94664365, 0.32228222, -0.97644687, 0.06953497, -0.20424598, 23.357424, 8.829412, -17.486729)
+[node name="Reindeer" parent="." instance=ExtResource("3_vj4pu")]
+transform = Transform3D(0.8120325, 0, 0.583612, 0, 1, 0, -0.583612, 0, 0.8120325, 0.5239806, 0, -0.9211526)
+
+[node name="ActiveCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.090424076, -0.32096195, 0.9427656, -6.812307e-09, 0.94664377, 0.32228225, -0.9959033, 0.029142056, -0.085599355, 8.583757, 2.4720106, -5.2030544)
 current = true
 fov = 83.58761
 
+[node name="MainMenuCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.090424076, -0.32096195, 0.9427656, -6.812307e-09, 0.94664377, 0.32228225, -0.9959033, 0.029142056, -0.085599355, 8.583757, 2.4720106, -5.2030544)
+fov = 83.58761
+
 [node name="PenCamera" type="Camera3D" parent="."]
-transform = Transform3D(-0.56149143, 0, 0.8274826, 0, 1, 0, -0.8274826, 0, -0.56149143, 6.6689224, 5.105791, -2.3703117)
+unique_name_in_owner = true
+transform = Transform3D(-0.5559329, -0.3271352, 0.7641474, 0, 0.9193003, 0.3935569, -0.8312272, 0.21879123, -0.5110693, 1.3459258, 2.069077, -3.7361157)
 fov = 83.58761

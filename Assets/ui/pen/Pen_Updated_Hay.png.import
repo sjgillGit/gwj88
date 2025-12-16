@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7dsw86vkenle"
-path.s3tc="res://.godot/imported/Flooor_A color pallet.png-00c6db3fb917c3e0c70eaf26465d4d1e.s3tc.ctex"
+uid="uid://om6niej6xo8v"
+path.s3tc="res://.godot/imported/Pen_Updated_Hay.png-7797e1cd131e0870c21665825c9e490d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "b0daf6122809c000a6b2859ddd0382c1"
+"md5": "61521fb3f7e2350f663785e6b2c0f573"
 }
 
 [deps]
 
-source_file="res://Assets/ui/pen/Flooor_A color pallet.png"
-dest_files=["res://.godot/imported/Flooor_A color pallet.png-00c6db3fb917c3e0c70eaf26465d4d1e.s3tc.ctex"]
+source_file="res://Assets/ui/pen/Pen_Updated_Hay.png"
+dest_files=["res://.godot/imported/Pen_Updated_Hay.png-7797e1cd131e0870c21665825c9e490d.s3tc.ctex"]
 
 [params]
 
