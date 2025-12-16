@@ -1,6 +1,8 @@
 extends Node3D
 
-var _player: Node3D
+const FlightState = preload("res://Scripts/flight_state.gd").FlightState
+
+var _player: DeerMissile
 
 func _ready():
 	_spawn_deer()
@@ -20,26 +22,36 @@ func _find_cams():
 
 func _spawn_deer():
 	if _player:
+		await get_tree().process_frame
 		_player.free()
 	_player = preload("./deer_missile.tscn").instantiate()
 	_player.distance_updated.connect(_on_distance_updated)
+	_player.flight_state_changed.connect(_on_flight_state_changed)
 	add_child(_player)
-	if 'show_debug_ui' in _player:
-		_player.show_debug_ui = false
+	_player.show_debug_ui = false
 	_player.global_transform = %DeerEmitter.global_transform
 	var cams := _player.find_children("*", "Camera3D")
 	if len(cams):
 		cams[0].current = true
 	_find_cams()
+	var menu := _get_menu()
+	if menu:
+		menu.flight_state = UiPlay.FlightState.PRE_FLIGHT
+
+
+func _get_menu() -> UiPlay:
+	if !UiRootNode.instance:
+		return null
+	return UiRootNode.instance.get_menu_for_state(GameState.State.PLAY)
 
 
 func _on_distance_updated():
-	if _player is DeerMissile:
-		%FlightStats.text = "\n".join([
-			_player.speed_str,
-			_player.flight_distance_str,
-			_player.roll_distance_str
-		])
+	# TODO: update flight menu ui here?
+	%FlightStats.text = "\n".join([
+		_player.speed_str,
+		_player.flight_distance_str,
+		_player.roll_distance_str
+	])
 
 
 func _on_ice_cube_button_pressed() -> void:
@@ -58,6 +70,14 @@ func _on_camera_option_item_selected(index: int) -> void:
 			c.current = true
 
 
+func _on_flight_state_changed(flight_state: FlightState):
+	var menu := _get_menu()
+	if menu:
+		menu.flight_state = flight_state
+	elif flight_state == FlightState.POST_FLIGHT:
+		# if we are debugging the scene, just restart
+		_spawn_deer()
+
+
 func _on_timer_timeout() -> void:
-	if _player is DeerMissile:
-		_on_distance_updated()
+	_on_distance_updated()
