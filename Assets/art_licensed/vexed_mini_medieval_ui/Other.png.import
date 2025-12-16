@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djrv7as55p2o7"
-path="res://.godot/imported/Other.png-84802390d8bfe2eedbee605e642e8a44.ctex"
+path="res://.godot/imported/Other.png-db8ddc2770baa23fb099025ef5ce40db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Other.png"
-dest_files=["res://.godot/imported/Other.png-84802390d8bfe2eedbee605e642e8a44.ctex"]
+source_file="res://Assets/art_licensed/vexed_mini_medieval_ui/Other.png"
+dest_files=["res://.godot/imported/Other.png-db8ddc2770baa23fb099025ef5ce40db.ctex"]
 
 [params]
 

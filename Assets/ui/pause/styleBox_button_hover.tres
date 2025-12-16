@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=3 format=3 uid="uid://dagvxksushulb"]
 
-[ext_resource type="Texture2D" uid="uid://djrv7as55p2o7" path="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Other.png" id="1_bjxuo"]
+[ext_resource type="Texture2D" uid="uid://djrv7as55p2o7" path="res://Assets/art_licensed/vexed_mini_medieval_ui/Other.png" id="1_bjxuo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mtws8"]
 atlas = ExtResource("1_bjxuo")

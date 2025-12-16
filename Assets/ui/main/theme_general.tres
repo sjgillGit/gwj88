@@ -3,8 +3,8 @@
 [ext_resource type="FontFile" uid="uid://br8526wyvqdrk" path="res://Assets/fonts/Disco-Party-All/Disco_Party.ttf" id="1_m520p"]
 [ext_resource type="StyleBox" uid="uid://dagvxksushulb" path="res://Assets/ui/pause/styleBox_button_hover.tres" id="2_yh0e6"]
 [ext_resource type="StyleBox" uid="uid://bxqhjcwxjpq6j" path="res://Assets/ui/pause/styleBox_button_normal.tres" id="3_on443"]
-[ext_resource type="Texture2D" uid="uid://budb2prl270mc" path="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Banners.png" id="4_ro6t1"]
-[ext_resource type="Texture2D" uid="uid://cwp3o24gxdowj" path="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Frames.png" id="5_476kk"]
+[ext_resource type="Texture2D" uid="uid://budb2prl270mc" path="res://Assets/art_licensed/vexed_mini_medieval_ui/Banners.png" id="4_ro6t1"]
+[ext_resource type="Texture2D" uid="uid://cwp3o24gxdowj" path="res://Assets/art_licensed/vexed_mini_medieval_ui/Frames.png" id="5_476kk"]
 [ext_resource type="FontFile" uid="uid://dxkvfvt32k2u" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Ribs.ttf" id="6_q0gd3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2x4uk"]

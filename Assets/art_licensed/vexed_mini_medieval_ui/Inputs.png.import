@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbh1pevjb77mp"
-path="res://.godot/imported/Portraits.png-e9e20de3d1e82e8604bc13a63aebfc9b.ctex"
+uid="uid://d26jxbgd3i1r5"
+path="res://.godot/imported/Inputs.png-917a6a8d6bf383ae81a75c941b439e14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Portraits.png"
-dest_files=["res://.godot/imported/Portraits.png-e9e20de3d1e82e8604bc13a63aebfc9b.ctex"]
+source_file="res://Assets/art_licensed/vexed_mini_medieval_ui/Inputs.png"
+dest_files=["res://.godot/imported/Inputs.png-917a6a8d6bf383ae81a75c941b439e14.ctex"]
 
 [params]
 

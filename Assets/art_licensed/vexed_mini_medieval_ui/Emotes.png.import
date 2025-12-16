@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lwoixwxdue48"
-path="res://.godot/imported/Icons.png-14a724fa2ab658599c579b73cfaae245.ctex"
+uid="uid://kwjk8b5hhdr1"
+path="res://.godot/imported/Emotes.png-6946d678d920f987aeb7dd9340b9e3b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Icons.png"
-dest_files=["res://.godot/imported/Icons.png-14a724fa2ab658599c579b73cfaae245.ctex"]
+source_file="res://Assets/art_licensed/vexed_mini_medieval_ui/Emotes.png"
+dest_files=["res://.godot/imported/Emotes.png-6946d678d920f987aeb7dd9340b9e3b0.ctex"]
 
 [params]
 
