@@ -1,12 +1,12 @@
 [gd_scene load_steps=19 format=3 uid="uid://c4ditbj0i6sgt"]
 
-[ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://PhysicsTest/ramp_test.gd" id="1_d7dld"]
-[ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://PhysicsTest/deer_feet_physmat.tres" id="2_c746f"]
-[ext_resource type="Script" uid="uid://m410she5703r" path="res://PhysicsTest/ground.gd" id="3_3e0yg"]
-[ext_resource type="PackedScene" uid="uid://cvaagkgc834hv" path="res://PhysicsTest/Canes.glb" id="3_s1l5i"]
-[ext_resource type="Script" uid="uid://cq8tnxuq7c0ab" path="res://PhysicsTest/top_platform.gd" id="5_d7dld"]
-[ext_resource type="PackedScene" uid="uid://bc8mts2tx04hn" path="res://PhysicsTest/Reindeer.glb" id="6_wl4wa"]
-[ext_resource type="Script" uid="uid://ci5fibeb4q8ya" path="res://PhysicsTest/physical_ramp.gd" id="7_jure0"]
+[ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_d7dld"]
+[ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="2_c746f"]
+[ext_resource type="Script" uid="uid://m410she5703r" path="res://Scenes/flight_mode/ground.gd" id="3_3e0yg"]
+[ext_resource type="PackedScene" uid="uid://cvaagkgc834hv" path="res://Scenes/flight_mode/placeholders/Canes.glb" id="3_s1l5i"]
+[ext_resource type="Script" uid="uid://cq8tnxuq7c0ab" path="res://Scenes/flight_mode/top_platform.gd" id="5_d7dld"]
+[ext_resource type="PackedScene" uid="uid://bc8mts2tx04hn" path="res://Scenes/flight_mode/placeholders/Reindeer.glb" id="6_wl4wa"]
+[ext_resource type="Script" uid="uid://ci5fibeb4q8ya" path="res://Scenes/flight_mode/physical_ramp.gd" id="7_jure0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ld0ly"]
 size = Vector3(0.5, 0.5, 0.5)

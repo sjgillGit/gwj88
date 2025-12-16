@@ -3,7 +3,7 @@ extends Node3D
 var _player: Node3D
 
 func _ready():
-	_set_launch_mode(%LaunchCheckButton.button_pressed)
+	_spawn_deer()
 
 
 func _find_cams():
@@ -18,14 +18,11 @@ func _find_cams():
 			co.select(i)
 
 
-func _set_launch_mode(launch_mode: bool):
+func _spawn_deer():
 	if _player:
 		_player.free()
-	if launch_mode:
-		_player = preload("res://PhysicsTest/deer.tscn").instantiate()
-		_player.distance_updated.connect(_on_distance_updated)
-	else:
-		_player = preload("res://Scenes/player.tscn").instantiate()
+	_player = preload("./deer_missile.tscn").instantiate()
+	_player.distance_updated.connect(_on_distance_updated)
 	add_child(_player)
 	if 'show_debug_ui' in _player:
 		_player.show_debug_ui = false
@@ -59,13 +56,6 @@ func _on_camera_option_item_selected(index: int) -> void:
 		var c := instance_from_id(co.get_item_metadata(index)) as Camera3D
 		if c:
 			c.current = true
-
-
-
-
-func _on_launch_check_button_toggled(toggled_on: bool) -> void:
-	_set_launch_mode(toggled_on)
-	%LaunchCheckButton.release_focus()
 
 
 func _on_timer_timeout() -> void:

@@ -1,20 +1,20 @@
 [gd_scene load_steps=21 format=3 uid="uid://d1t0irvo1tq7i"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://PhysicsTest/deer_body_physmat.tres" id="1_gimdj"]
-[ext_resource type="Material" uid="uid://b13ie36bwv7v7" path="res://PhysicsTest/deer_fur_mat.tres" id="1_uavrq"]
-[ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://PhysicsTest/deer.gd" id="2_eltju"]
-[ext_resource type="PackedScene" uid="uid://3t06e673ici5" path="res://PhysicsTest/deer_legs.tscn" id="3_5mwn2"]
-[ext_resource type="PackedScene" uid="uid://bc8mts2tx04hn" path="res://PhysicsTest/Reindeer.glb" id="3_eltju"]
-[ext_resource type="Script" uid="uid://cla8131ss3orj" path="res://PhysicsTest/deer_legs.gd" id="4_wqsbj"]
-[ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://PhysicsTest/follow_cam.gd" id="7_nv1pf"]
+[ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
+[ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
+[ext_resource type="PackedScene" uid="uid://3t06e673ici5" path="res://Scenes/flight_mode/placeholders/deer_legs.tscn" id="3_uf6lm"]
+[ext_resource type="Script" uid="uid://cla8131ss3orj" path="res://Scenes/flight_mode/placeholders/deer_legs.gd" id="4_gx8te"]
+[ext_resource type="Material" uid="uid://b13ie36bwv7v7" path="res://Scenes/flight_mode/placeholders/deer_fur_mat.tres" id="5_t15k7"]
+[ext_resource type="PackedScene" uid="uid://bc8mts2tx04hn" path="res://Scenes/flight_mode/placeholders/Reindeer.glb" id="6_bjseb"]
+[ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
 _limits = [0.0, 1.0, 0.0, 1000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(2.2883282, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10.685663, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mhl8m"]
-material = ExtResource("1_uavrq")
+material = ExtResource("5_t15k7")
 radius = 0.25
 height = 1.3
 radial_segments = 16
@@ -85,22 +85,22 @@ size = Vector2(0.1, 0.1)
 collision_layer = 3
 collision_mask = 3
 mass = 50.0
-physics_material_override = ExtResource("1_gimdj")
+physics_material_override = ExtResource("1_k7jrr")
 contact_monitor = true
 max_contacts_reported = 10
 angular_damp = 0.1
-script = ExtResource("2_eltju")
+script = ExtResource("2_vmpjy")
 control_envelope = SubResource("Curve_wqsbj")
 
-[node name="DeerLegs" parent="." instance=ExtResource("3_5mwn2")]
-script = ExtResource("4_wqsbj")
+[node name="DeerLegs" parent="." instance=ExtResource("3_uf6lm")]
+script = ExtResource("4_gx8te")
 main_body = NodePath("..")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.9106859e-15, -4.371139e-08, -1, -0.9955554, 0.094177775, -4.1166435e-09, 0.094177775, 0.9955554, -4.3517108e-08, 0, 0.46994323, 0.040073633)
 mesh = SubResource("CapsuleMesh_mhl8m")
 
-[node name="Reindeer" parent="." instance=ExtResource("3_eltju")]
+[node name="Reindeer" parent="." instance=ExtResource("6_bjseb")]
 transform = Transform3D(-0.25, 0, 2.1855694e-08, 0, 0.25, 0, -2.1855694e-08, 0, -0.25, 1.1172327, -0.28298306, 0.07150647)
 visible = false
 
@@ -126,7 +126,7 @@ layout_mode = 2
 [node name="FollowCamera" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.4305115e-06, 0.8681183, -2.3872833)
 current = true
-script = ExtResource("7_nv1pf")
+script = ExtResource("7_62wey")
 attach_point = NodePath("../CameraFollowMark")
 
 [node name="CameraFollowMark" type="Marker3D" parent="."]

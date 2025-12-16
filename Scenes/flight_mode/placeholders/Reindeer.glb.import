@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bc8mts2tx04hn"
-path="res://.godot/imported/Reindeer.glb-b818f0b1f4aacefebef813af9183c582.scn"
+path="res://.godot/imported/Reindeer.glb-d66c83db481511c5b23c467a465f4cf3.scn"
 
 [deps]
 
-source_file="res://PhysicsTest/Reindeer.glb"
-dest_files=["res://.godot/imported/Reindeer.glb-b818f0b1f4aacefebef813af9183c582.scn"]
+source_file="res://Scenes/flight_mode/placeholders/Reindeer.glb"
+dest_files=["res://.godot/imported/Reindeer.glb-d66c83db481511c5b23c467a465f4cf3.scn"]
 
 [params]
 

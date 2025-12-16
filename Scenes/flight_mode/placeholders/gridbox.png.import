@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxibpw8kxfgx6"
-path.s3tc="res://.godot/imported/Reindeer_A color pallet.png-059a951650b0e60e7102eb95180c8993.s3tc.ctex"
+uid="uid://c2tntehikldvi"
+path.s3tc="res://.godot/imported/gridbox.png-7222702c6764a201bdd3e157c7692155.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "b0daf6122809c000a6b2859ddd0382c1"
-}
 
 [deps]
 
-source_file="res://PhysicsTest/Reindeer_A color pallet.png"
-dest_files=["res://.godot/imported/Reindeer_A color pallet.png-059a951650b0e60e7102eb95180c8993.s3tc.ctex"]
+source_file="res://Scenes/flight_mode/placeholders/gridbox.png"
+dest_files=["res://.godot/imported/gridbox.png-7222702c6764a201bdd3e157c7692155.s3tc.ctex"]
 
 [params]
 

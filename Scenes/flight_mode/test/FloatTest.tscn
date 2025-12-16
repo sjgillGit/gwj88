@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dv6ucdxrqdyki"]
 
-[ext_resource type="Script" uid="uid://tknl0opas2c" path="res://PhysicsTest/float_test.gd" id="1_cecf1"]
-[ext_resource type="PackedScene" uid="uid://d1t0irvo1tq7i" path="res://PhysicsTest/deer.tscn" id="1_ysx3j"]
+[ext_resource type="Script" uid="uid://tknl0opas2c" path="res://Scenes/flight_mode/test/float_test.gd" id="1_xmlaq"]
+[ext_resource type="PackedScene" uid="uid://d1t0irvo1tq7i" path="res://Scenes/flight_mode/deer_missile.tscn" id="2_1yha8"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cecf1"]
 gravity = Vector3(0, 0, 0)
@@ -34,9 +34,9 @@ material = SubResource("StandardMaterial3D_x8ypq")
 size = Vector3(50, 50, 300)
 
 [node name="FloatTest" type="Node3D"]
-script = ExtResource("1_cecf1")
+script = ExtResource("1_xmlaq")
 
-[node name="DeerMissile" parent="." instance=ExtResource("1_ysx3j")]
+[node name="DeerMissile" parent="." instance=ExtResource("2_1yha8")]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="DeerMissile"]
 amount = 100

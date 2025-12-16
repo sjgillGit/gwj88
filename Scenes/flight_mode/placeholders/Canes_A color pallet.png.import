@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bd4cmdd7gj82s"
-path.s3tc="res://.godot/imported/Canes_A color pallet.png-560440e5def5b21938dd1e72f6fc62f8.s3tc.ctex"
+path.s3tc="res://.godot/imported/Canes_A color pallet.png-f0eda252cdb21ada201591b0afa9b08b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://PhysicsTest/Canes_A color pallet.png"
-dest_files=["res://.godot/imported/Canes_A color pallet.png-560440e5def5b21938dd1e72f6fc62f8.s3tc.ctex"]
+source_file="res://Scenes/flight_mode/placeholders/Canes_A color pallet.png"
+dest_files=["res://.godot/imported/Canes_A color pallet.png-f0eda252cdb21ada201591b0afa9b08b.s3tc.ctex"]
 
 [params]
 

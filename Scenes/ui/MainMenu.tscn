@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8nvyqalj1c2w"]
+
+[ext_resource type="PackedScene" uid="uid://7iukt2vlfaaf" path="res://Scenes/ui/Placeholder3DforUi.tscn" id="1_ufw3w"]
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="Placeholder3DforUi" parent="." instance=ExtResource("1_ufw3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.946186, 0, 1.131121)

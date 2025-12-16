@@ -3,8 +3,10 @@ extends RigidBody3D
 
 signal distance_updated()
 
-@export var base_thrust := 500.0
-@export var base_lift := 500.0
+# todo: make this lower but let them push forward to move when
+# they are on the ramp/platform
+@export var base_thrust := 200.0
+@export var base_lift := 0.0
 @export var base_drag := 1.0
 ##
 @export var base_mass := 50.0
@@ -55,7 +57,6 @@ func _ready():
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
 	show_debug_ui = show_debug_ui
-	Engine.time_scale = 0.5
 	_apply_upgrade_stats()
 
 

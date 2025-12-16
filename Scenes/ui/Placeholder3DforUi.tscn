@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://7iukt2vlfaaf"]
+[gd_scene load_steps=4 format=3 uid="uid://7iukt2vlfaaf"]
 
+[ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/placeholder_3_dfor_ui.gd" id="1_2iqpr"]
 [ext_resource type="PackedScene" uid="uid://cnl3r1l1rfr5n" path="res://Assets/ui/pen/Flooor.glb" id="1_wxwfb"]
 
 [sub_resource type="Environment" id="Environment_wxwfb"]
 
 [node name="Placeholder3DforUi" type="Node3D"]
+script = ExtResource("1_2iqpr")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wxwfb")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d2i2w88xsn74"
-path="res://.godot/imported/ReindeerWIP.fbx-dcfb7a82ee805821c5fd464dfd971172.scn"
+uid="uid://cvaagkgc834hv"
+path="res://.godot/imported/Canes.glb-9cc4fd6ad7be217f8f6e09e8d7532b0b.scn"
 
 [deps]
 
-source_file="res://Assets/ReindeerWIP.fbx"
-dest_files=["res://.godot/imported/ReindeerWIP.fbx-dcfb7a82ee805821c5fd464dfd971172.scn"]
+source_file="res://Scenes/flight_mode/placeholders/Canes.glb"
+dest_files=["res://.godot/imported/Canes.glb-9cc4fd6ad7be217f8f6e09e8d7532b0b.scn"]
 
 [params]
 
@@ -30,7 +30,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -38,7 +38,5 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
-fbx/naming_version=2
+gltf/naming_version=2
+gltf/embedded_image_handling=1
