@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=13 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
+[ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="3_eftuo"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_wfu7b"]
+[ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/boost.tres" id="4_5a4eb"]
 [ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
@@ -90,6 +92,8 @@ angular_damp = 0.1
 script = ExtResource("2_vmpjy")
 base_drag = 0.1
 control_envelope = SubResource("Curve_wqsbj")
+movement = ExtResource("3_eftuo")
+boost = ExtResource("4_5a4eb")
 
 [node name="Reindeer" parent="." instance=ExtResource("3_wfu7b")]
 unique_name_in_owner = true
