@@ -11,8 +11,34 @@ config_version=5
 [application]
 
 config/name="GWJ88"
+run/main_scene="res://Main/RootNode.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://Assets/audio/default_bus_layout.tres"
+
+[autoload]
+
+GlobalAudioPlayer="*res://Scenes/global/GlobalAudioPlayer.tscn"
+GameState="*res://Scripts/singletons/autoloads/GameState.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/ui/": "green",
+"res://Scenes/global/": "gray",
+"res://Scenes/ui/": "green"
+}
+
+[global_group]
+
+ui=""
 
 [input]
 

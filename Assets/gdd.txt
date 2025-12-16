@@ -1,0 +1,57 @@
+Project Description
+
+This document describes the game for Godot Wild Jam #88:
+
+1. Characters
+
+	Deer: The Player's Character, who we're attempting to will into flying.
+	Elf: Servants of the Deer, tirelessly working and sacrificing themselves for the deer's performance.
+
+2. Story
+
+	Start as a weak little reindeer who can do little more than walk.
+
+3. Progression
+
+	Collect resources to increase the flight power of your deer, but also experience new working conditions to make it more difficult to progress.
+
+4. Gameplay
+
+	The game exists in three phases: The Pen, The Launch, and The Tumble.
+
+4.1: The Pen
+
+	Look at your resources and spend them to get your deer to go faster or fly for longer.
+
+4.2: The Launch
+
+	Try to get a good launch, collect resources on the ramp.
+
+4.3: The Flight
+
+	Guide the deer during flight time, collect resources in the sky.
+
+4.4: The Tumble
+
+	Ragdoll across the ground to pick up more resources before being hauled back to the Pen.
+
+4.5: Endings
+
+	The game ends if Speed, Flight Time, or Tumble Time reach a certain threshold.
+
+5. Art
+
+	Our base style is in Christmas, but our upgrades are inspired by Ork.
+
+6. Music/SFX
+
+	Our baseline theme will be "Festive Whimsy", but it will progress into "Party Rockin'" and finally into "HellRide."
+	The Pen's theme will feature a similar progression, but will be lighter in order to match the energy of getting ready for another run.
+	We will be writing a modified "Rudolph the Red-Nosed Reindeer" to play during the Main Menu (to be made pleasant) and the Credits (to be made awful)
+
+7. Platforms
+	This game will be built for the 3 desktop platforms: Windows, Mac, and Linux
+
+8. Marketing
+	[INTENTIONALLY LEFT BLANK]
+9. Other Ideas

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4fjj3yo1m0vd"]
+
+[ext_resource type="PackedScene" uid="uid://7iukt2vlfaaf" path="res://Scenes/ui/Placeholder3DforUi.tscn" id="2_souts"]
+[ext_resource type="PackedScene" uid="uid://d13aagks3romy" path="res://Scenes/ui/UiRootNode.tscn" id="3_go2ey"]
+
+[node name="RootNode" type="Node"]
+
+[node name="Placeholder3D" parent="." instance=ExtResource("2_souts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5329853, 0, 1.4395378)
+
+[node name="UiRootNode" parent="." instance=ExtResource("3_go2ey")]
