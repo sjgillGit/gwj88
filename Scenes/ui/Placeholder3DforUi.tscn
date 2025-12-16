@@ -8,12 +8,21 @@
 [node name="Placeholder3DforUi" type="Node3D"]
 script = ExtResource("1_2iqpr")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wxwfb")
 
 [node name="Flooor" parent="." instance=ExtResource("1_wxwfb")]
 transform = Transform3D(1.4648161, 0, 0, 0, 1.4648161, 0, 0, 0, 1.4648161, 0.95390195, 0, 0.30638456)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24.083975, 3.5760834, 0)
+[node name="MainMenuCamera" type="Camera3D" parent="."]
+transform = Transform3D(-0.21575806, -0.31469148, 0.9243472, -1.40874015e-08, 0.94664365, 0.32228222, -0.97644687, 0.06953497, -0.20424598, 23.357424, 8.829412, -17.486729)
+current = true
+fov = 83.58761
+
+[node name="PenCamera" type="Camera3D" parent="."]
+transform = Transform3D(-0.56149143, 0, 0.8274826, 0, 1, 0, -0.8274826, 0, -0.56149143, 6.6689224, 5.105791, -2.3703117)
 fov = 83.58761
