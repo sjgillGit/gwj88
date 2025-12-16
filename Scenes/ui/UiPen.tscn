@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
-[ext_resource type="ButtonGroup" uid="uid://5luqxnhyvgwe" path="res://Assets/ui/button_group_pen.tres" id="3_581q8"]
+[ext_resource type="ButtonGroup" uid="uid://5luqxnhyvgwe" path="res://Assets/ui/buttons/button_group_pen.tres" id="3_581q8"]
 
 [node name="UiPen" type="Control" groups=["ui"]]
 layout_mode = 3

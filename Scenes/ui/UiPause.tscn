@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cs0tj2nesbvt5" path="res://Scripts/ui/ui_pause.gd" id="1_veo31"]
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="2_2trrd"]
-[ext_resource type="ButtonGroup" uid="uid://ibx361d80acc" path="res://Assets/ui/pause/button_group_pause.tres" id="3_b4rq1"]
+[ext_resource type="ButtonGroup" uid="uid://ibx361d80acc" path="res://Assets/ui/buttons/button_group_pause.tres" id="3_b4rq1"]
 
 [node name="UiPause" type="Control" groups=["ui"]]
 layout_mode = 3

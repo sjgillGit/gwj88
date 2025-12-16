@@ -15,8 +15,8 @@ func _ready() -> void:
 func _on_button_pressed(button: BaseButton) -> void:
 	await UiLib.Buttons.button_delay(button)
 	match button.name:
-		"MAIN_MENU":
+		&"MAIN_MENU":
 			GameState.current = GameState.State.MAIN_MENU
-		"QUIT":
+		&"QUIT":
 			await UiLib.Buttons.button_delay(button)
 			get_tree().quit()

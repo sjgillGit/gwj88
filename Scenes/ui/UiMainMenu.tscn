@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lw5x5rqamc3f" path="res://Scripts/ui/ui_main_menu.gd" id="1_e6jh0"]
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="2_7c5qm"]
-[ext_resource type="ButtonGroup" uid="uid://bg48yv2vi1t8a" path="res://Assets/ui/main/button_group_main_menu.tres" id="3_85x37"]
+[ext_resource type="ButtonGroup" uid="uid://bg48yv2vi1t8a" path="res://Assets/ui/buttons/button_group_main_menu.tres" id="3_85x37"]
 
 [sub_resource type="Gradient" id="Gradient_3udur"]
 colors = PackedColorArray(0.92156863, 0.72156864, 0.35686275, 1, 0.92156863, 0.72156864, 0.35686275, 1)

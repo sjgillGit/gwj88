@@ -11,11 +11,11 @@ func _ready() -> void:
 func _on_button_pressed(button: BaseButton) -> void:
 	await UiLib.Buttons.button_delay(button)
 	match button.name:
-		"PLAY":
+		&"PLAY":
 			GameState.current = GameState.State.PEN
-		"CREDITS":
+		&"CREDITS":
 			GameState.current = GameState.State.CREDITS
-		"SETTINGS":
+		&"SETTINGS":
 			GameState.current = GameState.State.SETTINGS
-		"QUIT":
+		&"QUIT":
 			GameState.current = GameState.State.QUIT

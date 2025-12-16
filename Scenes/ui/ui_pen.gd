@@ -9,5 +9,5 @@ func _ready() -> void:
 
 func _on_button_pressed(button: Button) -> void:
 	match button.name:
-		"PLAY":
+		&"PLAY":
 			GameState.current = GameState.State.PLAY
