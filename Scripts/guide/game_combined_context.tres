@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=33 format=3 uid="uid://bxku7vfyd1dkg"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=36 format=3 uid="uid://bxku7vfyd1dkg"]
 
 [ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_xoqw5"]
 [ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="2_kxvmh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://x74mnwgr08a7" path="res://addons/guide/triggers/guide_trigger.gd" id="8_xb0tc"]
 [ext_resource type="Script" uid="uid://ckggy40lm0vjc" path="res://addons/guide/modifiers/guide_modifier_negate.gd" id="9_135p2"]
 [ext_resource type="Script" uid="uid://doauobik3xyea" path="res://addons/guide/inputs/guide_input_joy_axis_2d.gd" id="10_1uf61"]
+[ext_resource type="Script" uid="uid://c47lkb48itd6l" path="res://addons/guide/modifiers/guide_modifier_deadzone.gd" id="10_xoqw5"]
 [ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/boost.tres" id="11_vvrn1"]
 [ext_resource type="Script" uid="uid://bbhoxsiqwo07l" path="res://addons/guide/inputs/guide_input_joy_axis_1d.gd" id="12_ir574"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="13_nw5kw"]
@@ -63,9 +64,14 @@ input = SubResource("Resource_l2vc0")
 [sub_resource type="Resource" id="Resource_aug8t"]
 script = ExtResource("10_1uf61")
 
+[sub_resource type="Resource" id="Resource_kxvmh"]
+script = ExtResource("10_xoqw5")
+lower_threshold = 0.01
+
 [sub_resource type="Resource" id="Resource_wr3yb"]
 script = ExtResource("3_owsi8")
 input = SubResource("Resource_aug8t")
+modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_kxvmh")])
 
 [sub_resource type="Resource" id="Resource_rn0w0"]
 script = ExtResource("1_xoqw5")
@@ -84,9 +90,14 @@ input = SubResource("Resource_aluli")
 script = ExtResource("12_ir574")
 axis = 4
 
+[sub_resource type="Resource" id="Resource_owsi8"]
+script = ExtResource("10_xoqw5")
+lower_threshold = 0.01
+
 [sub_resource type="Resource" id="Resource_bgls8"]
 script = ExtResource("3_owsi8")
 input = SubResource("Resource_tvamh")
+modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_owsi8")])
 
 [sub_resource type="Resource" id="Resource_8di5u"]
 script = ExtResource("1_xoqw5")
