@@ -6,6 +6,7 @@ extends Camera3D
 @export var angle_v_adjust := 0.0
 @export var max_attached_velocity := 5.0
 @export var max_fov := 100
+@export var slerp_amount := 0.5
 
 @export var height := 1.5
 @export_node_path var attach_point: NodePath
@@ -34,7 +35,8 @@ func _physics_process(_delta):
 	var body := get_parent() as RigidBody3D
 	if body.angular_velocity.length() < max_attached_velocity && _attach_point != null:
 		assert(_attach_point.get_parent() == get_parent(), "attach_point should be a sibling otherwise we need better math")
-		transform = _attach_point.transform
+		var a_tfm = _attach_point.transform
+		transform = Transform3D(transform.basis.slerp(a_tfm.basis, slerp_amount), transform.origin.lerp(a_tfm.origin, slerp_amount))
 		top_level = false
 		fov = clampf(_base_fov + body.linear_velocity.length(), _base_fov, max_fov)
 	else:

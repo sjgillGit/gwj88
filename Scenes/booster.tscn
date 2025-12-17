@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://i54xyk4duyd2"]
+
+[ext_resource type="Script" uid="uid://db6wj4ubjudo2" path="res://Scenes/booster.gd" id="1_tf3vi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ntnxt"]
+radius = 1.0
+
+[node name="Booster" type="Area3D"]
+script = ExtResource("1_tf3vi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ntnxt")
+
+[node name="Decal" type="Decal" parent="."]
+layers = 3
+size = Vector3(5, 5, 5)
+cull_mask = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

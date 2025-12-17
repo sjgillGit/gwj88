@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=11 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
@@ -17,6 +17,44 @@ height = 1.2705078
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2hql"]
 radius = 0.25976563
 height = 0.829834
+
+[sub_resource type="Animation" id="Animation_wfu7b"]
+resource_name = "camera_intro"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:slerp_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9.966666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.01, 0.1]
+}
+
+[sub_resource type="Animation" id="Animation_j778o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:slerp_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2hql"]
+_data = {
+&"RESET": SubResource("Animation_j778o"),
+&"camera_intro": SubResource("Animation_wfu7b")
+}
 
 [node name="DeerMissile" type="RigidBody3D"]
 collision_layer = 3
@@ -57,13 +95,23 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="FollowCamera" type="Camera3D" parent="."]
-transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, -8.8081435e-09, 0.9786563, 0.20550394, 1.4214126e-07, 0.20550394, -0.9786563, 1.4305115e-06, 1.4324219, -2.0072045)
+transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.4202485e-07, 0.07109706, -0.9974694, 1.4305115e-06, 1.4324219, -2.9223132)
 current = true
 script = ExtResource("7_62wey")
+slerp_amount = 0.01
 attach_point = NodePath("../CameraFollowMark")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FollowCamera"]
+libraries = {
+&"": SubResource("AnimationLibrary_g2hql")
+}
+autoplay = "camera_intro"
+
+[node name="CameraStartMark" type="Marker3D" parent="."]
+transform = Transform3D(0.25881907, -0.06906122, 0.96345377, 0, 0.9974409, 0.07149745, -0.96592593, -0.018504903, 0.25815672, 10.834395, 7.0846376, 5.09433)
+
 [node name="CameraFollowMark" type="Marker3D" parent="."]
-transform = Transform3D(-1, 2.202999e-08, -1.47773e-07, -8.8081435e-09, 0.9786563, 0.20550394, 1.4914622e-07, 0.20550394, -0.9786563, 1.4305115e-06, 1.4324219, -2.0072045)
+transform = Transform3D(-1, 2.1281561e-08, -1.506137e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.5174561e-07, 0.07109706, -0.9974694, 1.4305115e-06, 1.4324219, -2.954967)
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true

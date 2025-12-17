@@ -47,6 +47,7 @@ var _on_ramp := true
 var _stats := {}
 var _landed := false
 var _launch_upgrades: Array[Upgrade]
+var _upgrade_collision_shapes: Array[CollisionShape3D]
 
 var _overlapping_areas: Array[int]
 var _last_flight_state := FlightState.PRE_FLIGHT
@@ -61,7 +62,9 @@ func _ready():
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
 	show_debug_ui = show_debug_ui
-	_launch_upgrades = get_upgrades().filter(func(u): return u.enabled)
+	set_enabled_upgrades([])
+	await get_tree().process_frame
+	$FollowCamera.transform = $CameraStartMark.transform
 
 
 func get_flight_state() -> FlightState:
@@ -70,6 +73,19 @@ func get_flight_state() -> FlightState:
 	if _launch_point != Vector3.ZERO:
 		return FlightState.FLIGHT
 	return FlightState.PRE_FLIGHT
+
+
+func set_enabled_upgrades(upgrades: Array):
+	for u in get_upgrades():
+		u.enabled = u.id in upgrades
+	_launch_upgrades = get_upgrades().filter(func(u): return u.enabled)
+	
+	for u in _launch_upgrades:
+		var shapes := u.get_collision_shapes()
+		for cs in shapes:
+			var dup := cs.duplicate()
+			add_child(dup)
+			dup.global_transform = cs.global_transform
 
 
 func get_upgrades() -> Array[Upgrade]:
@@ -119,10 +135,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
-		if a && a is LaunchZone:
+		if a is LaunchZone:
 			# probably redundant, above code worked ok to detect _on_ramp status
 			# but this is how to add boost areas also..
 			_on_ramp = true
+		elif a is Booster:
+			a.apply_physics(state, mass)
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
 	state.apply_central_impulse(local_thrust * state.step)

@@ -81,3 +81,8 @@ func _on_flight_state_changed(flight_state: FlightState):
 
 func _on_timer_timeout() -> void:
 	_on_distance_updated()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_on_flight_state_changed(FlightState.POST_FLIGHT)
