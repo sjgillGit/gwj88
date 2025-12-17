@@ -34,9 +34,9 @@ script = ExtResource("2_7wal2")
 
 [node name="Skeleton3D" parent="metarig" index="0"]
 bones/1/rotation = Quaternion(-0.8351274, -2.2055536e-07, -1.9370069e-07, 0.5500565)
-bones/7/rotation = Quaternion(-0.40708232, -0.017657515, -0.0461936, 0.9120518)
-bones/8/rotation = Quaternion(-0.08152698, 0.0057096905, -0.006462828, 0.9966338)
-bones/9/rotation = Quaternion(0.5517103, 0.19178337, -0.25305322, 0.77123207)
+bones/7/rotation = Quaternion(-0.41489077, -0.015741078, -0.050007053, 0.90835965)
+bones/8/rotation = Quaternion(-0.08408385, 0.008884882, -0.008769283, 0.99638057)
+bones/9/rotation = Quaternion(0.55473167, 0.19508511, -0.25887045, 0.76629025)
 bones/12/position = Vector3(0.07800421, 0.23866656, -0.055951495)
 bones/13/rotation = Quaternion(0.5255325, -0.010455515, 0.17391413, 0.8327426)
 bones/14/rotation = Quaternion(-0.25994134, -0.011224347, 0.032679945, 0.96500605)
@@ -47,7 +47,7 @@ bones/18/rotation = Quaternion(0.5255324, 0.010455487, -0.17391409, 0.83274263)
 bones/19/rotation = Quaternion(-0.25994137, 0.011224354, -0.03267992, 0.96500605)
 bones/20/rotation = Quaternion(-0.050601758, -0.023735473, 0.022545993, 0.99818224)
 bones/24/position = Vector3(-2.3583328e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.3607421, -0.007960531, -0.028468529, 0.93219715)
+bones/24/rotation = Quaternion(-0.3622005, -0.007578988, -0.028816031, 0.9316239)
 bones/25/rotation = Quaternion(0.37291193, 0.7521166, -0.3567491, -0.4098626)
 bones/27/position = Vector3(0.16346815, -0.03371161, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.488158e-07, 4.9116943e-07, 0.7587796)
@@ -62,11 +62,11 @@ bones/36/position = Vector3(1.6554363e-07, 0.24841967, -0.0939595)
 bones/36/rotation = Quaternion(0.095210895, -1.029826e-06, 1.06118705e-07, 0.9954571)
 
 [node name="U AntlersBIG UPGRADE" parent="metarig/Skeleton3D" index="5"]
+visible = false
 script = ExtResource("2_16e41")
 upgrade_name = "Big Antlers"
 id = "antlers2"
 requires = "antlers1"
-enabled = true
 category = 2
 
 [node name="U AntlersSMALL" parent="metarig/Skeleton3D" index="6"]
@@ -74,14 +74,14 @@ visible = false
 script = ExtResource("2_16e41")
 upgrade_name = "Antlers"
 id = "antlers1"
-category = 2
+category = 1
 
 [node name="U Collar UPGRADE" parent="metarig/Skeleton3D" index="7"]
 visible = false
 script = ExtResource("2_16e41")
 upgrade_name = "Collar"
 id = "collar"
-category = 1
+category = 8
 
 [node name="U Ornaments UPGRADE" parent="metarig/Skeleton3D" index="8"]
 visible = false
@@ -89,13 +89,15 @@ script = ExtResource("2_16e41")
 upgrade_name = "Ornaments"
 id = "ornaments"
 requires = "antler2"
+category = 3
 
 [node name="U Sadle UPGRADE" parent="metarig/Skeleton3D" index="9"]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
 script = ExtResource("2_16e41")
 upgrade_name = "Saddle"
 id = "saddle"
-enabled = true
+category = 4
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="10"]
 transform = Transform3D(0.9999998, -6.426603e-08, -3.007807e-07, -3.0435172e-07, -0.06519676, -0.9978879, 4.4522025e-08, 0.99787277, -0.065193005, 7.1107564e-12, 1.1856517, -0.2359753)
@@ -104,13 +106,14 @@ bone_idx = 36
 
 [node name="Rockets1" parent="metarig/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_7wal2")]
 transform = Transform3D(1.0000004, -7.327062e-07, -1.929351e-09, -1.9017158e-07, -0.26208833, 0.9650445, -7.0759955e-07, -0.96504456, -0.2620883, 5.633666e-08, 0.012068301, 0.18472284)
+visible = false
 upgrade_name = "Rocket JR 500"
 id = "rocket1"
 description = ""
 requires = "saddle"
 cost = 1000
-enabled = true
-category = 5
+enabled = false
+category = 7
 thrust = 500.0
 lift = 0
 drag = 0
