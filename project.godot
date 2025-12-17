@@ -24,6 +24,7 @@ buses/default_bus_layout="res://Assets/audio/default_bus_layout.tres"
 GlobalAudioPlayer="*res://Scenes/global/GlobalAudioPlayer.tscn"
 GameState="*res://Scripts/singletons/autoloads/GameState.gd"
 GameStats="*res://Scripts/singletons/autoloads/GameStats.gd"
+DeerUpgrades="*res://Scripts/singletons/autoloads/deer_upgrades.gd"
 
 [display]
 
@@ -78,7 +79,9 @@ move_forward={
 [layer_names]
 
 3d_render/layer_2="GroundDecals"
+3d_physics/layer_1="Player"
 3d_physics/layer_5="Collectable"
+3d_physics/layer_6="Obstacle"
 
 [physics]
 

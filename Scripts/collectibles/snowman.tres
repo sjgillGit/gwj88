@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://co4xvae65dbgy"]
+
+[ext_resource type="PackedScene" uid="uid://flpf4ya8guhb" path="res://Assets/collectibles/Collectable SNOWMAN.glb" id="1_snnej"]
+[ext_resource type="Script" uid="uid://bgeplv5gp0ubu" path="res://Scripts/collectibles/item.gd" id="2_bccvr"]
+
+[resource]
+script = ExtResource("2_bccvr")
+name = "Cold Snowman"
+asset = ExtResource("1_snnej")
+metadata/_custom_type_script = "uid://bgeplv5gp0ubu"

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://7iukt2vlfaaf"]
 
 [ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/pen_3d.gd" id="1_jlhhw"]
-[ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Scenes/ui/pen_updated.tscn" id="2_cih2e"]
-[ext_resource type="PackedScene" uid="uid://cfqy04vblriqj" path="res://Assets/Reindeer.glb" id="3_4je65"]
+[ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Assets/pen_updated.tscn" id="2_cih2e"]
+[ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_jlhhw"]
 
 [sub_resource type="Environment" id="Environment_wxwfb"]
 
@@ -18,8 +18,8 @@ environment = SubResource("Environment_wxwfb")
 
 [node name="Pen_Updated" parent="." instance=ExtResource("2_cih2e")]
 
-[node name="Reindeer" parent="." instance=ExtResource("3_4je65")]
-transform = Transform3D(0.8120325, 0, 0.583612, 0, 1, 0, -0.583612, 0, 0.8120325, 0.5239806, 0, -0.9211526)
+[node name="Reindeer" parent="." instance=ExtResource("3_jlhhw")]
+transform = Transform3D(0.85948676, 0, 0.511158, 0, 1, 0, -0.511158, 0, 0.85948676, 0.6193576, -0.086519, -1.1924533)
 
 [node name="ActiveCamera" type="Camera3D" parent="."]
 unique_name_in_owner = true

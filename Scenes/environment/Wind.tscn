@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdirnrwxprue5"]
+
+[ext_resource type="Script" uid="uid://cp816wn6um6ql" path="res://Scripts/environment/wind.gd" id="1_ut56u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ami4o"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ut56u"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ami4o"]
+radius = 0.1
+height = 0.1
+
+[node name="Wind" type="Area3D"]
+collision_layer = 0
+script = ExtResource("1_ut56u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ami4o")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0013835, 0, 0)
+amount = 20
+lifetime = 0.25
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ut56u")
+draw_pass_1 = SubResource("SphereMesh_ami4o")

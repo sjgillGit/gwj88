@@ -1,15 +1,6 @@
 class_name Upgrade
 extends Node3D
 
-enum UpgradeCategory {
-	HEAD,
-	COLLAR,
-	ANTLER,
-	ORNAMENT,
-	SADDLE,
-	SADDLE_SIDE,
-	SADDLE_TOP
-}
 
 @export var upgrade_name = ""
 @export var id = ""
@@ -21,7 +12,7 @@ enum UpgradeCategory {
 	set(value):
 		enabled = value
 		visible = value
-@export var category := UpgradeCategory.HEAD
+@export var category : DeerUpgrades.Category
 
 # Upgrade stat static values
 # use get_x() to get the current dynamic value

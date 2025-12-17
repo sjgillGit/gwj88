@@ -34,46 +34,71 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 script = ExtResource("2_7wal2")
 
 [node name="Skeleton3D" parent="metarig" index="0"]
-bones/0/position = Vector3(-1.5021566e-08, 1.0475996, -0.6243254)
-bones/0/rotation = Quaternion(0.6748751, 2.178755e-07, 1.426916e-07, 0.737932)
-bones/1/rotation = Quaternion(-0.98246366, -0.18554531, -0.018389577, -0.0003282343)
-bones/2/rotation = Quaternion(0.0018262614, 0.02554003, -0.0016234904, 0.9996708)
-bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.9998356)
-bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
-bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
-bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.14169003, -8.0508966e-07, -2.4947423e-07, 0.98991114)
-bones/8/rotation = Quaternion(-0.060334124, -1.0454914e-07, -2.1545258e-08, 0.99817824)
-bones/9/rotation = Quaternion(0.32802108, -1.0333482e-06, -3.064889e-07, 0.9446704)
-bones/10/rotation = Quaternion(-0.1038132, -0.170628, 0.6171822, 0.7610487)
-bones/11/rotation = Quaternion(-0.10381443, 0.17062956, -0.61718184, 0.76104844)
-bones/12/position = Vector3(0.07800415, 0.27544397, -0.056089696)
-bones/13/rotation = Quaternion(0.55266345, -0.0122169675, 0.18709894, 0.8120393)
-bones/14/rotation = Quaternion(0.017879227, -0.015299071, 0.00075299304, 0.9997229)
-bones/15/rotation = Quaternion(0.38842204, 0.012230493, -0.02975232, 0.92092)
-bones/16/rotation = Quaternion(0.0077482075, 0.7357012, -0.6772619, 7.551632e-06)
-bones/17/position = Vector3(-0.07800386, 0.26022294, -0.06973897)
-bones/18/rotation = Quaternion(0.56068546, 0.005898166, -0.18147284, 0.8078766)
-bones/19/rotation = Quaternion(0.08070513, 0.013083724, -0.00094950036, 0.9966517)
-bones/20/rotation = Quaternion(0.13258748, -0.024310838, -0.002231779, 0.99087065)
-bones/21/rotation = Quaternion(0.0038040334, 0.99682873, 0.07937019, 0.004291586)
-bones/24/position = Vector3(-2.7926373e-07, 0.44467708, 0.16177362)
-bones/24/rotation = Quaternion(-0.31373227, -7.6067346e-07, -4.6499244e-07, 0.94951147)
-bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
-bones/27/position = Vector3(0.16346814, -0.018063473, 0.05092257)
-bones/27/rotation = Quaternion(0.6999931, -0.0017610021, 5.149809e-06, 0.7141475)
-bones/28/rotation = Quaternion(0.36739987, -0.019533865, 0.014416109, 0.9297462)
-bones/29/rotation = Quaternion(-0.40448728, 0.026325842, -0.01316505, 0.91406995)
-bones/30/rotation = Quaternion(0.00564971, 0.848015, -0.5297919, -0.01262005)
-bones/31/rotation = Quaternion(0.8922721, 0.005332426, -0.009077333, 0.45137537)
-bones/32/rotation = Quaternion(0.06654472, 0.01461919, -0.0043379143, 0.99766695)
-bones/33/rotation = Quaternion(-0.098259665, -0.018334256, 0.0065623065, 0.99497026)
-bones/34/rotation = Quaternion(-0.0018975725, 0.96591914, -0.25878465, 0.005230187)
-bones/36/position = Vector3(1.6553983e-07, 0.24841967, -0.0939595)
-bones/36/rotation = Quaternion(0.06483261, -1.0325642e-06, 7.4686774e-08, 0.9978962)
-bones/37/position = Vector3(-2.6070856e-07, 0.030410042, -0.034903213)
-bones/37/rotation = Quaternion(-0.7333768, 1.19170544e-07, 1.7343775e-07, 0.6798224)
-bones/38/rotation = Quaternion(0.005258018, -5.2640942e-08, -5.3896983e-08, 0.9999862)
+bones/1/rotation = Quaternion(-0.8351274, -2.2055536e-07, -1.9370069e-07, 0.5500565)
+bones/7/rotation = Quaternion(-0.41489077, -0.015741078, -0.050007053, 0.90835965)
+bones/8/rotation = Quaternion(-0.08408385, 0.008884882, -0.008769283, 0.99638057)
+bones/9/rotation = Quaternion(0.55473167, 0.19508511, -0.25887045, 0.76629025)
+bones/12/position = Vector3(0.07800421, 0.23866656, -0.055951495)
+bones/13/rotation = Quaternion(0.5255325, -0.010455515, 0.17391413, 0.8327426)
+bones/14/rotation = Quaternion(-0.25994134, -0.011224347, 0.032679945, 0.96500605)
+bones/15/rotation = Quaternion(-0.050601788, 0.023735482, -0.022545999, 0.99818224)
+bones/16/rotation = Quaternion(0.0058018975, 0.80098295, -0.5986583, -0.000957104)
+bones/17/position = Vector3(-0.078003876, 0.23866647, -0.05595185)
+bones/18/rotation = Quaternion(0.5255324, 0.010455487, -0.17391409, 0.83274263)
+bones/19/rotation = Quaternion(-0.25994137, 0.011224354, -0.03267992, 0.96500605)
+bones/20/rotation = Quaternion(-0.050601758, -0.023735473, 0.022545993, 0.99818224)
+bones/24/position = Vector3(-2.3583328e-07, 0.41590542, 0.13402234)
+bones/24/rotation = Quaternion(-0.3622005, -0.007578988, -0.028816031, 0.9316239)
+bones/25/rotation = Quaternion(0.37291193, 0.7521166, -0.3567491, -0.4098626)
+bones/27/position = Vector3(0.16346815, -0.03371161, 0.03501077)
+bones/27/rotation = Quaternion(0.65134746, -7.488158e-07, 4.9116943e-07, 0.7587796)
+bones/28/rotation = Quaternion(0.39967668, -0.015560939, 0.020674868, 0.91629094)
+bones/29/rotation = Quaternion(-0.3217355, 0.016364576, -0.017652616, 0.94652367)
+bones/30/rotation = Quaternion(0.0046216846, 0.8264025, -0.5630579, -0.0018459383)
+bones/31/rotation = Quaternion(0.65134746, -5.6790856e-07, 6.464628e-07, 0.7587796)
+bones/32/rotation = Quaternion(0.39967674, 0.015560917, -0.020674856, 0.9162909)
+bones/33/rotation = Quaternion(-0.3217355, -0.016364563, 0.017652627, 0.94652367)
+bones/34/rotation = Quaternion(-0.004621711, 0.8264025, -0.5630579, 0.0018459387)
+bones/36/position = Vector3(1.6554363e-07, 0.24841967, -0.0939595)
+bones/36/rotation = Quaternion(0.095210895, -1.029826e-06, 1.06118705e-07, 0.9954571)
+
+[node name="U AntlersBIG UPGRADE" parent="metarig/Skeleton3D" index="5"]
+visible = false
+script = ExtResource("2_16e41")
+upgrade_name = "Big Antlers"
+id = "antlers2"
+requires = "antlers1"
+category = 2
+
+[node name="U AntlersSMALL" parent="metarig/Skeleton3D" index="6"]
+visible = false
+script = ExtResource("2_16e41")
+upgrade_name = "Antlers"
+id = "antlers1"
+category = 1
+
+[node name="U Collar UPGRADE" parent="metarig/Skeleton3D" index="7"]
+visible = false
+script = ExtResource("2_16e41")
+upgrade_name = "Collar"
+id = "collar"
+category = 8
+
+[node name="U Ornaments UPGRADE" parent="metarig/Skeleton3D" index="8"]
+visible = false
+script = ExtResource("2_16e41")
+upgrade_name = "Ornaments"
+id = "ornaments"
+requires = "antler2"
+category = 3
+
+[node name="U Sadle UPGRADE" parent="metarig/Skeleton3D" index="9"]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
+script = ExtResource("2_16e41")
+upgrade_name = "Saddle"
+id = "saddle"
+category = 4
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="10"]
 transform = Transform3D(0.9999998, -4.5824066e-08, -3.041382e-07, -3.0435308e-07, -0.004287429, -1.0000063, 4.452201e-08, 0.99999094, -0.0042845905, 6.6719963e-12, 1.1856518, -0.23597533)
@@ -81,14 +106,15 @@ bone_name = "spine.015"
 bone_idx = 36
 
 [node name="Rockets1" parent="metarig/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_7wal2")]
-transform = Transform3D(1.0000004, -6.995602e-07, 1.7349635e-08, -9.2040466e-08, -0.10691141, 0.99426997, -6.936961e-07, -0.9942695, -0.10691136, 5.5514903e-08, -0.07033169, 0.29395372)
+transform = Transform3D(1.0000004, -7.327062e-07, -1.929351e-09, -1.9017158e-07, -0.26208833, 0.9650445, -7.0759955e-07, -0.96504456, -0.2620883, 5.633666e-08, 0.012068301, 0.18472284)
+visible = false
 upgrade_name = "Rocket JR 500"
 id = "rocket1"
 description = ""
 requires = "saddle"
 cost = 1000
-enabled = true
-category = 5
+enabled = false
+category = 7
 thrust = 500.0
 lift = 0
 drag = 0
