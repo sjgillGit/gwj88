@@ -70,7 +70,7 @@ transform = Transform3D(0.21787071, 0.2195472, -0.95096344, 0, 0.97437006, 0.224
 
 [node name="DeerEmitter" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.988857, 55.005943, 35.88111)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.011143208, 54.429554, 35.88111)
 
 [node name="IceCubeEmitter" type="Marker3D" parent="."]
 unique_name_in_owner = true
@@ -91,6 +91,9 @@ mesh = SubResource("BoxMesh_v3pkt")
 
 [node name="Platform" parent="." instance=ExtResource("3_ph8sb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, 19.99, 54.135345)
+
+[node name="Cube" parent="Platform" index="0"]
+visible = false
 
 [node name="TopPlatform" type="StaticBody3D" parent="Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053, 0.010000229, -54.40011)
@@ -182,3 +185,5 @@ autostart = true
 [connection signal="pressed" from="BoxContainer/IceCubeButton" to="." method="_on_ice_cube_button_pressed"]
 [connection signal="item_selected" from="BoxContainer/CameraOption" to="." method="_on_camera_option_item_selected"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Platform"]

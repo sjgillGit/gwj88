@@ -3,15 +3,14 @@ extends Node3D
 
 
 @export var upgrade_name = ""
-@export var id = ""
 @export_multiline var description = ""
-@export var requires = ""
-@export var overrides = ""
+@export var overridden_by := DeerUpgrades.Category.NONE
 @export var cost := 1000
 @export var enabled := false:
 	set(value):
 		enabled = value
-		visible = value
+		var overridden = DeerUpgrades.get_upgrades().any(func(u): return u == overridden_by)
+		visible = value && !overridden
 @export var category : DeerUpgrades.Category
 
 # Upgrade stat static values

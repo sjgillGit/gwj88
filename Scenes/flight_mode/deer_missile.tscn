@@ -18,36 +18,59 @@ height = 1.2705078
 radius = 0.25976563
 height = 0.829834
 
-[sub_resource type="Animation" id="Animation_wfu7b"]
-resource_name = "camera_intro"
-length = 10.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:slerp_amount")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 9.966666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.01, 0.1]
-}
-
 [sub_resource type="Animation" id="Animation_j778o"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:slerp_amount")
+tracks/0/path = NodePath("../CameraFollowMark:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.01]
+"values": [Vector3(1.4305115e-06, 1.4324219, -2.954967)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CameraFollowMark:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.4694737e-08, 1.5707965, 0.07115708)]
+}
+
+[sub_resource type="Animation" id="Animation_wfu7b"]
+resource_name = "camera_intro"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CameraFollowMark:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.0333333, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(4.485009, 0.8608061, 5.0629086), Vector3(4.0000014, 1.4324219, 0.045032978), Vector3(1.4305115e-06, 1.4324219, -2.954967)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CameraFollowMark:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.0333333, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.050294414, 0.78666526, 0.05035812), Vector3(1.4694737e-08, 1.5707965, 0.07115708), Vector3(-0.0715585, 3.1415927, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g2hql"]
@@ -65,6 +88,7 @@ contact_monitor = true
 max_contacts_reported = 10
 angular_damp = 0.1
 script = ExtResource("2_vmpjy")
+base_drag = 0.1
 control_envelope = SubResource("Curve_wqsbj")
 
 [node name="Reindeer" parent="." instance=ExtResource("3_wfu7b")]
@@ -80,9 +104,9 @@ transform = Transform3D(1, 0, 0, 0, 0.44430682, -0.89587474, 0, 0.89587474, 0.44
 shape = SubResource("CapsuleShape3D_g2hql")
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.0138897, 0.016204596)
 depth = 0.75
-polygon = PackedVector2Array(0.8477053, -0.00057055056, 0.9509317, -0.113535166, 0.8671822, -0.1778082, 0.7912232, -0.2264998, 0.6957876, -0.2615578, 0.59840435, -0.28298217, 0.22055706, -0.29856348, -0.7747007, -0.30051112, -0.68705577, -0.16806984)
+polygon = PackedVector2Array(0.9398634, -0.08565247, 0.99542165, -0.19213943, 0.9167139, -0.25464267, 0.7986521, -0.29631153, 0.5116003, -0.32872063, 0.07407784, -0.21297392, -0.32177588, -0.3125161, -0.5162304, -0.30325645, -0.5440096, -0.14815582)
 
 [node name="DebugUi" type="BoxContainer" parent="."]
 unique_name_in_owner = true
@@ -98,7 +122,7 @@ layout_mode = 2
 transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.4202485e-07, 0.07109706, -0.9974694, 1.4305115e-06, 1.4324219, -2.9223132)
 current = true
 script = ExtResource("7_62wey")
-slerp_amount = 0.01
+slerp_amount = 0.08296321451663971
 attach_point = NodePath("../CameraFollowMark")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FollowCamera"]
@@ -107,11 +131,8 @@ libraries = {
 }
 autoplay = "camera_intro"
 
-[node name="CameraStartMark" type="Marker3D" parent="."]
-transform = Transform3D(0.25881907, -0.06906122, 0.96345377, 0, 0.9974409, 0.07149745, -0.96592593, -0.018504903, 0.25815672, 10.834395, 7.0846376, 5.09433)
-
 [node name="CameraFollowMark" type="Marker3D" parent="."]
-transform = Transform3D(-1, 2.1281561e-08, -1.506137e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.5174561e-07, 0.07109706, -0.9974694, 1.4305115e-06, 1.4324219, -2.954967)
+transform = Transform3D(-1.6146365e-07, 2.6240727e-08, 1, 0.071097046, 0.9974693, -1.4694737e-08, -0.9974694, 0.07109704, -1.6292068e-07, 1.4305115e-06, 1.4324219, -2.954967)
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
