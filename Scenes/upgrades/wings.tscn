@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://drl0iy354d6uv"]
+
+[ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrade.gd" id="1_65fce"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_65fce"]
+size = Vector3(2.51, 0.063, 0.605)
+
+[node name="Wings" type="Node3D"]
+transform = Transform3D(-1.0000001, -3.0432605e-07, -4.339408e-07, 4.5285444e-07, -0.06519203, -0.9978878, 2.754088e-07, -0.9978577, 0.065196745, 0, 0, 0)
+script = ExtResource("1_65fce")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.0000004, 1.6940659e-21, -7.1054274e-14, 4.760325e-19, 0.99999964, -2.842171e-14, 0, -5.684342e-14, 0.9999996, 1.0256327e-07, -0.18416691, 1.173184)
+radius = 1.6381836
+height = 0.025
+sides = 32
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, 1.2877526e-07, 0, 1.4729947)
+operation = 2
+radius = 2.3125
+height = 0.025
+sides = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, -1.3529444e-08, 1.7435669e-08, 1.414756e-08, 0.9993543, -0.03583309, -1.6939374e-08, 0.035830952, 0.99935424, 8.5981696e-08, -0.18239854, 0.40875235)
+shape = SubResource("BoxShape3D_65fce")

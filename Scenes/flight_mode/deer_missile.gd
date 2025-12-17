@@ -61,7 +61,12 @@ func _ready():
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
 	show_debug_ui = show_debug_ui
-	_launch_upgrades = get_upgrades().filter(func(u): return u.enabled)
+	# don't worry about the upgrade changed signal,
+	# they can't be toggled in this game state
+	set_enabled_upgrades(DeerUpgrades.get_upgrades())
+
+	await get_tree().process_frame
+	$FollowCamera.transform = $CameraFollowMark.transform
 
 
 func get_flight_state() -> FlightState:
@@ -72,12 +77,23 @@ func get_flight_state() -> FlightState:
 	return FlightState.PRE_FLIGHT
 
 
+func set_enabled_upgrades(upgrades: Array[DeerUpgrades.Category]):
+	_launch_upgrades.clear()
+	for u in get_upgrades():
+		u.enabled = u.category in upgrades
+		if u.enabled:
+			_launch_upgrades.append(u)
+
+	for u in _launch_upgrades:
+		var shapes := u.get_collision_shapes()
+		for cs in shapes:
+			var dup := cs.duplicate()
+			add_child(dup)
+			dup.global_transform = cs.global_transform
+
+
 func get_upgrades() -> Array[Upgrade]:
-	var result: Array[Upgrade]
-	for c in find_children("*", "Node3D"):
-		if c is Upgrade:
-			result.append(c)
-	return result
+	return $Reindeer.get_upgrades()
 
 
 func _apply_upgrade_stats():
@@ -119,10 +135,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
-		if a && a is LaunchZone:
+		if a is LaunchZone:
 			# probably redundant, above code worked ok to detect _on_ramp status
 			# but this is how to add boost areas also..
 			_on_ramp = true
+		elif a is Booster:
+			a.apply_physics(state, mass)
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
 	state.apply_central_impulse(local_thrust * state.step)
@@ -174,7 +192,7 @@ func _apply_lift(state: PhysicsDirectBodyState3D):
 		var lift_percent := forward_angle
 		var lift_amount := (base_lift + _upgrade_lift) * lift_percent
 		var speed := state.linear_velocity.length()
-		
+
 		var envelope_percent := control_envelope.sample_baked(speed)
 		state.apply_central_impulse(state.step * lift_vector * lift_amount * envelope_percent)
 		_stats.lift = "%.3f" % [lift_amount]
@@ -199,7 +217,7 @@ func _apply_control(state: PhysicsDirectBodyState3D):
 		_stats.control_impulse = "\n".join(["",linear_velocity, desired_velocity, control_impulse])
 	#else:
 	#_stats.control_impulse = "0.0"
-	
+
 
 
 func _on_move_button_button_down() -> void:
@@ -242,7 +260,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_player_inputs += Vector3.UP * Input.get_action_strength("move_down")
 		_player_inputs += Vector3.DOWN * Input.get_action_strength("move_up")
 		_thrust_vector = Vector3.BACK * Input.get_action_strength("move_forward")
-	
+
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
@@ -261,6 +279,7 @@ func is_thrusting() -> bool:
 
 func _on_flight_state_timer_timeout() -> void:
 	var flight_state := get_flight_state()
+	_update_distances()
 	if flight_state != _last_flight_state:
 		_last_flight_state = flight_state
 		flight_state_changed.emit(flight_state)

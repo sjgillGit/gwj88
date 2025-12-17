@@ -24,6 +24,6 @@ var current: State:
 		current = v
 
 ## This exists only for Dev purposes. We can peel this off later on
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_cancel"):
 		current = State.PAUSE

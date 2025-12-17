@@ -1,19 +1,24 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=22 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="2_ph8sb"]
 [ext_resource type="Script" uid="uid://m410she5703r" path="res://Scenes/flight_mode/ground.gd" id="3_jp6c4"]
+[ext_resource type="PackedScene" uid="uid://cmek6gwoogb1h" path="res://Assets/Flight/Platform.glb" id="3_ph8sb"]
 [ext_resource type="Texture2D" uid="uid://c2tntehikldvi" path="res://Scenes/flight_mode/placeholders/gridbox.png" id="4_07op2"]
-[ext_resource type="PackedScene" uid="uid://cvaagkgc834hv" path="res://Scenes/flight_mode/placeholders/Canes.glb" id="5_d51bt"]
 [ext_resource type="Script" uid="uid://cq8tnxuq7c0ab" path="res://Scenes/flight_mode/top_platform.gd" id="6_g1wwy"]
+[ext_resource type="Texture2D" uid="uid://om6niej6xo8v" path="res://Assets/ui/pen/Pen_Updated_Hay.png" id="6_jp6c4"]
 [ext_resource type="Script" uid="uid://ci5fibeb4q8ya" path="res://Scenes/flight_mode/physical_ramp.gd" id="7_m27rb"]
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
+[ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/booster.tscn" id="9_jp6c4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ld0ly"]
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_v3pkt"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uyybt"]
+size = Vector3(48, 10, 36)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d7dld"]
 rough = true
@@ -41,9 +46,6 @@ uv1_scale = Vector3(1000, 1000, 1000)
 material = SubResource("StandardMaterial3D_ld0ly")
 size = Vector2(10000, 10000)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uyybt"]
-size = Vector3(48, 10, 36)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kocc"]
 transparency = 4
 albedo_color = Color(0.69411767, 0.88235295, 1, 0.23137255)
@@ -52,7 +54,7 @@ refraction_scale = 0.01
 
 [sub_resource type="Curve3D" id="Curve3D_3kocc"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.029159546, 0.045352936, 0, 0.4748726, 0.3311596, 0, -0.4748726, -0.3311596, 0, -0.50343704, -0.62441254, 0, -14.636433, 25.136326, 0, 14.636433, -25.136326, 0, -41.509277, -43.06956),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.029159546, 0.045352936, 0, 8.064308, 5.8531265, 0, -8.064308, -5.8531265, 0, -8.419796, -8.5224, 0, -28.095058, 22.371986, 0, 28.095058, -22.371986, 0, -44.261, -65.95485),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -68,7 +70,7 @@ transform = Transform3D(0.21787071, 0.2195472, -0.95096344, 0, 0.97437006, 0.224
 
 [node name="DeerEmitter" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.988857, 55.005943, 35.88111)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.011143208, 54.429554, 35.88111)
 
 [node name="IceCubeEmitter" type="Marker3D" parent="."]
 unique_name_in_owner = true
@@ -87,6 +89,26 @@ shape = SubResource("BoxShape3D_ld0ly")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 mesh = SubResource("BoxMesh_v3pkt")
 
+[node name="Platform" parent="." instance=ExtResource("3_ph8sb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, 19.99, 54.135345)
+
+[node name="Cube" parent="Platform" index="0"]
+visible = false
+
+[node name="TopPlatform" type="StaticBody3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053, 0.010000229, -54.40011)
+collision_layer = 3
+collision_mask = 3
+physics_material_override = ExtResource("2_ph8sb")
+script = ExtResource("6_g1wwy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/TopPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 29, 52)
+shape = SubResource("BoxShape3D_uyybt")
+
+[node name="LaunchZone" parent="Platform" instance=ExtResource("7_ph8sb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.328037, -86.66874)
+
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_layer = 3
 collision_mask = 3
@@ -99,36 +121,21 @@ shape = SubResource("BoxShape3D_oomsc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -481)
+layers = 3
 mesh = SubResource("PlaneMesh_3kocc")
-
-[node name="Platform" parent="." instance=ExtResource("5_d51bt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, 19.99, 0.929)
-
-[node name="TopPlatform" type="StaticBody3D" parent="Platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053, 0.01, -1.409)
-collision_layer = 3
-collision_mask = 3
-physics_material_override = ExtResource("2_ph8sb")
-script = ExtResource("6_g1wwy")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/TopPlatform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 29, 52)
-shape = SubResource("BoxShape3D_uyybt")
-
-[node name="LaunchZone" parent="Platform" instance=ExtResource("7_ph8sb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5444317, -10.527823)
 
 [node name="PhysicalRamp" type="CSGPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 53.970608, 33.474567)
+layers = 3
 use_collision = true
 collision_layer = 3
 collision_mask = 3
-polygon = PackedVector2Array(-14, 0, 14, 0, 20, -50, -20, -50)
+polygon = PackedVector2Array(-14, 0, 14, 0, 16, -2, -16, -2)
 mode = 2
 path_node = NodePath("Path3D")
 path_interval_type = 0
-path_interval = 1.0
-path_simplify_angle = 0.1
+path_interval = 0.5
+path_simplify_angle = 1.0
 path_rotation = 2
 path_rotation_accurate = false
 path_local = true
@@ -137,6 +144,16 @@ path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_3kocc")
 script = ExtResource("7_m27rb")
+
+[node name="HayPile" parent="PhysicalRamp" instance=ExtResource("9_jp6c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.053, -52.064125, -53.901672)
+texture = ExtResource("6_jp6c4")
+speed_boost = -2.0
+
+[node name="HayPile2" parent="PhysicalRamp" instance=ExtResource("9_jp6c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0231085, -50.524815, -46.00142)
+texture = ExtResource("6_jp6c4")
+speed_boost = -2.0
 
 [node name="Path3D" type="Path3D" parent="PhysicalRamp"]
 curve = SubResource("Curve3D_3kocc")
