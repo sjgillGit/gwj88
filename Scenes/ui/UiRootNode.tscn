@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://brl11g3oxo4y1" path="res://Scenes/ui/UiSettings.tscn" id="6_evsfa"]
 [ext_resource type="PackedScene" uid="uid://gcxcsrk5oihi" path="res://Scenes/ui/UiStartup.tscn" id="7_3cys0"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_ilje2"]
-
 [sub_resource type="ButtonGroup" id="ButtonGroup_ex7ef"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_rc5x5"]
 
 [node name="UiRootNode" type="Control" groups=["ui"]]
 layout_mode = 3
@@ -30,30 +30,9 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
 
-[node name="RichTextLabel" parent="UiCredits" index="0"]
-offset_left = 5.0
-offset_top = -2081.0
-offset_right = 5.0
-offset_bottom = -1.0
-
 [node name="UiMainMenu" parent="." instance=ExtResource("2_ilje2")]
 visible = false
 layout_mode = 0
-
-[node name="PLAY" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="1"]
-button_group = SubResource("ButtonGroup_ilje2")
-
-[node name="CREDITS" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="3"]
-button_group = SubResource("ButtonGroup_ilje2")
-
-[node name="SETTINGS" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="5"]
-button_group = SubResource("ButtonGroup_ilje2")
-
-[node name="PEN" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="7"]
-button_group = SubResource("ButtonGroup_ilje2")
-
-[node name="QUIT" parent="UiMainMenu/PanelContainer/VBoxContainer/HBoxContainer" index="9"]
-button_group = SubResource("ButtonGroup_ilje2")
 
 [node name="UiPause" parent="." instance=ExtResource("3_ex7ef")]
 visible = false
@@ -68,6 +47,9 @@ button_group = SubResource("ButtonGroup_ex7ef")
 [node name="UiPen" parent="." instance=ExtResource("4_scill")]
 visible = false
 layout_mode = 1
+
+[node name="PLAY" parent="UiPen/Panel" index="0"]
+button_group = SubResource("ButtonGroup_rc5x5")
 
 [node name="UiPlay" parent="." instance=ExtResource("5_gmsvu")]
 visible = false

@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://wnjx0277ks75"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://wnjx0277ks75"]
 
 [ext_resource type="FontFile" uid="uid://br8526wyvqdrk" path="res://Assets/fonts/Disco-Party-All/Disco_Party.ttf" id="1_m520p"]
 [ext_resource type="StyleBox" uid="uid://dagvxksushulb" path="res://Assets/ui/buttons/styleBox_button_hover.tres" id="2_yh0e6"]
 [ext_resource type="StyleBox" uid="uid://bxqhjcwxjpq6j" path="res://Assets/ui/buttons/styleBox_button_normal.tres" id="3_on443"]
 [ext_resource type="Texture2D" uid="uid://budb2prl270mc" path="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Banners.png" id="4_ro6t1"]
+[ext_resource type="StyleBox" uid="uid://shfvgyx2xgeu" path="res://Assets/ui/panel_menu.tres" id="5_m520p"]
 [ext_resource type="FontFile" uid="uid://dxkvfvt32k2u" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Ribs.ttf" id="6_q0gd3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2x4uk"]
@@ -20,12 +21,6 @@ expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5gxwd"]
-region = Rect2(44, 84, 32, 33)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxft3"]
-texture = SubResource("AtlasTexture_5gxwd")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxft3"]
 atlas = ExtResource("4_ro6t1")
@@ -57,9 +52,10 @@ Button/styles/hover = ExtResource("2_yh0e6")
 Button/styles/normal = ExtResource("3_on443")
 Button/styles/pressed = ExtResource("2_yh0e6")
 HSeparator/styles/separator = SubResource("StyleBoxTexture_mtws8")
-Label/font_sizes/font_size = 24
+Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_m520p")
-PanelContainer/styles/panel = SubResource("StyleBoxTexture_hxft3")
+MarginContainer/constants/margin_top = 120
+PanelContainer/styles/panel = ExtResource("5_m520p")
 RichTextLabel/colors/default_color = Color(0.92156863, 0.72156864, 0.35686275, 1)
 RichTextLabel/font_sizes/normal_font_size = 44
 RichTextLabel/fonts/normal_font = ExtResource("6_q0gd3")

@@ -5,7 +5,7 @@ func get_thrust() -> float:
 
 var _thrusting := false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var dm := owner
 	while dm && dm is not DeerMissile:
 		dm = dm.owner

@@ -146,7 +146,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	state.apply_torque_impulse(global_basis * (Vector3.UP * _player_inputs.z * state.step * yaw_speed * mass))
 	if _distance_updated:
 		_update_distances()
-	var lv := state.linear_velocity
+	var _lv := state.linear_velocity
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
 	if abs(forward_speed) < 0.001:
@@ -174,7 +174,7 @@ func _apply_lift(state: PhysicsDirectBodyState3D):
 		var lift_percent := forward_angle
 		var lift_amount := (base_lift + _upgrade_lift) * lift_percent
 		var speed := state.linear_velocity.length()
-		
+
 		var envelope_percent := control_envelope.sample_baked(speed)
 		state.apply_central_impulse(state.step * lift_vector * lift_amount * envelope_percent)
 		_stats.lift = "%.3f" % [lift_amount]
@@ -199,7 +199,7 @@ func _apply_control(state: PhysicsDirectBodyState3D):
 		_stats.control_impulse = "\n".join(["",linear_velocity, desired_velocity, control_impulse])
 	#else:
 	#_stats.control_impulse = "0.0"
-	
+
 
 
 func _on_move_button_button_down() -> void:
@@ -233,7 +233,7 @@ func _print_stats():
 		"\n".join(stats)
 	])
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	_player_inputs = Vector3.ZERO
 	_thrust_vector = Vector3.ZERO
 	if !_landed:
@@ -242,7 +242,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_player_inputs += Vector3.UP * Input.get_action_strength("move_down")
 		_player_inputs += Vector3.DOWN * Input.get_action_strength("move_up")
 		_thrust_vector = Vector3.BACK * Input.get_action_strength("move_forward")
-	
+
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
