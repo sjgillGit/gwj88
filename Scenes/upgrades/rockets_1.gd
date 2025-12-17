@@ -6,7 +6,10 @@ func get_thrust() -> float:
 var _thrusting := false
 
 func _physics_process(delta: float) -> void:
-	var dm := owner as DeerMissile
-	_thrusting = dm.is_thrusting()
-	for c in get_children():
-		c.set_thrusting(_thrusting)
+	var dm := owner
+	while dm && dm is not DeerMissile:
+		dm = dm.owner
+	if dm:
+		_thrusting = dm.is_thrusting()
+		for c in get_children():
+			c.set_thrusting(_thrusting)
