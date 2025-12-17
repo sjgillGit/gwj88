@@ -13,36 +13,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_twpca")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -545.0
-offset_top = -281.5
-offset_right = 545.0
-offset_bottom = 281.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PLAY" type="Button" parent="Panel"]
+[node name="PLAY" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -15.5
-offset_right = 22.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -167.0
+offset_top = -87.0
+offset_right = -34.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("1_s3urb")
 toggle_mode = true
 button_group = ExtResource("3_581q8")
-text = "You're in the pen
-HIT THIS BUTTON TO PLAY"
+text = "Play"

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://7iukt2vlfaaf"]
+
+[ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/pen_3d.gd" id="1_jlhhw"]
+[ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Scenes/ui/pen_updated.tscn" id="2_cih2e"]
+[ext_resource type="PackedScene" uid="uid://cfqy04vblriqj" path="res://Assets/Reindeer.glb" id="3_4je65"]
+
+[sub_resource type="Environment" id="Environment_wxwfb"]
+
+[node name="Pen3D" type="Node3D"]
+script = ExtResource("1_jlhhw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wxwfb")
+
+[node name="Pen_Updated" parent="." instance=ExtResource("2_cih2e")]
+
+[node name="Reindeer" parent="." instance=ExtResource("3_4je65")]
+transform = Transform3D(0.8120325, 0, 0.583612, 0, 1, 0, -0.583612, 0, 0.8120325, 0.5239806, 0, -0.9211526)
+
+[node name="ActiveCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.090424076, -0.32096195, 0.9427656, -6.812307e-09, 0.94664377, 0.32228225, -0.9959033, 0.029142056, -0.085599355, 8.583757, 2.4720106, -5.2030544)
+current = true
+fov = 83.58761
+
+[node name="MainMenuCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.090424076, -0.32096195, 0.9427656, -6.812307e-09, 0.94664377, 0.32228225, -0.9959033, 0.029142056, -0.085599355, 8.583757, 2.4720106, -5.2030544)
+fov = 83.58761
+
+[node name="PenCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.5559329, -0.3271352, 0.7641474, 0, 0.9193003, 0.3935569, -0.8312272, 0.21879123, -0.5110693, 1.3459258, 2.069077, -3.7361157)
+fov = 83.58761

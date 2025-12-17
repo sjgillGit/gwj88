@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvmuxb0lqym4u"]
+
+[ext_resource type="PackedScene" uid="uid://bugrgua4m5drt" path="res://Assets/ui/pen/Pen_Updated.glb" id="1_ni3ij"]
+
+[node name="Pen_Updated" instance=ExtResource("1_ni3ij")]
+
+[node name="Cube" parent="." index="7"]
+visible = false

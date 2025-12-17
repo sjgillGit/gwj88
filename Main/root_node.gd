@@ -11,7 +11,7 @@ func _game_state_changed(new_state: GameState.State, old_state: GameState.State)
 	var new_scene: PackedScene = null
 	match new_state:
 		GameState.State.STARTUP, GameState.State.MAIN_MENU, GameState.State.PEN:
-			new_scene = preload("res://Scenes/ui/Placeholder3DforUi.tscn")
+			new_scene = preload("res://Scenes/ui/Pen3D.tscn")
 		GameState.State.PLAY:
 			new_scene = preload("res://Scenes/flight_mode/flight_main.tscn")
 		_:

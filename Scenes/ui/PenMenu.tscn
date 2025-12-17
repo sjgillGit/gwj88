@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cj1erhmerk3t0"]
 
-[ext_resource type="PackedScene" uid="uid://7iukt2vlfaaf" path="res://Scenes/ui/Placeholder3DforUi.tscn" id="1_5rt55"]
+[ext_resource type="PackedScene" uid="uid://7iukt2vlfaaf" path="res://Scenes/ui/Pen3D.tscn" id="1_5rt55"]
 
 [node name="PenMenu" type="Node3D"]
 
