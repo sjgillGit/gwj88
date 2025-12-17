@@ -47,7 +47,7 @@ func increment_upgrade():
 
 
 func upgrade_available_for_purchase() -> bool:
-	return len(_upgrades) < len(Category.keys())
+	return len(_upgrades) < len(_upgrade_order)
 
 
 func get_upgrades() -> Array[Category]:
