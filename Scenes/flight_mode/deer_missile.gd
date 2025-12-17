@@ -152,9 +152,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if abs(forward_speed) < 0.001:
 		forward_speed = 0
 
-	var at := %AnimationTree
-	at.set("parameters/running/blend_amount", absf(forward_speed))
-	at.set("parameters/run_timescale/scale", forward_speed * 3)
+	%Reindeer.set_run_speed(forward_speed)
 	_print_stats()
 
 
