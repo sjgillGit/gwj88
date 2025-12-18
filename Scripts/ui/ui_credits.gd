@@ -7,9 +7,10 @@ extends Control
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	match anim_name:
-		&"scroll":
-			GameState.current = GameState.State.MAIN_MENU
+	if GameState.current == GameState.State.CREDITS:
+		match anim_name:
+			&"scroll":
+				GameState.current = GameState.State.MAIN_MENU
 
 
 func _on_visibility_changed() -> void:
@@ -19,5 +20,6 @@ func _on_visibility_changed() -> void:
 		anim_player.play("scroll")
 		GlobalAudioPlayer.playlist["UI"]["Egg"].play()
 	else:
+		anim_player.stop()
 		GlobalAudioPlayer.playlist["UI"]["Egg"].stop()
 		rich_text.position = Vector2.ZERO

@@ -14,6 +14,8 @@ func _game_state_changed(new_state: GameState.State, old_state: GameState.State)
 			new_scene = preload("res://Scenes/ui/Pen3D.tscn")
 		GameState.State.PLAY:
 			new_scene = preload("res://Scenes/flight_mode/flight_main.tscn")
+		GameState.State.QUIT:
+			pass
 		_:
 			assert(false, "I don't know what to do here with this new game state: %s" % [new_state])
 	if _old_scene != new_scene:

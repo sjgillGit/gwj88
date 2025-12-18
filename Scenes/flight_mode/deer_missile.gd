@@ -8,7 +8,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 
 @export var base_thrust := 5.0
 @export var base_lift := 0.0
-@export var base_drag := 1.0
+@export var base_drag := 0.001
 @export var base_mass := 50.0
 ## Amount of control you have over flight.. should be between 0 and 1
 @export var base_control := 0.9
@@ -60,7 +60,7 @@ func _ready():
 		control_envelope.add_point(Vector2(20, 1.0))
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
-	show_debug_ui = show_debug_ui
+	show_debug_ui = true # show_debug_ui
 	# don't worry about the upgrade changed signal,
 	# they can't be toggled in this game state
 	set_enabled_upgrades(DeerUpgrades.get_upgrades())
@@ -112,6 +112,15 @@ func _apply_upgrade_stats():
 	mass = base_mass + _upgrade_mass
 
 
+func _is_terrain(b: Node3D) -> bool:
+	var p := b.get_parent()
+	while p:
+		if p is Ground:
+			return true
+		p = p.get_parent()
+	return false
+
+
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var _distance_updated := false
 	_on_ramp = false
@@ -124,7 +133,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			_impact_point = Vector3()
 			_distance_updated = true
 			_on_ramp = true
-		elif b is Ground:
+		elif b is Ground || _is_terrain(b):
 			_on_ramp = false
 			if !_landed:
 				_impact_point = global_position

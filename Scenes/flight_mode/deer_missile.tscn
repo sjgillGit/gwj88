@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
 _limits = [0.0, 1.0, 0.0, 1000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10.685663, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(6.0240974, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e1i74"]
@@ -88,7 +88,6 @@ contact_monitor = true
 max_contacts_reported = 10
 angular_damp = 0.1
 script = ExtResource("2_vmpjy")
-base_drag = 0.1
 control_envelope = SubResource("Curve_wqsbj")
 
 [node name="Reindeer" parent="." instance=ExtResource("3_wfu7b")]

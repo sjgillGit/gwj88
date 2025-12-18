@@ -1,2 +1,2 @@
 class_name Ground
-extends StaticBody3D
+extends Node3D
