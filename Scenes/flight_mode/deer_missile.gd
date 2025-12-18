@@ -6,12 +6,12 @@ signal flight_state_changed(state: FlightState)
 
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 
-@export var base_thrust := 5.0
+@export var base_thrust := 0.0
 @export var base_lift := 0.0
-@export var base_drag := 0.001
+@export_range(0.0, 0.1, 0.0001) var base_drag := 0.0001
 @export var base_mass := 50.0
 ## Amount of control you have over flight.. should be between 0 and 1
-@export var base_control := 0.9
+@export_range(0, 1.0, 0.01) var base_control := 0.1
 ## speeds at which we have flight control
 @export var control_envelope: Curve
 
@@ -70,7 +70,7 @@ func _ready():
 
 
 func get_flight_state() -> FlightState:
-	if _landed && linear_velocity.length() < 0.001:
+	if _landed && linear_velocity.length() < 0.01:
 		return FlightState.POST_FLIGHT
 	if _launch_point != Vector3.ZERO:
 		return FlightState.FLIGHT
