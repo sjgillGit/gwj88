@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cillnccaqrc6p"]
+
+[ext_resource type="Script" uid="uid://hp8ib0xo2psg" path="res://Scenes/ui/settings/guide/ui/action_binding.gd" id="1_hmcci"]
+[ext_resource type="Theme" path="res://Scenes/ui/settings/guide/settings_ui_theme.tres" id="2_o16qw"]
+
+[node name="ActionBinding" type="PanelContainer"]
+custom_minimum_size = Vector2(150, 48)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hmcci")
+
+[node name="ActionBinding" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("2_o16qw")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -258,12 +258,12 @@ func _print_stats():
 	])
 
 func _update_input() -> void:
-	_thrust_vector = Vector3.BACK * boost.value_axis_1d
+	_thrust_vector = Vector3.BACK * clampf(boost.value_axis_1d, 0, 1)
 
 	if _landed:
 		return
 
-	_player_inputs = Vector3(movement.value_axis_2d.x, -movement.value_axis_2d.y, 0)
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 

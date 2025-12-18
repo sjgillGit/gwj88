@@ -5,4 +5,7 @@
 [resource]
 script = ExtResource("1_0a34p")
 action_value_type = 1
+is_remappable = true
+display_name = "Boost"
+display_category = "Player Actions"
 metadata/_custom_type_script = "uid://cluhc11vixkf1"

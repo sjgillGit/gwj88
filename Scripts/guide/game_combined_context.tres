@@ -23,6 +23,9 @@ script = ExtResource("6_dt8dx")
 
 [sub_resource type="Resource" id="Resource_5p4qq"]
 script = ExtResource("3_owsi8")
+override_action_settings = true
+is_remappable = true
+display_name = "Up"
 input = SubResource("Resource_mc3a8")
 modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_40mxg")])
 
@@ -35,6 +38,9 @@ script = ExtResource("9_135p2")
 
 [sub_resource type="Resource" id="Resource_vn62w"]
 script = ExtResource("3_owsi8")
+override_action_settings = true
+is_remappable = true
+display_name = "Left"
 input = SubResource("Resource_qbbgi")
 modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_aw1yb")])
 
@@ -50,6 +56,9 @@ script = ExtResource("9_135p2")
 
 [sub_resource type="Resource" id="Resource_k6uby"]
 script = ExtResource("3_owsi8")
+override_action_settings = true
+is_remappable = true
+display_name = "Down"
 input = SubResource("Resource_1n7jo")
 modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_cr5om"), SubResource("Resource_0ocl3")])
 
@@ -59,6 +68,9 @@ key = 68
 
 [sub_resource type="Resource" id="Resource_kb01i"]
 script = ExtResource("3_owsi8")
+override_action_settings = true
+is_remappable = true
+display_name = "Right"
 input = SubResource("Resource_l2vc0")
 
 [sub_resource type="Resource" id="Resource_aug8t"]
@@ -70,6 +82,9 @@ lower_threshold = 0.01
 
 [sub_resource type="Resource" id="Resource_wr3yb"]
 script = ExtResource("3_owsi8")
+override_action_settings = true
+is_remappable = true
+display_name = "Movement"
 input = SubResource("Resource_aug8t")
 modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_kxvmh")])
 
@@ -84,6 +99,9 @@ key = 32
 
 [sub_resource type="Resource" id="Resource_m67xt"]
 script = ExtResource("3_owsi8")
+override_action_settings = true
+is_remappable = true
+display_name = "Boost"
 input = SubResource("Resource_aluli")
 
 [sub_resource type="Resource" id="Resource_tvamh"]
@@ -96,6 +114,9 @@ lower_threshold = 0.01
 
 [sub_resource type="Resource" id="Resource_bgls8"]
 script = ExtResource("3_owsi8")
+override_action_settings = true
+is_remappable = true
+display_name = "Boost"
 input = SubResource("Resource_tvamh")
 modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_owsi8")])
 

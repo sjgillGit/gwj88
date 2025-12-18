@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dot0gi1yoqmrl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t67w"]
+
+[resource]
+default_font_size = 24
+HeaderLarge/font_sizes/font_size = 30
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_6t67w")

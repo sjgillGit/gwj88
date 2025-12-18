@@ -5,4 +5,7 @@
 [resource]
 script = ExtResource("1_luv1x")
 action_value_type = 2
+is_remappable = true
+display_name = "Movement"
+display_category = "Player Actions"
 metadata/_custom_type_script = "uid://cluhc11vixkf1"
