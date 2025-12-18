@@ -3,6 +3,7 @@ extends Node3D
 @onready var camera: Camera3D = %ActiveCamera
 @onready var main_menu_camera: Camera3D = %MainMenuCamera
 @onready var pen_camera: Camera3D = %PenCamera
+@onready var reindeer: Reindeer = %Reindeer
 
 
 const camera_tween_time_seconds := 1
@@ -29,3 +30,8 @@ func _on_game_state_changed(new_state: GameState.State, old_state: GameState.Sta
 			camera, "rotation", pen_camera.rotation,
 			camera_tween_time_seconds
 		)
+
+
+func _on_apple_ate_apple() -> void:
+	reindeer.pellet_producer.max_pellet_time = 20.0
+	reindeer.pellet_producer.emit_pellets()

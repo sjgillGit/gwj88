@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d13aagks3romy"]
+[gd_scene load_steps=10 format=3 uid="uid://d13aagks3romy"]
 
 [ext_resource type="PackedScene" uid="uid://c7rtap1601thy" path="res://Scenes/ui/UiCredits.tscn" id="1_i65he"]
 [ext_resource type="Script" uid="uid://dtacnowi6gr7v" path="res://Scripts/ui/ui_root_node.gd" id="1_ilje2"]
@@ -11,8 +11,6 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ex7ef"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_rc5x5"]
-
 [node name="UiRootNode" type="Control" groups=["ui"]]
 layout_mode = 3
 anchors_preset = 15
@@ -20,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_ilje2")
 
 [node name="UiCredits" parent="." instance=ExtResource("1_i65he")]
@@ -47,9 +46,6 @@ button_group = SubResource("ButtonGroup_ex7ef")
 [node name="UiPen" parent="." instance=ExtResource("4_scill")]
 visible = false
 layout_mode = 1
-
-[node name="PLAY" parent="UiPen/Panel" index="0"]
-button_group = SubResource("ButtonGroup_rc5x5")
 
 [node name="UiPlay" parent="." instance=ExtResource("5_gmsvu")]
 visible = false

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2l76qbom18gh"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l380j"]
+friction = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_l380j"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdmss"]
+albedo_color = Color(0.19273582, 0.13339785, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fkdxm"]
+radius = 0.02
+
+[node name="Pellet" type="RigidBody3D"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_l380j")
+linear_damp = 4.0
+angular_damp = 8.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l380j")
+surface_material_override/0 = SubResource("StandardMaterial3D_jdmss")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_fkdxm")
