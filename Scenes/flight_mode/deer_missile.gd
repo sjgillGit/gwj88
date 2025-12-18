@@ -18,7 +18,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var walk_speed := 5.0
 @export var pitch_speed := 1.0
 @export var roll_speed := 1.0
-@export var yaw_speed := 1.0
+@export var yaw_speed := 0.25
 
 @export var show_debug_ui := true:
 	set(value):
@@ -37,7 +37,7 @@ var _launch_point: Vector3
 var _impact_point: Vector3
 
 # Update this vector to apply thrust in a specific direction (usually BACK)
-var _thrust_vector := Vector3()
+var _thrust_vector := Vector3.BACK
 var _upgrade_thrust := 0.0
 var _upgrade_lift := 0.0
 var _upgrade_drag := 0.0
@@ -49,15 +49,16 @@ var _landed := false
 var _launch_upgrades: Array[Upgrade]
 
 var _overlapping_areas: Array[int]
-var _last_flight_state := FlightState.PRE_FLIGHT
+var _current_flight_state := FlightState.PRE_FLIGHT
 
 
 func _ready():
 	# invoke setter!
+	center_of_mass = %CenterOfMassMarker.transform.origin
 	if !control_envelope:
 		control_envelope = Curve.new()
 		control_envelope.add_point(Vector2(0, 0))
-		control_envelope.add_point(Vector2(20, 1.0))
+		control_envelope.add_point(Vector2(2, 1.0))
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
 	show_debug_ui = true # show_debug_ui
@@ -72,9 +73,25 @@ func _ready():
 func get_flight_state() -> FlightState:
 	if _landed && linear_velocity.length() < 0.01:
 		return FlightState.POST_FLIGHT
-	if _launch_point != Vector3.ZERO:
+	if _launch_point != Vector3.ZERO && !_on_ramp:
 		return FlightState.FLIGHT
 	return FlightState.PRE_FLIGHT
+
+
+func _flight_state_changed():
+	if _current_flight_state == FlightState.FLIGHT:
+		for u in _launch_upgrades:
+			u.start_thrust()
+		%CollisionPolygonFeet.disabled = true
+	flight_state_changed.emit(_current_flight_state)
+
+
+func _on_flight_state_timer_timeout() -> void:
+	var flight_state := get_flight_state()
+	_update_distances()
+	if flight_state != _current_flight_state:
+		_current_flight_state = flight_state
+		_flight_state_changed()
 
 
 func set_enabled_upgrades(upgrades: Array[DeerUpgrades.Category]):
@@ -158,7 +175,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_apply_lift(state)
 	_apply_control(state)
 
-	if _on_ramp:
+	if _current_flight_state == FlightState.PRE_FLIGHT:
 		# X inputs rotate around the Y axis (yaw) when we aren't flying
 		state.apply_torque_impulse(global_basis * (Vector3.DOWN * _player_inputs.x * roll_speed * state.step * mass))
 		# Y inputs move forward/back when we aren't flying
@@ -166,11 +183,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	else:
 		# X inputs rotate around the Z axis (roll)
 		state.apply_torque_impulse(global_basis * (Vector3.BACK * _player_inputs.x * roll_speed * state.step * mass))
+		state.apply_torque_impulse(global_basis * (Vector3.DOWN * _player_inputs.x * yaw_speed * state.step * mass))
 		# Y inputs rotate around the X axis (pitch)
 		state.apply_torque_impulse(global_basis * (Vector3.LEFT * _player_inputs.y * pitch_speed * state.step * mass))
 	# Z inputs rotate around the Y axis (yaw)
 	# we don't actually have any inputs for this yet
-	state.apply_torque_impulse(global_basis * (Vector3.UP * _player_inputs.z * state.step * yaw_speed * mass))
+	state.apply_torque_impulse(global_basis * (Vector3.DOWN * _player_inputs.z * state.step * yaw_speed * mass))
 	if _distance_updated:
 		_update_distances()
 	var lv := state.linear_velocity
@@ -193,14 +211,17 @@ func _apply_drag(state: PhysicsDirectBodyState3D):
 
 
 func _apply_lift(state: PhysicsDirectBodyState3D):
+	if _current_flight_state == FlightState.PRE_FLIGHT:
+		_stats.lift = "preflight"
+		return
 	var lift_vector := state.transform.basis * Vector3.UP
 	var motion_vector := state.linear_velocity.normalized()
 	var forward_vector := state.transform.basis * Vector3.MODEL_FRONT
 	var forward_angle := forward_vector.dot(motion_vector)
-	if forward_angle > 0:
+	var speed := state.linear_velocity.length()
+	if forward_angle > 0 && speed > 0.1:
 		var lift_percent := forward_angle
 		var lift_amount := (base_lift + _upgrade_lift) * lift_percent
-		var speed := state.linear_velocity.length()
 
 		var envelope_percent := control_envelope.sample_baked(speed)
 		state.apply_central_impulse(state.step * lift_vector * lift_amount * envelope_percent)
@@ -262,13 +283,11 @@ func _print_stats():
 
 func _unhandled_input(event: InputEvent) -> void:
 	_player_inputs = Vector3.ZERO
-	_thrust_vector = Vector3.ZERO
 	if !_landed:
 		_player_inputs += Vector3.LEFT * Input.get_action_strength("move_left")
 		_player_inputs += Vector3.RIGHT * Input.get_action_strength("move_right")
 		_player_inputs += Vector3.UP * Input.get_action_strength("move_down")
 		_player_inputs += Vector3.DOWN * Input.get_action_strength("move_up")
-		_thrust_vector = Vector3.BACK * Input.get_action_strength("move_forward")
 
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
@@ -284,11 +303,3 @@ func remove_area(area: Area3D):
 
 func is_thrusting() -> bool:
 	return _thrust_vector.length() > 0
-
-
-func _on_flight_state_timer_timeout() -> void:
-	var flight_state := get_flight_state()
-	_update_distances()
-	if flight_state != _last_flight_state:
-		_last_flight_state = flight_state
-		flight_state_changed.emit(flight_state)

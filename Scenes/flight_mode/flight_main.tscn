@@ -21,7 +21,7 @@
 [ext_resource type="Image" uid="uid://yhy8a00qnrsh" path="res://Assets/terrain/Heightmap_-1_0.res" id="7_q7uad"]
 [ext_resource type="Image" uid="uid://cwvmecfm2e32x" path="res://Assets/terrain/Foliage_0_0_2.res" id="7_ywvku"]
 [ext_resource type="Image" uid="uid://qqj1lmwo15fv" path="res://Assets/terrain/Snow_-1_0.res" id="8_xufyi"]
-[ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/booster.tscn" id="9_jp6c4"]
+[ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/decal_booster.tscn" id="9_jp6c4"]
 [ext_resource type="Image" uid="uid://uhirt1g0enfg" path="res://Assets/terrain/Splatmap_-1_0_0.res" id="9_w5m2m"]
 [ext_resource type="Image" uid="uid://dxvureo3awo23" path="res://Assets/terrain/Heightmap_-1_-1.res" id="10_kt8oo"]
 [ext_resource type="Image" uid="uid://ba3f17y681udl" path="res://Assets/terrain/Snow_-1_-1.res" id="11_l3ptd"]
@@ -206,7 +206,7 @@ color_ramp = SubResource("Gradient_0xm2m")
 seamless = true
 
 [sub_resource type="SnowResource" id="SnowResource_lquwl"]
-snowInnerOffset = 0.1
+snowInnerOffset = 0.05
 snowColorTexture = SubResource("NoiseTexture2D_1bvp3")
 snowColorNormal = SubResource("NoiseTexture2D_rtpbt")
 
@@ -379,7 +379,7 @@ refraction_scale = 0.01
 
 [sub_resource type="Curve3D" id="Curve3D_3kocc"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.029159546, 0.045352936, 0, 8.064308, 5.8531265, 0, -8.064308, -5.8531265, 0, -8.419796, -8.5224, 0, -28.095058, 22.371986, 0, 28.095058, -22.371986, 0, -44.261, -65.95485),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.029159546, 0.045352936, 0, 8.064308, 5.8531265, 0, -8.064308, -5.8531265, 0, -8.419796, -8.5224, 0, -16.850494, 32.840027, 0, 16.850494, -32.840027, 0, -48.20128, -66.00142),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -422,7 +422,7 @@ foliages = Array[FoliageResource]([SubResource("FoliageResource_toye6"), SubReso
 snowDefinition = SubResource("SnowResource_lquwl")
 terrainZones = SubResource("ZonesResource_to8bh")
 script = ExtResource("3_jp6c4")
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="Cave" type="CSGCombiner3D" parent="TerraBrush"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
@@ -524,11 +524,13 @@ script = ExtResource("7_m27rb")
 
 [node name="HayPile" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.053, -52.064125, -53.901672)
+monitorable = false
 texture = ExtResource("6_jp6c4")
 speed_boost = -2.0
 
 [node name="HayPile2" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0231085, -50.524815, -46.00142)
+monitorable = false
 texture = ExtResource("6_jp6c4")
 speed_boost = -2.0
 

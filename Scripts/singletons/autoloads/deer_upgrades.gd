@@ -4,19 +4,19 @@ signal upgrades_updated
 
 enum Category {
 	# do not reorder, all our values set in the editor will shuffle!
-	NONE,
-	BASE,
-	SMALL_ANTLERS,
-	LARGE_ANTLERS,
-	DECORATED_ANTLERS,
-	COLLAR,
-	SADDLE,
-	ELF,
-	ROCKETS,
-	WINGS,
+	NONE=-1,
+	# missing entries for backward compatibility
+	SMALL_ANTLERS=2,
+	LARGE_ANTLERS=3,
+	DECORATED_ANTLERS=4,
+	COLLAR=5,
+	SADDLE=6,
+	ELF=7,
+	ROCKETS=8,
+	WINGS=9,
 	# HEAD, # Todo with assets, frosty hat, glasses, nose
 	# SLED, # Todo
-	# TRAIL, # Todo with assets, rainbow road
+	# TRAIL, # Todo with assets, magic christmas dust = running in air on 'rainbow road'
 }
 
 # Because categories are just an int.. if we mess with the
@@ -33,7 +33,7 @@ const _upgrade_order: Array[Category] = [
 	Category.WINGS
 ];
 
-var _upgrades: Array[Category] = [Category.BASE]
+var _upgrades: Array[Category] = []
 
 
 func increment_upgrade():
@@ -41,7 +41,7 @@ func increment_upgrade():
 		if upgrade == DeerUpgrades.Category.NONE || upgrade in _upgrades:
 			continue
 		_upgrades.append(upgrade)
-		print("Adding upgrade: %s" % Category.keys()[upgrade])
+		print("Adding upgrade: %s" % Category.find_key(upgrade))
 		upgrades_updated.emit()
 		break
 

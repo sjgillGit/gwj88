@@ -84,6 +84,8 @@ collision_layer = 3
 collision_mask = 3
 mass = 50.0
 physics_material_override = ExtResource("1_k7jrr")
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.5, 0)
 contact_monitor = true
 max_contacts_reported = 10
 angular_damp = 0.1
@@ -102,7 +104,8 @@ shape = SubResource("CapsuleShape3D_e1i74")
 transform = Transform3D(1, 0, 0, 0, 0.44430682, -0.89587474, 0, 0.89587474, 0.44430682, 0, 0.83254254, 0.6660558)
 shape = SubResource("CapsuleShape3D_g2hql")
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+[node name="CollisionPolygonFeet" type="CollisionPolygon3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.0138897, 0.016204596)
 depth = 0.75
 polygon = PackedVector2Array(0.9398634, -0.08565247, 0.99542165, -0.19213943, 0.9167139, -0.25464267, 0.7986521, -0.29631153, 0.5116003, -0.32872063, 0.07407784, -0.21297392, -0.32177588, -0.3125161, -0.5162304, -0.30325645, -0.5440096, -0.14815582)
@@ -135,5 +138,9 @@ transform = Transform3D(-1.6146365e-07, 2.6240727e-08, 1, 0.071097046, 0.9974693
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="CenterOfMassMarker" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
 
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]

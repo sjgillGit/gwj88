@@ -1,6 +1,7 @@
 class_name Upgrade
 extends Node3D
 
+signal thrusting_changed(value: bool)
 
 @export var upgrade_name = ""
 @export_multiline var description = ""
@@ -26,9 +27,14 @@ extends Node3D
 # smash through walls?
 @export var toughness := 0.0
 
+@export var fuel_capacity_seconds := 0.0
+
+var _fuel_seconds := 0.0
+var _thrusting := false
 
 func _ready():
 	enabled = enabled
+	_fuel_seconds = fuel_capacity_seconds
 
 
 ## allow getting collision shapes to add when this upgrade is enabled
@@ -40,21 +46,31 @@ func get_collision_shapes() -> Array[CollisionShape3D]:
 			result.append(cs)
 	return result
 
-# virtual
+
+func _physics_process(delta: float) -> void:
+	if _thrusting:
+		_fuel_seconds -= delta
+		if _fuel_seconds <= 0:
+			_thrusting = false
+			thrusting_changed.emit(_thrusting)
+
+
+func start_thrust():
+	_thrusting = true
+	thrusting_changed.emit(_thrusting)
+
+
 func get_thrust():
-	return thrust
+	return thrust if _thrusting && _fuel_seconds > 0 else 0.0
 
 
-# virtual
 func get_lift():
 	return lift
 
 
-# virtual
 func get_drag():
 	return drag
 
 
-# virtual
 func get_mass():
 	return mass
