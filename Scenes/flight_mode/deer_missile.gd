@@ -201,7 +201,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		angular_damp = _default_angular_damp
 
 	_update_input()
-	
+
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
 		if a is LaunchZone:
@@ -345,7 +345,7 @@ func _update_input() -> void:
 	if _landed:
 		return
 
-	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
