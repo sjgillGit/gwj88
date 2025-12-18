@@ -345,7 +345,13 @@ func _update_input() -> void:
 	if _landed:
 		return
 
-	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), clampf(movement.value_axis_2d.y, -1, 1), 0)
+	# flying always should be 'stick forward to go down, stick backward to go up'...
+	# probably should have a way to invert Y axis for weirdos
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
+	if _current_flight_state == FlightState.SETUP && movement.value_axis_2d.y > 0.5:
+			_current_flight_state = FlightState.PRE_FLIGHT
+			_flight_state_changed()
+			%TimeLeftLabel.visible = false
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
