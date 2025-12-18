@@ -139,7 +139,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			# probably redundant, above code worked ok to detect _on_ramp status
 			# but this is how to add boost areas also..
 			_on_ramp = true
-		elif a is Booster:
+		elif a is Booster || a is Obstacle:
 			a.apply_physics(state, mass)
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
