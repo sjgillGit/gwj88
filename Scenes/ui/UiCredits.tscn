@@ -53,6 +53,7 @@ offset_right = -1.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_git7w")
 script = ExtResource("1_5j1v5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -64,7 +65,6 @@ offset_top = -2081.0
 offset_right = 5.0
 offset_bottom = -1.0
 grow_horizontal = 2
-theme = ExtResource("2_git7w")
 text = "
 
 

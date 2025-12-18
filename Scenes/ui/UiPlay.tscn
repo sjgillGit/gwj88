@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7g5whk4u801n"]
 
-[ext_resource type="Script" uid="uid://8wjafmqddqgm" path="res://Scenes/ui/ui_play.gd" id="1_cd4xp"]
+[ext_resource type="Script" path="res://Scenes/ui/ui_play.gd" id="1_cd4xp"]
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_fml7s"]
 
 [node name="UiPlay" type="Control" groups=["ui"]]
@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_fml7s")
 script = ExtResource("1_cd4xp")
 
 [node name="Button" type="Button" parent="."]
