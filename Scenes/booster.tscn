@@ -1,20 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://i54xyk4duyd2"]
+[gd_scene load_steps=6 format=3 uid="uid://i54xyk4duyd2"]
 
 [ext_resource type="Script" uid="uid://db6wj4ubjudo2" path="res://Scenes/booster.gd" id="1_tf3vi"]
+[ext_resource type="Shader" uid="uid://b1l4hsdrg8mk2" path="res://Scripts/environment/booster.gdshader" id="2_tf3vi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ntnxt"]
 radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0tsq"]
+render_priority = 0
+shader = ExtResource("2_tf3vi")
+shader_parameter/frequency = 20.0
+shader_parameter/band_size = 0.5
+shader_parameter/speed = 1.0
+shader_parameter/color_a = Color(0.86863697, 0, 0.094559304, 1)
+shader_parameter/color_b = Color(0.080434956, 0.50532824, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_j8mli"]
+material = SubResource("ShaderMaterial_o0tsq")
 
 [node name="Booster" type="Area3D"]
 script = ExtResource("1_tf3vi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47310078, 0)
 shape = SubResource("SphereShape3D_ntnxt")
 
-[node name="Decal" type="Decal" parent="."]
-layers = 3
-size = Vector3(5, 5, 5)
-cull_mask = 2
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, 0.1, -1, 4.371139e-08, -4.371139e-09, 0, 0, 0)
+mesh = SubResource("PrismMesh_j8mli")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
