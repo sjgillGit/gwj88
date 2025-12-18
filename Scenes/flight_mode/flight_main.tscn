@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=23 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="2_ph8sb"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
 [ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="9_07op2"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="9_jp6c5"]
+[ext_resource type="PackedScene" uid="uid://c51djvfclnyar" path="res://Scenes/collectibles/collectible.tscn" id="11_d51bt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ld0ly"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -190,6 +191,8 @@ script = ExtResource("8_ph8sb")
 game_context = ExtResource("9_07op2")
 
 [node name="GuideDebugger" parent="." instance=ExtResource("9_jp6c5")]
+[node name="Collectible" parent="." instance=ExtResource("11_d51bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9513817, 54.013893, 34.38234)
 
 [connection signal="pressed" from="BoxContainer/IceCubeButton" to="." method="_on_ice_cube_button_pressed"]
 [connection signal="item_selected" from="BoxContainer/CameraOption" to="." method="_on_camera_option_item_selected"]

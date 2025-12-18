@@ -1,13 +1,121 @@
-[gd_scene load_steps=3 format=3 uid="uid://ocf85almku73"]
+[gd_scene load_steps=11 format=3 uid="uid://ocf85almku73"]
 
 [ext_resource type="Script" uid="uid://1c64k18bnajp" path="res://Scripts/environment/obstacle.gd" id="1_t44st"]
+[ext_resource type="PackedScene" uid="uid://flpf4ya8guhb" path="res://Assets/collectibles/Collectable SNOWMAN.glb" id="2_u4mhx"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_rlcr7"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3pma"]
+radius = 0.42333984
+height = 1.454834
 
-[node name="Obstacle" type="StaticBody3D"]
-collision_layer = 0
+[sub_resource type="Curve" id="Curve_u4mhx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.55135137, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_x3pma"]
+curve = SubResource("Curve_u4mhx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ouis2"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -7, 0)
+scale_min = 0.79999995
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_x3pma")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ku1qj"]
+radius = 0.1
+height = 0.1
+
+[sub_resource type="Animation" id="Animation_u4mhx"]
+resource_name = "explode"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_x3pma"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ouis2"]
+_data = {
+&"RESET": SubResource("Animation_x3pma"),
+&"explode": SubResource("Animation_u4mhx")
+}
+
+[node name="Obstacle" type="Area3D"]
 script = ExtResource("1_t44st")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("SphereShape3D_rlcr7")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009910494, 0.5904541, 0)
+shape = SubResource("CapsuleShape3D_x3pma")
+
+[node name="Mesh" parent="." instance=ExtResource("2_u4mhx")]
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9906945, 0)
+emitting = false
+amount = 100
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ouis2")
+draw_pass_1 = SubResource("SphereMesh_ku1qj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ouis2")
+}
+autoplay = "RESET"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
