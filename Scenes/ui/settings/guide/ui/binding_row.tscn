@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bme1y0ikthda7"]
+
+[ext_resource type="Script" uid="uid://cfukq2iogf0k4" path="res://Scenes/ui/settings/guide/ui/binding_row.gd" id="1_mc50g"]
+[ext_resource type="Theme" uid="uid://dot0gi1yoqmrl" path="res://Scenes/ui/settings/guide/settings_ui_theme.tres" id="2_5k5bd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7d7jr"]
+content_margin_left = 50.0
+content_margin_right = 50.0
+
+[node name="BindingRow" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7d7jr")
+script = ExtResource("1_mc50g")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+
+[node name="BindingRow" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="ActionName" type="Label" parent="BindingRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_5k5bd")
+text = "Lorem ipsum"
+
+[node name="Control" type="Control" parent="BindingRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

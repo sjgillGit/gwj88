@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cnycoempl38nj" path="res://Scenes/flight_mode/launch_zone.gd" id="1_b11j6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jp6c4"]
-size = Vector3(32, 100, 500)
+size = Vector3(30, 100, 500)
 
 [node name="LaunchZone" type="Area3D"]
 collision_layer = 3

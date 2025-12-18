@@ -1,11 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://b65c8fwljp8h"]
+[gd_scene load_steps=14 format=3 uid="uid://b65c8fwljp8h"]
 
 [ext_resource type="Script" uid="uid://b6jbl2jli58bp" path="res://Scenes/upgrades/rocket_1.gd" id="1_peinc"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_peinc"]
+albedo_color = Color(0.6090141, 0, 0.09987681, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_5mwn2"]
-top_radius = 0.05
+material = SubResource("StandardMaterial3D_peinc")
+top_radius = 0.1
 bottom_radius = 0.1
-height = 0.5
+height = 0.75
 radial_segments = 16
 
 [sub_resource type="Gradient" id="Gradient_wqsbj"]
@@ -60,6 +64,13 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_wqsbj")
 size = Vector2(0.1, 0.1)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_peinc"]
+material = SubResource("StandardMaterial3D_peinc")
+top_radius = 0.0
+bottom_radius = 0.125
+height = 0.125
+radial_segments = 16
+
 [node name="Rocket1" type="MeshInstance3D"]
 transform = Transform3D(1.1035358, 3.3827166e-07, 7.0022526e-07, -3.3007282e-07, 1.1034597, -0.012884941, -7.0412733e-07, 0.012884948, 1.1034598, 0, 0, 0)
 mesh = SubResource("CylinderMesh_5mwn2")
@@ -68,9 +79,17 @@ script = ExtResource("1_peinc")
 
 [node name="ThrustParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -0.30041146, 0)
+transform = Transform3D(0.9999999, 0, 1.2878587e-14, -4.6629367e-14, -4.377216e-08, 0.9999998, -5.684342e-14, -0.9999998, -4.5634806e-08, 3.038094e-08, -0.40197748, 0.0011859736)
 emitting = false
 amount = 100
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_5mwn2")
 draw_pass_1 = SubResource("QuadMesh_nv1pf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999999, 4.2632564e-14, 0, -7.5495166e-14, 0.9999997, -1.8626451e-09, -1.1368684e-13, -9.313226e-10, 0.9999997, -1.2855753e-07, 0.42977846, -0.0050184648)
+mesh = SubResource("CylinderMesh_peinc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999999, 1.2967405e-13, -5.684342e-14, -1.6253665e-13, 0.99999964, -1.8626451e-09, -2.842171e-13, -2.7939677e-09, 0.9999994, 9.505802e-08, -0.31778693, 0.0037107533)
+mesh = SubResource("CylinderMesh_peinc")

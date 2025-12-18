@@ -25,6 +25,10 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 		if is_node_ready():
 			%DebugUi.visible = value
 
+@export_category("GUIDE")
+@export var movement: GUIDEAction
+@export var boost: GUIDEAction
+
 var flight_distance := 0.0
 var roll_distance := 0.0
 
@@ -61,7 +65,12 @@ func _ready():
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
 	show_debug_ui = show_debug_ui
-	_launch_upgrades = get_upgrades().filter(func(u): return u.enabled)
+	# don't worry about the upgrade changed signal,
+	# they can't be toggled in this game state
+	set_enabled_upgrades(DeerUpgrades.get_upgrades())
+
+	await get_tree().process_frame
+	$FollowCamera.transform = $CameraFollowMark.transform
 
 
 func get_flight_state() -> FlightState:
@@ -72,12 +81,23 @@ func get_flight_state() -> FlightState:
 	return FlightState.PRE_FLIGHT
 
 
+func set_enabled_upgrades(upgrades: Array[DeerUpgrades.Category]):
+	_launch_upgrades.clear()
+	for u in get_upgrades():
+		u.enabled = u.category in upgrades
+		if u.enabled:
+			_launch_upgrades.append(u)
+
+	for u in _launch_upgrades:
+		var shapes := u.get_collision_shapes()
+		for cs in shapes:
+			var dup := cs.duplicate()
+			add_child(dup)
+			dup.global_transform = cs.global_transform
+
+
 func get_upgrades() -> Array[Upgrade]:
-	var result: Array[Upgrade]
-	for c in find_children("*", "Node3D"):
-		if c is Upgrade:
-			result.append(c)
-	return result
+	return $Reindeer.get_upgrades()
 
 
 func _apply_upgrade_stats():
@@ -117,12 +137,16 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		elif b is TopPlatform:
 			_on_ramp = true
 
+	_update_input()
+	
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
-		if a && a is LaunchZone:
+		if a is LaunchZone:
 			# probably redundant, above code worked ok to detect _on_ramp status
 			# but this is how to add boost areas also..
 			_on_ramp = true
+		elif a is Booster || a is Obstacle:
+			a.apply_physics(state, mass)
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
 	state.apply_central_impulse(local_thrust * state.step)
@@ -233,16 +257,13 @@ func _print_stats():
 		"\n".join(stats)
 	])
 
-func _unhandled_input(_event: InputEvent) -> void:
-	_player_inputs = Vector3.ZERO
-	_thrust_vector = Vector3.ZERO
-	if !_landed:
-		_player_inputs += Vector3.LEFT * Input.get_action_strength("move_left")
-		_player_inputs += Vector3.RIGHT * Input.get_action_strength("move_right")
-		_player_inputs += Vector3.UP * Input.get_action_strength("move_down")
-		_player_inputs += Vector3.DOWN * Input.get_action_strength("move_up")
-		_thrust_vector = Vector3.BACK * Input.get_action_strength("move_forward")
+func _update_input() -> void:
+	_thrust_vector = Vector3.BACK * clampf(boost.value_axis_1d, 0, 1)
 
+	if _landed:
+		return
+
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
@@ -261,6 +282,7 @@ func is_thrusting() -> bool:
 
 func _on_flight_state_timer_timeout() -> void:
 	var flight_state := get_flight_state()
+	_update_distances()
 	if flight_state != _last_flight_state:
 		_last_flight_state = flight_state
 		flight_state_changed.emit(flight_state)
