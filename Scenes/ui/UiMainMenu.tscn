@@ -11,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+theme = ExtResource("2_7c5qm")
 script = ExtResource("1_e6jh0")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -23,7 +24,6 @@ anchor_bottom = 1.0
 offset_left = -422.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("2_7c5qm")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -46,7 +46,6 @@ offset_left = 154.0
 offset_top = 26.0
 offset_right = 265.0
 offset_bottom = 69.0
-theme = ExtResource("2_7c5qm")
 theme_override_font_sizes/font_size = 32
 text = "Play"
 horizontal_alignment = 1
@@ -65,7 +64,7 @@ offset_left = 116.0
 offset_top = 29.0
 offset_right = 305.0
 offset_bottom = 72.0
-theme = ExtResource("2_7c5qm")
+theme_override_font_sizes/font_size = 32
 text = "Credits"
 horizontal_alignment = 1
 
@@ -83,7 +82,7 @@ offset_left = 117.0
 offset_top = 29.0
 offset_right = 305.0
 offset_bottom = 72.0
-theme = ExtResource("2_7c5qm")
+theme_override_font_sizes/font_size = 32
 text = "Setting"
 horizontal_alignment = 1
 
@@ -101,7 +100,6 @@ offset_left = 155.0
 offset_top = 30.0
 offset_right = 266.0
 offset_bottom = 73.0
-theme = ExtResource("2_7c5qm")
 text = "Quit"
 horizontal_alignment = 1
 

@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
 [ext_resource type="Script" path="res://Scenes/ui/shop.gd" id="2_d1etx"]
-[ext_resource type="Texture2D" uid="uid://d2amlf2gepeg4" path="res://Assets/ui/main/menu-panel.png" id="4_1a6lg"]
 [ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="4_vjfc7"]
 [ext_resource type="Script" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
 [ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="5_d1etx"]
@@ -13,9 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://d2rip6rwx4wfe" path="res://Assets/ui/pen/antler2.png" id="9_12tqk"]
 [ext_resource type="Texture2D" uid="uid://dp5ba27mieaf3" path="res://Assets/ui/pen/antler3.png" id="10_30hcq"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjfc7"]
-texture = ExtResource("4_1a6lg")
-
 [node name="UiPen" type="Control" groups=["ui"]]
 layout_mode = 3
 anchors_preset = 15
@@ -24,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_s3urb")
 script = ExtResource("1_twpca")
 
 [node name="Shop" type="Control" parent="."]
@@ -163,7 +160,6 @@ offset_left = 768.0
 offset_top = 111.0
 offset_right = 1100.0
 offset_bottom = 537.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_vjfc7")
 
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
@@ -182,8 +178,6 @@ offset_left = 22.0
 offset_top = 29.0
 offset_right = 133.0
 offset_bottom = 72.0
-theme = ExtResource("1_s3urb")
-theme_override_font_sizes/font_size = 32
 text = "Play"
 
 [node name="MoneyContainer" type="PanelContainer" parent="."]

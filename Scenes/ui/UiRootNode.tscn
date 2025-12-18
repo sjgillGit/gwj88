@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://brl11g3oxo4y1" path="res://Scenes/ui/UiSettings.tscn" id="6_evsfa"]
 [ext_resource type="PackedScene" uid="uid://gcxcsrk5oihi" path="res://Scenes/ui/UiStartup.tscn" id="7_3cys0"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_rc5x5"]
+
 [sub_resource type="ButtonGroup" id="ButtonGroup_ex7ef"]
 
 [node name="UiRootNode" type="Control" groups=["ui"]]
@@ -37,11 +39,17 @@ layout_mode = 0
 visible = false
 layout_mode = 1
 
+[node name="MAIN_MENU" parent="UiPause" index="0"]
+button_group = SubResource("ButtonGroup_rc5x5")
+
+[node name="QUIT" parent="UiPause" index="1"]
+button_group = SubResource("ButtonGroup_rc5x5")
+
 [node name="MAIN_MENU" parent="UiPause/HBoxContainer" index="0"]
 button_group = SubResource("ButtonGroup_ex7ef")
 
-[node name="QUIT" parent="UiPause/HBoxContainer" index="1"]
-button_group = SubResource("ButtonGroup_ex7ef")
+[node name="QUIT1" parent="UiPause/HBoxContainer" index="1"]
+button_group = SubResource("ButtonGroup_rc5x5")
 
 [node name="UiPen" parent="." instance=ExtResource("4_scill")]
 visible = false

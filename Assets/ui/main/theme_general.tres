@@ -59,4 +59,5 @@ PanelContainer/styles/panel = ExtResource("5_m520p")
 RichTextLabel/colors/default_color = Color(0.92156863, 0.72156864, 0.35686275, 1)
 RichTextLabel/font_sizes/normal_font_size = 44
 RichTextLabel/fonts/normal_font = ExtResource("6_q0gd3")
+VBoxContainer/constants/separation = 8
 VSeparator/styles/separator = SubResource("StyleBoxTexture_2x4uk")

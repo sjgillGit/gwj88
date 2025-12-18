@@ -3,8 +3,8 @@ class_name UiPause
 extends Control
 
 
-@onready var button_MAIN_MENU: Button = %MAIN_MENU
-@onready var button_QUIT: Button = %QUIT
+@onready var button_MAIN_MENU: TextureButton = $MAIN_MENU
+@onready var button_QUIT: TextureButton = $QUIT
 @onready var button_group: ButtonGroup = button_QUIT.button_group
 
 

@@ -269,7 +269,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	if _distance_updated:
 		_update_distances()
-	var _lv := state.linear_velocity
+#	var lv := state.linear_velocity
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
 	if abs(forward_speed) < 0.001:
