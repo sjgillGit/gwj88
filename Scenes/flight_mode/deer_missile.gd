@@ -170,7 +170,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	state.apply_torque_impulse(global_basis * (Vector3.UP * _player_inputs.z * state.step * yaw_speed * mass))
 	if _distance_updated:
 		_update_distances()
-	var lv := state.linear_velocity
+	var _lv := state.linear_velocity
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
 	if abs(forward_speed) < 0.001:
