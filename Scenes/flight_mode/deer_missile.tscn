@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=13 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_wfu7b"]
+[ext_resource type="FontFile" uid="uid://ctxa0kyenu80i" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Dots.ttf" id="5_j778o"]
 [ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
@@ -79,6 +80,13 @@ _data = {
 &"camera_intro": SubResource("Animation_wfu7b")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_g2hql"]
+font = ExtResource("5_j778o")
+font_size = 64
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.74509805)
+shadow_offset = Vector2(0, 0)
+
 [node name="DeerMissile" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
@@ -124,6 +132,7 @@ layout_mode = 2
 transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.4202485e-07, 0.07109706, -0.9974694, 1.4305115e-06, 1.4324219, -2.9223132)
 current = true
 script = ExtResource("7_62wey")
+max_fov = 75
 slerp_amount = 0.08296321451663971
 attach_point = NodePath("../CameraFollowMark")
 
@@ -142,5 +151,17 @@ autostart = true
 [node name="CenterOfMassMarker" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
+
+[node name="TimeLeftLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_g2hql")
+horizontal_alignment = 1
 
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]

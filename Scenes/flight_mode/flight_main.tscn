@@ -1,4 +1,4 @@
-[gd_scene load_steps=191 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=195 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Texture2D" uid="uid://cso2mfmxungwm" path="res://Assets/environment/trees_A color pallet.png" id="2_6n8pc"]
@@ -140,6 +140,8 @@
 [ext_resource type="Image" uid="uid://dq5awkoywvhyu" path="res://Assets/terrain/Heightmap_-1_-4.res" id="129_sbh0j"]
 [ext_resource type="Image" uid="uid://bop8ibu6peup3" path="res://Assets/terrain/Snow_-1_-4.res" id="130_oatc4"]
 [ext_resource type="Image" uid="uid://btxc0ljbwq8ha" path="res://Assets/terrain/Splatmap_-1_-4_0.res" id="131_yighh"]
+[ext_resource type="PackedScene" uid="uid://c4wlvqxeux131" path="res://Scenes/environment/icicle_cluster.tscn" id="134_mp7iw"]
+[ext_resource type="Script" uid="uid://bkb4pnsolfh03" path="res://Scenes/flight_mode/staging_area.gd" id="136_f6rav"]
 
 [sub_resource type="Gradient" id="Gradient_vke2r"]
 colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
@@ -371,6 +373,12 @@ size = Vector3(0.5, 0.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_uyybt"]
 size = Vector3(48, 10, 36)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ujj4a"]
+size = Vector3(1, 10, 46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mp7iw"]
+size = Vector3(15, 2, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kocc"]
 transparency = 4
 albedo_color = Color(0.69411767, 0.88235295, 1, 0.23137255)
@@ -422,7 +430,7 @@ foliages = Array[FoliageResource]([SubResource("FoliageResource_toye6"), SubReso
 snowDefinition = SubResource("SnowResource_lquwl")
 terrainZones = SubResource("ZonesResource_to8bh")
 script = ExtResource("3_jp6c4")
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="Cave" type="CSGCombiner3D" parent="TerraBrush"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
@@ -466,13 +474,131 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, 201.0422, 218.216)
 [node name="Cube" parent="Platform" index="0"]
 visible = false
 
-[node name="DeerEmitter" type="Marker3D" parent="Platform"]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.06414321, 34.25374, -18.469193)
+[node name="Icicles" type="Node3D" parent="Platform"]
+
+[node name="IcicleCluster2" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.483686, 33.95993, -21.019958)
+
+[node name="IcicleCluster" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.343554, 33.95993, -21.019958)
+
+[node name="IcicleCluster3" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.769098, 33.95993, -21.019958)
+
+[node name="IcicleCluster4" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.628807, 33.95993, -21.019958)
+
+[node name="IcicleCluster5" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.05359, 33.95993, -21.019958)
+
+[node name="IcicleCluster6" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.914623, 33.95993, -21.019958)
+
+[node name="IcicleCluster7" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.336418, 33.95993, -21.019958)
+
+[node name="IcicleCluster8" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.19682, 33.95993, -21.019958)
+
+[node name="IcicleCluster9" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.408443, 33.95993, -21.019958)
+
+[node name="IcicleCluster10" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2729926, 33.95993, -21.019958)
+
+[node name="IcicleCluster11" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.678101, 33.95993, -21.019958)
+
+[node name="IcicleCluster12" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.536388, 33.95993, -21.019958)
+
+[node name="IcicleCluster13" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.938704, 33.95993, -21.019958)
+
+[node name="IcicleCluster14" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8064575, 33.95993, -21.019958)
+
+[node name="IcicleCluster15" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.205578, 33.95993, -21.019958)
+
+[node name="IcicleCluster16" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.075771, 33.95993, -21.019958)
+
+[node name="IcicleCluster19" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37284708, 33.95993, -21.016113)
+
+[node name="IcicleCluster20" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5080018, 33.95993, -21.016113)
+
+[node name="IcicleCluster21" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8844655, 33.95993, -21.016113)
+
+[node name="IcicleCluster22" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7536788, 33.95993, -21.016113)
+
+[node name="IcicleCluster23" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.144786, 33.95993, -21.016113)
+
+[node name="IcicleCluster24" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0091069, 33.95993, -21.016113)
+
+[node name="IcicleCluster17" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.509151, 33.95993, -21.019958)
+
+[node name="IcicleCluster18" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.649284, 33.95993, -21.019958)
+
+[node name="IcicleCluster25" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2237396, 33.95993, -21.019958)
+
+[node name="IcicleCluster26" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.364031, 33.95993, -21.019958)
+
+[node name="IcicleCluster27" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.939247, 33.95993, -21.019958)
+
+[node name="IcicleCluster28" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0782146, 33.95993, -21.019958)
+
+[node name="IcicleCluster29" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6564198, 33.95993, -21.019958)
+
+[node name="IcicleCluster30" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7960186, 33.95993, -21.019958)
+
+[node name="IcicleCluster31" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.584394, 33.95993, -21.019958)
+
+[node name="IcicleCluster32" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.719845, 33.95993, -21.019958)
+
+[node name="IcicleCluster33" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.314737, 33.95993, -21.019958)
+
+[node name="IcicleCluster34" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.45645, 33.95993, -21.019958)
+
+[node name="IcicleCluster35" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.054134, 33.95993, -21.019958)
+
+[node name="IcicleCluster36" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.18638, 33.95993, -21.019958)
+
+[node name="IcicleCluster37" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.78726, 33.95993, -21.019958)
+
+[node name="IcicleCluster38" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.917067, 33.95993, -21.019958)
+
+[node name="IcicleCluster43" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.848053, 33.95993, -21.016113)
+
+[node name="IcicleCluster44" parent="Platform/Icicles" instance=ExtResource("134_mp7iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.98373, 33.95993, -21.016113)
 
 [node name="IceCubeEmitter" type="Marker3D" parent="Platform"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.947, 36.769714, -20.321152)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.742044, 36.769714, -20.321152)
 
 [node name="IceCube" type="RigidBody3D" parent="Platform/IceCubeEmitter"]
 unique_name_in_owner = true
@@ -484,7 +610,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 shape = SubResource("BoxShape3D_ld0ly")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Platform/IceCubeEmitter/IceCube"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4.888443, 0)
 mesh = SubResource("BoxMesh_v3pkt")
 
 [node name="TopPlatform" type="StaticBody3D" parent="Platform"]
@@ -497,6 +623,30 @@ script = ExtResource("6_g1wwy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/TopPlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 29, 52)
 shape = SubResource("BoxShape3D_uyybt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Platform/TopPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 39, 45)
+shape = SubResource("BoxShape3D_ujj4a")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Platform/TopPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 39, 45)
+shape = SubResource("BoxShape3D_ujj4a")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Platform/TopPlatform"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 39, 69)
+shape = SubResource("BoxShape3D_ujj4a")
+
+[node name="StagingArea3D" type="Area3D" parent="Platform/TopPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 34.5, 36.607)
+script = ExtResource("136_f6rav")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/TopPlatform/StagingArea3D"]
+shape = SubResource("BoxShape3D_mp7iw")
+debug_color = Color(1, 0.81666666, 0, 1)
+
+[node name="DeerEmitter" type="Marker3D" parent="Platform/TopPlatform/StagingArea3D"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="LaunchZone" parent="Platform" instance=ExtResource("7_ph8sb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.328037, -86.66874)

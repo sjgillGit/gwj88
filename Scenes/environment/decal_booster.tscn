@@ -15,6 +15,3 @@ shape = SubResource("SphereShape3D_ntnxt")
 layers = 3
 size = Vector3(5, 5, 5)
 cull_mask = 2
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

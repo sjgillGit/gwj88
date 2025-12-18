@@ -1,0 +1,2 @@
+class_name StagingArea
+extends DeerArea
