@@ -25,10 +25,15 @@ GlobalAudioPlayer="*res://Scenes/global/GlobalAudioPlayer.tscn"
 GameState="*res://Scripts/singletons/autoloads/GameState.gd"
 GameStats="*res://Scripts/singletons/autoloads/GameStats.gd"
 DeerUpgrades="*res://Scripts/singletons/autoloads/deer_upgrades.gd"
+GUIDE="*res://addons/guide/guide.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/guide/plugin.cfg")
 
 [file_customization]
 

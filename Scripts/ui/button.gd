@@ -1,7 +1,7 @@
 extends Node
 
 
-func _ready():
+func _ready() -> void:
 	connect("mouse_entered", func():
 		GlobalAudioPlayer.playlist["UI"]["Hover"].play()
 	)

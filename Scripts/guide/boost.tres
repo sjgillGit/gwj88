@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GUIDEAction" load_steps=2 format=3 uid="uid://ctlmuan1u8jru"]
+
+[ext_resource type="Script" uid="uid://cluhc11vixkf1" path="res://addons/guide/guide_action.gd" id="1_0a34p"]
+
+[resource]
+script = ExtResource("1_0a34p")
+action_value_type = 1
+is_remappable = true
+display_name = "Boost"
+display_category = "Player Actions"
+metadata/_custom_type_script = "uid://cluhc11vixkf1"

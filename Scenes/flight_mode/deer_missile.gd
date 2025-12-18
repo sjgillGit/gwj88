@@ -28,6 +28,10 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 		if is_node_ready():
 			%DebugUi.visible = value
 
+@export_category("GUIDE")
+@export var movement: GUIDEAction
+@export var boost: GUIDEAction
+
 var flight_distance := 0.0
 var roll_distance := 0.0
 
@@ -196,9 +200,15 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	else:
 		angular_damp = _default_angular_damp
 
+	_update_input()
+	
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
-		if a is Booster:
+		if a is LaunchZone:
+			# probably redundant, above code worked ok to detect _on_ramp status
+			# but this is how to add boost areas also..
+			_on_ramp = true
+		elif a is DeerArea:
 			a.apply_physics(state, mass)
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
@@ -212,7 +222,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	if _distance_updated:
 		_update_distances()
-	var lv := state.linear_velocity
+	var _lv := state.linear_velocity
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
 	if abs(forward_speed) < 0.001:
@@ -331,14 +341,11 @@ func _print_stats():
 		"\n".join(stats)
 	])
 
-func _unhandled_input(event: InputEvent) -> void:
-	_player_inputs = Vector3.ZERO
-	if !_landed:
-		_player_inputs += Vector3.LEFT * Input.get_action_strength("move_left")
-		_player_inputs += Vector3.RIGHT * Input.get_action_strength("move_right")
-		_player_inputs += Vector3.UP * Input.get_action_strength("move_down")
-		_player_inputs += Vector3.DOWN * Input.get_action_strength("move_up")
+func _update_input() -> void:
+	if _landed:
+		return
 
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
