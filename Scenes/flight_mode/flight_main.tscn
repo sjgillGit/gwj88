@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://ci5fibeb4q8ya" path="res://Scenes/flight_mode/physical_ramp.gd" id="7_m27rb"]
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/booster.tscn" id="9_jp6c4"]
+[ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
+[ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="9_07op2"]
+[ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="9_jp6c5"]
 [ext_resource type="PackedScene" uid="uid://c51djvfclnyar" path="res://Scenes/collectibles/collectible.tscn" id="11_d51bt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ld0ly"]
@@ -183,6 +186,11 @@ layout_mode = 2
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="GUIDEContext" type="Node" parent="."]
+script = ExtResource("8_ph8sb")
+game_context = ExtResource("9_07op2")
+
+[node name="GuideDebugger" parent="." instance=ExtResource("9_jp6c5")]
 [node name="Collectible" parent="." instance=ExtResource("11_d51bt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9513817, 54.013893, 34.38234)
 

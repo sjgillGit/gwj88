@@ -25,6 +25,10 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 		if is_node_ready():
 			%DebugUi.visible = value
 
+@export_category("GUIDE")
+@export var movement: GUIDEAction
+@export var boost: GUIDEAction
+
 var flight_distance := 0.0
 var roll_distance := 0.0
 
@@ -133,6 +137,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		elif b is TopPlatform:
 			_on_ramp = true
 
+	_update_input()
+	
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
 		if a is LaunchZone:
@@ -251,16 +257,13 @@ func _print_stats():
 		"\n".join(stats)
 	])
 
-func _unhandled_input(event: InputEvent) -> void:
-	_player_inputs = Vector3.ZERO
-	_thrust_vector = Vector3.ZERO
-	if !_landed:
-		_player_inputs += Vector3.LEFT * Input.get_action_strength("move_left")
-		_player_inputs += Vector3.RIGHT * Input.get_action_strength("move_right")
-		_player_inputs += Vector3.UP * Input.get_action_strength("move_down")
-		_player_inputs += Vector3.DOWN * Input.get_action_strength("move_up")
-		_thrust_vector = Vector3.BACK * Input.get_action_strength("move_forward")
+func _update_input() -> void:
+	_thrust_vector = Vector3.BACK * clampf(boost.value_axis_1d, 0, 1)
 
+	if _landed:
+		return
+
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
