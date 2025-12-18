@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=13 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_wfu7b"]
+[ext_resource type="PackedScene" uid="uid://cp32yx8421hi" path="res://Scenes/collectibles/collecter.tscn" id="5_j778o"]
 [ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
@@ -79,6 +80,9 @@ _data = {
 &"camera_intro": SubResource("Animation_wfu7b")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2hql"]
+size = Vector3(0.75006104, 1.3638916, 1.4073486)
+
 [node name="DeerMissile" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
@@ -137,4 +141,12 @@ transform = Transform3D(-1.6146365e-07, 2.6240727e-08, 1, 0.071097046, 0.9974693
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="Collecter" parent="." instance=ExtResource("5_j778o")]
+
+[node name="CollisionShape3D" parent="Collecter" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067443848, 0.4212036, 0.20367432)
+shape = SubResource("BoxShape3D_g2hql")
+
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
+
+[editable path="Collecter"]
