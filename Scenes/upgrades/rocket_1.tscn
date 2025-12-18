@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b65c8fwljp8h"]
+[gd_scene load_steps=17 format=3 uid="uid://b65c8fwljp8h"]
 
 [ext_resource type="Script" uid="uid://b6jbl2jli58bp" path="res://Scenes/upgrades/rocket_1.gd" id="1_peinc"]
 
@@ -13,38 +13,50 @@ height = 0.75
 radial_segments = 16
 
 [sub_resource type="Gradient" id="Gradient_wqsbj"]
-offsets = PackedFloat32Array(0, 0.1118421, 0.23026316, 0.5986842, 0.90789473, 1)
-colors = PackedColorArray(1, 0.59461164, 0.5178461, 1, 1, 0, 0.05490196, 0.78039217, 0.9783165, 0.38954568, 4.3317676e-05, 1, 1, 0.9254902, 0, 0.3529412, 0, 0, 0, 0.37226278, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.43686005, 0.49317408, 0.9522184, 1)
+colors = PackedColorArray(0.98, 0.686, 0, 1, 1, 0.9333334, 0, 0.09803922, 0.55, 0.55, 0.55, 0.6627451, 0.52, 0.52, 0.52, 0.3254902, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_nv1pf"]
 gradient = SubResource("Gradient_wqsbj")
 
+[sub_resource type="Curve" id="Curve_peinc"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15686277, 0), 0.0, 0.0, 0, 0, Vector2(0.24836604, 3.7612), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bnam2"]
+curve = SubResource("Curve_peinc")
+
 [sub_resource type="Curve" id="Curve_5mwn2"]
-_data = [Vector2(0, 0.7334138), 0.0, 0.0, 0, 0, Vector2(0.28787878, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.11399281), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.7334138), 0.0, 0.0, 0, 0, Vector2(0.28787878, 1), 0.0, 0.0, 0, 0, Vector2(0.6944444, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.11399281), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_wqsbj"]
 curve = SubResource("Curve_5mwn2")
 
 [sub_resource type="Curve" id="Curve_t54us"]
-_data = [Vector2(0, 0.28648978), 0.0, 0.0, 0, 0, Vector2(0.18787879, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.059107423), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0.28648978), 0.0, 0.0, 0, 0, Vector2(0.18787879, 1), 0.0, 0.0, 0, 0, Vector2(0.5473856, 0.3247761), 0.0, 0.0, 0, 0, Vector2(0.7696078, 0.9495522), 0.0, 0.0, 0, 0, Vector2(1, 0.059107423), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="CurveTexture" id="CurveTexture_xvt68"]
 curve = SubResource("Curve_t54us")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5mwn2"]
 emission_shape = 1
-emission_sphere_radius = 0.25
+emission_sphere_radius = 0.1
 angle_min = -89.99999
 angle_max = 90.000015
+inherit_velocity_ratio = 1.0
 direction = Vector3(0, 0, -1)
-spread = 12.0
-initial_velocity_min = 5.0
-initial_velocity_max = 5.0
+spread = 5.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
 angular_velocity_min = 43.03998
 angular_velocity_max = 43.03998
 gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 1.0
+damping_curve = SubResource("CurveTexture_bnam2")
 scale_curve = SubResource("CurveTexture_xvt68")
 color_ramp = SubResource("GradientTexture1D_nv1pf")
 emission_curve = SubResource("CurveTexture_wqsbj")
@@ -71,6 +83,9 @@ bottom_radius = 0.125
 height = 0.125
 radial_segments = 16
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnam2"]
+albedo_color = Color(0.14406255, 0.14406255, 0.14406255, 1)
+
 [node name="Rocket1" type="MeshInstance3D"]
 transform = Transform3D(1.1035358, 3.3827166e-07, 7.0022526e-07, -3.3007282e-07, 1.1034597, -0.012884941, -7.0412733e-07, 0.012884948, 1.1034598, 0, 0, 0)
 mesh = SubResource("CylinderMesh_5mwn2")
@@ -81,8 +96,8 @@ script = ExtResource("1_peinc")
 unique_name_in_owner = true
 transform = Transform3D(0.9999999, 0, 1.2878587e-14, -4.6629367e-14, -4.377216e-08, 0.9999998, -5.684342e-14, -0.9999998, -4.5634806e-08, 3.038094e-08, -0.40197748, 0.0011859736)
 emitting = false
-amount = 100
-lifetime = 0.5
+amount = 1000
+visibility_aabb = AABB(-0.5, -0.5, -6, 1, 1, 8)
 process_material = SubResource("ParticleProcessMaterial_5mwn2")
 draw_pass_1 = SubResource("QuadMesh_nv1pf")
 
@@ -93,3 +108,4 @@ mesh = SubResource("CylinderMesh_peinc")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.9999999, 1.2967405e-13, -5.684342e-14, -1.6253665e-13, 0.99999964, -1.8626451e-09, -2.842171e-13, -2.7939677e-09, 0.9999994, 9.505802e-08, -0.31778693, 0.0037107533)
 mesh = SubResource("CylinderMesh_peinc")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnam2")

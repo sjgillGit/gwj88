@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=17 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_wfu7b"]
 [ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/boost.tres" id="4_5a4eb"]
 [ext_resource type="PackedScene" uid="uid://cp32yx8421hi" path="res://Scenes/collectibles/collecter.tscn" id="5_j778o"]
+[ext_resource type="FontFile" uid="uid://ctxa0kyenu80i" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Dots.ttf" id="7_0j4hg"]
 [ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
 _limits = [0.0, 1.0, 0.0, 1000.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(10.685663, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(6.0240974, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e1i74"]
@@ -82,6 +83,13 @@ _data = {
 &"camera_intro": SubResource("Animation_wfu7b")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_g2hql"]
+font = ExtResource("7_0j4hg")
+font_size = 64
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.74509805)
+shadow_offset = Vector2(0, 0)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_g2hql"]
 size = Vector3(0.75006104, 1.3638916, 1.4073486)
 
@@ -90,11 +98,12 @@ collision_layer = 3
 collision_mask = 3
 mass = 50.0
 physics_material_override = ExtResource("1_k7jrr")
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, -0.5, 0)
 contact_monitor = true
 max_contacts_reported = 10
 angular_damp = 0.1
 script = ExtResource("2_vmpjy")
-base_drag = 0.1
 control_envelope = SubResource("Curve_wqsbj")
 movement = ExtResource("3_eftuo")
 boost = ExtResource("4_5a4eb")
@@ -111,16 +120,23 @@ shape = SubResource("CapsuleShape3D_e1i74")
 transform = Transform3D(1, 0, 0, 0, 0.44430682, -0.89587474, 0, 0.89587474, 0.44430682, 0, 0.83254254, 0.6660558)
 shape = SubResource("CapsuleShape3D_g2hql")
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+[node name="CollisionPolygonFeet" type="CollisionPolygon3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.0138897, 0.016204596)
 depth = 0.75
 polygon = PackedVector2Array(0.9398634, -0.08565247, 0.99542165, -0.19213943, 0.9167139, -0.25464267, 0.7986521, -0.29631153, 0.5116003, -0.32872063, 0.07407784, -0.21297392, -0.32177588, -0.3125161, -0.5162304, -0.30325645, -0.5440096, -0.14815582)
 
 [node name="DebugUi" type="BoxContainer" parent="."]
 unique_name_in_owner = true
-offset_top = 90.0
-offset_right = 127.0
-offset_bottom = 141.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -358.0
+offset_top = -278.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="PhysicsStats" type="Label" parent="DebugUi"]
 unique_name_in_owner = true
@@ -130,6 +146,7 @@ layout_mode = 2
 transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.4202485e-07, 0.07109706, -0.9974694, 1.4305115e-06, 1.4324219, -2.9223132)
 current = true
 script = ExtResource("7_62wey")
+max_fov = 75
 slerp_amount = 0.08296321451663971
 attach_point = NodePath("../CameraFollowMark")
 
@@ -144,6 +161,23 @@ transform = Transform3D(-1.6146365e-07, 2.6240727e-08, 1, 0.071097046, 0.9974693
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="CenterOfMassMarker" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
+
+[node name="TimeLeftLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Get Ready"
+label_settings = SubResource("LabelSettings_g2hql")
+horizontal_alignment = 1
 
 [node name="Collecter" parent="." instance=ExtResource("5_j778o")]
 

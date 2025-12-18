@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=36 format=3 uid="uid://bxku7vfyd1dkg"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=37 format=3 uid="uid://bxku7vfyd1dkg"]
 
 [ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_xoqw5"]
 [ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="2_kxvmh"]
@@ -28,6 +28,7 @@ is_remappable = true
 display_name = "Up"
 input = SubResource("Resource_mc3a8")
 modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_40mxg")])
+metadata/_guide_modifiers_collapsed = false
 
 [sub_resource type="Resource" id="Resource_qbbgi"]
 script = ExtResource("4_j60yr")
@@ -51,7 +52,7 @@ key = 83
 [sub_resource type="Resource" id="Resource_cr5om"]
 script = ExtResource("6_dt8dx")
 
-[sub_resource type="Resource" id="Resource_0ocl3"]
+[sub_resource type="Resource" id="Resource_xoqw5"]
 script = ExtResource("9_135p2")
 
 [sub_resource type="Resource" id="Resource_k6uby"]
@@ -60,7 +61,8 @@ override_action_settings = true
 is_remappable = true
 display_name = "Down"
 input = SubResource("Resource_1n7jo")
-modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_cr5om"), SubResource("Resource_0ocl3")])
+modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_cr5om"), SubResource("Resource_xoqw5")])
+metadata/_guide_modifiers_collapsed = false
 
 [sub_resource type="Resource" id="Resource_l2vc0"]
 script = ExtResource("4_j60yr")
@@ -87,6 +89,7 @@ is_remappable = true
 display_name = "Movement"
 input = SubResource("Resource_aug8t")
 modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_kxvmh")])
+metadata/_guide_modifiers_collapsed = false
 
 [sub_resource type="Resource" id="Resource_rn0w0"]
 script = ExtResource("1_xoqw5")
@@ -112,13 +115,19 @@ axis = 4
 script = ExtResource("10_xoqw5")
 lower_threshold = 0.01
 
+[sub_resource type="Resource" id="Resource_j60yr"]
+script = ExtResource("9_135p2")
+x = false
+z = false
+
 [sub_resource type="Resource" id="Resource_bgls8"]
 script = ExtResource("3_owsi8")
 override_action_settings = true
 is_remappable = true
 display_name = "Boost"
 input = SubResource("Resource_tvamh")
-modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_owsi8")])
+modifiers = Array[ExtResource("5_y58hj")]([SubResource("Resource_owsi8"), SubResource("Resource_j60yr")])
+metadata/_guide_modifiers_collapsed = false
 
 [sub_resource type="Resource" id="Resource_8di5u"]
 script = ExtResource("1_xoqw5")

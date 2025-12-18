@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://i8r2m0h57x57"]
+[gd_scene load_steps=12 format=3 uid="uid://i8r2m0h57x57"]
 
 [ext_resource type="PackedScene" uid="uid://cfqy04vblriqj" path="res://Assets/Reindeer.glb" id="1_34b0x"]
 [ext_resource type="Script" uid="uid://cocohxcqvp1m4" path="res://Assets/reindeer_with_upgrades.gd" id="2_7wal2"]
 [ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrade.gd" id="2_16e41"]
 [ext_resource type="PackedScene" uid="uid://bjqetj7ue2x0s" path="res://Scenes/upgrades/rockets_1.tscn" id="3_7wal2"]
 [ext_resource type="PackedScene" uid="uid://drl0iy354d6uv" path="res://Scenes/upgrades/wings.tscn" id="4_0xbmk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xbmk"]
+size = Vector3(1, 1, 0.61450195)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g2hql"]
 animation = &"Idle"
@@ -41,9 +44,9 @@ bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.999835
 bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
 bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
 bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.3227658, -0.035060592, 0.0096604945, 0.94578)
-bones/8/rotation = Quaternion(-0.05028667, -0.034287497, 0.02302484, 0.9978805)
-bones/9/rotation = Quaternion(0.5398689, 0.07238418, -0.060650967, 0.8364351)
+bones/7/rotation = Quaternion(-0.30097607, -0.04179763, 0.008391989, 0.9526784)
+bones/8/rotation = Quaternion(-0.044891775, -0.03984281, 0.026721751, 0.9978394)
+bones/9/rotation = Quaternion(0.5145416, 0.119767845, -0.12926246, 0.83916265)
 bones/10/rotation = Quaternion(-0.10381317, -0.170628, 0.61718214, 0.76104873)
 bones/11/rotation = Quaternion(-0.10381446, 0.17062953, -0.6171818, 0.7610485)
 bones/12/position = Vector3(0.0780042, 0.23866656, -0.055951495)
@@ -57,7 +60,7 @@ bones/19/rotation = Quaternion(-0.2599413, 0.011224373, -0.032679897, 0.965006)
 bones/20/rotation = Quaternion(-0.0506018, -0.023735443, 0.022546005, 0.99818224)
 bones/21/rotation = Quaternion(-0.005801933, 0.8009831, -0.5986583, 0.0009571037)
 bones/24/position = Vector3(-2.358284e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.3406812, -0.0075525925, -0.0049048564, 0.9401357)
+bones/24/rotation = Quaternion(-0.33713594, -0.010930758, -0.012177504, 0.94131386)
 bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
 bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.604624e-07, 4.8117187e-07, 0.7587796)
@@ -117,22 +120,15 @@ bone_idx = 36
 [node name="Rockets1" parent="metarig/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_7wal2")]
 transform = Transform3D(1.0000004, -7.2084606e-07, 1.3131368e-07, -1.9017153e-07, -0.08226912, 0.996611, -7.075996e-07, -0.99661094, -0.08226909, 1.6696745e-07, -0.039731666, 0.2649098)
 upgrade_name = "Rocket JR 500"
-description = ""
-cost = 1000
-enabled = false
 category = 8
-thrust = 500.0
-lift = 0
-drag = 0
-mass = 1.0
-holiday_spirit = 0.0
-toughness = 0.0
+thrust = 1000.0
+fuel_capacity_seconds = 10.0
 
 [node name="Wings" parent="metarig/Skeleton3D/BoneAttachment3D" index="1" instance=ExtResource("4_0xbmk")]
 transform = Transform3D(-1.0000001, -4.608019e-07, -4.021198e-07, 4.2533557e-07, -0.051553357, -0.9986854, 4.3946605e-07, -0.9986551, 0.05155494, -2.336293e-08, 0.13511631, 0.07135892)
 upgrade_name = "Wings"
 category = 9
-lift = 500
+lift = 250
 
 [node name="Cube_010" parent="metarig/Skeleton3D" index="11"]
 visible = false
@@ -141,11 +137,14 @@ visible = false
 visible = false
 
 [node name="U AntlersBIG UPGRADE" parent="metarig/Skeleton3D" index="18"]
-visible = false
 script = ExtResource("2_16e41")
 upgrade_name = "Big Antlers"
 enabled = true
 category = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="metarig/Skeleton3D/U AntlersBIG UPGRADE" index="0"]
+transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, 2.0858052, 0.77564067)
+shape = SubResource("BoxShape3D_0xbmk")
 
 [node name="U AntlersSMALL" parent="metarig/Skeleton3D" index="19"]
 visible = false

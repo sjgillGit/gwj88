@@ -9,13 +9,10 @@ size = Vector3(30, 100, 500)
 collision_layer = 3
 collision_mask = 3
 input_ray_pickable = false
-monitoring = false
+monitorable = false
 script = ExtResource("1_b11j6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 250)
 shape = SubResource("BoxShape3D_jp6c4")
 debug_color = Color(0.972549, 0, 0, 0.8352941)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]

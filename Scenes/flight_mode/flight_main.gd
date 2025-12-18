@@ -28,7 +28,6 @@ func _spawn_deer():
 	_player.distance_updated.connect(_on_distance_updated)
 	_player.flight_state_changed.connect(_on_flight_state_changed)
 	add_child(_player)
-	_player.show_debug_ui = false
 	_player.global_transform = %DeerEmitter.global_transform
 	var cams := _player.find_children("*", "Camera3D")
 	if len(cams):
