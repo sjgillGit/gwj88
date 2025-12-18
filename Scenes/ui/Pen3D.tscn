@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://7iukt2vlfaaf"]
+[gd_scene load_steps=6 format=3 uid="uid://7iukt2vlfaaf"]
 
 [ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/pen_3d.gd" id="1_jlhhw"]
 [ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Assets/pen_updated.tscn" id="2_cih2e"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_jlhhw"]
+[ext_resource type="PackedScene" uid="uid://dc26ocp4eku6k" path="res://Assets/ui/pen/candles/candles.tscn" id="4_cih2e"]
 
 [sub_resource type="Environment" id="Environment_wxwfb"]
 
@@ -36,3 +37,9 @@ fov = 83.58761
 unique_name_in_owner = true
 transform = Transform3D(-0.5559329, -0.3271352, 0.7641474, 0, 0.9193003, 0.3935569, -0.8312272, 0.21879123, -0.5110693, 1.3459258, 2.069077, -3.7361157)
 fov = 83.58761
+
+[node name="Candles" parent="." instance=ExtResource("4_cih2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00849, -1.1920929e-07, -0.9909365)
+
+[node name="Candles2" parent="." instance=ExtResource("4_cih2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96476126, -1.1920929e-07, -3.9510245)
