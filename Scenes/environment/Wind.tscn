@@ -1,30 +1,59 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdirnrwxprue5"]
+[gd_scene load_steps=9 format=3 uid="uid://cdirnrwxprue5"]
 
 [ext_resource type="Script" uid="uid://cp816wn6um6ql" path="res://Scripts/environment/wind.gd" id="1_ut56u"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ami4o"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ut56u"]
+size = Vector3(26.75, 10, 6.605)
+
+[sub_resource type="Curve" id="Curve_ut56u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.078653, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ami4o"]
+curve = SubResource("Curve_ut56u")
+
+[sub_resource type="Curve" id="Curve_b7dpt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3147208, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_atssy"]
+curve = SubResource("Curve_b7dpt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ut56u"]
-particle_flag_disable_z = true
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(5.9475, 4.5, 3.3025)
 direction = Vector3(-1, 0, 0)
-initial_velocity_min = 4.0
-initial_velocity_max = 8.0
+spread = 0.0
+initial_velocity_min = 41.6
+initial_velocity_max = 83.2
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ami4o")
+turbulence_enabled = true
+turbulence_noise_strength = 4.16
+turbulence_noise_scale = 1.0
+turbulence_influence_over_life = SubResource("CurveTexture_atssy")
 
-[sub_resource type="SphereMesh" id="SphereMesh_ami4o"]
-radius = 0.1
-height = 0.1
+[sub_resource type="PlaneMesh" id="PlaneMesh_wxiuv"]
+size = Vector2(0.2, 1.2)
+orientation = 0
 
 [node name="Wind" type="Area3D"]
 collision_layer = 0
 script = ExtResource("1_ut56u")
+area_size = Vector3(11.895, 9, 6.605)
+strength = 416.0
+particle_speed_multiplier = 0.1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_ami4o")
+[node name="WindShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_ut56u")
+debug_color = Color(0, 0, 0, 1)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0013835, 0, 0)
-amount = 20
-lifetime = 0.25
-local_coords = true
+[node name="WindParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+amount = 50
+lifetime = 5.0
+randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ut56u")
-draw_pass_1 = SubResource("SphereMesh_ami4o")
+draw_pass_1 = SubResource("PlaneMesh_wxiuv")
