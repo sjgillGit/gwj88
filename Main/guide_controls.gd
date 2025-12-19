@@ -35,7 +35,7 @@ func _load_remapping_config(config:GUIDERemappingConfig) -> void:
 	
 	# also apply changes to our modifiers
 	controller_axis_invert_modifier.x = config.custom_data.get(Utils.CUSTOM_DATA_INVERT_HORIZONTAL, false)
-	controller_axis_invert_modifier.y = config.custom_data.get(Utils.CUSTOM_DATA_INVERT_VERTICAL, false)
+	controller_axis_invert_modifier.y = config.custom_data.get(Utils.CUSTOM_DATA_INVERT_VERTICAL, true)
 	
 	controller_axis_deadzone.lower_threshold = config.custom_data.get(Utils.CUSTOM_DATA_MOVEMENT_DEADZONE, 0.2)
 
