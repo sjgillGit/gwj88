@@ -2,6 +2,7 @@
 class_name UiSettings
 extends Control
 
+@onready var _remapping_dialog:Control = %RemappingDialog
 
 func _on_back_pressed() -> void:
 	GameState.current = GameState.State.MAIN_MENU
@@ -12,4 +13,4 @@ func _on_setting_2_pressed() -> void:
 
 
 func _on_setting_1_pressed() -> void:
-	pass
+	_remapping_dialog.open()
