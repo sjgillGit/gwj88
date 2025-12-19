@@ -247,7 +247,7 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 		# X inputs rotate around the Y axis (yaw) when we aren't flying
 	if _current_flight_state == FlightState.PRE_FLIGHT:
 		if _on_ramp || _on_platform:
-			state.apply_torque(global_basis * (Vector3.DOWN * _player_inputs.x * roll_speed * mass))
+			state.apply_torque(global_basis * (Vector3.DOWN * abs(_player_inputs.x) * roll_speed * mass))
 			# Y inputs move forward/back when we aren't flying but we just have constant forward
 			state.apply_central_force(global_basis * (Vector3.BACK * walk_speed * mass))
 
@@ -343,6 +343,7 @@ func _print_stats():
 
 func _update_input() -> void:
 	if _landed:
+		_player_inputs = Vector3.ZERO
 		return
 
 	# flying always should be 'stick forward to go down, stick backward to go up'...
