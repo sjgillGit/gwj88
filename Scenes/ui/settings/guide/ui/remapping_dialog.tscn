@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://bq0w7uaotgfct"]
+[gd_scene load_steps=24 format=3 uid="uid://bq0w7uaotgfct"]
 
 [ext_resource type="Script" uid="uid://5crxnd8ysf6" path="res://Scenes/ui/settings/guide/ui/remapping_dialog.gd" id="1_6hgqj"]
-[ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_uhsj0"]
 [ext_resource type="Resource" uid="uid://cu0dhstc00cj5" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard.tres" id="2_cgour"]
 [ext_resource type="Script" uid="uid://db27ccgomq455" path="res://addons/guide/remapping/guide_input_detector.gd" id="3_o0nvn"]
 [ext_resource type="Resource" uid="uid://dxue2qfb0qr24" path="res://Scenes/ui/settings/guide/mapping_contexts/controller.tres" id="3_tgkdx"]
@@ -40,7 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_uhsj0")
+theme = ExtResource("15_tnwfp")
 script = ExtResource("1_6hgqj")
 keyboard_context = ExtResource("2_cgour")
 controller_context = ExtResource("3_tgkdx")

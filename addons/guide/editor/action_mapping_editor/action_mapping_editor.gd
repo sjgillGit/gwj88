@@ -137,4 +137,3 @@ func _on_input_mappings_duplicate_requested(index:int):
 
 func _on_input_mappings_collapse_state_changed(new_state:bool):
 	_mapping.set_meta("_guide_input_mappings_collapsed", new_state)
-

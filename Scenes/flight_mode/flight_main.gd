@@ -3,6 +3,8 @@ extends Node3D
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 
 var _player: DeerMissile
+var _despawning := false
+var _frame_time := 0.0
 
 func _ready():
 	_spawn_deer()
@@ -21,9 +23,11 @@ func _find_cams():
 
 
 func _spawn_deer():
+	_despawning = true
 	if _player:
 		await get_tree().process_frame
 		_player.free()
+	_despawning = false
 	_player = preload("./deer_missile.tscn").instantiate()
 	_player.distance_updated.connect(_on_distance_updated)
 	_player.flight_state_changed.connect(_on_flight_state_changed)
@@ -44,6 +48,9 @@ func _get_menu() -> UiPlay:
 	return UiRootNode.instance.get_menu_for_state(GameState.State.PLAY)
 
 
+func _process(delta: float) -> void:
+	_frame_time = delta
+
 func _on_distance_updated():
 	# TODO: update flight menu ui here?
 	%FlightStats.text = "\n".join([
@@ -51,6 +58,15 @@ func _on_distance_updated():
 		_player.flight_distance_str,
 		_player.roll_distance_str
 	])
+	%FPS.text = '%dFPS %.3fms(frame) 60fps = %.2fms\n%.2fms(cpu setup) %.2fms(phys) %.2fms(process)\n%d primitives' % [
+		Engine.get_frames_per_second(),
+		_frame_time * 1000.0,
+		(1.0 / 60.0) * 1000.0,
+		RenderingServer.get_frame_setup_time_cpu(),
+		Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0,
+		Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0,
+		RenderingServer.get_rendering_info(RenderingServer.RenderingInfo.RENDERING_INFO_TOTAL_PRIMITIVES_IN_FRAME)
+	]
 
 
 func _on_ice_cube_button_pressed() -> void:
@@ -85,4 +101,10 @@ func _on_timer_timeout() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
+		_on_flight_state_changed(FlightState.POST_FLIGHT)
+
+
+func _on_play_area_body_exited(body: Node3D) -> void:
+	# TODO: add different endings if you go out of the top or bottom
+	if body is DeerMissile && !_despawning:
 		_on_flight_state_changed(FlightState.POST_FLIGHT)

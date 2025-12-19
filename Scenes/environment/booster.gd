@@ -11,7 +11,7 @@ extends DeerArea
 			$Decal.texture_albedo = texture
 
 ## negative boost is a speed penalty. used by the hay piles on the ramp
-@export_range(-10.0, 10.0, 0.25) var speed_boost := 2.0
+@export_range(-10.0, 10.0, 0.25) var speed_boost := 2.5
 
 
 func _ready():

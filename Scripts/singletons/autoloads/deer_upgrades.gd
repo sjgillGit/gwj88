@@ -2,21 +2,25 @@ extends Node
 
 signal upgrades_updated
 
+# stretch: Everything is upgradable!
+# antlers can be scaled to get incrementally better
+# rockets get more fuel
+# collar jingles louder and gets flashing lights?
+# antler decorations: upgrade to add one ball at a time
+# wings get bigger
 enum Category {
 	# do not reorder, all our values set in the editor will shuffle!
 	NONE=-1,
 	# missing entries for backward compatibility
 	SMALL_ANTLERS=2,
-	LARGE_ANTLERS=3,
-	DECORATED_ANTLERS=4,
-	COLLAR=5,
-	SADDLE=6,
-	ELF=7,
 	ROCKETS=8,
+	COLLAR=5,
 	WINGS=9,
-	# HEAD, # Todo with assets, frosty hat, glasses, nose
-	# SLED, # Todo
-	# TRAIL, # Todo with assets, magic christmas dust = running in air on 'rainbow road'
+	LARGE_ANTLERS=3,
+	DECORATED_ANTLERS=4
+	# stretch: upgrade rockets
+	# RAMP BOOSTERS # add boosters to the ramp to launch faster
+	# CHRISTMAS_MAGIC # magic christmas dust, you can just run on air infinitely, cancels wings and rockets
 }
 
 # Because categories are just an int.. if we mess with the
@@ -24,13 +28,11 @@ enum Category {
 # safer to have an array for the order
 const _upgrade_order: Array[Category] = [
 	Category.SMALL_ANTLERS,
-	Category.LARGE_ANTLERS,
-	Category.DECORATED_ANTLERS,
-	Category.COLLAR,
-	Category.SADDLE,
-	Category.ELF,
 	Category.ROCKETS,
-	Category.WINGS
+	Category.COLLAR,
+	Category.WINGS,
+	Category.LARGE_ANTLERS,
+	Category.DECORATED_ANTLERS
 ];
 
 var _upgrades: Array[Category] = []

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn7emesd4b0ub"]
+
+[ext_resource type="Script" uid="uid://shrlsttho4vt" path="res://Scenes/player/pellet_producer.gd" id="1_wl8gm"]
+
+[node name="PelletProducer" type="RayCast3D"]
+target_position = Vector3(0, -1, 1)
+script = ExtResource("1_wl8gm")
+
+[node name="PelletTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="PelletTimer" to="." method="emit_pellets"]

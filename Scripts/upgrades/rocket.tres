@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://cb6438vv0gdpi"]
+
+[ext_resource type="Script" uid="uid://07r7h8akr6m1" path="res://Scripts/upgrades/upgrade_stats.gd" id="1_wssjf"]
+
+[resource]
+script = ExtResource("1_wssjf")
+upgrade_name = "Rockets"
+thrust = 830.0
+fuel_capacity_seconds = 3.0
+metadata/_custom_type_script = "uid://07r7h8akr6m1"

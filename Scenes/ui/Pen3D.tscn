@@ -1,11 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://7iukt2vlfaaf"]
+[gd_scene load_steps=9 format=3 uid="uid://7iukt2vlfaaf"]
 
 [ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/pen_3d.gd" id="1_jlhhw"]
 [ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Assets/pen_updated.tscn" id="2_cih2e"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_jlhhw"]
-[ext_resource type="PackedScene" uid="uid://dc26ocp4eku6k" path="res://Assets/ui/pen/candles/candles.tscn" id="4_cih2e"]
+[ext_resource type="PackedScene" uid="uid://dc26ocp4eku6k" path="res://Assets/ui/pen/candles/candles.tscn" id="4_4je65"]
+[ext_resource type="PackedScene" uid="uid://dy0rv65ceao3" path="res://Assets/ui/pen/food/apple.tscn" id="4_cih2e"]
 
 [sub_resource type="Environment" id="Environment_wxwfb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jlhhw"]
+friction = 3.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cih2e"]
 
 [node name="Pen3D" type="Node3D"]
 script = ExtResource("1_jlhhw")
@@ -20,6 +26,7 @@ shadow_enabled = true
 [node name="Pen_Updated" parent="." instance=ExtResource("2_cih2e")]
 
 [node name="Reindeer" parent="." instance=ExtResource("3_jlhhw")]
+unique_name_in_owner = true
 transform = Transform3D(0.85948676, 0, 0.511158, 0, 1, 0, -0.511158, 0, 0.85948676, 0.6193576, -0.086519, -1.1924533)
 
 [node name="ActiveCamera" type="Camera3D" parent="."]
@@ -39,10 +46,18 @@ transform = Transform3D(-0.5559329, -0.3271352, 0.7641474, 0, 0.9193003, 0.39355
 fov = 83.58761
 
 [node name="Lighting" type="Node3D" parent="."]
-visible = false
 
-[node name="Candles" parent="Lighting" instance=ExtResource("4_cih2e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00849, -1.1920929e-07, -0.9909365)
+[node name="Candles" parent="Lighting" instance=ExtResource("4_4je65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.798481, -0.10101056, -3.592075)
 
-[node name="Candles2" parent="Lighting" instance=ExtResource("4_cih2e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96476126, -1.1920929e-07, -3.9510245)
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10279763, 0)
+physics_material_override = SubResource("PhysicsMaterial_jlhhw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_cih2e")
+
+[node name="Apple" parent="." instance=ExtResource("4_cih2e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44261125, -0.12970018, -0.96263385)
+
+[connection signal="ate_apple" from="Apple" to="." method="_on_apple_ate_apple"]

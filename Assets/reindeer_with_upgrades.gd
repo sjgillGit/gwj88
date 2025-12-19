@@ -1,4 +1,8 @@
+class_name Reindeer
 extends Node3D
+
+@onready var pellet_producer: PelletProducer = %PelletProducer
+
 
 func set_run_speed(value: float):
 	var at := %AnimationTree

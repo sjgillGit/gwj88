@@ -1,10 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://i8r2m0h57x57"]
+[gd_scene load_steps=20 format=3 uid="uid://i8r2m0h57x57"]
 
 [ext_resource type="PackedScene" uid="uid://cfqy04vblriqj" path="res://Assets/Reindeer.glb" id="1_34b0x"]
 [ext_resource type="Script" uid="uid://cocohxcqvp1m4" path="res://Assets/reindeer_with_upgrades.gd" id="2_7wal2"]
-[ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrade.gd" id="2_16e41"]
+[ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrades/upgrade.gd" id="2_16e41"]
 [ext_resource type="PackedScene" uid="uid://bjqetj7ue2x0s" path="res://Scenes/upgrades/rockets_1.tscn" id="3_7wal2"]
+[ext_resource type="PackedScene" uid="uid://cn7emesd4b0ub" path="res://Scenes/player/pellet_producer.tscn" id="3_tkeya"]
 [ext_resource type="PackedScene" uid="uid://drl0iy354d6uv" path="res://Scenes/upgrades/wings.tscn" id="4_0xbmk"]
+[ext_resource type="Resource" uid="uid://cb6438vv0gdpi" path="res://Scripts/upgrades/rocket.tres" id="5_kqnlp"]
+[ext_resource type="PackedScene" uid="uid://bhyt5uewuka7y" path="res://Assets/elf.glb" id="6_tyukh"]
+[ext_resource type="Resource" uid="uid://dbkq6x3h6him5" path="res://Scripts/upgrades/wings.tres" id="7_vlw85"]
+[ext_resource type="Resource" uid="uid://d3yx2qjrylqse" path="res://Scripts/upgrades/antlers_big.tres" id="10_tp044"]
+[ext_resource type="Resource" uid="uid://diesm5f71fu8x" path="res://Scripts/upgrades/antlers_small.tres" id="11_ebm55"]
+[ext_resource type="Resource" uid="uid://5y66yrwidgai" path="res://Scripts/upgrades/collar.tres" id="12_bdedn"]
+[ext_resource type="Resource" uid="uid://dbe41hj187ejm" path="res://Scripts/upgrades/ornaments.tres" id="13_u1qbl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xbmk"]
 size = Vector3(1, 1, 0.61450195)
@@ -20,6 +28,7 @@ animation = &"Running"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_eftuo"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0xbmk"]
+graph_offset = Vector2(-216.58026, -36.98329)
 nodes/output/position = Vector2(720, 120)
 nodes/running/node = SubResource("AnimationNodeBlend2_eftuo")
 nodes/running/position = Vector2(460, 80)
@@ -35,6 +44,10 @@ node_connections = [&"output", 0, &"running", &"running", 0, &"Idle", &"running"
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_7wal2")
 
+[node name="PelletProducer" parent="." index="0" instance=ExtResource("3_tkeya")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.528175e-08, 0.84028625, 0.6323495)
+
 [node name="Skeleton3D" parent="metarig" index="0"]
 bones/0/position = Vector3(-1.5021566e-08, 1.0475996, -0.6243254)
 bones/0/rotation = Quaternion(0.6748751, 2.178755e-07, 1.426916e-07, 0.737932)
@@ -44,9 +57,9 @@ bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.999835
 bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
 bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
 bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.30097607, -0.04179763, 0.008391989, 0.9526784)
-bones/8/rotation = Quaternion(-0.044891775, -0.03984281, 0.026721751, 0.9978394)
-bones/9/rotation = Quaternion(0.5145416, 0.119767845, -0.12926246, 0.83916265)
+bones/7/rotation = Quaternion(-0.44212982, -0.0025656947, -0.0082632275, 0.8969093)
+bones/8/rotation = Quaternion(-0.08317057, 0.0015501399, -0.0015096784, 0.99653304)
+bones/9/rotation = Quaternion(0.635056, 0.0322788, -0.042849362, 0.7706011)
 bones/10/rotation = Quaternion(-0.10381317, -0.170628, 0.61718214, 0.76104873)
 bones/11/rotation = Quaternion(-0.10381446, 0.17062953, -0.6171818, 0.7610485)
 bones/12/position = Vector3(0.0780042, 0.23866656, -0.055951495)
@@ -60,7 +73,7 @@ bones/19/rotation = Quaternion(-0.2599413, 0.011224373, -0.032679897, 0.965006)
 bones/20/rotation = Quaternion(-0.0506018, -0.023735443, 0.022546005, 0.99818224)
 bones/21/rotation = Quaternion(-0.005801933, 0.8009831, -0.5986583, 0.0009571037)
 bones/24/position = Vector3(-2.358284e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.33713594, -0.010930758, -0.012177504, 0.94131386)
+bones/24/rotation = Quaternion(-0.3617437, -0.0012478778, -0.004832379, 0.93226427)
 bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
 bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.604624e-07, 4.8117187e-07, 0.7587796)
@@ -77,58 +90,55 @@ bones/37/position = Vector3(-2.6070856e-07, 0.030410042, -0.034903213)
 bones/37/rotation = Quaternion(-0.7333768, 1.19170544e-07, 1.7343775e-07, 0.6798224)
 bones/38/rotation = Quaternion(0.005258018, -5.2640942e-08, -5.3896983e-08, 0.9999862)
 
-[node name="Cube" parent="metarig/Skeleton3D" index="0"]
-visible = false
-script = ExtResource("2_16e41")
-upgrade_name = "Elf"
-category = 7
-mass = 50.0
-holiday_spirit = -10.0
-
-[node name="Cube_001" parent="metarig/Skeleton3D" index="1"]
-visible = false
-
-[node name="Cube_002" parent="metarig/Skeleton3D" index="2"]
-visible = false
-
-[node name="Cube_003" parent="metarig/Skeleton3D" index="3"]
-visible = false
-
-[node name="Cube_004" parent="metarig/Skeleton3D" index="4"]
-visible = false
-
-[node name="Cube_005" parent="metarig/Skeleton3D" index="5"]
-visible = false
-
-[node name="Cube_006" parent="metarig/Skeleton3D" index="6"]
-visible = false
-
-[node name="Cube_007" parent="metarig/Skeleton3D" index="7"]
-visible = false
-
-[node name="Cube_008" parent="metarig/Skeleton3D" index="8"]
-visible = false
-
-[node name="Cube_009" parent="metarig/Skeleton3D" index="9"]
-visible = false
-
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="10"]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="0"]
 transform = Transform3D(0.9999998, -6.426609e-08, -3.007823e-07, -3.043533e-07, -0.06519658, -0.9978879, 4.4522025e-08, 0.99787277, -0.065192826, 6.6719963e-12, 1.1856518, -0.23597533)
 bone_name = "spine.015"
 bone_idx = 36
 
 [node name="Rockets1" parent="metarig/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_7wal2")]
 transform = Transform3D(1.0000004, -7.2084606e-07, 1.3131368e-07, -1.9017153e-07, -0.08226912, 0.996611, -7.075996e-07, -0.99661094, -0.08226909, 1.6696745e-07, -0.039731666, 0.2649098)
-upgrade_name = "Rocket JR 500"
+enabled = true
 category = 8
-thrust = 1000.0
-fuel_capacity_seconds = 10.0
+stats = ExtResource("5_kqnlp")
 
 [node name="Wings" parent="metarig/Skeleton3D/BoneAttachment3D" index="1" instance=ExtResource("4_0xbmk")]
 transform = Transform3D(-1.0000001, -4.608019e-07, -4.021198e-07, 4.2533557e-07, -0.051553357, -0.9986854, 4.3946605e-07, -0.9986551, 0.05155494, -2.336293e-08, 0.13511631, 0.07135892)
-upgrade_name = "Wings"
+enabled = true
 category = 9
-lift = 250
+stats = ExtResource("7_vlw85")
+
+[node name="elf" parent="metarig/Skeleton3D/BoneAttachment3D" index="2" instance=ExtResource("6_tyukh")]
+transform = Transform3D(-1.0000001, 1.0036416e-13, 8.7422876e-08, -8.715337e-08, -0.07845911, -0.99691737, 6.8589006e-09, -0.9969177, 0.07845908, -0.0025459745, 0.087706886, -0.055452432)
+
+[node name="Cube" parent="metarig/Skeleton3D" index="1"]
+visible = false
+
+[node name="Cube_001" parent="metarig/Skeleton3D" index="2"]
+visible = false
+
+[node name="Cube_002" parent="metarig/Skeleton3D" index="3"]
+visible = false
+
+[node name="Cube_003" parent="metarig/Skeleton3D" index="4"]
+visible = false
+
+[node name="Cube_004" parent="metarig/Skeleton3D" index="5"]
+visible = false
+
+[node name="Cube_005" parent="metarig/Skeleton3D" index="6"]
+visible = false
+
+[node name="Cube_006" parent="metarig/Skeleton3D" index="7"]
+visible = false
+
+[node name="Cube_007" parent="metarig/Skeleton3D" index="8"]
+visible = false
+
+[node name="Cube_008" parent="metarig/Skeleton3D" index="9"]
+visible = false
+
+[node name="Cube_009" parent="metarig/Skeleton3D" index="10"]
+visible = false
 
 [node name="Cube_010" parent="metarig/Skeleton3D" index="11"]
 visible = false
@@ -138,42 +148,34 @@ visible = false
 
 [node name="U AntlersBIG UPGRADE" parent="metarig/Skeleton3D" index="18"]
 script = ExtResource("2_16e41")
-upgrade_name = "Big Antlers"
 enabled = true
 category = 3
+stats = ExtResource("10_tp044")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="metarig/Skeleton3D/U AntlersBIG UPGRADE" index="0"]
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, 2.0858052, 0.77564067)
 shape = SubResource("BoxShape3D_0xbmk")
 
 [node name="U AntlersSMALL" parent="metarig/Skeleton3D" index="19"]
-visible = false
 script = ExtResource("2_16e41")
-upgrade_name = "Antlers"
 overridden_by = 3
 category = 2
+stats = ExtResource("11_ebm55")
 
 [node name="U Collar UPGRADE" parent="metarig/Skeleton3D" index="20"]
-visible = false
 script = ExtResource("2_16e41")
-upgrade_name = "Collar"
 category = 5
+stats = ExtResource("12_bdedn")
 
 [node name="U Ornaments UPGRADE" parent="metarig/Skeleton3D" index="21"]
-visible = false
 script = ExtResource("2_16e41")
-upgrade_name = "Ornaments"
 category = 4
+stats = ExtResource("13_u1qbl")
 
 [node name="U Sadle UPGRADE" parent="metarig/Skeleton3D" index="22"]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
-visible = false
-script = ExtResource("2_16e41")
-upgrade_name = "Saddle"
-enabled = true
-category = 6
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_0xbmk")

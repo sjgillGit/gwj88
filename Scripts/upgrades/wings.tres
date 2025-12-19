@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://dbkq6x3h6him5"]
+
+[ext_resource type="Script" uid="uid://07r7h8akr6m1" path="res://Scripts/upgrades/upgrade_stats.gd" id="1_f14lv"]
+
+[resource]
+script = ExtResource("1_f14lv")
+upgrade_name = "Wings"
+lift = 500
+metadata/_custom_type_script = "uid://07r7h8akr6m1"
