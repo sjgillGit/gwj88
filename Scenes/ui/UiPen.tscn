@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://i4hgl17h5n1r"]
+[gd_scene load_steps=13 format=3 uid="uid://i4hgl17h5n1r"]
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
+[ext_resource type="Script" uid="uid://dy20rf2wr6ay0" path="res://Scenes/ui/shop.gd" id="2_d1etx"]
 [ext_resource type="Texture2D" uid="uid://d2amlf2gepeg4" path="res://Assets/ui/main/menu-panel.png" id="4_1a6lg"]
+[ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="4_vjfc7"]
 [ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="5_d1etx"]
 [ext_resource type="Script" uid="uid://1udhbw83ko2l" path="res://Scripts/ui/button.gd" id="6_d1etx"]
+[ext_resource type="Texture2D" uid="uid://c43tocs30urn" path="res://Assets/ui/pen/saddle.png" id="7_6puqo"]
+[ext_resource type="Texture2D" uid="uid://bh0587mph4euh" path="res://Assets/ui/pen/antler1.png" id="8_5je5q"]
+[ext_resource type="Texture2D" uid="uid://d2rip6rwx4wfe" path="res://Assets/ui/pen/antler2.png" id="9_12tqk"]
+[ext_resource type="Texture2D" uid="uid://dp5ba27mieaf3" path="res://Assets/ui/pen/antler3.png" id="10_30hcq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vjfc7"]
 texture = ExtResource("4_1a6lg")
@@ -18,6 +24,118 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_twpca")
+
+[node name="Shop" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -311.0
+offset_top = -41.0
+offset_right = -271.0
+offset_bottom = -1.0
+script = ExtResource("2_d1etx")
+
+[node name="PanelContainer" type="PanelContainer" parent="Shop"]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 168.0
+offset_right = 1047.0
+offset_bottom = 488.78314
+theme_override_styles/panel = SubResource("StyleBoxTexture_vjfc7")
+
+[node name="UpgradeCollar" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 858.00006
+offset_top = 227.0
+offset_right = 1423.0
+offset_bottom = 822.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("4_vjfc7")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeSadle" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 228.0
+offset_right = 1493.0
+offset_bottom = 823.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeSadle"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("7_6puqo")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeWings" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 927.0
+offset_top = 293.0
+offset_right = 1492.0
+offset_bottom = 888.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeWings"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("4_vjfc7")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeAntlers1" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 295.0
+offset_right = 1421.0
+offset_bottom = 890.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeAntlers1"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("8_5je5q")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeCollar5" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 368.0
+offset_right = 1419.0
+offset_bottom = 963.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar5"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("9_12tqk")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeCollar6" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 925.0
+offset_top = 365.0
+offset_right = 1490.0
+offset_bottom = 960.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar6"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("10_30hcq")
+script = ExtResource("6_d1etx")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -69,6 +187,7 @@ theme = ExtResource("1_s3urb")
 theme_override_font_sizes/font_size = 32
 text = "Buy"
 
+[connection signal="visibility_changed" from="." to="Shop" method="_on_ui_pen_visibility_changed"]
 [connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
