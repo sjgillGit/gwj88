@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://i4hgl17h5n1r"]
+[gd_scene load_steps=14 format=3 uid="uid://i4hgl17h5n1r"]
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
 [ext_resource type="Script" uid="uid://dy20rf2wr6ay0" path="res://Scenes/ui/shop.gd" id="2_d1etx"]
 [ext_resource type="Texture2D" uid="uid://d2amlf2gepeg4" path="res://Assets/ui/main/menu-panel.png" id="4_1a6lg"]
 [ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="4_vjfc7"]
+[ext_resource type="Script" uid="uid://k5af4gxc8bm7" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
 [ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="5_d1etx"]
 [ext_resource type="Script" uid="uid://1udhbw83ko2l" path="res://Scripts/ui/button.gd" id="6_d1etx"]
 [ext_resource type="Texture2D" uid="uid://c43tocs30urn" path="res://Assets/ui/pen/saddle.png" id="7_6puqo"]
@@ -41,62 +42,16 @@ offset_right = 1047.0
 offset_bottom = 488.78314
 theme_override_styles/panel = SubResource("StyleBoxTexture_vjfc7")
 
-[node name="UpgradeCollar" type="TextureRect" parent="Shop"]
-layout_mode = 0
-offset_left = 858.00006
-offset_top = 227.0
-offset_right = 1423.0
-offset_bottom = 822.0
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("5_d1etx")
-
-[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar"]
-layout_mode = 0
-offset_right = 550.0
-offset_bottom = 550.0
-texture_normal = ExtResource("4_vjfc7")
-script = ExtResource("6_d1etx")
-
-[node name="UpgradeSadle" type="TextureRect" parent="Shop"]
-layout_mode = 0
-offset_left = 928.0
-offset_top = 228.0
-offset_right = 1493.0
-offset_bottom = 823.0
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("5_d1etx")
-
-[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeSadle"]
-layout_mode = 0
-offset_right = 550.0
-offset_bottom = 550.0
-texture_normal = ExtResource("7_6puqo")
-script = ExtResource("6_d1etx")
-
-[node name="UpgradeWings" type="TextureRect" parent="Shop"]
-layout_mode = 0
-offset_left = 927.0
-offset_top = 293.0
-offset_right = 1492.0
-offset_bottom = 888.0
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("5_d1etx")
-
-[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeWings"]
-layout_mode = 0
-offset_right = 550.0
-offset_bottom = 550.0
-texture_normal = ExtResource("4_vjfc7")
-script = ExtResource("6_d1etx")
-
 [node name="UpgradeAntlers1" type="TextureRect" parent="Shop"]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 295.0
-offset_right = 1421.0
-offset_bottom = 890.0
+offset_left = 851.0
+offset_top = 219.0
+offset_right = 1416.0
+offset_bottom = 814.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
+script = ExtResource("5_208sv")
+id = 2
 
 [node name="TextureButton" type="TextureButton" parent="Shop/UpgradeAntlers1"]
 layout_mode = 0
@@ -105,37 +60,102 @@ offset_bottom = 550.0
 texture_normal = ExtResource("8_5je5q")
 script = ExtResource("6_d1etx")
 
-[node name="UpgradeCollar5" type="TextureRect" parent="Shop"]
+[node name="UpgradeRockets" type="TextureRect" parent="Shop"]
 layout_mode = 0
-offset_left = 854.0
-offset_top = 368.0
-offset_right = 1419.0
-offset_bottom = 963.0
+offset_left = 938.0
+offset_top = 220.0
+offset_right = 1503.0
+offset_bottom = 815.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
+script = ExtResource("5_208sv")
+id = 8
 
-[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar5"]
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeRockets"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("7_6puqo")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeCollar" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 270.0
+offset_right = 1459.0
+offset_bottom = 865.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+script = ExtResource("5_208sv")
+id = 5
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("4_vjfc7")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeWings" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 329.0
+offset_right = 1459.0
+offset_bottom = 924.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+script = ExtResource("5_208sv")
+id = 9
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeWings"]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 550.0
+texture_normal = ExtResource("4_vjfc7")
+script = ExtResource("6_d1etx")
+
+[node name="UpgradeAntlers2" type="TextureRect" parent="Shop"]
+layout_mode = 0
+offset_left = 849.0
+offset_top = 378.0
+offset_right = 1414.0
+offset_bottom = 973.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_d1etx")
+script = ExtResource("5_208sv")
+id = 3
+
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeAntlers2"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
 texture_normal = ExtResource("9_12tqk")
 script = ExtResource("6_d1etx")
 
-[node name="UpgradeCollar6" type="TextureRect" parent="Shop"]
+[node name="UpgradeAntlers3" type="TextureRect" parent="Shop"]
 layout_mode = 0
-offset_left = 925.0
-offset_top = 365.0
-offset_right = 1490.0
-offset_bottom = 960.0
+offset_left = 938.0
+offset_top = 379.0
+offset_right = 1503.0
+offset_bottom = 974.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
+script = ExtResource("5_208sv")
+id = 4
 
-[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar6"]
+[node name="TextureButton" type="TextureButton" parent="Shop/UpgradeAntlers3"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
 texture_normal = ExtResource("10_30hcq")
 script = ExtResource("6_d1etx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop"]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 41.0
+offset_right = 351.0
+offset_bottom = 81.0
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -148,9 +168,9 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_vjfc7")
 [node name="PlayButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 855.0
-offset_top = 185.0
+offset_top = 276.0
 offset_right = 1008.0
-offset_bottom = 281.0
+offset_bottom = 372.0
 texture_normal = ExtResource("5_d1etx")
 ignore_texture_size = true
 stretch_mode = 5
@@ -166,28 +186,6 @@ theme = ExtResource("1_s3urb")
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
-[node name="UpgradeButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 852.0
-offset_top = 346.0
-offset_right = 1005.0
-offset_bottom = 442.0
-texture_normal = ExtResource("5_d1etx")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("6_d1etx")
-
-[node name="Label" type="Label" parent="UpgradeButton"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 30.0
-offset_right = 145.0
-offset_bottom = 73.0
-theme = ExtResource("1_s3urb")
-theme_override_font_sizes/font_size = 32
-text = "Buy"
-
 [connection signal="visibility_changed" from="." to="Shop" method="_on_ui_pen_visibility_changed"]
 [connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
