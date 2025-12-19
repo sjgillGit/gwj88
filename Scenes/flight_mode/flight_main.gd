@@ -3,6 +3,7 @@ extends Node3D
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 
 var _player: DeerMissile
+var _despawning := false
 
 func _ready():
 	_spawn_deer()
@@ -21,9 +22,11 @@ func _find_cams():
 
 
 func _spawn_deer():
+	_despawning = true
 	if _player:
 		await get_tree().process_frame
 		_player.free()
+	_despawning = false
 	_player = preload("./deer_missile.tscn").instantiate()
 	_player.distance_updated.connect(_on_distance_updated)
 	_player.flight_state_changed.connect(_on_flight_state_changed)
@@ -85,4 +88,10 @@ func _on_timer_timeout() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
+		_on_flight_state_changed(FlightState.POST_FLIGHT)
+
+
+func _on_play_area_body_exited(body: Node3D) -> void:
+	# TODO: add different endings if you go out of the top or bottom
+	if body is DeerMissile && !_despawning:
 		_on_flight_state_changed(FlightState.POST_FLIGHT)

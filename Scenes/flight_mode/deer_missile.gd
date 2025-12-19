@@ -19,12 +19,13 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var setup_seconds := 10.0
 
 @export var walk_speed := 5.0
-@export var pitch_speed := 0.5
-@export var yaw_speed := 0.5
+@export var pitch_speed := 0.25
+@export var yaw_speed := 0.25
 ## This should be a fraction, every frame it tries to get to the
 ## 'ideal' roll by roll_speed% of the distance
 @export_range(0.0, 1.0, 0.01) var roll_speed := 0.1
 @export_range(0.0, PI, 0.1) var roll_limit := PI * 0.25
+@export_range(0.0, 10.0, 0.1) var roll_correction_speed := 0.1
 
 @export var show_debug_ui := true:
 	set(value):
@@ -201,6 +202,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				_impact_point = global_position
 				_distance_updated = true
 				_landed = true
+				for u in _launch_upgrades:
+					u.end_thrust()
 		elif b is TopPlatform:
 			_on_platform = true
 	if _current_flight_state in [FlightState.PRE_FLIGHT, FlightState.POST_FLIGHT] && !_on_ramp || _landed:
@@ -271,8 +274,9 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 		# automatically roll 'upward' until your z rotation is 0
 		var up_vector := (gbasis.inverse() * Vector3.UP * Vector3(1.0, 1.0, 0.0)).normalized()
 		var up_dist = -up_vector.x
-		if up_vector.y > 0 && abs(up_dist) > 0.001:
-			state.apply_torque(up_dist * Vector3.FORWARD * mass * 0.1)
+		if up_vector.y > 0.0 && abs(up_dist) > 0.001:
+			var sign := -1.0 if -up_vector.x > 0.0 else 1.0
+			state.apply_torque(gbasis * roll_correction_speed * sign * Vector3.FORWARD * mass)
 
 
 func _apply_drag(state: PhysicsDirectBodyState3D):
@@ -323,15 +327,6 @@ func _apply_control(state: PhysicsDirectBodyState3D):
 		_stats.control_force = "\n".join(["", linear_velocity, desired_velocity, control_force])
 
 
-func _on_move_button_button_down() -> void:
-	_thrust_vector = Vector3.BACK
-	sleeping = false
-
-
-func _on_move_button_button_up() -> void:
-	_thrust_vector = Vector3()
-
-
 func _update_distances():
 	speed_str = "Speed: %.2f m/s" % [linear_velocity.length()]
 	var start_pos := _impact_point if _impact_point != Vector3.ZERO else global_position
@@ -361,7 +356,7 @@ func _update_input() -> void:
 
 	# flying always should be 'stick forward to go down, stick backward to go up'...
 	# probably should have a way to invert Y axis for weirdos
-	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _current_flight_state == FlightState.SETUP && abs(movement.value_axis_2d.y) > 0.5:
 			_current_flight_state = FlightState.PRE_FLIGHT
 			_flight_state_changed()
@@ -384,7 +379,3 @@ func remove_area(area: Area3D):
 	elif area is StagingArea:
 		_in_staging_area = false
 	_overlapping_areas.erase(area.get_instance_id())
-
-
-func is_thrusting() -> bool:
-	return _thrust_vector.length() > 0

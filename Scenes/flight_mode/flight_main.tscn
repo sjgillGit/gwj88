@@ -1,4 +1,4 @@
-[gd_scene load_steps=186 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=187 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Texture2D" uid="uid://cso2mfmxungwm" path="res://Assets/environment/trees_A color pallet.png" id="2_6n8pc"]
@@ -388,6 +388,9 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yr5ue"]
+size = Vector3(750, 405, 1300)
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d7dld"]
 rough = true
 bounce = 0.1
@@ -470,7 +473,7 @@ size = Vector3(60, 85.28, 60)
 shape = 2
 
 [node name="Sky Box" parent="." instance=ExtResource("3_q1o5o")]
-transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 33.477306, -532.3105)
+transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 200, 0, -195.46451, -532.3105)
 
 [node name="FarCam" type="Camera3D" parent="."]
 transform = Transform3D(0.5135412, 0.1930226, -0.8360728, 0, 0.97437006, 0.22495104, 0.8580649, -0.11552163, 0.5003792, -28.024275, 37.351646, 27.18371)
@@ -715,18 +718,25 @@ transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.890069
 [node name="Booster6" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, -1.9999985, -48.54628, -65.05713)
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="PlayArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 247.10342, -400)
+shape = SubResource("BoxShape3D_yr5ue")
+debug_color = Color(0, 0.98, 0.31033328, 0.79607844)
+
+[node name="FallbackGround" type="StaticBody3D" parent="."]
 collision_layer = 3
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_d7dld")
 script = ExtResource("3_jp6c4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FallbackGround"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -478)
 shape = SubResource("BoxShape3D_oomsc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5387268, 6.1035156e-05, -484.30713)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FallbackGround"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.966919, -2.3428345, -484.28387)
 layers = 3
 mesh = SubResource("PlaneMesh_3kocc")
 
@@ -763,6 +773,7 @@ game_context = ExtResource("9_07op2")
 [node name="Collectible" parent="." instance=ExtResource("11_d51bt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9513817, 54.013893, 34.38234)
 
+[connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
 [connection signal="pressed" from="BoxContainer/IceCubeButton" to="." method="_on_ice_cube_button_pressed"]
 [connection signal="item_selected" from="BoxContainer/CameraOption" to="." method="_on_camera_option_item_selected"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
