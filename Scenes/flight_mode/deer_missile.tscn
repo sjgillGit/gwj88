@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=32 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
@@ -13,6 +13,102 @@
 _limits = [0.0, 1.0, 0.0, 1000.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(6.0240974, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Animation" id="Animation_0j4hg"]
+resource_name = "roll_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -6.2831855)]
+}
+
+[sub_resource type="Animation" id="Animation_eftuo"]
+resource_name = "roll_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.2831855)]
+}
+
+[sub_resource type="Animation" id="Animation_5a4eb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0iyy"]
+_data = {
+&"RESET": SubResource("Animation_5a4eb"),
+&"roll_left": SubResource("Animation_0j4hg"),
+&"roll_right": SubResource("Animation_eftuo")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_61djx"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_baogq"]
+animation = &"roll_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_niljy"]
+animation = &"roll_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvj0h"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y3c05"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33sep"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wt145"]
+xfade_time = 0.5
+reset = false
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nlby"]
+xfade_time = 1.0
+reset = false
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_52web"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_le6g1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7utkv"]
+states/RESET/node = SubResource("AnimationNodeAnimation_61djx")
+states/RESET/position = Vector2(207, 114)
+states/Start/position = Vector2(72, 114)
+states/roll_left/node = SubResource("AnimationNodeAnimation_baogq")
+states/roll_left/position = Vector2(349, 35)
+states/roll_right/node = SubResource("AnimationNodeAnimation_niljy")
+states/roll_right/position = Vector2(349, 192)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_tvj0h"), "RESET", "roll_left", SubResource("AnimationNodeStateMachineTransition_y3c05"), "RESET", "roll_right", SubResource("AnimationNodeStateMachineTransition_33sep"), "roll_left", "roll_right", SubResource("AnimationNodeStateMachineTransition_wt145"), "roll_right", "roll_left", SubResource("AnimationNodeStateMachineTransition_5nlby"), "roll_left", "RESET", SubResource("AnimationNodeStateMachineTransition_52web"), "roll_right", "RESET", SubResource("AnimationNodeStateMachineTransition_le6g1")]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e1i74"]
 radius = 0.27490234
@@ -108,9 +204,30 @@ control_envelope = SubResource("Curve_wqsbj")
 movement = ExtResource("3_eftuo")
 boost = ExtResource("4_5a4eb")
 
-[node name="Reindeer" parent="." instance=ExtResource("3_wfu7b")]
+[node name="CenterOfMassMarker" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -0.32696578, 0.08027392)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
+
+[node name="BarrelRoll" type="Node3D" parent="CenterOfMassMarker"]
+
+[node name="FlightRoll" type="Node3D" parent="CenterOfMassMarker/BarrelRoll"]
+unique_name_in_owner = true
+
+[node name="Reindeer" parent="CenterOfMassMarker/BarrelRoll/FlightRoll" instance=ExtResource("3_wfu7b")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -0.8708739, -0.10414052)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterOfMassMarker/BarrelRoll"]
+libraries = {
+&"": SubResource("AnimationLibrary_y0iyy")
+}
+
+[node name="BarrelRollAnimationTree" type="AnimationTree" parent="CenterOfMassMarker/BarrelRoll"]
+unique_name_in_owner = true
+deterministic = false
+root_node = NodePath("%BarrelRollAnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_7utkv")
+anim_player = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.080442436, -0.99675924, 0, 0.99675924, 0.080442436, 0, 0.47332117, 0.0827937)
@@ -162,10 +279,6 @@ transform = Transform3D(-1.6146365e-07, 2.6240727e-08, 1, 0.071097046, 0.9974693
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="CenterOfMassMarker" type="Marker3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
 
 [node name="TimeLeftLabel" type="Label" parent="."]
 unique_name_in_owner = true

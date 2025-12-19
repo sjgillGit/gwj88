@@ -28,7 +28,7 @@ animation = &"Running"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_eftuo"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0xbmk"]
-graph_offset = Vector2(-72, 149)
+graph_offset = Vector2(-216.58026, -36.98329)
 nodes/output/position = Vector2(720, 120)
 nodes/running/node = SubResource("AnimationNodeBlend2_eftuo")
 nodes/running/position = Vector2(460, 80)
@@ -57,9 +57,9 @@ bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.999835
 bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
 bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
 bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.36668625, -0.027249731, -0.025663674, 0.9295913)
-bones/8/rotation = Quaternion(-0.06731435, -0.012013835, 0.0064473585, 0.9976387)
-bones/9/rotation = Quaternion(0.53667754, 0.17196965, -0.21864593, 0.79661644)
+bones/7/rotation = Quaternion(-0.42354873, -0.011706691, -0.03770916, 0.9050124)
+bones/8/rotation = Quaternion(-0.0840762, 0.007009404, -0.0068259984, 0.9964113)
+bones/9/rotation = Quaternion(0.5838331, 0.1477249, -0.19609524, 0.7738624)
 bones/10/rotation = Quaternion(-0.10381317, -0.170628, 0.61718214, 0.76104873)
 bones/11/rotation = Quaternion(-0.10381446, 0.17062953, -0.6171818, 0.7610485)
 bones/12/position = Vector3(0.0780042, 0.23866656, -0.055951495)
@@ -73,7 +73,7 @@ bones/19/rotation = Quaternion(-0.2599413, 0.011224373, -0.032679897, 0.965006)
 bones/20/rotation = Quaternion(-0.0506018, -0.023735443, 0.022546005, 0.99818224)
 bones/21/rotation = Quaternion(-0.005801933, 0.8009831, -0.5986583, 0.0009571037)
 bones/24/position = Vector3(-2.358284e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.3516243, -0.009604213, -0.023651998, 0.9357931)
+bones/24/rotation = Quaternion(-0.36240143, -0.005673945, -0.021980446, 0.9317457)
 bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
 bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.604624e-07, 4.8117187e-07, 0.7587796)
@@ -97,11 +97,13 @@ bone_idx = 36
 
 [node name="Rockets1" parent="metarig/Skeleton3D/BoneAttachment3D" index="0" instance=ExtResource("3_7wal2")]
 transform = Transform3D(1.0000004, -7.2084606e-07, 1.3131368e-07, -1.9017153e-07, -0.08226912, 0.996611, -7.075996e-07, -0.99661094, -0.08226909, 1.6696745e-07, -0.039731666, 0.2649098)
+enabled = true
 category = 8
 stats = ExtResource("5_kqnlp")
 
 [node name="Wings" parent="metarig/Skeleton3D/BoneAttachment3D" index="1" instance=ExtResource("4_0xbmk")]
 transform = Transform3D(-1.0000001, -4.608019e-07, -4.021198e-07, 4.2533557e-07, -0.051553357, -0.9986854, 4.3946605e-07, -0.9986551, 0.05155494, -2.336293e-08, 0.13511631, 0.07135892)
+enabled = true
 category = 9
 stats = ExtResource("7_vlw85")
 
