@@ -434,7 +434,7 @@ foliages = Array[FoliageResource]([SubResource("FoliageResource_toye6"), SubReso
 snowDefinition = SubResource("SnowResource_lquwl")
 terrainZones = SubResource("ZonesResource_to8bh")
 script = ExtResource("3_jp6c4")
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="Cave" type="CSGCombiner3D" parent="TerraBrush"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
@@ -720,7 +720,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -478)
 shape = SubResource("BoxShape3D_oomsc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -481)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5387268, 6.1035156e-05, -484.30713)
 layers = 3
 mesh = SubResource("PlaneMesh_3kocc")
 
