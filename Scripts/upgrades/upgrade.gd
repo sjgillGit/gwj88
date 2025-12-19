@@ -3,10 +3,7 @@ extends Node3D
 
 signal thrusting_changed(value: bool)
 
-@export var upgrade_name = ""
-@export_multiline var description = ""
 @export var overridden_by := DeerUpgrades.Category.NONE
-@export var cost := 1000
 @export var enabled := false:
 	set(value):
 		enabled = value
@@ -14,27 +11,17 @@ signal thrusting_changed(value: bool)
 		visible = value && !overridden
 @export var category : DeerUpgrades.Category
 
-# Upgrade stat static values
-# use get_x() to get the current dynamic value
-@export var thrust := 0.0
-@export var lift := 0
-@export var drag := 0
-@export var mass := 1.0
+@export var store_thumbnail: Texture
 
-## possible other stats?
-# resist wind/snow? idk
-@export var holiday_spirit := 0.0
-# smash through walls?
-@export var toughness := 0.0
-
-@export var fuel_capacity_seconds := 0.0
+#upgrade_stats
+@export var stats: UpgradeStats
 
 var _fuel_seconds := 0.0
 var _thrusting := false
 
 func _ready():
 	enabled = enabled
-	_fuel_seconds = fuel_capacity_seconds
+	_fuel_seconds = stats.fuel_capacity_seconds
 
 
 ## allow getting collision shapes to add when this upgrade is enabled
@@ -61,16 +48,16 @@ func start_thrust():
 
 
 func get_thrust():
-	return thrust if _thrusting && _fuel_seconds > 0 else 0.0
+	return stats.thrust if _thrusting && _fuel_seconds > 0 else 0.0
 
 
 func get_lift():
-	return lift
+	return stats.lift
 
 
 func get_drag():
-	return drag
+	return stats.drag
 
 
 func get_mass():
-	return mass
+	return stats.mass

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://d3yx2qjrylqse"]
+
+[ext_resource type="Script" uid="uid://07r7h8akr6m1" path="res://Scripts/upgrades/upgrade_stats.gd" id="1_fsqjg"]
+
+[resource]
+script = ExtResource("1_fsqjg")
+upgrade_name = "Big Antlers"
+toughness = 10.0
+metadata/_custom_type_script = "uid://07r7h8akr6m1"

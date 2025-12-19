@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjqetj7ue2x0s"]
 
-[ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrade.gd" id="1_ehoda"]
+[ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrades/upgrade.gd" id="1_ehoda"]
 [ext_resource type="PackedScene" uid="uid://b65c8fwljp8h" path="res://Scenes/upgrades/rocket_1.tscn" id="2_elqeh"]
 
 [node name="Rockets1" type="Node3D"]
