@@ -142,6 +142,10 @@ sky = SubResource("Sky_0jjp4")
 ambient_light_source = 2
 ambient_light_color = Color(0.78200006, 0.82733333, 0.85, 1)
 ambient_light_energy = 0.2
+fog_enabled = true
+fog_density = 0.0002
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.001
 
 [sub_resource type="Gradient" id="Gradient_vke2r"]
 colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
@@ -427,7 +431,7 @@ foliages = Array[FoliageResource]([SubResource("FoliageResource_toye6"), SubReso
 snowDefinition = SubResource("SnowResource_lquwl")
 terrainZones = SubResource("ZonesResource_to8bh")
 script = ExtResource("3_jp6c4")
-metadata/_edit_lock_ = true
+metadata/_edit_lock_ = false
 
 [node name="Cave" type="CSGCombiner3D" parent="TerraBrush"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
@@ -458,6 +462,12 @@ radius = 29.393066
 height = 200.0
 sides = 16
 material = SubResource("StandardMaterial3D_cdj3g")
+
+[node name="FogVolume" type="FogVolume" parent="TerraBrush/Cave"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+layers = 3
+size = Vector3(60, 85.28, 60)
+shape = 2
 
 [node name="Sky Box" parent="." instance=ExtResource("3_q1o5o")]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 33.477306, -532.3105)
