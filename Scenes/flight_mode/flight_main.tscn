@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
 [ext_resource type="Image" uid="uid://yhy8a00qnrsh" path="res://Assets/terrain/Heightmap_-1_0.res" id="7_q7uad"]
 [ext_resource type="Image" uid="uid://cwvmecfm2e32x" path="res://Assets/terrain/Foliage_0_0_2.res" id="7_ywvku"]
-[ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
+[ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
 [ext_resource type="Image" uid="uid://qqj1lmwo15fv" path="res://Assets/terrain/Snow_-1_0.res" id="8_xufyi"]
 [ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="9_07op2"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/booster.tscn" id="9_jp6c4"]
@@ -777,9 +777,11 @@ transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.890069
 
 [node name="Booster5" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 2.0000017, -48.54628, -65.05713)
+speed_boost = 2.6
 
 [node name="Booster6" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, -1.9999985, -48.54628, -65.05713)
+speed_boost = 2.6
 
 [node name="PlayArea" type="Area3D" parent="."]
 
