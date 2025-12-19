@@ -6,7 +6,6 @@
 [node name="Rockets1" type="Node3D"]
 transform = Transform3D(1.0000001, -5.684342e-14, 9.769963e-15, 2.842171e-14, 1, 1.8626451e-09, -7.1054274e-15, 1.8626451e-09, 0.99999994, 0, 0, 0)
 script = ExtResource("1_ehoda")
-fuel_capacity_seconds = 5.0
 
 [node name="RocketL" parent="." instance=ExtResource("2_elqeh")]
 transform = Transform3D(1.1035355, 0, 0, 0, -0.013481912, -1.1034528, 0, 1.1034526, -0.013481915, 0.45, 0.011, 0.179)

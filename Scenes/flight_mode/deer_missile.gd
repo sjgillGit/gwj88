@@ -19,9 +19,13 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var setup_seconds := 10.0
 
 @export var walk_speed := 5.0
-@export var pitch_speed := 1.0
-@export var roll_speed := 1.0
-@export var yaw_speed := 0.5
+@export var pitch_speed := 0.25
+@export var yaw_speed := 0.25
+## This should be a fraction, every frame it tries to get to the
+## 'ideal' roll by roll_speed% of the distance
+@export_range(0.0, 1.0, 0.01) var roll_speed := 0.1
+@export_range(0.0, PI, 0.1) var roll_limit := PI * 0.25
+@export_range(0.0, 10.0, 0.1) var roll_correction_speed := 0.1
 
 @export var show_debug_ui := true:
 	set(value):
@@ -66,6 +70,11 @@ var _setup_time_left := 0.0
 
 
 func _ready():
+	# when running the scene directly from the editor, we want some upgrades
+	for a in  OS.get_cmdline_args():
+		if a.ends_with('flight_main.tscn'):
+			DeerUpgrades._upgrades = [DeerUpgrades.Category.WINGS, DeerUpgrades.Category.ROCKETS]
+			break
 	# invoke setter!
 	_setup_time_left = setup_seconds
 	center_of_mass = %CenterOfMassMarker.transform.origin
@@ -146,7 +155,7 @@ func set_enabled_upgrades(upgrades: Array[DeerUpgrades.Category]):
 
 
 func get_upgrades() -> Array[Upgrade]:
-	return $Reindeer.get_upgrades()
+	return %Reindeer.get_upgrades()
 
 
 func _apply_upgrade_stats():
@@ -193,9 +202,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				_impact_point = global_position
 				_distance_updated = true
 				_landed = true
+				for u in _launch_upgrades:
+					u.end_thrust()
 		elif b is TopPlatform:
 			_on_platform = true
-	if _current_flight_state == FlightState.PRE_FLIGHT && !_on_ramp:
+	if _current_flight_state in [FlightState.PRE_FLIGHT, FlightState.POST_FLIGHT] && !_on_ramp || _landed:
 		angular_damp = 0.98
 	else:
 		angular_damp = _default_angular_damp
@@ -232,9 +243,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_print_stats()
 
 func _apply_player_input(state: PhysicsDirectBodyState3D):
+	var gbasis := state.transform.basis
 	if _current_flight_state == FlightState.SETUP:
 		if _in_staging_area:
-			state.apply_central_force(global_basis * (Vector3.LEFT * _player_inputs.x * walk_speed * mass))
+			state.apply_central_force(gbasis * (Vector3.LEFT * _player_inputs.x * walk_speed * mass))
 		elif _on_platform:
 			var cb := get_colliding_bodies()
 			var tp_idx := cb.find_custom(func(c): return c is TopPlatform)
@@ -247,19 +259,24 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 		# X inputs rotate around the Y axis (yaw) when we aren't flying
 	if _current_flight_state == FlightState.PRE_FLIGHT:
 		if _on_ramp || _on_platform:
-			state.apply_torque(global_basis * (Vector3.DOWN * abs(_player_inputs.x) * roll_speed * mass))
-			# Y inputs move forward/back when we aren't flying but we just have constant forward
-			state.apply_central_force(global_basis * (Vector3.BACK * walk_speed * mass))
-
-	else:
-		# X inputs rotate around the Z axis (roll)
-		state.apply_torque(global_basis * (Vector3.BACK * _player_inputs.x * roll_speed * mass))
-		state.apply_torque(global_basis * (Vector3.DOWN * _player_inputs.x * yaw_speed * mass))
+			state.apply_torque(gbasis * (Vector3.DOWN * _player_inputs.x * yaw_speed * mass))
+			# Y inputs ignored while launching, we just have constant forward
+			state.apply_central_force(gbasis * (Vector3.BACK * walk_speed * mass))
+	elif !_landed && _current_flight_state == FlightState.FLIGHT:
+		# X inputs rotate around the Y axis (yaw)
+		state.apply_torque(gbasis * (Vector3.DOWN * _player_inputs.x * yaw_speed * mass))
 		# Y inputs rotate around the X axis (pitch)
-		state.apply_torque(global_basis * (Vector3.LEFT * _player_inputs.y * pitch_speed * mass))
-	# Z inputs rotate around the Y axis (yaw)
-	# we don't actually have any inputs for this yet
-	state.apply_torque(global_basis * (Vector3.DOWN * _player_inputs.z * yaw_speed * mass))
+		state.apply_torque(gbasis * (Vector3.LEFT * _player_inputs.y * pitch_speed * mass))
+
+		var roll_target := clampf(_player_inputs.x * roll_limit, -roll_limit, roll_limit)
+		%FlightRoll.rotation.z = lerp(%FlightRoll.rotation.z, roll_target, roll_speed)
+
+		# automatically roll 'upward' until your z rotation is 0
+		var up_vector := (gbasis.inverse() * Vector3.UP * Vector3(1.0, 1.0, 0.0)).normalized()
+		var up_dist = -up_vector.x
+		if up_vector.y > 0.0 && abs(up_dist) > 0.001:
+			var sign := -1.0 if -up_vector.x > 0.0 else 1.0
+			state.apply_torque(gbasis * roll_correction_speed * sign * Vector3.FORWARD * mass)
 
 
 func _apply_drag(state: PhysicsDirectBodyState3D):
@@ -310,15 +327,6 @@ func _apply_control(state: PhysicsDirectBodyState3D):
 		_stats.control_force = "\n".join(["", linear_velocity, desired_velocity, control_force])
 
 
-func _on_move_button_button_down() -> void:
-	_thrust_vector = Vector3.BACK
-	sleeping = false
-
-
-func _on_move_button_button_up() -> void:
-	_thrust_vector = Vector3()
-
-
 func _update_distances():
 	speed_str = "Speed: %.2f m/s" % [linear_velocity.length()]
 	var start_pos := _impact_point if _impact_point != Vector3.ZERO else global_position
@@ -348,8 +356,8 @@ func _update_input() -> void:
 
 	# flying always should be 'stick forward to go down, stick backward to go up'...
 	# probably should have a way to invert Y axis for weirdos
-	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), -clampf(movement.value_axis_2d.y, -1, 1), 0)
-	if _current_flight_state == FlightState.SETUP && movement.value_axis_2d.y > 0.5:
+	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), clampf(movement.value_axis_2d.y, -1, 1), 0)
+	if _current_flight_state == FlightState.SETUP && abs(movement.value_axis_2d.y) > 0.5:
 			_current_flight_state = FlightState.PRE_FLIGHT
 			_flight_state_changed()
 			%TimeLeftLabel.visible = false
@@ -371,7 +379,3 @@ func remove_area(area: Area3D):
 	elif area is StagingArea:
 		_in_staging_area = false
 	_overlapping_areas.erase(area.get_instance_id())
-
-
-func is_thrusting() -> bool:
-	return _thrust_vector.length() > 0
