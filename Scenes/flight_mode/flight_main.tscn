@@ -1,12 +1,14 @@
-[gd_scene load_steps=199 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=186 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Texture2D" uid="uid://cso2mfmxungwm" path="res://Assets/environment/trees_A color pallet.png" id="2_6n8pc"]
+[ext_resource type="Texture2D" uid="uid://f5opooec7e3b" path="res://Assets/environment/Sky Box_Untitled.png" id="2_i2wt2"]
 [ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="2_ph8sb"]
 [ext_resource type="ArrayMesh" uid="uid://lfrowid6wrxw" path="res://Assets/environment/tree1.res" id="2_ryu8c"]
 [ext_resource type="ArrayMesh" uid="uid://cx8vamvtgq3t" path="res://Assets/environment/tree2.res" id="3_bosl6"]
 [ext_resource type="Script" uid="uid://m410she5703r" path="res://Scenes/flight_mode/ground.gd" id="3_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://cmek6gwoogb1h" path="res://Assets/Flight/Platform.glb" id="3_ph8sb"]
+[ext_resource type="PackedScene" uid="uid://xx6suxi72mm5" path="res://Assets/environment/Sky Box.glb" id="3_q1o5o"]
 [ext_resource type="Image" uid="uid://dms7s41s62fk2" path="res://Assets/terrain/Heightmap_0_0.res" id="3_quq8b"]
 [ext_resource type="Texture2D" uid="uid://c2tntehikldvi" path="res://Scenes/flight_mode/placeholders/gridbox.png" id="4_07op2"]
 [ext_resource type="ArrayMesh" uid="uid://14minkv0oa1a" path="res://Assets/environment/tree3.res" id="4_7ywqo"]
@@ -67,10 +69,7 @@
 [ext_resource type="Image" uid="uid://dyelmqwgm5cnk" path="res://Assets/terrain/Splatmap_-1_1_0.res" id="37_wppy8"]
 [ext_resource type="Image" uid="uid://b4okdgo7cn0up" path="res://Assets/terrain/Foliage_-1_1_2.res" id="37_wur8l"]
 [ext_resource type="Image" uid="uid://b720x0d6rweyl" path="res://Assets/terrain/Foliage_-1_-1_0.res" id="41_g0pcd"]
-[ext_resource type="Image" uid="uid://baor0qf3vgdej" path="res://Assets/terrain/Heightmap_2_-1.res" id="41_yr5ue"]
-[ext_resource type="Image" uid="uid://cosvvjc3hguot" path="res://Assets/terrain/Snow_2_-1.res" id="42_gsr07"]
 [ext_resource type="Image" uid="uid://b3b32qwa7wy6d" path="res://Assets/terrain/Foliage_-1_-1_1.res" id="42_ipqau"]
-[ext_resource type="Image" uid="uid://bcumsresnu6pu" path="res://Assets/terrain/Splatmap_2_-1_0.res" id="43_j1yfm"]
 [ext_resource type="Image" uid="uid://vra7fbn18ifm" path="res://Assets/terrain/Foliage_-1_-1_2.res" id="43_yhwca"]
 [ext_resource type="Image" uid="uid://c1rm122fvaqcn" path="res://Assets/terrain/Heightmap_0_-2.res" id="44_80ssw"]
 [ext_resource type="Image" uid="uid://6v6wklqlap84" path="res://Assets/terrain/Snow_0_-2.res" id="45_llk12"]
@@ -84,30 +83,15 @@
 [ext_resource type="Image" uid="uid://cppymdtti2i55" path="res://Assets/terrain/Foliage_1_-1_0.res" id="53_10jvn"]
 [ext_resource type="Image" uid="uid://cy4sftpj6m13h" path="res://Assets/terrain/Foliage_1_-1_1.res" id="54_666wd"]
 [ext_resource type="Image" uid="uid://c3lys66xx4c7v" path="res://Assets/terrain/Foliage_1_-1_2.res" id="55_yr5ue"]
-[ext_resource type="Image" uid="uid://b0a8geyevxwxd" path="res://Assets/terrain/Heightmap_-2_1.res" id="56_6wxsd"]
-[ext_resource type="Image" uid="uid://cyq2wratjkuo6" path="res://Assets/terrain/Snow_-2_1.res" id="57_adh0a"]
-[ext_resource type="Image" uid="uid://bdmor7tnoerd0" path="res://Assets/terrain/Splatmap_-2_1_0.res" id="58_rvy00"]
 [ext_resource type="Image" uid="uid://8o7lek8378vx" path="res://Assets/terrain/Foliage_0_-2_0.res" id="59_gsr07"]
 [ext_resource type="Image" uid="uid://cdn2xisvjswb0" path="res://Assets/terrain/Foliage_0_-2_1.res" id="60_j1yfm"]
 [ext_resource type="Image" uid="uid://uou53ixdl6s5" path="res://Assets/terrain/Foliage_0_-2_2.res" id="61_80ssw"]
-[ext_resource type="Image" uid="uid://dqduameonjsf4" path="res://Assets/terrain/Heightmap_-2_0.res" id="62_0jjp4"]
-[ext_resource type="Image" uid="uid://hwvgttlr5fry" path="res://Assets/terrain/Snow_-2_0.res" id="63_r5eu6"]
-[ext_resource type="Image" uid="uid://b1qvw8n8s2is6" path="res://Assets/terrain/Splatmap_-2_0_0.res" id="64_5fslu"]
 [ext_resource type="Image" uid="uid://c0mi3dny8hsqm" path="res://Assets/terrain/Foliage_1_-2_0.res" id="65_llk12"]
 [ext_resource type="Image" uid="uid://c6b2yt6mauvai" path="res://Assets/terrain/Foliage_1_-2_1.res" id="66_5xkh5"]
 [ext_resource type="Image" uid="uid://bt4rg8rthpfnj" path="res://Assets/terrain/Foliage_1_-2_2.res" id="67_ptocl"]
 [ext_resource type="Image" uid="uid://c1lgada1kcwkc" path="res://Assets/terrain/Foliage_-1_-2_0.res" id="71_6mbcx"]
 [ext_resource type="Image" uid="uid://btlywtovxctvp" path="res://Assets/terrain/Foliage_-1_-2_1.res" id="72_ckgud"]
 [ext_resource type="Image" uid="uid://cgu386pv25hfk" path="res://Assets/terrain/Foliage_-1_-2_2.res" id="73_lqrok"]
-[ext_resource type="Image" uid="uid://d2m1lmyn8g8sk" path="res://Assets/terrain/Foliage_2_-1_0.res" id="77_ujj4a"]
-[ext_resource type="Image" uid="uid://dli50q305cfsx" path="res://Assets/terrain/Foliage_2_-1_1.res" id="78_f6rav"]
-[ext_resource type="Image" uid="uid://cyy2ovhnfdcmk" path="res://Assets/terrain/Foliage_2_-1_2.res" id="79_mp7iw"]
-[ext_resource type="Image" uid="uid://birwd33a8i2ek" path="res://Assets/terrain/Foliage_-2_0_0.res" id="83_fywxe"]
-[ext_resource type="Image" uid="uid://ca0nuhn0x1ld8" path="res://Assets/terrain/Foliage_-2_0_1.res" id="84_h6k3w"]
-[ext_resource type="Image" uid="uid://jkl1hpo2gqrc" path="res://Assets/terrain/Foliage_-2_0_2.res" id="85_6wxsd"]
-[ext_resource type="Image" uid="uid://fta0fhhi3p5t" path="res://Assets/terrain/Foliage_-2_1_0.res" id="89_adh0a"]
-[ext_resource type="Image" uid="uid://do7sof2jsd0ys" path="res://Assets/terrain/Foliage_-2_1_1.res" id="90_rvy00"]
-[ext_resource type="Image" uid="uid://dtiaxxj5veiyw" path="res://Assets/terrain/Foliage_-2_1_2.res" id="91_i2wt2"]
 [ext_resource type="Image" uid="uid://b5bu6wajlfsw8" path="res://Assets/terrain/Foliage_1_-3_0.res" id="96_ujj4a"]
 [ext_resource type="Image" uid="uid://dw62uolnasbsn" path="res://Assets/terrain/Foliage_1_-3_1.res" id="97_f6rav"]
 [ext_resource type="Image" uid="uid://xvfuycl720sw" path="res://Assets/terrain/Foliage_1_-3_2.res" id="98_mp7iw"]
@@ -147,6 +131,18 @@
 [ext_resource type="PackedScene" uid="uid://c4wlvqxeux131" path="res://Scenes/environment/icicle_cluster.tscn" id="134_mp7iw"]
 [ext_resource type="Script" uid="uid://bkb4pnsolfh03" path="res://Scenes/flight_mode/staging_area.gd" id="136_f6rav"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2e01o"]
+panorama = ExtResource("2_i2wt2")
+
+[sub_resource type="Sky" id="Sky_0jjp4"]
+sky_material = SubResource("PanoramaSkyMaterial_2e01o")
+
+[sub_resource type="Environment" id="Environment_r5eu6"]
+sky = SubResource("Sky_0jjp4")
+ambient_light_source = 2
+ambient_light_color = Color(0.78200006, 0.82733333, 0.85, 1)
+ambient_light_energy = 0.2
+
 [sub_resource type="Gradient" id="Gradient_vke2r"]
 colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
 
@@ -158,8 +154,14 @@ noise = SubResource("FastNoiseLite_uit24")
 color_ramp = SubResource("Gradient_vke2r")
 seamless = true
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i2wt2"]
+noise = SubResource("FastNoiseLite_uit24")
+seamless = true
+as_normal_map = true
+
 [sub_resource type="TextureSetResource" id="TextureSetResource_rm4vd"]
 albedoTexture = SubResource("NoiseTexture2D_ruth0")
+normalTexture = SubResource("NoiseTexture2D_i2wt2")
 
 [sub_resource type="TextureSetsResource" id="TextureSetsResource_pjyto"]
 textureSets = Array[TextureSetResource]([SubResource("TextureSetResource_rm4vd")])
@@ -191,6 +193,11 @@ useBrushScale = false
 [sub_resource type="FoliageResource" id="FoliageResource_uh4vt"]
 definition = SubResource("FoliageDefinitionResource_hu1eb")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yr5ue"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gsr07"]
+noise = SubResource("FastNoiseLite_yr5ue")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_h2yge"]
 noise_type = 4
 
@@ -212,9 +219,11 @@ color_ramp = SubResource("Gradient_0xm2m")
 seamless = true
 
 [sub_resource type="SnowResource" id="SnowResource_lquwl"]
-snowInnerOffset = 0.05
+snowFactor = 0.3
+snowInnerOffset = 0.2
 snowColorTexture = SubResource("NoiseTexture2D_1bvp3")
 snowColorNormal = SubResource("NoiseTexture2D_rtpbt")
+noise = SubResource("NoiseTexture2D_gsr07")
 
 [sub_resource type="ZoneResource" id="ZoneResource_vimpv"]
 heightMapImage = ExtResource("3_quq8b")
@@ -299,27 +308,6 @@ splatmapsImage = Array[Image]([ExtResource("18_rrixd")])
 foliagesImage = Array[Image]([ExtResource("71_6mbcx"), ExtResource("72_ckgud"), ExtResource("73_lqrok")])
 snowImage = ExtResource("17_t116s")
 
-[sub_resource type="ZoneResource" id="ZoneResource_xefyg"]
-zonePosition = Vector2i(2, -1)
-heightMapImage = ExtResource("41_yr5ue")
-splatmapsImage = Array[Image]([ExtResource("43_j1yfm")])
-foliagesImage = Array[Image]([ExtResource("77_ujj4a"), ExtResource("78_f6rav"), ExtResource("79_mp7iw")])
-snowImage = ExtResource("42_gsr07")
-
-[sub_resource type="ZoneResource" id="ZoneResource_u6vgr"]
-zonePosition = Vector2i(-2, 0)
-heightMapImage = ExtResource("62_0jjp4")
-splatmapsImage = Array[Image]([ExtResource("64_5fslu")])
-foliagesImage = Array[Image]([ExtResource("83_fywxe"), ExtResource("84_h6k3w"), ExtResource("85_6wxsd")])
-snowImage = ExtResource("63_r5eu6")
-
-[sub_resource type="ZoneResource" id="ZoneResource_68r7w"]
-zonePosition = Vector2i(-2, 1)
-heightMapImage = ExtResource("56_6wxsd")
-splatmapsImage = Array[Image]([ExtResource("58_rvy00")])
-foliagesImage = Array[Image]([ExtResource("89_adh0a"), ExtResource("90_rvy00"), ExtResource("91_i2wt2")])
-snowImage = ExtResource("57_adh0a")
-
 [sub_resource type="ZoneResource" id="ZoneResource_brwxm"]
 zonePosition = Vector2i(1, -3)
 heightMapImage = ExtResource("99_fywxe")
@@ -363,7 +351,7 @@ foliagesImage = Array[Image]([ExtResource("126_4sphn"), ExtResource("127_0ghgi")
 snowImage = ExtResource("130_oatc4")
 
 [sub_resource type="ZonesResource" id="ZonesResource_to8bh"]
-zones = Array[ZoneResource]([SubResource("ZoneResource_vimpv"), SubResource("ZoneResource_6kcn7"), SubResource("ZoneResource_eqw4n"), SubResource("ZoneResource_fai4h"), SubResource("ZoneResource_eypid"), SubResource("ZoneResource_ghw72"), SubResource("ZoneResource_tnk4g"), SubResource("ZoneResource_ch3ob"), SubResource("ZoneResource_u40a1"), SubResource("ZoneResource_a5r6f"), SubResource("ZoneResource_fdf8h"), SubResource("ZoneResource_n73do"), SubResource("ZoneResource_xefyg"), SubResource("ZoneResource_u6vgr"), SubResource("ZoneResource_68r7w"), SubResource("ZoneResource_brwxm"), SubResource("ZoneResource_ewgrc"), SubResource("ZoneResource_snkb1"), SubResource("ZoneResource_rai8g"), SubResource("ZoneResource_gpcit"), SubResource("ZoneResource_gq5x6")])
+zones = Array[ZoneResource]([SubResource("ZoneResource_vimpv"), SubResource("ZoneResource_6kcn7"), SubResource("ZoneResource_eqw4n"), SubResource("ZoneResource_fai4h"), SubResource("ZoneResource_eypid"), SubResource("ZoneResource_ghw72"), SubResource("ZoneResource_tnk4g"), SubResource("ZoneResource_ch3ob"), SubResource("ZoneResource_u40a1"), SubResource("ZoneResource_a5r6f"), SubResource("ZoneResource_fdf8h"), SubResource("ZoneResource_n73do"), SubResource("ZoneResource_brwxm"), SubResource("ZoneResource_ewgrc"), SubResource("ZoneResource_snkb1"), SubResource("ZoneResource_rai8g"), SubResource("ZoneResource_gpcit"), SubResource("ZoneResource_gq5x6")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdj3g"]
 albedo_texture = SubResource("NoiseTexture2D_ruth0")
@@ -420,13 +408,18 @@ uv1_scale = Vector3(1000, 1000, 1000)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3kocc"]
 material = SubResource("StandardMaterial3D_ld0ly")
-size = Vector2(10000, 10000)
+size = Vector2(1000, 2000)
 
 [node name="FlightMain" type="Node3D"]
 script = ExtResource("1_25o61")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r5eu6")
+
 [node name="TerraBrush" type="TerraBrush" parent="."]
 dataPath = "res://Assets/terrain"
+visualInstanceLayers = 3
+lodLevels = 6
 collisionLayers = 3
 collisionMask = 3
 textureSets = SubResource("TextureSetsResource_pjyto")
@@ -434,7 +427,7 @@ foliages = Array[FoliageResource]([SubResource("FoliageResource_toye6"), SubReso
 snowDefinition = SubResource("SnowResource_lquwl")
 terrainZones = SubResource("ZonesResource_to8bh")
 script = ExtResource("3_jp6c4")
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="Cave" type="CSGCombiner3D" parent="TerraBrush"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
@@ -465,6 +458,9 @@ radius = 29.393066
 height = 200.0
 sides = 16
 material = SubResource("StandardMaterial3D_cdj3g")
+
+[node name="Sky Box" parent="." instance=ExtResource("3_q1o5o")]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 33.477306, -532.3105)
 
 [node name="FarCam" type="Camera3D" parent="."]
 transform = Transform3D(0.5135412, 0.1930226, -0.8360728, 0, 0.97437006, 0.22495104, 0.8580649, -0.11552163, 0.5003792, -28.024275, 37.351646, 27.18371)
@@ -720,12 +716,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -478)
 shape = SubResource("BoxShape3D_oomsc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -481)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5387268, 6.1035156e-05, -484.30713)
 layers = 3
 mesh = SubResource("PlaneMesh_3kocc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5252637, 0.8509395, 0, -0.8509395, 0.5252637, 0, 50.174084, 33.2016)
+transform = Transform3D(0.9382336, 0.18174252, 0.29442713, -0.34600243, 0.49282008, 0.7983801, 0, -0.8509395, 0.5252637, 0, 252.31131, 220.36183)
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 offset_left = 186.0
