@@ -1,4 +1,4 @@
-[gd_scene load_steps=238 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=239 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Texture2D" uid="uid://f5opooec7e3b" path="res://Assets/environment/Sky Box_Untitled.png" id="2_i2wt2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cmek6gwoogb1h" path="res://Assets/Flight/Platform.glb" id="3_ph8sb"]
 [ext_resource type="PackedScene" uid="uid://xx6suxi72mm5" path="res://Assets/environment/Sky Box.glb" id="3_q1o5o"]
 [ext_resource type="Image" uid="uid://dms7s41s62fk2" path="res://Assets/terrain/Heightmap_0_0.res" id="3_quq8b"]
+[ext_resource type="Resource" uid="uid://8pvlg3psv1gb" path="res://Scripts/collectibles/star.tres" id="4_5q7js"]
 [ext_resource type="Texture2D" uid="uid://c2tntehikldvi" path="res://Scenes/flight_mode/placeholders/gridbox.png" id="4_07op2"]
 [ext_resource type="PackedScene" uid="uid://d33elhaxkw2ak" path="res://Assets/environment/tree2.glb" id="4_325c1"]
 [ext_resource type="Shape3D" uid="uid://cwj1lb33u07uc" path="res://Assets/environment/cave_collision.tres" id="4_jn6ig"]
@@ -478,6 +479,30 @@ script = ExtResource("1_25o61")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r5eu6")
 
+[node name="Collectibles" type="Node3D" parent="."]
+
+[node name="Star" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 37.290062, 157.43332, -79.77217)
+item = ExtResource("4_5q7js")
+
+[node name="Coin" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 2.3250313, 192.79039, 113.33736)
+
+[node name="Coin2" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 2.3250313, 195.79039, 113.33736)
+
+[node name="Coin3" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.6749687, 192.79039, 113.33736)
+
+[node name="Coin4" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.6749687, 195.79039, 113.33736)
+
+[node name="Coin5" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -3.6749687, 192.79039, 113.33736)
+
+[node name="Coin6" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -3.6749687, 195.79039, 113.33736)
+
 [node name="Cave" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
 script = ExtResource("3_jp6c4")
@@ -815,9 +840,6 @@ script = ExtResource("8_ph8sb")
 game_context = ExtResource("9_07op2")
 
 [node name="GuideDebugger" parent="." instance=ExtResource("9_jp6c5")]
-
-[node name="Collectible" parent="." instance=ExtResource("11_d51bt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9513817, 54.013893, 34.38234)
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
 [connection signal="item_selected" from="BoxContainer/CameraOption" to="." method="_on_camera_option_item_selected"]

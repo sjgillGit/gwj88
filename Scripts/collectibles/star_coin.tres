@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b50in8wp4aman"]
+
+[ext_resource type="PackedScene" uid="uid://ci6c7qf2dk80p" path="res://Assets/collectibles/Collectable STAR.glb" id="1_3hjde"]
+[ext_resource type="Script" uid="uid://bgeplv5gp0ubu" path="res://Scripts/collectibles/item.gd" id="1_lrwgo"]
+
+[resource]
+script = ExtResource("1_lrwgo")
+name = "Shining Star"
+asset = ExtResource("1_3hjde")
+metadata/_custom_type_script = "uid://bgeplv5gp0ubu"

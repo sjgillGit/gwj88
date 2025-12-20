@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcivogbnss7o8"]
+
+[ext_resource type="PackedScene" uid="uid://ci6c7qf2dk80p" path="res://Assets/collectibles/Collectable STAR.glb" id="1_gegtm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7p5vh"]
+albedo_color = Color(0.77, 0.6500083, 0.11549998, 1)
+metallic = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gegtm"]
+material = SubResource("StandardMaterial3D_7p5vh")
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.1
+radial_segments = 32
+rings = 0
+
+[node name="Collectable STAR COIN" instance=ExtResource("1_gegtm")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 1.8142723e-08, 0.5849429, 0)
+mesh = SubResource("CylinderMesh_gegtm")
