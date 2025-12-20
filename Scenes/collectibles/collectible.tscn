@@ -1,10 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://c51djvfclnyar"]
+[gd_scene load_steps=7 format=3 uid="uid://c51djvfclnyar"]
 
 [ext_resource type="Script" uid="uid://cjj70l5twft12" path="res://Scripts/collectibles/collectible.gd" id="1_wqo77"]
-[ext_resource type="Resource" uid="uid://8pvlg3psv1gb" path="res://Scripts/collectibles/star.tres" id="2_7p5vh"]
-[ext_resource type="PackedScene" uid="uid://ci6c7qf2dk80p" path="res://Assets/collectibles/Collectable STAR COIN.glb" id="2_vw7kr"]
+[ext_resource type="Resource" uid="uid://b50in8wp4aman" path="res://Scripts/collectibles/star_coin.tres" id="2_7p5vh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ibyil"]
+resource_local_to_scene = true
+radius = 3.7357585
+
+[sub_resource type="Animation" id="Animation_d0plv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_7p5vh"]
 resource_name = "spin"
@@ -34,32 +61,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.1, 2.5)
 }
 
-[sub_resource type="Animation" id="Animation_d0plv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jhty4"]
 _data = {
 &"RESET": SubResource("Animation_d0plv"),
@@ -77,10 +78,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_ibyil")
 debug_color = Color(0.76496416, 0.44135654, 0.2332983, 0.41960785)
 
-[node name="Collectable STAR COIN" parent="." instance=ExtResource("2_vw7kr")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Collectable STAR COIN"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Item")
 libraries = {
 &"": SubResource("AnimationLibrary_jhty4")
 }

@@ -51,6 +51,9 @@ func end_thrust():
 	_thrusting = false
 	thrusting_changed.emit(_thrusting)
 
+func get_control():
+	return stats.control
+
 
 func get_thrust():
 	return stats.thrust if _thrusting && _fuel_seconds > 0 else 0.0

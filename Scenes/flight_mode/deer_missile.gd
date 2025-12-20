@@ -13,7 +13,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export_range(0.0, 0.1, 0.0001) var base_drag := 0.0001
 @export var base_mass := 50.0
 ## Amount of control you have over flight.. should be between 0 and 1
-@export_range(0, 1.0, 0.01) var base_control := 0.1
+@export_range(0, 1.0, 0.01) var base_control := 0.4
 ## speeds at which we have flight control
 @export var control_envelope: Curve
 @export var setup_seconds := 10.0
@@ -23,9 +23,9 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var yaw_speed := 0.25
 ## This should be a fraction, every frame it tries to get to the
 ## 'ideal' roll by roll_speed% of the distance
-@export_range(0.0, 1.0, 0.01) var roll_speed := 0.1
+@export_range(0.0, 1.0, 0.01) var roll_speed := 0.05
 @export_range(0.0, PI, 0.1) var roll_limit := PI * 0.25
-@export_range(0.0, 10.0, 0.1) var roll_correction_speed := 0.1
+@export_range(0.0, 10.0, 0.001) var roll_correction_speed := 0.05
 
 @export var show_debug_ui := true:
 	set(value):
@@ -186,8 +186,10 @@ func _apply_upgrade_stats():
 	_upgrade_lift = 0
 	_upgrade_thrust = 0
 	_upgrade_drag = 0
+	_upgrade_control = 0
 	for u in _launch_upgrades:
 		_upgrade_mass += u.get_mass()
+		_upgrade_control += u.get_control()
 		_upgrade_thrust += u.get_thrust()
 		_upgrade_lift += u.get_lift()
 		_upgrade_drag += u.get_drag()
@@ -309,8 +311,8 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 		var up_vector := (gbasis.inverse() * Vector3.UP * Vector3(1.0, 1.0, 0.0)).normalized()
 		var up_dist = -up_vector.x
 		if up_vector.y > 0.0 && abs(up_dist) > 0.001:
-			var sign := -1.0 if -up_vector.x > 0.0 else 1.0
-			state.apply_torque(gbasis * roll_correction_speed * sign * Vector3.FORWARD * mass)
+			var amount := up_vector.x
+			state.apply_torque(gbasis * roll_correction_speed * amount * Vector3.FORWARD * mass)
 
 
 func _apply_drag(state: PhysicsDirectBodyState3D):

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://0b0gltylvs5w"]
+
+[sub_resource type="Gradient" id="Gradient_vke2r"]
+colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uit24"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ruth0"]
+noise = SubResource("FastNoiseLite_uit24")
+color_ramp = SubResource("Gradient_vke2r")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdj3g"]
+albedo_texture = SubResource("NoiseTexture2D_ruth0")
+
+[sub_resource type="FogMaterial" id="FogMaterial_hcc7t"]
+density = 0.1
+albedo = Color(0.32544088, 0.3254409, 0.32544088, 1)
+height_falloff = 0.07643458
+edge_fade = 1e-05
+
+[node name="Cave" type="CSGCombiner3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+radius = 37.942383
+height = 131.92499
+sides = 12
+material = SubResource("StandardMaterial3D_cdj3g")
+
+[node name="CSGBox" type="CSGBox3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.969879, 0)
+operation = 2
+size = Vector3(100, 146.46967, 100)
+material = SubResource("StandardMaterial3D_cdj3g")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCylinder3D/CSGBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.1939697, 32.11647)
+operation = 2
+radius = 75.77252
+material = SubResource("StandardMaterial3D_cdj3g")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4671631, 0)
+operation = 2
+radius = 29.393066
+height = 200.0
+sides = 16
+material = SubResource("StandardMaterial3D_cdj3g")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+layers = 3
+size = Vector3(60, 171.98, 60)
+shape = 2
+material = SubResource("FogMaterial_hcc7t")

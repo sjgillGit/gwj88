@@ -5,7 +5,8 @@ extends Resource
 @export_multiline var description := ""
 @export var cost := 1000
 # Upgrade stat static values
-# use get_x() to get the current dynamic value
+# use get_x() in the upgrade to get the current dynamic value
+@export_range(-1.0, 1.0, 0.001) var control := 0.0
 @export var thrust := 0.0
 @export var lift := 0
 @export var drag := 0
