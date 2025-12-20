@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_f14lv")
 upgrade_name = "Wings"
-lift = 500
+control = 0.30000000000000004
+lift = 300
 metadata/_custom_type_script = "uid://07r7h8akr6m1"

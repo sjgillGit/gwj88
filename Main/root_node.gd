@@ -23,6 +23,7 @@ func _game_state_changed(new_state: GameState.State, _old_state: GameState.State
 		if _old_instance:
 			_old_instance.queue_free()
 		_old_scene = new_scene
-		var scene_instance = new_scene.instantiate()
-		_old_instance = scene_instance
-		add_child(scene_instance)
+		if new_scene:
+			var scene_instance = new_scene.instantiate()
+			_old_instance = scene_instance
+			add_child(scene_instance)

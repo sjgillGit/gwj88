@@ -10,7 +10,9 @@
 [ext_resource type="Image" uid="uid://dms7s41s62fk2" path="res://Assets/terrain/Heightmap_0_0.res" id="3_quq8b"]
 [ext_resource type="Texture2D" uid="uid://c2tntehikldvi" path="res://Scenes/flight_mode/placeholders/gridbox.png" id="4_07op2"]
 [ext_resource type="PackedScene" uid="uid://d33elhaxkw2ak" path="res://Assets/environment/tree2.glb" id="4_325c1"]
+[ext_resource type="Shape3D" uid="uid://cwj1lb33u07uc" path="res://Assets/environment/cave_collision.tres" id="4_jn6ig"]
 [ext_resource type="Image" uid="uid://di80hejnbvpam" path="res://Assets/terrain/Snow_0_0.res" id="4_rmmip"]
+[ext_resource type="ArrayMesh" uid="uid://h3x2hhbtnshm" path="res://Assets/environment/cave_mesh.tres" id="5_5q7js"]
 [ext_resource type="PackedScene" uid="uid://dgw7go24q6e8x" path="res://Assets/environment/tree3.glb" id="5_jn6ig"]
 [ext_resource type="Image" uid="uid://c1f6lc4ggmj07" path="res://Assets/terrain/Splatmap_0_0_0.res" id="5_vm3ul"]
 [ext_resource type="Image" uid="uid://data0v05la1y8" path="res://Assets/terrain/Foliage_0_0_0.res" id="5_wl3fg"]
@@ -21,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
 [ext_resource type="Image" uid="uid://yhy8a00qnrsh" path="res://Assets/terrain/Heightmap_-1_0.res" id="7_q7uad"]
 [ext_resource type="Image" uid="uid://cwvmecfm2e32x" path="res://Assets/terrain/Foliage_0_0_2.res" id="7_ywvku"]
-[ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
+[ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
 [ext_resource type="Image" uid="uid://qqj1lmwo15fv" path="res://Assets/terrain/Snow_-1_0.res" id="8_xufyi"]
 [ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="9_07op2"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/booster.tscn" id="9_jp6c4"]
@@ -200,33 +202,24 @@ fog_density = 0.0002
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.001
 
-[sub_resource type="Gradient" id="Gradient_vke2r"]
+[sub_resource type="Gradient" id="Gradient_jn6ig"]
 colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_uit24"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5q7js"]
 noise_type = 2
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ruth0"]
-noise = SubResource("FastNoiseLite_uit24")
-color_ramp = SubResource("Gradient_vke2r")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7afml"]
+noise = SubResource("FastNoiseLite_5q7js")
+color_ramp = SubResource("Gradient_jn6ig")
 seamless = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdj3g"]
-albedo_texture = SubResource("NoiseTexture2D_ruth0")
-
-[sub_resource type="FogMaterial" id="FogMaterial_hcc7t"]
-density = 0.1
-albedo = Color(0.32544088, 0.3254409, 0.32544088, 1)
-height_falloff = 0.07643458
-edge_fade = 1e-05
-
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i2wt2"]
-noise = SubResource("FastNoiseLite_uit24")
+noise = SubResource("FastNoiseLite_5q7js")
 seamless = true
 as_normal_map = true
 
 [sub_resource type="TextureSetResource" id="TextureSetResource_rm4vd"]
-albedoTexture = SubResource("NoiseTexture2D_ruth0")
+albedoTexture = SubResource("NoiseTexture2D_7afml")
 normalTexture = SubResource("NoiseTexture2D_i2wt2")
 
 [sub_resource type="TextureSetsResource" id="TextureSetsResource_pjyto"]
@@ -485,42 +478,16 @@ script = ExtResource("1_25o61")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r5eu6")
 
-[node name="Cave" type="CSGCombiner3D" parent="."]
+[node name="Cave" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
+script = ExtResource("3_jp6c4")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cave"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-radius = 37.942383
-height = 131.92499
-sides = 12
-material = SubResource("StandardMaterial3D_cdj3g")
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Cave"]
+shape = ExtResource("4_jn6ig")
 
-[node name="CSGBox" type="CSGBox3D" parent="Cave/CSGCylinder3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.969879, 0)
-operation = 2
-size = Vector3(100, 146.46967, 100)
-material = SubResource("StandardMaterial3D_cdj3g")
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="Cave/CSGCylinder3D/CSGBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.1939697, 32.11647)
-operation = 2
-radius = 75.77252
-material = SubResource("StandardMaterial3D_cdj3g")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Cave/CSGCylinder3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4671631, 0)
-operation = 2
-radius = 29.393066
-height = 200.0
-sides = 16
-material = SubResource("StandardMaterial3D_cdj3g")
-
-[node name="FogVolume" type="FogVolume" parent="Cave"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-layers = 3
-size = Vector3(60, 171.98, 60)
-shape = 2
-material = SubResource("FogMaterial_hcc7t")
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Cave"]
+mesh = ExtResource("5_5q7js")
+skeleton = NodePath("../..")
 
 [node name="TerraBrush" type="TerraBrush" parent="."]
 dataPath = "res://Assets/terrain"
