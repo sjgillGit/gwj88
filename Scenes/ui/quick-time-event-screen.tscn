@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcb08r7a8rbcs"]
+
+[ext_resource type="Script" uid="uid://c2ggugpievje1" path="res://Scenes/ui/quick_time_event-screen.gd" id="1_eswsx"]
+
+[node name="QuickTimeEventScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_eswsx")
+
+[node name="QuickTimeEventPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -841.0
+offset_top = -114.0
+offset_right = -590.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="QuickTimeEventPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuickTimeEventPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Event" type="Label" parent="QuickTimeEventPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Sample Event"
+
+[node name="Instruction" type="Label" parent="QuickTimeEventPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Press [Action]"
