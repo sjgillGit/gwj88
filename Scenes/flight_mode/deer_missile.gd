@@ -32,6 +32,8 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 		if is_node_ready():
 			%DebugUi.visible = value
 
+@export var camera_animation: AnimationPlayer
+
 @export_category("GUIDE")
 @export var movement: GUIDEAction
 @export var boost: GUIDEAction
@@ -412,6 +414,7 @@ func _update_input() -> void:
 			_flight_state_changed(FlightState.PRE_FLIGHT)
 			%TimeLeftLabel.visible = false
 			_qte_start.cancel_action()
+			camera_animation.play("RESET")
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
