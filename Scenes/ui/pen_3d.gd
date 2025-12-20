@@ -12,28 +12,6 @@ const camera_tween_time_seconds := 1
 func _ready() -> void:
 	GameState.new_state.connect(_on_game_state_changed)
 
-	## TODO remove this once Quick time testing complete
-	var qte: QuickTimeEventScreen.QTE = QuickTimeEventScreen.add_quick_time_event(
-		"Quick Time Test",
-		3,
-		5.0,
-		func(action_taken):
-			print("Quick Time Test Callable: %s" % action_taken)
-	)
-	qte.completion.connect(func(action_taken: bool):
-		print("Quick Time Test signal: %s" % action_taken)
-	)
-	QuickTimeEventScreen.add_quick_time_event(
-		"Longer Quick Time Test",
-		2,
-		10.0,
-	)
-	QuickTimeEventScreen.add_quick_time_event(
-		"Infinite Time Quick Time",
-		1,
-		0.0,
-	)
-
 
 func _on_game_state_changed(new_state: GameState.State, old_state: GameState.State):
 	print("state change new_state: %s, old_state: %s" % [
