@@ -40,6 +40,7 @@ enabled=PackedStringArray("res://addons/guide/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://Assets/audio/placeholder_audio/": "green",
 "res://Assets/ui/": "green",
 "res://Scenes/global/": "gray",
 "res://Scenes/ui/": "green"

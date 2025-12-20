@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://gcxcsrk5oihi"]
+[gd_scene load_steps=3 format=3 uid="uid://gcxcsrk5oihi"]
 
+[ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_7u11s"]
 [ext_resource type="Script" uid="uid://cve4iokgdxqe1" path="res://Scripts/ui/ui_startup.gd" id="1_yb202"]
 
 [node name="UiStartup" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7u11s")
 script = ExtResource("1_yb202")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

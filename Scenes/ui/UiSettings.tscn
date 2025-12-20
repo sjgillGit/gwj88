@@ -22,6 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t20rl")
+theme = ExtResource("1_c2nn8")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 texture_filter = 1
