@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://i4hgl17h5n1r"]
+[gd_scene load_steps=13 format=3 uid="uid://cv6fkpx6hbgrx"]
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bh0587mph4euh" path="res://Assets/ui/pen/antler1.png" id="8_5je5q"]
 [ext_resource type="Texture2D" uid="uid://d2rip6rwx4wfe" path="res://Assets/ui/pen/antler2.png" id="9_12tqk"]
 [ext_resource type="Texture2D" uid="uid://dp5ba27mieaf3" path="res://Assets/ui/pen/antler3.png" id="10_30hcq"]
+[ext_resource type="Texture2D" uid="uid://cwncesug1i4n" path="res://Assets/ui/coin_01.png" id="12_208sv"]
 
 [node name="UiPen" type="Control" groups=["ui"]]
 layout_mode = 3
@@ -179,18 +180,43 @@ offset_right = 133.0
 offset_bottom = 72.0
 text = "Play"
 
+[node name="PriceLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 837.0
+offset_top = 396.0
+offset_right = 1109.0
+offset_bottom = 439.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Price: {0}"
+
 [node name="MoneyContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 401.0
-offset_bottom = 118.0
+offset_right = 450.0
+offset_bottom = 166.0
 
-[node name="MoneyLabel" type="Label" parent="MoneyContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MoneyContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MoneyContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("12_208sv")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MoneyLabel" type="Label" parent="MoneyContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "$: {0}"
+text = " : {0}"
 horizontal_alignment = 1
 
 [connection signal="visibility_changed" from="." to="Shop" method="_on_ui_pen_visibility_changed"]
