@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc26ocp4eku6k"]
+
+[ext_resource type="PackedScene" uid="uid://dnx4trx31kv1i" path="res://Assets/ui/pen/candles/candle_lit.gltf" id="1_3dx00"]
+
+[node name="Candles" type="Node3D"]
+
+[node name="candle_lit2" parent="." instance=ExtResource("1_3dx00")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45520675, 0)
+light_color = Color(1, 0.45490196, 0.16078432, 1)

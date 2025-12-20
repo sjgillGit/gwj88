@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://7iukt2vlfaaf"]
+[gd_scene load_steps=9 format=3 uid="uid://7iukt2vlfaaf"]
 
 [ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/pen_3d.gd" id="1_jlhhw"]
 [ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Assets/pen_updated.tscn" id="2_cih2e"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_jlhhw"]
+[ext_resource type="PackedScene" uid="uid://dc26ocp4eku6k" path="res://Assets/ui/pen/candles/candles.tscn" id="4_4je65"]
 [ext_resource type="PackedScene" uid="uid://dy0rv65ceao3" path="res://Assets/ui/pen/food/apple.tscn" id="4_cih2e"]
 
 [sub_resource type="Environment" id="Environment_wxwfb"]
@@ -15,12 +16,12 @@ friction = 3.0
 [node name="Pen3D" type="Node3D"]
 script = ExtResource("1_jlhhw")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wxwfb")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wxwfb")
 
 [node name="Pen_Updated" parent="." instance=ExtResource("2_cih2e")]
 
@@ -43,6 +44,11 @@ fov = 83.58761
 unique_name_in_owner = true
 transform = Transform3D(-0.5559329, -0.3271352, 0.7641474, 0, 0.9193003, 0.3935569, -0.8312272, 0.21879123, -0.5110693, 1.3459258, 2.069077, -3.7361157)
 fov = 83.58761
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="Candles" parent="Lighting" instance=ExtResource("4_4je65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.798481, -0.10101056, -3.592075)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10279763, 0)
