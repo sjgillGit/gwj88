@@ -3,7 +3,6 @@ class_name UiShopButton
 extends TextureRect
 
 
-
 const COLOR_DISABLED: Color = Color()
 const COLOR_ENABLED: Color = Color("ffffff")
 const COLOR_PURCHASED: Color = Color.DIM_GRAY
@@ -20,6 +19,8 @@ var current_StoreState: StoreState = StoreState.DISABLED:
 		current_StoreState = v
 		check_status()
 
+@export var price: int = 500
+
 @onready var button: TextureButton = get_child(0)
 
 func _ready() -> void:
@@ -30,6 +31,7 @@ func _ready() -> void:
 	if id == DeerUpgrades.Category.SMALL_ANTLERS:
 		current_StoreState = StoreState.ENABLED
 	check_status()
+ 
 
 func check_status():
 	match current_StoreState:

@@ -21,8 +21,9 @@ var current: State:
 		print(State.find_key(v))
 		if v == State.QUIT:
 			get_tree().quit()
-		new_state.emit(v, current)
+		var last = current
 		current = v
+		new_state.emit(current, last)
 
 var money: int:
 	set(v):
