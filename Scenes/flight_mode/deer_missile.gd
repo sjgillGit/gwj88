@@ -68,6 +68,8 @@ var _overlapping_areas: Array[int]
 var _current_flight_state := FlightState.SETUP
 var _setup_time_left := 0.0
 
+var _qte_start
+
 
 func _ready():
 	# when running the scene directly from the editor, we want some upgrades
@@ -91,11 +93,25 @@ func _ready():
 
 	await get_tree().process_frame
 	$FollowCamera.transform = $CameraFollowMark.transform
-	_flight_state_changed()
+	_flight_state_changed(FlightState.SETUP)
+	_setup_quick_time_action_to_start()
+
+
+func _setup_quick_time_action_to_start():
+	_qte_start = QuickTimeEventScreen.add_quick_time_event(
+		"START!",
+		1,
+		setup_seconds,
+		(func (_unused):
+		if _current_flight_state < FlightState.PRE_FLIGHT:
+			_flight_state_changed(FlightState.PRE_FLIGHT)
+			%TimeLeftLabel.visible = false
+		),
+	)
 
 
 func get_flight_state() -> FlightState:
-	if _current_flight_state == FlightState.SETUP:
+	if _current_flight_state in [FlightState.SETUP, FlightState.POST_FLIGHT]:
 		return _current_flight_state
 	if _landed && linear_velocity.length() < 0.01:
 		return FlightState.POST_FLIGHT
@@ -104,7 +120,14 @@ func get_flight_state() -> FlightState:
 	return FlightState.PRE_FLIGHT
 
 
-func _flight_state_changed():
+func _flight_state_changed(new_state: FlightState):
+	print("Change FlightState, %s -> %s" % [
+		FlightState.keys()[_current_flight_state],
+		FlightState.keys()[new_state]
+	])
+	if new_state < _current_flight_state:
+		assert(false, "Found it!")
+	_current_flight_state = new_state
 	if _current_flight_state == FlightState.SETUP:
 		axis_lock_linear_z = true
 		axis_lock_angular_y = true
@@ -130,13 +153,12 @@ func _on_flight_state_timer_timeout() -> void:
 			%TimeLeftLabel.text = "< %d >" % _setup_time_left
 		else:
 			%TimeLeftLabel.visible = false
-			_current_flight_state = FlightState.PRE_FLIGHT
-			_flight_state_changed()
+			_qte_start.cancel_action()
+			_flight_state_changed(FlightState.PRE_FLIGHT)
 	var flight_state := get_flight_state()
 	_update_distances()
 	if flight_state != _current_flight_state:
-		_current_flight_state = flight_state
-		_flight_state_changed()
+		_flight_state_changed(flight_state)
 
 
 func set_enabled_upgrades(upgrades: Array[DeerUpgrades.Category]):
@@ -183,6 +205,17 @@ func _is_terrain(b: Node3D) -> bool:
 	return false
 
 
+func _setup_quick_time_event_landed():
+	QuickTimeEventScreen.add_quick_time_event(
+		"Collect Rewards!",
+		1,
+		5.0,
+		(func(_unused):
+		_flight_state_changed(FlightState.POST_FLIGHT)
+		)
+	)
+
+
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var _distance_updated := false
 	_on_ramp = false
@@ -204,6 +237,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				_landed = true
 				for u in _launch_upgrades:
 					u.end_thrust()
+				_setup_quick_time_event_landed()
 		elif b is TopPlatform:
 			_on_platform = true
 	if _current_flight_state in [FlightState.PRE_FLIGHT, FlightState.POST_FLIGHT] && !_on_ramp || _landed:
@@ -358,9 +392,9 @@ func _update_input() -> void:
 	# probably should have a way to invert Y axis for weirdos
 	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _current_flight_state == FlightState.SETUP && abs(movement.value_axis_2d.y) > 0.5:
-			_current_flight_state = FlightState.PRE_FLIGHT
-			_flight_state_changed()
+			_flight_state_changed(FlightState.PRE_FLIGHT)
 			%TimeLeftLabel.visible = false
+			_qte_start.cancel_action()
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
