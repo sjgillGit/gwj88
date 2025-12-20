@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://8pvlg3psv1gb"]
 
 [ext_resource type="Script" uid="uid://bgeplv5gp0ubu" path="res://Scripts/collectibles/item.gd" id="1_60hwx"]
-[ext_resource type="PackedScene" uid="uid://ci6c7qf2dk80p" path="res://Assets/collectibles/Collectable STAR COIN.glb" id="1_ybn1g"]
+[ext_resource type="PackedScene" uid="uid://ci6c7qf2dk80p" path="res://Assets/collectibles/Collectable STAR.glb" id="1_ybn1g"]
 
 [resource]
 script = ExtResource("1_60hwx")
