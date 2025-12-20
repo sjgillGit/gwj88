@@ -14,7 +14,7 @@ enum State{
 	PEN, ## Upgrades screen
 	QUIT, ## Should just auto close the game
 	PAUSE, ## TODO
-	}
+}
 
 var current: State:
 	set(v):
