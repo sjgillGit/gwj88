@@ -12,21 +12,68 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cd4xp")
 
-[node name="Button" type="Button" parent="."]
-visible = false
+[node name="MainVBox" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
+offset_left = -119.0
+offset_top = -20.0
+offset_right = 119.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="MainVBox"]
+layout_mode = 2
+theme = ExtResource("1_fml7s")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainVBox/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 40
+
+[node name="GameStatsTitle" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8862745, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Game Stats"
+horizontal_alignment = 1
+
+[node name="FlightMoney" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8862745, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Flight $: {0}"
+horizontal_alignment = 1
+
+[node name="RollMoney" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8862745, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Roll $: {0}"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MainVBox"]
+unique_name_in_owner = true
+layout_mode = 2
 theme = ExtResource("1_fml7s")
 text = "Back To Pen"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainVBox/Button" to="." method="_on_button_pressed"]

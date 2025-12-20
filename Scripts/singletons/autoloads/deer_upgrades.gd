@@ -54,3 +54,8 @@ func upgrade_available_for_purchase() -> bool:
 
 func get_upgrades() -> Array[Category]:
 	return _upgrades
+
+func get_next_upgrade() -> Category:
+	if upgrade_available_for_purchase():
+		return _upgrade_order[_upgrades.size()]
+	return Category.NONE

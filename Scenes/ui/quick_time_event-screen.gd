@@ -5,7 +5,7 @@ extends Control
 @onready var instruction = %Instruction
 
 var _quick_time_events_queue: Array = []
-
+var action: GUIDEAction = preload("res://Scripts/guide/action.tres")
 
 class QTE extends Node:
 	signal completion(action_taken: bool)
@@ -37,7 +37,7 @@ class QTE extends Node:
 			)
 
 
-	func take_action():
+	func complete_action():
 		completion.emit(true)
 		completion_callable.call(true)
 
@@ -99,8 +99,32 @@ func _process(_delta):
 		quick_time_event_panel.hide()
 
 
-func _unhandled_input(input_event: InputEvent) -> void:
-	if input_event.is_action_pressed("action"):
+func _ready():
+	action.triggered.connect(func():
 		var qte: QTE = _quick_time_events_queue.front()
-		_quick_time_events_queue.erase(qte)
-		qte.queue_free()
+		if qte:
+			qte.complete_action()
+	)
+
+
+func _sample_usage():
+	var qte: QuickTimeEventScreen.QTE = QuickTimeEventScreen.add_quick_time_event(
+		"Quick Time Test",
+		3,
+		5.0,
+		func(action_taken):
+			print("Quick Time Test Callable: %s" % action_taken)
+	)
+	qte.completion.connect(func(action_taken: bool):
+		print("Quick Time Test signal: %s" % action_taken)
+	)
+	QuickTimeEventScreen.add_quick_time_event(
+		"Longer Quick Time Test",
+		2,
+		10.0,
+	)
+	QuickTimeEventScreen.add_quick_time_event(
+		"Infinite Time Quick Time",
+		1,
+		0.0,
+	)
