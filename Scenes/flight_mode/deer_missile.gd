@@ -114,7 +114,6 @@ func _setup_quick_time_action_to_start():
 		if _current_flight_state < FlightState.PRE_FLIGHT:
 			_flight_state_changed(FlightState.PRE_FLIGHT)
 			%TimeLeftLabel.visible = false
-			camera_animation.speed_scale = 100.0
 			if _qte_start:
 				_qte_start.queue_free()
 				_qte_start = null
@@ -146,6 +145,8 @@ func _flight_state_changed(new_state: FlightState):
 	else:
 		axis_lock_linear_z = false
 		axis_lock_angular_y = false
+	if _current_flight_state == FlightState.PRE_FLIGHT:
+		camera_animation.speed_scale = 100.0
 	if _current_flight_state == FlightState.FLIGHT:
 		%CameraFollowMark.position += Vector3.MODEL_REAR * 2.0
 		for u in _launch_upgrades:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=237 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=235 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -25,9 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
 [ext_resource type="Image" uid="uid://yhy8a00qnrsh" path="res://Assets/terrain/Heightmap_-1_0.res" id="7_q7uad"]
 [ext_resource type="Image" uid="uid://cwvmecfm2e32x" path="res://Assets/terrain/Foliage_0_0_2.res" id="7_ywvku"]
-[ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
 [ext_resource type="Image" uid="uid://qqj1lmwo15fv" path="res://Assets/terrain/Snow_-1_0.res" id="8_xufyi"]
-[ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="9_07op2"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/booster.tscn" id="9_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="9_jp6c5"]
 [ext_resource type="Image" uid="uid://uhirt1g0enfg" path="res://Assets/terrain/Splatmap_-1_0_0.res" id="9_w5m2m"]
@@ -922,10 +920,6 @@ label_settings = SubResource("LabelSettings_yr5ue")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
-
-[node name="GUIDEContext" type="Node" parent="."]
-script = ExtResource("8_ph8sb")
-game_context = ExtResource("9_07op2")
 
 [node name="GuideDebugger" parent="." instance=ExtResource("9_jp6c5")]
 

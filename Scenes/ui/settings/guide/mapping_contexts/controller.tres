@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=34 format=3 uid="uid://dxue2qfb0qr24"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=33 format=3 uid="uid://dxue2qfb0qr24"]
 
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="1_l4253"]
 [ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="2_2khbp"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://rvttn472ix6v" path="res://addons/guide/inputs/guide_input_joy_button.gd" id="10_a30o8"]
 [ext_resource type="Script" uid="uid://b52rqq28tuqpg" path="res://addons/guide/triggers/guide_trigger_pressed.gd" id="11_avbpy"]
 [ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/action.tres" id="16_0dq74"]
-[ext_resource type="Script" uid="uid://bbhoxsiqwo07l" path="res://addons/guide/inputs/guide_input_joy_axis_1d.gd" id="16_2khbp"]
 [ext_resource type="Script" uid="uid://c47lkb48itd6l" path="res://addons/guide/modifiers/guide_modifier_deadzone.gd" id="17_0dq74"]
 
 [sub_resource type="Resource" id="Resource_nr3w6"]
@@ -69,9 +68,8 @@ script = ExtResource("5_167oa")
 action = ExtResource("8_4d4ov")
 input_mappings = Array[ExtResource("4_m37gr")]([SubResource("Resource_limxc")])
 
-[sub_resource type="Resource" id="Resource_0dq74"]
-script = ExtResource("16_2khbp")
-axis = 4
+[sub_resource type="Resource" id="Resource_2khbp"]
+script = ExtResource("10_a30o8")
 
 [sub_resource type="Resource" id="Resource_52jqr"]
 script = ExtResource("17_0dq74")
@@ -79,7 +77,7 @@ lower_threshold = 0.01
 
 [sub_resource type="Resource" id="Resource_wyflw"]
 script = ExtResource("4_m37gr")
-input = SubResource("Resource_0dq74")
+input = SubResource("Resource_2khbp")
 modifiers = Array[ExtResource("5_3rcwi")]([SubResource("Resource_52jqr")])
 
 [sub_resource type="Resource" id="Resource_tikav"]

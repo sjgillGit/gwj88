@@ -25,7 +25,7 @@ class_name Wind
 		if is_node_ready():
 			_update_particles()
 
-@export_range(0.1, 2.0, 0.1) var particle_speed_multiplier: float = 1.0:
+@export_range(0.1, 2.0, 0.1) var particle_speed_multiplier: float = 10.0:
 	set(value):
 		particle_speed_multiplier = value
 		if is_node_ready():
