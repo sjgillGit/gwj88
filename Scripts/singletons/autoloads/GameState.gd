@@ -3,6 +3,7 @@
 extends Node
 
 signal new_state(new_state: State, old_state: State)
+signal money_changed
 
 enum State{
 	STARTUP, ## Initial mode, always points to MAIN_MENU once done.
@@ -22,6 +23,11 @@ var current: State:
 			get_tree().quit()
 		new_state.emit(v, current)
 		current = v
+
+var money: int:
+	set(v):
+		money = v
+		money_changed.emit()
 
 ## This exists only for Dev purposes. We can peel this off later on
 func _unhandled_input(event: InputEvent) -> void:

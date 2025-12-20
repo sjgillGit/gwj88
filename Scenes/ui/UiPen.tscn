@@ -2,10 +2,10 @@
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
-[ext_resource type="Script" uid="uid://dy20rf2wr6ay0" path="res://Scenes/ui/shop.gd" id="2_d1etx"]
+[ext_resource type="Script" path="res://Scenes/ui/shop.gd" id="2_d1etx"]
 [ext_resource type="Texture2D" uid="uid://d2amlf2gepeg4" path="res://Assets/ui/main/menu-panel.png" id="4_1a6lg"]
 [ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="4_vjfc7"]
-[ext_resource type="Script" uid="uid://k5af4gxc8bm7" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
+[ext_resource type="Script" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
 [ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="5_d1etx"]
 [ext_resource type="Script" uid="uid://1udhbw83ko2l" path="res://Scripts/ui/button.gd" id="6_d1etx"]
 [ext_resource type="Texture2D" uid="uid://c43tocs30urn" path="res://Assets/ui/pen/saddle.png" id="7_6puqo"]
@@ -185,6 +185,20 @@ offset_bottom = 72.0
 theme = ExtResource("1_s3urb")
 theme_override_font_sizes/font_size = 32
 text = "Play"
+
+[node name="MoneyContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 401.0
+offset_bottom = 118.0
+
+[node name="MoneyLabel" type="Label" parent="MoneyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Available $: {0}"
+horizontal_alignment = 1
 
 [connection signal="visibility_changed" from="." to="Shop" method="_on_ui_pen_visibility_changed"]
 [connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]

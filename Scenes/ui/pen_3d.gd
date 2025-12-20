@@ -11,7 +11,8 @@ const camera_tween_time_seconds := 1
 
 func _ready() -> void:
 	GameState.new_state.connect(_on_game_state_changed)
-
+	if GameState.current == GameState.State.PEN:
+		camera.global_transform = pen_camera.global_transform
 
 func _on_game_state_changed(new_state: GameState.State, old_state: GameState.State):
 	print("state change new_state: %s, old_state: %s" % [
@@ -21,13 +22,8 @@ func _on_game_state_changed(new_state: GameState.State, old_state: GameState.Sta
 	if new_state == GameState.State.PEN and \
 	old_state in [GameState.State.STARTUP, GameState.State.MAIN_MENU]:
 		var tween = create_tween()
-		tween.set_parallel()
 		tween.tween_property(
-			camera, "position", pen_camera.position,
-			camera_tween_time_seconds
-		)
-		tween.tween_property(
-			camera, "rotation", pen_camera.rotation,
+			camera, "global_transform", pen_camera.global_transform,
 			camera_tween_time_seconds
 		)
 
