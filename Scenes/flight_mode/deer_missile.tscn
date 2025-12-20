@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=36 format=3 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cp32yx8421hi" path="res://Scenes/collectibles/collecter.tscn" id="5_j778o"]
 [ext_resource type="FontFile" uid="uid://ctxa0kyenu80i" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Dots.ttf" id="7_0j4hg"]
 [ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
+[ext_resource type="PackedScene" uid="uid://jiyal0xstat3" path="res://Assets/environment/wind_indicator.glb" id="9_eftuo"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
 _limits = [0.0, 1.0, 0.0, 1000.0]
@@ -123,54 +124,54 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CameraFollowMark:position")
+tracks/0/path = NodePath("%CameraFollowMark:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.4305115e-06, 1.4324219, -2.954967)]
+"values": [Vector3(1.4305115e-06, 1.4324219, -2.9223132)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../CameraFollowMark:rotation")
+tracks/1/path = NodePath("%CameraFollowMark:quaternion")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.4694737e-08, 1.5707965, 0.07115708)]
+"values": [Quaternion(0.034899496, 0, 0, 0.99939084)]
 }
 
 [sub_resource type="Animation" id="Animation_wfu7b"]
 resource_name = "camera_intro"
-length = 5.0
+length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CameraFollowMark:position")
+tracks/0/path = NodePath("%CameraFollowMark:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.0333333, 5),
+"times": PackedFloat32Array(0, 5, 5.99),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(4.485009, 0.8608061, 5.0629086), Vector3(4.0000014, 1.4324219, 0.045032978), Vector3(1.4305115e-06, 1.4324219, -2.954967)]
+"values": [Vector3(24.096502, -35.488495, 73.75244), Vector3(8.000002, 1.0769365, 2.0650325), Vector3(1.4305115e-06, 1.4324219, -2.9223132)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../CameraFollowMark:rotation")
+tracks/1/path = NodePath("%CameraFollowMark:quaternion")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.0333333, 5),
+"times": PackedFloat32Array(0, 5, 5.99),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.050294414, 0.78666526, 0.05035812), Vector3(1.4694737e-08, 1.5707965, 0.07115708), Vector3(-0.0715585, 3.1415927, 0)]
+"values": [Quaternion(-0.2078277, 0.36596197, 0.111885846, 0.90020055), Quaternion(0.027687637, 0.6083907, 0.021245472, 0.79287), Quaternion(-1.5255056e-09, 0.99939084, 0.03489949, -4.3684757e-08)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g2hql"]
@@ -188,6 +189,44 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g2hql"]
 size = Vector3(0.75006104, 1.3638916, 1.4073486)
+
+[sub_resource type="Animation" id="Animation_61djx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wind_indicator:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y0iyy"]
+resource_name = "spin"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wind_indicator:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0), Vector3(1.5707964, 188.49556, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_baogq"]
+_data = {
+&"RESET": SubResource("Animation_61djx"),
+&"spin": SubResource("Animation_y0iyy")
+}
 
 [node name="DeerMissile" type="RigidBody3D"]
 collision_layer = 3
@@ -275,7 +314,9 @@ libraries = {
 autoplay = "camera_intro"
 
 [node name="CameraFollowMark" type="Marker3D" parent="."]
-transform = Transform3D(-1.6146365e-07, 2.6240727e-08, 1, 0.071097046, 0.9974693, -1.4694737e-08, -0.9974694, 0.07109704, -1.6292068e-07, 1.4305115e-06, 1.4324219, -2.954967)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9975643, -0.06975649, 0, 0.069756486, 0.99756444, 1.4305115e-06, 1.4324219, -2.9223132)
+rotation_edit_mode = 1
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
@@ -298,6 +339,21 @@ horizontal_alignment = 1
 [node name="CollisionShape3D" parent="Collecter" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067443848, 0.4212036, 0.20367432)
 shape = SubResource("BoxShape3D_g2hql")
+
+[node name="WindIndicator" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="wind_indicator" parent="WindIndicator" instance=ExtResource("9_eftuo")]
+transform = Transform3D(3, 0, 0, 0, -4.371139e-08, -3, 0, 1, -1.3113416e-07, 0, 0.75572145, 0.6794592)
+rotation_order = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WindIndicator"]
+libraries = {
+&"": SubResource("AnimationLibrary_baogq")
+}
+autoplay = "spin"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WindIndicator"]
 
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
 

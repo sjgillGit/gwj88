@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdirnrwxprue5"]
+[gd_scene load_steps=18 format=3 uid="uid://cdirnrwxprue5"]
 
 [ext_resource type="Script" uid="uid://cp816wn6um6ql" path="res://Scripts/environment/wind.gd" id="1_ut56u"]
+[ext_resource type="Texture2D" uid="uid://f5opooec7e3b" path="res://Assets/environment/Sky Box_Untitled.png" id="2_ami4o"]
+[ext_resource type="Material" uid="uid://crikjnvec7gpd" path="res://Scenes/environment/Windfog.tres" id="2_b7dpt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut56u"]
-size = Vector3(26.75, 10, 6.605)
+resource_local_to_scene = true
+size = Vector3(11.895, 9, 6.605)
 
 [sub_resource type="Curve" id="Curve_ut56u"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.078653, 0.0, 0, 0]
@@ -20,40 +23,109 @@ point_count = 3
 curve = SubResource("Curve_b7dpt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ut56u"]
+resource_local_to_scene = true
 particle_flag_align_y = true
 emission_shape = 3
-emission_box_extents = Vector3(5.9475, 4.5, 3.3025)
-direction = Vector3(-1, 0, 0)
+emission_box_extents = Vector3(30, 30, 30)
+direction = Vector3(0, 0, 1)
 spread = 0.0
-initial_velocity_min = 41.6
-initial_velocity_max = 83.2
+initial_velocity_min = 2.5
+initial_velocity_max = 5.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_ami4o")
 turbulence_enabled = true
-turbulence_noise_strength = 4.16
+turbulence_noise_strength = 2.5
 turbulence_noise_scale = 1.0
 turbulence_influence_over_life = SubResource("CurveTexture_atssy")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut56u"]
+albedo_color = Color(1, 1, 1, 0.8117647)
+emission_enabled = true
+emission = Color(0.21230483, 0.21230483, 0.21230483, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_wxiuv"]
-size = Vector2(0.2, 1.2)
+material = SubResource("StandardMaterial3D_ut56u")
+size = Vector2(0.3, 3.6)
 orientation = 0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b7dpt"]
+resource_local_to_scene = true
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 30, 30)
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 2.5
+initial_velocity_max = 5.0
+gravity = Vector3(0, -2, 0)
+scale_curve = SubResource("CurveTexture_ami4o")
+turbulence_enabled = true
+turbulence_noise_strength = 2.5
+turbulence_noise_scale = 1.0
+turbulence_influence_over_life = SubResource("CurveTexture_atssy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atssy"]
+albedo_color = Color(1, 1, 1, 0.8117647)
+emission_enabled = true
+emission = Color(0.49, 0.49, 0.49, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_wxiuv"]
+material = SubResource("StandardMaterial3D_atssy")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_atssy"]
+panorama = ExtResource("2_ami4o")
+
+[sub_resource type="Sky" id="Sky_0jjp4"]
+sky_material = SubResource("PanoramaSkyMaterial_atssy")
+
+[sub_resource type="Environment" id="Environment_wxiuv"]
+sky = SubResource("Sky_0jjp4")
+ambient_light_source = 2
+ambient_light_color = Color(0.78200006, 0.82733333, 0.85, 1)
+ambient_light_energy = 0.0
+fog_enabled = true
+fog_density = 0.0002
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.001
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_length = 256.0
 
 [node name="Wind" type="Area3D"]
 collision_layer = 0
 script = ExtResource("1_ut56u")
 area_size = Vector3(11.895, 9, 6.605)
-strength = 416.0
-particle_speed_multiplier = 0.1
+direction = Vector3(-1, 0, 0)
 
 [node name="WindShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 shape = SubResource("BoxShape3D_ut56u")
-debug_color = Color(0, 0, 0, 1)
+debug_color = Color(0.5132329, 0.5132329, 0.5132329, 1)
 
 [node name="WindParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
 amount = 50
 lifetime = 5.0
 randomness = 1.0
+visibility_aabb = AABB(-30, -30, -30, 60, 60, 60)
 process_material = SubResource("ParticleProcessMaterial_ut56u")
 draw_pass_1 = SubResource("PlaneMesh_wxiuv")
+
+[node name="SnowParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+amount = 500
+lifetime = 5.0
+randomness = 1.0
+visibility_aabb = AABB(-30, -30, -30, 60, 60, 60)
+process_material = SubResource("ParticleProcessMaterial_b7dpt")
+draw_pass_1 = SubResource("QuadMesh_wxiuv")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+size = Vector3(50, 50, 50)
+material = ExtResource("2_b7dpt")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wxiuv")
