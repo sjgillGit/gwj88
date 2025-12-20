@@ -99,6 +99,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MAIN_MENU" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_2trrd")
 toggle_mode = true
@@ -106,6 +107,7 @@ button_group = ExtResource("3_b4rq1")
 text = "MAIN MENU"
 
 [node name="QUIT1" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_2trrd")
 toggle_mode = true
