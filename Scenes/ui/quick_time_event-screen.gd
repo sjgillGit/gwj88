@@ -36,6 +36,8 @@ class QTE extends Node:
 				completion_callable.call(false)
 			)
 
+	func _exit_tree():
+		cancel_action()
 
 	func complete_action():
 		completion.emit(true)
@@ -59,6 +61,7 @@ func _sample_quicktime_callable(action_taken: bool):
 ## completion callable can be used to handle quick time event
 ##   being fulfilled.
 func add_quick_time_event(
+	parent: Node,
 	event_text: String,
 	priority: int = 1,
 	expiration_time: float = 0.0,
@@ -69,14 +72,14 @@ func add_quick_time_event(
 		timer = Timer.new()
 		timer.wait_time = expiration_time
 		timer.autostart = true
-		add_child(timer)
+		parent.add_child(timer)
 
 	var qte = QTE.new(event_text, priority, timer, completion_callable)
 	qte.completion.connect(func(_unused):
 		_quick_time_events_queue.erase(qte)
 		qte.queue_free()
 	)
-	add_child(qte)
+	parent.add_child(qte)
 	if _quick_time_events_queue.is_empty():
 		_quick_time_events_queue.append(qte)
 	else:
@@ -109,6 +112,7 @@ func _ready():
 
 func _sample_usage():
 	var qte: QuickTimeEventScreen.QTE = QuickTimeEventScreen.add_quick_time_event(
+		self,
 		"Quick Time Test",
 		3,
 		5.0,
@@ -119,11 +123,13 @@ func _sample_usage():
 		print("Quick Time Test signal: %s" % action_taken)
 	)
 	QuickTimeEventScreen.add_quick_time_event(
+		self,
 		"Longer Quick Time Test",
 		2,
 		10.0,
 	)
 	QuickTimeEventScreen.add_quick_time_event(
+		self,
 		"Infinite Time Quick Time",
 		1,
 		0.0,

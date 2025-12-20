@@ -112,3 +112,7 @@ func _on_play_area_body_exited(body: Node3D) -> void:
 	# TODO: add different endings if you go out of the top or bottom
 	if body is DeerMissile && !_despawning && _player.get_flight_state() != FlightState.POST_FLIGHT:
 		_on_flight_state_changed(FlightState.POST_FLIGHT)
+
+
+func _on_vsync_button_toggled(toggled_on: bool) -> void:
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED)

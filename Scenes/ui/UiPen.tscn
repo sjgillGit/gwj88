@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
 [ext_resource type="Script" path="res://Scenes/ui/shop.gd" id="2_d1etx"]
 [ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="4_vjfc7"]
-[ext_resource type="Script" uid="uid://k5af4gxc8bm7" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
+[ext_resource type="Script" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
 [ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="5_d1etx"]
 [ext_resource type="Script" uid="uid://1udhbw83ko2l" path="res://Scripts/ui/button.gd" id="6_d1etx"]
 [ext_resource type="Texture2D" uid="uid://c43tocs30urn" path="res://Assets/ui/pen/saddle.png" id="7_6puqo"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=240 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=235 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
-[ext_resource type="Texture2D" uid="uid://f5opooec7e3b" path="res://Assets/environment/Sky Box_Untitled.png" id="2_i2wt2"]
+[ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
 [ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="2_ph8sb"]
 [ext_resource type="PackedScene" uid="uid://cdirnrwxprue5" path="res://Scenes/environment/Wind.tscn" id="3_7afml"]
 [ext_resource type="PackedScene" uid="uid://bemir0lgexf5w" path="res://Assets/environment/tree1.glb" id="3_hcc7t"]
@@ -25,9 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
 [ext_resource type="Image" uid="uid://yhy8a00qnrsh" path="res://Assets/terrain/Heightmap_-1_0.res" id="7_q7uad"]
 [ext_resource type="Image" uid="uid://cwvmecfm2e32x" path="res://Assets/terrain/Foliage_0_0_2.res" id="7_ywvku"]
-[ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="8_ph8sb"]
 [ext_resource type="Image" uid="uid://qqj1lmwo15fv" path="res://Assets/terrain/Snow_-1_0.res" id="8_xufyi"]
-[ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="9_07op2"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/booster.tscn" id="9_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="9_jp6c5"]
 [ext_resource type="Image" uid="uid://uhirt1g0enfg" path="res://Assets/terrain/Splatmap_-1_0_0.res" id="9_w5m2m"]
@@ -187,26 +185,6 @@
 [ext_resource type="Image" uid="uid://daxl0ql57wn2g" path="res://Assets/terrain/Object_-1_-4_0.res" id="163_bc2ml"]
 [ext_resource type="Image" uid="uid://bwv156y2x1cd5" path="res://Assets/terrain/Object_-1_-4_1.res" id="164_yo2cv"]
 [ext_resource type="Image" uid="uid://bsw7bpyrf6m7c" path="res://Assets/terrain/Object_-1_-4_2.res" id="165_3n5go"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2e01o"]
-panorama = ExtResource("2_i2wt2")
-
-[sub_resource type="Sky" id="Sky_7afml"]
-sky_material = SubResource("PanoramaSkyMaterial_2e01o")
-
-[sub_resource type="Environment" id="Environment_r5eu6"]
-sky = SubResource("Sky_7afml")
-ambient_light_source = 2
-ambient_light_color = Color(0.78200006, 0.82733333, 0.85, 1)
-ambient_light_energy = 0.2
-fog_enabled = true
-fog_density = 0.0002
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.001
-volumetric_fog_albedo = Color(0, 0, 0, 1)
-volumetric_fog_emission = Color(1, 1, 1, 1)
-volumetric_fog_emission_energy = 0.0
-volumetric_fog_length = 256.0
 
 [sub_resource type="Gradient" id="Gradient_jn6ig"]
 colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
@@ -439,13 +417,13 @@ refraction_scale = 0.01
 
 [sub_resource type="Curve3D" id="Curve3D_3kocc"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.029159546, 0.045352936, 0, 8.064308, 5.8531265, 0, -8.064308, -5.8531265, 0, -8.419796, -8.5224, 0, -16.850494, 32.840027, 0, 16.850494, -32.840027, 0, -48.20128, -66.00142),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.029159546, 0.045352936, 0, 8.064308, 5.8531265, 0, -8.064308, -5.8531265, 0, -8.419796, -8.5224, 0, -17.361938, 41.150673, 0, 17.361938, -41.150673, 0, -48.682556, -71.337395),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yr5ue"]
-size = Vector3(750, 405, 1300)
+size = Vector3(1000, 400, 1560)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d7dld"]
 rough = true
@@ -482,80 +460,104 @@ outline_color = Color(0, 0, 0, 0.5568628)
 script = ExtResource("1_25o61")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_r5eu6")
+environment = ExtResource("2_7afml")
 
 [node name="Weather" type="Node3D" parent="."]
 
 [node name="WindSide" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, 213.65228, 325.27792, 30.858654)
-area_size = Vector3(300, 200, 50)
-direction = Vector3(0, 0, 1)
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, 324.4095, 325.27792, 54.14614)
+area_size = Vector3(500, 200, 30)
+particle_speed_multiplier = 2.0
+
+[node name="WindSide9" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-0.8660254, -2.1855694e-08, 0.5, -2.1855694e-08, 1, 5.856217e-09, -0.5, -5.8562164e-09, -0.8660254, -227.85016, 325.27792, 288.64154)
+area_size = Vector3(300, 200, 30)
+particle_speed_multiplier = 2.0
+
+[node name="WindSide10" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-0.8660254, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, -0.8660254, 217.63118, 325.27792, 318.64154)
+area_size = Vector3(300, 200, 30)
+particle_speed_multiplier = 2.0
+
+[node name="WindSide11" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, -7.109494, 325.27792, 361.50568)
+area_size = Vector3(300, 200, 30)
+particle_speed_multiplier = 2.0
 
 [node name="WindSide2" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 295.1803, 281.39075, -257.56555)
-area_size = Vector3(300, 300, 50)
-direction = Vector3(0, 0, 1)
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.48447, 281.39075, -257.56555)
+area_size = Vector3(300, 300, 30)
+strength = 100.0
+particle_speed_multiplier = 2.0
 
 [node name="WindSide4" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 295.18033, 281.39075, -554.56555)
-area_size = Vector3(300, 300, 50)
-direction = Vector3(0, 0, 1)
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.4845, 281.39075, -554.56555)
+area_size = Vector3(300, 300, 30)
+strength = 100.0
+particle_speed_multiplier = 2.0
 
 [node name="WindSide5" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 295.18036, 281.39075, -859.56555)
-area_size = Vector3(300, 300, 50)
-direction = Vector3(0, 0, 1)
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.48453, 281.39075, -859.56555)
+area_size = Vector3(300, 300, 30)
+strength = 100.0
+particle_speed_multiplier = 2.0
 
 [node name="WindSide6" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -339.8197, 281.39075, -257.56552)
-area_size = Vector3(300, 300, 50)
-direction = Vector3(0, 0, 1)
+transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.03336, 281.39075, -257.56552)
+area_size = Vector3(300, 300, 30)
+strength = 100.0
+particle_speed_multiplier = 2.0
 
 [node name="WindSide7" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -339.81967, 281.39075, -554.56555)
-area_size = Vector3(300, 300, 50)
-direction = Vector3(0, 0, 1)
+transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.03336, 281.39075, -554.56555)
+area_size = Vector3(300, 300, 30)
+strength = 100.0
+particle_speed_multiplier = 2.0
 
 [node name="WindSide8" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -339.81964, 281.39075, -859.56555)
-area_size = Vector3(300, 300, 50)
-direction = Vector3(0, 0, 1)
+transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.0333, 281.39075, -859.56555)
+area_size = Vector3(300, 300, 30)
+strength = 100.0
+particle_speed_multiplier = 2.0
 
 [node name="WindSide3" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.25881898, 0, -0.96592575, 0, 1, 0, 0.96592575, 0, 0.25881898, -312.1792, 313.9383, 30.858654)
-area_size = Vector3(500, 200, 100)
-direction = Vector3(0, 0, 1)
-strength = 250.0
+transform = Transform3D(-0.2588189, 0, 0.96592575, 0, 1, 0, -0.96592575, 0, -0.2588189, -369.14798, 313.9383, 14.019161)
+area_size = Vector3(500, 200, 30)
+strength = 100.0
+particle_speed_multiplier = 2.0
 
-[node name="Wind" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -51.61802, 234.34697, 3.6210022)
-area_size = Vector3(100, 50, 100)
-direction = Vector3(0, 0, 1)
-strength = 25.0
+[node name="WindStart" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -163.36319, 234.34697, -135.1036)
+area_size = Vector3(200, 100, 200)
 
-[node name="Wind2" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.8660254, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.8660254, -155.34201, 234.34697, -289.379)
-area_size = Vector3(100, 50, 100)
-direction = Vector3(0, 0, 1)
-strength = 25.0
+[node name="RampWind" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, -3.0894756, 272.61798, 223.06964)
+area_size = Vector3(200, 50, 200)
+strength = 1.0
 
-[node name="Wind3" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 133.91693, 202.76617, -328.89136)
-area_size = Vector3(100, 50, 100)
-direction = Vector3(0, 0, 1)
-strength = 25.0
+[node name="WindStart2" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, 108.2236, 234.34697, -118.895226)
+area_size = Vector3(200, 100, 200)
 
 [node name="Wind4" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 16.255539, 276.20688, -429.54886)
-area_size = Vector3(200, 100, 200)
-direction = Vector3(0, 0, 1)
-strength = 25.0
+transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 117.30375, 276.20688, -412.42282)
+area_size = Vector3(300, 200, 200)
 
-[node name="Wind5" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 16.255539, 406.20688, -429.54886)
-area_size = Vector3(500, 200, 500)
-direction = Vector3(0, 0, 1)
-strength = 25.0
+[node name="Wind7" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, -121.12686, 276.20688, -432.49283)
+area_size = Vector3(300, 200, 200)
+
+[node name="WindCeiling" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 16.255539, 367.02304, -429.54886)
+area_size = Vector3(500, 10, 500)
+direction = Vector3(0, -1, 0)
+strength = 100.0
+
+[node name="WindCeiling2" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.9659257, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.9659257, 18.46212, 367.02304, -12.776642)
+area_size = Vector3(500, 10, 500)
+direction = Vector3(0, -1, 0)
+strength = 100.0
 
 [node name="Collectibles" type="Node3D" parent="."]
 
@@ -609,10 +611,10 @@ metadata/_edit_lock_ = false
 transform = Transform3D(200, 0, 0, 0, 50, 0, 0, 0, 200, 0, -195.46451, -532.3105)
 
 [node name="FarCam" type="Camera3D" parent="."]
-transform = Transform3D(0.5135412, 0.1930226, -0.8360728, 0, 0.97437006, 0.22495104, 0.8580649, -0.11552163, 0.5003792, -28.024275, 37.351646, 27.18371)
+transform = Transform3D(-0.08474167, 0.47072834, -0.87819916, 0.032096054, 0.8822017, 0.46977675, 0.99588585, 0.011622929, -0.08986776, -47.024277, 238.97194, 167.60464)
 
 [node name="NearCam" type="Camera3D" parent="."]
-transform = Transform3D(0.21787071, 0.2195472, -0.95096344, 0, 0.97437006, 0.22495107, 0.97597766, -0.049010243, 0.21228671, 3.9757252, 56.097652, 35.834812)
+transform = Transform3D(0.21987326, 0.21754168, -0.95096344, 0.008928007, 0.97432923, 0.22495106, 0.97548765, -0.05795093, 0.21228673, -23.061794, 241.37239, 200.79572)
 
 [node name="Platform" parent="." instance=ExtResource("3_ph8sb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, 201.0422, 218.216)
@@ -815,6 +817,7 @@ path_local = true
 path_continuous_u = false
 path_u_distance = 1.0
 path_joined = false
+smooth_faces = true
 material = SubResource("StandardMaterial3D_3kocc")
 script = ExtResource("7_m27rb")
 
@@ -834,29 +837,29 @@ speed_boost = -2.0
 curve = SubResource("Curve3D_3kocc")
 
 [node name="Booster" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
-transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -8.9063255e-09, -38.252598, -28.005568)
+transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -8.9063255e-09, -38.92404, -28.00557)
 
 [node name="Booster2" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
-transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, 2, -38.252598, -28.005568)
+transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, 2, -38.92404, -28.00557)
 
 [node name="Booster3" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
-transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -2, -38.252598, -28.005568)
+transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -2, -38.92404, -28.00557)
 
 [node name="Booster4" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
-transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 1.6106684e-06, -48.54628, -65.05713)
+transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 1.6106684e-06, -50.368805, -65.05713)
 
 [node name="Booster5" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
-transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 2.0000017, -48.54628, -65.05713)
+transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 2.0000017, -50.368805, -65.05713)
 speed_boost = 2.6
 
 [node name="Booster6" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
-transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, -1.9999985, -48.54628, -65.05713)
+transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, -1.9999985, -50.368805, -65.05713)
 speed_boost = 2.6
 
 [node name="PlayArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 247.10342, -400)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.368958, 247.10342, -267.59796)
 shape = SubResource("BoxShape3D_yr5ue")
 debug_color = Color(0, 0.98, 0.31033328, 0.79607844)
 
@@ -889,6 +892,11 @@ offset_bottom = 86.0
 grow_horizontal = 0
 vertical = true
 
+[node name="VsyncButton" type="CheckButton" parent="BoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "vsync"
+
 [node name="CameraOption" type="OptionButton" parent="BoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -913,13 +921,10 @@ label_settings = SubResource("LabelSettings_yr5ue")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="GUIDEContext" type="Node" parent="."]
-script = ExtResource("8_ph8sb")
-game_context = ExtResource("9_07op2")
-
 [node name="GuideDebugger" parent="." instance=ExtResource("9_jp6c5")]
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
+[connection signal="toggled" from="BoxContainer/VsyncButton" to="." method="_on_vsync_button_toggled"]
 [connection signal="item_selected" from="BoxContainer/CameraOption" to="." method="_on_camera_option_item_selected"]
 [connection signal="pressed" from="BoxContainer/IceCubeButton" to="." method="_on_ice_cube_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

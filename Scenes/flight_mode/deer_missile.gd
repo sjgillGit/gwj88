@@ -32,7 +32,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 		if is_node_ready():
 			%DebugUi.visible = value
 
-@export var camera_animation: AnimationPlayer
+@onready var camera_animation := %CameraAnimationPlayer
 
 @export_category("GUIDE")
 @export var movement: GUIDEAction
@@ -71,7 +71,9 @@ var _current_flight_state := FlightState.SETUP
 var _setup_time_left := 0.0
 
 var _wind_time := 0.0
-var _qte_start
+var _wind_amount := 0.0
+var _qte_start: QuickTimeEventScreen.QTE
+var _qte_end: QuickTimeEventScreen.QTE
 
 @onready var _wind_indicator := %WindIndicator
 
@@ -104,6 +106,7 @@ func _ready():
 
 func _setup_quick_time_action_to_start():
 	_qte_start = QuickTimeEventScreen.add_quick_time_event(
+		self,
 		"START!",
 		1,
 		setup_seconds,
@@ -111,6 +114,9 @@ func _setup_quick_time_action_to_start():
 		if _current_flight_state < FlightState.PRE_FLIGHT:
 			_flight_state_changed(FlightState.PRE_FLIGHT)
 			%TimeLeftLabel.visible = false
+			if _qte_start:
+				_qte_start.queue_free()
+				_qte_start = null
 		),
 	)
 
@@ -122,7 +128,7 @@ func get_flight_state() -> FlightState:
 		return FlightState.POST_FLIGHT
 	if _launch_point != Vector3.ZERO && !_in_launch_zone:
 		return FlightState.FLIGHT
-	return FlightState.PRE_FLIGHT
+	return _current_flight_state
 
 
 func _flight_state_changed(new_state: FlightState):
@@ -139,6 +145,8 @@ func _flight_state_changed(new_state: FlightState):
 	else:
 		axis_lock_linear_z = false
 		axis_lock_angular_y = false
+	if _current_flight_state == FlightState.PRE_FLIGHT:
+		camera_animation.speed_scale = 100.0
 	if _current_flight_state == FlightState.FLIGHT:
 		%CameraFollowMark.position += Vector3.MODEL_REAR * 2.0
 		for u in _launch_upgrades:
@@ -148,6 +156,9 @@ func _flight_state_changed(new_state: FlightState):
 	if _current_flight_state == FlightState.POST_FLIGHT:
 		angular_damp = 0.5
 		linear_damp = 0.5
+		if _qte_start:
+			_qte_start.free()
+			_qte_start = null
 	flight_state_changed.emit(_current_flight_state)
 
 
@@ -214,12 +225,16 @@ func _is_terrain(b: Node3D) -> bool:
 
 
 func _setup_quick_time_event_landed():
-	QuickTimeEventScreen.add_quick_time_event(
+	_qte_end = QuickTimeEventScreen.add_quick_time_event(
+		self,
 		"Collect Rewards!",
 		1,
 		5.0,
 		(func(_unused):
 		_flight_state_changed(FlightState.POST_FLIGHT)
+		if _qte_end:
+			_qte_end.queue_free()
+			_qte_end = null
 		)
 	)
 
@@ -267,13 +282,19 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				wind_direction += a.get_global_wind_direction() * a.strength
 
 	if wind_direction:
-		_wind_time += state.step
+		_wind_amount = wind_direction.length()
+		if _wind_time < 2.0:
+			_wind_time += state.step
 		_wind_indicator.global_transform.basis = Basis().looking_at(wind_direction.normalized())
-		for mi: MeshInstance3D in _wind_indicator.find_children("*", "MeshInstance3D"):
-			mi.transparency = (1.0 - clampf(wind_direction.length() / 100.0, 0.0, 1.0)) * max(_wind_time, 1.0)
-	else:
-		_wind_time = 0.0
-	_wind_indicator.visible = !!wind_direction
+	elif _wind_time > 0:
+		_wind_time -= state.step * 2.0
+
+	var wind_time_amount := minf(_wind_time * 0.5, 1.0)
+	var opacity := clampf(_wind_amount / 15.0 * wind_time_amount, 0.0, 1.0)
+	_stats.wind_opacity = opacity
+	for mi: MeshInstance3D in _wind_indicator.find_children("*", "MeshInstance3D"):
+		mi.transparency = 1.0 - opacity
+	_wind_indicator.visible = opacity > 0
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
 	state.apply_central_force(local_thrust)
@@ -286,7 +307,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	if _distance_updated:
 		_update_distances()
-#	var lv := state.linear_velocity
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
 	if abs(forward_speed) < 0.001:
@@ -414,7 +434,6 @@ func _update_input() -> void:
 			_flight_state_changed(FlightState.PRE_FLIGHT)
 			%TimeLeftLabel.visible = false
 			_qte_start.cancel_action()
-			camera_animation.play("RESET")
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
