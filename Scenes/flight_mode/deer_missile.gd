@@ -68,7 +68,10 @@ var _overlapping_areas: Array[int]
 var _current_flight_state := FlightState.SETUP
 var _setup_time_left := 0.0
 
+var _wind_time := 0.0
 var _qte_start
+
+@onready var _wind_indicator := %WindIndicator
 
 
 func _ready():
@@ -135,6 +138,7 @@ func _flight_state_changed(new_state: FlightState):
 		axis_lock_linear_z = false
 		axis_lock_angular_y = false
 	if _current_flight_state == FlightState.FLIGHT:
+		%CameraFollowMark.position += Vector3.MODEL_REAR * 2.0
 		for u in _launch_upgrades:
 			u.start_thrust()
 		%CollisionPolygonFeet.disabled = true
@@ -248,7 +252,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		angular_damp = _default_angular_damp
 
 	_update_input()
-
+	var wind_direction := Vector3()
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
 		if a is LaunchZone:
@@ -257,6 +261,17 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			_on_ramp = true
 		elif a is DeerArea:
 			a.apply_physics(state, mass)
+			if a is Wind:
+				wind_direction += a.get_global_wind_direction() * a.strength
+
+	if wind_direction:
+		_wind_time += state.step
+		_wind_indicator.global_transform.basis = Basis().looking_at(wind_direction.normalized())
+		for mi: MeshInstance3D in _wind_indicator.find_children("*", "MeshInstance3D"):
+			mi.transparency = (1.0 - clampf(wind_direction.length() / 100.0, 0.0, 1.0)) * max(_wind_time, 1.0)
+	else:
+		_wind_time = 0.0
+	_wind_indicator.visible = !!wind_direction
 
 	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
 	state.apply_central_force(local_thrust)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=239 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=240 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Texture2D" uid="uid://f5opooec7e3b" path="res://Assets/environment/Sky Box_Untitled.png" id="2_i2wt2"]
 [ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="2_ph8sb"]
+[ext_resource type="PackedScene" uid="uid://cdirnrwxprue5" path="res://Scenes/environment/Wind.tscn" id="3_7afml"]
 [ext_resource type="PackedScene" uid="uid://bemir0lgexf5w" path="res://Assets/environment/tree1.glb" id="3_hcc7t"]
 [ext_resource type="Script" uid="uid://m410she5703r" path="res://Scenes/flight_mode/ground.gd" id="3_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://cmek6gwoogb1h" path="res://Assets/Flight/Platform.glb" id="3_ph8sb"]
@@ -190,11 +191,11 @@
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2e01o"]
 panorama = ExtResource("2_i2wt2")
 
-[sub_resource type="Sky" id="Sky_0jjp4"]
+[sub_resource type="Sky" id="Sky_7afml"]
 sky_material = SubResource("PanoramaSkyMaterial_2e01o")
 
 [sub_resource type="Environment" id="Environment_r5eu6"]
-sky = SubResource("Sky_0jjp4")
+sky = SubResource("Sky_7afml")
 ambient_light_source = 2
 ambient_light_color = Color(0.78200006, 0.82733333, 0.85, 1)
 ambient_light_energy = 0.2
@@ -202,6 +203,10 @@ fog_enabled = true
 fog_density = 0.0002
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.001
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_length = 256.0
 
 [sub_resource type="Gradient" id="Gradient_jn6ig"]
 colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
@@ -478,6 +483,79 @@ script = ExtResource("1_25o61")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_r5eu6")
+
+[node name="Weather" type="Node3D" parent="."]
+
+[node name="WindSide" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, 213.65228, 325.27792, 30.858654)
+area_size = Vector3(300, 200, 50)
+direction = Vector3(0, 0, 1)
+
+[node name="WindSide2" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 295.1803, 281.39075, -257.56555)
+area_size = Vector3(300, 300, 50)
+direction = Vector3(0, 0, 1)
+
+[node name="WindSide4" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 295.18033, 281.39075, -554.56555)
+area_size = Vector3(300, 300, 50)
+direction = Vector3(0, 0, 1)
+
+[node name="WindSide5" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 295.18036, 281.39075, -859.56555)
+area_size = Vector3(300, 300, 50)
+direction = Vector3(0, 0, 1)
+
+[node name="WindSide6" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -339.8197, 281.39075, -257.56552)
+area_size = Vector3(300, 300, 50)
+direction = Vector3(0, 0, 1)
+
+[node name="WindSide7" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -339.81967, 281.39075, -554.56555)
+area_size = Vector3(300, 300, 50)
+direction = Vector3(0, 0, 1)
+
+[node name="WindSide8" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -339.81964, 281.39075, -859.56555)
+area_size = Vector3(300, 300, 50)
+direction = Vector3(0, 0, 1)
+
+[node name="WindSide3" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.25881898, 0, -0.96592575, 0, 1, 0, 0.96592575, 0, 0.25881898, -312.1792, 313.9383, 30.858654)
+area_size = Vector3(500, 200, 100)
+direction = Vector3(0, 0, 1)
+strength = 250.0
+
+[node name="Wind" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -51.61802, 234.34697, 3.6210022)
+area_size = Vector3(100, 50, 100)
+direction = Vector3(0, 0, 1)
+strength = 25.0
+
+[node name="Wind2" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.8660254, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.8660254, -155.34201, 234.34697, -289.379)
+area_size = Vector3(100, 50, 100)
+direction = Vector3(0, 0, 1)
+strength = 25.0
+
+[node name="Wind3" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 133.91693, 202.76617, -328.89136)
+area_size = Vector3(100, 50, 100)
+direction = Vector3(0, 0, 1)
+strength = 25.0
+
+[node name="Wind4" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 16.255539, 276.20688, -429.54886)
+area_size = Vector3(200, 100, 200)
+direction = Vector3(0, 0, 1)
+strength = 25.0
+
+[node name="Wind5" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 16.255539, 406.20688, -429.54886)
+area_size = Vector3(500, 200, 500)
+direction = Vector3(0, 0, 1)
+strength = 25.0
 
 [node name="Collectibles" type="Node3D" parent="."]
 
