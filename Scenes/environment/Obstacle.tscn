@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://ocf85almku73"]
 
 [ext_resource type="Script" uid="uid://1c64k18bnajp" path="res://Scripts/environment/obstacle.gd" id="1_t44st"]
-[ext_resource type="PackedScene" uid="uid://flpf4ya8guhb" path="res://Assets/collectibles/Collectable SNOWMAN.glb" id="2_u4mhx"]
+[ext_resource type="PackedScene" path="res://Assets/collectibles/Collectable SNOWMAN.gltf" id="2_u4mhx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x3pma"]
 radius = 0.42333984

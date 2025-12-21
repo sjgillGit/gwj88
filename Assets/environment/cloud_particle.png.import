@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dusf20bqxkhya"
 path.s3tc="res://.godot/imported/cloud_particle.png-c84b579aab9e48473fb31ccb8f400c74.s3tc.ctex"
+path.etc2="res://.godot/imported/cloud_particle.png-c84b579aab9e48473fb31ccb8f400c74.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/environment/cloud_particle.png"
-dest_files=["res://.godot/imported/cloud_particle.png-c84b579aab9e48473fb31ccb8f400c74.s3tc.ctex"]
+dest_files=["res://.godot/imported/cloud_particle.png-c84b579aab9e48473fb31ccb8f400c74.s3tc.ctex", "res://.godot/imported/cloud_particle.png-c84b579aab9e48473fb31ccb8f400c74.etc2.ctex"]
 
 [params]
 

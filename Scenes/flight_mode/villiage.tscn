@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4hqahtd7nmog"]
 
 [ext_resource type="Texture2D" uid="uid://dqcg1r2pchhb4" path="res://Assets/environment/bullseye.svg" id="1_xkgr4"]
-[ext_resource type="PackedScene" uid="uid://bhyt5uewuka7y" path="res://Assets/elf.glb" id="2_mpw36"]
-[ext_resource type="PackedScene" uid="uid://cav6o5xtjgggq" path="res://Assets/environment/houses.glb" id="3_1ihcv"]
+[ext_resource type="PackedScene" uid="uid://c5ppbopa82kik" path="res://Assets/elf.gltf" id="2_mpw36"]
+[ext_resource type="PackedScene" path="res://Assets/environment/houses.glb" id="3_1ihcv"]
 
 [node name="Villiage" type="Node3D"]
 

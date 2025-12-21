@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dc26ocp4eku6k"]
 
-[ext_resource type="PackedScene" uid="uid://dnx4trx31kv1i" path="res://Assets/ui/pen/candles/candle_lit.gltf" id="1_3dx00"]
+[ext_resource type="PackedScene" path="res://Assets/ui/pen/candles/candle_lit.gltf" id="1_3dx00"]
 [ext_resource type="Script" uid="uid://dpdau1tmsbmgp" path="res://Assets/ui/pen/candles/candles.gd" id="1_m8elp"]
 
 [sub_resource type="Animation" id="Animation_m8elp"]

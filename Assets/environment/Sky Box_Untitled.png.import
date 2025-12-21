@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://f5opooec7e3b"
 path.s3tc="res://.godot/imported/Sky Box_Untitled.png-5b7e3a1d1a001e8d43626021a35d7cad.s3tc.ctex"
+path.etc2="res://.godot/imported/Sky Box_Untitled.png-5b7e3a1d1a001e8d43626021a35d7cad.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/environment/Sky Box_Untitled.png"
-dest_files=["res://.godot/imported/Sky Box_Untitled.png-5b7e3a1d1a001e8d43626021a35d7cad.s3tc.ctex"]
+dest_files=["res://.godot/imported/Sky Box_Untitled.png-5b7e3a1d1a001e8d43626021a35d7cad.s3tc.ctex", "res://.godot/imported/Sky Box_Untitled.png-5b7e3a1d1a001e8d43626021a35d7cad.etc2.ctex"]
 
 [params]
 
@@ -40,5 +41,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=0
+process/size_limit=1024
 detect_3d/compress_to=0

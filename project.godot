@@ -100,3 +100,7 @@ action={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

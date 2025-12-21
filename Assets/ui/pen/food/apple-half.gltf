@@ -1,0 +1,195 @@
+{
+  "asset": {
+    "generator": "UnityGLTF",
+    "version": "2.0"
+  },
+  "extensionsUsed": [
+    "KHR_texture_transform"
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ],
+      "name": "apple-half"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 182,
+      "type": "VEC3",
+      "max": [
+        0,
+        0.19075341522693634,
+        0.09814728051424026
+      ],
+      "min": [
+        -0.09814728051424026,
+        0,
+        -0.09814728051424026
+      ]
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 182,
+      "type": "VEC3",
+      "max": [
+        1,
+        1,
+        0.9953597187995911
+      ],
+      "min": [
+        -0.999850869178772,
+        -0.8977378606796265,
+        -0.9953597187995911
+      ]
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 182,
+      "type": "VEC4",
+      "max": [
+        1,
+        0.3685145676136017,
+        0.9999744892120361,
+        1
+      ],
+      "min": [
+        -1,
+        -0.4405301809310913,
+        -1,
+        1
+      ]
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 182,
+      "type": "VEC2",
+      "max": [
+        0.96875,
+        0.7250000238418579
+      ],
+      "min": [
+        0.09375,
+        0.5249999761581421
+      ]
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5121,
+      "count": 372,
+      "type": "SCALAR",
+      "max": [
+        181
+      ],
+      "min": [
+        0
+      ]
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "apple-half_data.bin",
+      "byteLength": 9108
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 2184,
+      "byteStride": 12,
+      "target": 34962,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 2184,
+      "byteLength": 2184,
+      "byteStride": 12,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 4368,
+      "byteLength": 2912,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 7280,
+      "byteLength": 1456,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 8736,
+      "byteLength": 372,
+      "target": 34963
+    }
+  ],
+  "images": [
+    {
+      "uri": "Textures/colormap.png",
+      "name": "colormap"
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0,
+          "extensions": {
+            "KHR_texture_transform": {
+              "texCoord": 0
+            }
+          }
+        },
+        "metallicFactor": 0
+      },
+      "doubleSided": true,
+      "name": "colormap"
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0
+        }
+      ],
+      "name": "apple-half"
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "apple-half"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9728,
+      "minFilter": 9984
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0,
+      "name": "colormap"
+    }
+  ]
+}
