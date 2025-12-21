@@ -154,13 +154,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("%CameraFollowMark:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5, 5.99),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 5, 5.5, 5.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(24.096502, -35.488495, 73.75244), Vector3(8.000002, 1.0769365, 2.0650325), Vector3(0, 1.432, -3.5)]
+"values": [Vector3(3.4342918, -35.488495, 73.75244), Vector3(8.000002, 3.5409117, 4.385276), Vector3(6.0117383, 1.4281651, -2.0612302), Vector3(0, 1.432, -3.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -365,9 +365,12 @@ libraries = {
 }
 autoplay = "camera_intro"
 
+[node name="DeerSide" type="Camera3D" parent="."]
+transform = Transform3D(0.49999997, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.49999997, 7.665641, 1, -1.3093293)
+
 [node name="CameraFollowMark" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-1, -1.1102232e-15, -8.7422805e-08, -6.098304e-09, 0.9975643, 0.069756486, 8.720981e-08, 0.06975648, -0.99756444, 1.4305115e-06, 1.4324219, -2.9223132)
+transform = Transform3D(-0.9999998, -1.110223e-15, -8.7422805e-08, -6.098303e-09, 0.9975641, 0.069756486, 8.72098e-08, 0.06975646, -0.99756444, 1.4305115e-06, 1.4324219, -2.9223132)
 rotation_edit_mode = 1
 
 [node name="FlightStateTimer" type="Timer" parent="."]
@@ -394,9 +397,10 @@ shape = SubResource("BoxShape3D_g2hql")
 
 [node name="WindIndicator" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.17061925)
 
 [node name="wind_indicator" parent="WindIndicator" instance=ExtResource("9_eftuo")]
-transform = Transform3D(3, 0, 0, 0, -4.371139e-08, -3, 0, 1, -1.3113416e-07, 0, 0.75572145, 0.6794592)
+transform = Transform3D(1.5, 0, 0, 0, -4.371139e-08, -2.5, 0, 1, -1.09278474e-07, 0, 0.75572145, 0.14067936)
 rotation_order = 1
 
 [node name="Sphere" parent="WindIndicator/wind_indicator" index="0"]

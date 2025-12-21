@@ -1,3 +1,4 @@
+class_name FlightMain
 extends Node3D
 
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState

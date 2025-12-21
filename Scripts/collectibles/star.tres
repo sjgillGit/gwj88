@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_60hwx")
 name = "Shining Star"
+game_scale = 5.0
 asset = ExtResource("1_ybn1g")
 metadata/_custom_type_script = "uid://bgeplv5gp0ubu"
