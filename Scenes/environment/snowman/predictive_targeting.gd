@@ -1,4 +1,4 @@
-class_name GameUtilities
+class_name PredictiveTargeting
 
 # Written by Kain Shin in preparation for his own projects
 # The latest version is maintained on his website at ringofblades.org
@@ -33,7 +33,7 @@ static func PredictiveAim(muzzlePosition: Vector3, projectileSpeed: float, targe
 	var projectileSpeedSq: float = projectileSpeed * projectileSpeed
 	var targetSpeedSq: float = targetVelocity.length_squared() # doing this instead of self-multiply for maximum accuracy
 	var targetSpeed: float = sqrt(targetSpeedSq)
-	var targetToMuzzle: Vector3 = muzzlePosition - targetPosition
+	var targetToMuzzle: Vector3 = targetPosition - muzzlePosition#muzzlePosition - targetPosition #
 	var targetToMuzzleDistSq: float = targetToMuzzle.length_squared() # doing this instead of self-multiply for maximum accuracy
 	var targetToMuzzleDist: float = sqrt(targetToMuzzleDistSq)
 	var targetToMuzzleDir: Vector3 = targetToMuzzle
@@ -108,13 +108,13 @@ static func PredictiveAim(muzzlePosition: Vector3, projectileSpeed: float, targe
 		# By adding gravity as projectile acceleration, we are essentially breaking real world rules by saying that the projectile
 		#  gets additional gravity compensation velocity for free
 		# We want netFallDistance to match the net travel distance caused by gravity (whichever direction gravity flows)
-		var netFallDistance: float = (t * projectileVelocity).z
+		var netFallDistance: float = (t * projectileVelocity).y
 		# d = Vi*t + 0.5*a*t^2
 		# Vi*t = d - 0.5*a*t^2
 		# Vi = (d - 0.5*a*t^2)/t
 		# Remember that gravity is a positive number in the down direction, the stronger the gravity, the larger gravityCompensationSpeed becomes
 		var gravityCompensationSpeed: float = (netFallDistance + 0.5 * gravity * t * t) / t
-		projectileVelocity.z = gravityCompensationSpeed
+		projectileVelocity.y = gravityCompensationSpeed
 
 	# FOR CHECKING ONLY (valid only if gravity is 0)...
 	# float calculatedprojectilespeed = projectileVelocity.magnitude
@@ -122,3 +122,87 @@ static func PredictiveAim(muzzlePosition: Vector3, projectileSpeed: float, targe
 	# ...FOR CHECKING ONLY
 
 	return [validSolutionFound, projectileVelocity]
+
+static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3, interceptorLocation: Vector3, interceptorSpeed: float) -> Vector3:
+	var Ax: float = targetLocation.x
+	var Ay: float = targetLocation.y
+	var Az: float = targetLocation.z
+
+	var As: float = targetVelocity.length()
+	var Av: Vector3 = targetVelocity.normalized()
+	var Avx: float = Av.x
+	var Avy: float = Av.y
+	var Avz: float = Av.z
+
+	var Bx: float = interceptorLocation.x
+	var By: float = interceptorLocation.y
+	var Bz: float = interceptorLocation.z
+
+	var Bs: float = interceptorSpeed
+
+	var t: float = 0
+
+	var a: float = (
+		pow(As, 2.0) * pow(Avx, 2.0) +
+		pow(As, 2.0) * pow(Avy, 2.0) +
+		pow(As, 2.0) * pow(Avz, 2.0) -
+		pow(Bs, 2.0)
+		)
+
+	if a == 0:
+		# Debug.Log("Quadratic formula not applicable")
+		print_debug("Quadratic formula not applicable")
+		return targetLocation
+
+	var b: float = (
+		As * Avx * Ax +
+		As * Avy * Ay +
+		As * Avz * Az +
+		As * Avx * Bx +
+		As * Avy * By +
+		As * Avz * Bz
+		)
+
+	var c: float = (
+		pow(Ax, 2.0) +
+		pow(Ay, 2.0) +
+		pow(Az, 2.0) -
+		Ax * Bx -
+		Ay * By -
+		Az * Bz +
+		pow(Bx, 2.0) +
+		pow(By, 2.0) +
+		pow(Bz, 2.0)
+		)
+
+	var t1: float = (-b + pow((pow(b, 2.0) - (4.0 * a * c)), (1.0 / 2.0))) / (2.0 * a)
+	var t2: float = (-b - pow((pow(b, 2.0) - (4.0 * a * c)), (1.0 / 2.0))) / (2.0 * a)
+
+	# Debug.Log("t1 = " + t1 + " t2 = " + t2)
+	print_debug("t1 = ", t1, " t2 = ", t2)
+
+	if t1 <= 0 || t1 == INF || is_nan((t1)):
+		if t2 <= 0 || t2 == INF || is_nan(t2):
+			return targetLocation
+		else:
+			t = t2
+	elif t2 <= 0 || t2 == INF || is_nan(t2) || t2 > t1:
+		t = t1
+	else:
+		t = t2
+
+	# Debug.Log("t = " + t)
+	# Debug.Log("Bs = " + Bs)
+	print_debug("t = ", t)
+	print_debug("Bs = ", Bs)
+
+	var Bvx: float = (Ax - Bx + (t * As + Avx)) / (t * pow(Bs, 2.0))
+	var Bvy: float = (Ay - By + (t * As + Avy)) / (t * pow(Bs, 2.0))
+	var Bvz: float = (Az - Bz + (t * As + Avz)) / (t * pow(Bs, 2.0))
+
+	var Bv: Vector3 = Vector3(Bvx, Bvy, Bvz)
+
+	# Debug.Log("||Bv|| = (Should be 1) " + Bv.magnitude)
+	print_debug("||Bv|| = (Should be 1) ", Bv.length())
+
+	return Bv * Bs

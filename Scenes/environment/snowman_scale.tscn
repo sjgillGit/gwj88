@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfrguqcqsdefp"]
+
+[ext_resource type="PackedScene" uid="uid://dsovid6f4r4ca" path="res://Scenes/environment/snowman/snowball.tscn" id="1_8gkbo"]
+[ext_resource type="PackedScene" uid="uid://d1t0irvo1tq7i" path="res://Scenes/flight_mode/deer_missile.tscn" id="2_k3440"]
+[ext_resource type="PackedScene" uid="uid://ocf85almku73" path="res://Scenes/environment/Obstacle.tscn" id="3_2vimq"]
+[ext_resource type="PackedScene" uid="uid://dnxusy2ufsi40" path="res://Scenes/environment/snowman/snowman.tscn" id="4_k3440"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k3440"]
+
+[node name="SnowmanScale" type="Node3D"]
+
+[node name="Snowball" parent="." instance=ExtResource("1_8gkbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0882745, 0, -10)
+
+[node name="DeerMissile" parent="." instance=ExtResource("2_k3440")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -928.71234)
+visible = false
+linear_velocity = Vector3(0, 10, -40)
+
+[node name="Obstacle" parent="." instance=ExtResource("3_2vimq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.180645, 0, -9)
+
+[node name="Snowman" parent="." node_paths=PackedStringArray("snowball_container") instance=ExtResource("4_k3440")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.280566, -9.836769, 1.5611959)
+snowball_container = NodePath("../SnowballContainer")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.13281375, 0.5702118, -0.8106904, -0.09218768, 0.8214977, 0.56271034, 0.9868444, 0, 0.1616727, -42.307213, 29.682007, -26.345257)
+current = true
+
+[node name="SnowballContainer" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9809146, -0.056696143, -0.18599029, 0.19443983, 0.28602207, 0.9382882, 1.0542256e-08, -0.9565444, 0.2915872, 0, 32.302658, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.628778, 0, -20)
+collision_layer = 5
+gravity_scale = 0.0
+linear_velocity = Vector3(10, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_k3440")
