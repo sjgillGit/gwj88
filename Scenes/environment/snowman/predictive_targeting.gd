@@ -152,7 +152,7 @@ static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3,
 
 	if a == 0:
 		# Debug.Log("Quadratic formula not applicable")
-		print_debug("Quadratic formula not applicable")
+		# print_debug("Quadratic formula not applicable")
 		return targetLocation
 
 	var b: float = (
@@ -180,7 +180,7 @@ static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3,
 	var t2: float = (-b - pow((pow(b, 2.0) - (4.0 * a * c)), (1.0 / 2.0))) / (2.0 * a)
 
 	# Debug.Log("t1 = " + t1 + " t2 = " + t2)
-	print_debug("t1 = ", t1, " t2 = ", t2)
+	# print_debug("t1 = ", t1, " t2 = ", t2)
 
 	if t1 <= 0 || t1 == INF || is_nan((t1)):
 		if t2 <= 0 || t2 == INF || is_nan(t2):
@@ -194,8 +194,8 @@ static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3,
 
 	# Debug.Log("t = " + t)
 	# Debug.Log("Bs = " + Bs)
-	print_debug("t = ", t)
-	print_debug("Bs = ", Bs)
+	# print_debug("t = ", t)
+	# print_debug("Bs = ", Bs)
 
 	var bst = (t * pow(Bs, 2.0))
 
@@ -209,6 +209,6 @@ static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3,
 	var Bv: Vector3 = Vector3(Bvx, Bvy, Bvz)
 
 	# Debug.Log("||Bv|| = (Should be 1) " + Bv.magnitude)
-	print_debug("||Bv|| = (Should be 1) ", Bv.length())
+	# print_debug("||Bv|| = (Should be 1) ", Bv.length())
 
 	return Bv * Bs
