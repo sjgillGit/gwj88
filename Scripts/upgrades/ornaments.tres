@@ -6,5 +6,5 @@
 script = ExtResource("1_kk3ej")
 upgrade_name = "Christmas Ornaments"
 description = "Enhances Christmas Spirit so much that the wind is (almost) always at your back."
-holiday_spirit = 10.0
+mass = -9.0
 metadata/_custom_type_script = "uid://07r7h8akr6m1"
