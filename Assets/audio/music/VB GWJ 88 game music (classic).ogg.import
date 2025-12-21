@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://o8q0823s7cms"
+path="res://.godot/imported/VB GWJ 88 game music (classic).ogg-45c7f8c8faf7ece5548e9fbb7258b3d2.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/audio/music/VB GWJ 88 game music (classic).ogg"
+dest_files=["res://.godot/imported/VB GWJ 88 game music (classic).ogg-45c7f8c8faf7ece5548e9fbb7258b3d2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

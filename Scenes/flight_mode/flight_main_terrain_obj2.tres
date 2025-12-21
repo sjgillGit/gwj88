@@ -1,0 +1,10 @@
+[gd_resource type="ObjectResource" load_steps=3 format=3 uid="uid://dktxmq3xdtd3v"]
+
+[ext_resource type="PackedScene" uid="uid://chdkega0lj3lf" path="res://Assets/environment/palm_tree.tscn" id="1_yko81"]
+
+[sub_resource type="ObjectDefinitionResource" id="ObjectDefinitionResource_yga5t"]
+objectFrequency = 3
+objectScenes = Array[PackedScene]([ExtResource("1_yko81")])
+
+[resource]
+definition = SubResource("ObjectDefinitionResource_yga5t")

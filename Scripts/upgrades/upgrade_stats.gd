@@ -9,7 +9,7 @@ extends Resource
 @export_range(-1.0, 1.0, 0.001) var control := 0.0
 @export var thrust := 0.0
 @export var lift := 0
-@export var drag := 0
+@export_range(-1.0, 1.0, 0.000001) var drag := 0
 @export var mass := 1.0
 
 ## possible other stats?

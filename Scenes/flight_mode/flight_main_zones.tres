@@ -1,0 +1,508 @@
+[gd_resource type="ZonesResource" load_steps=271 format=3 uid="uid://dq7mowtumyvy6"]
+
+[ext_resource type="Image" uid="uid://data0v05la1y8" path="res://Assets/terrain/Foliage_0_0_0.res" id="1_0ib3d"]
+[ext_resource type="Image" uid="uid://cqd5jmb4lskbw" path="res://Assets/terrain/Foliage_0_0_1.res" id="2_s7qhf"]
+[ext_resource type="Image" uid="uid://cwvmecfm2e32x" path="res://Assets/terrain/Foliage_0_0_2.res" id="3_0oeps"]
+[ext_resource type="Image" uid="uid://dms7s41s62fk2" path="res://Assets/terrain/Heightmap_0_0.res" id="4_qt0mg"]
+[ext_resource type="Image" uid="uid://c1h0i7wl07545" path="res://Assets/terrain/Object_0_0_0.res" id="5_4j4yb"]
+[ext_resource type="Image" uid="uid://cakj6gse2km8x" path="res://Assets/terrain/Object_0_0_1.res" id="6_3a281"]
+[ext_resource type="Image" uid="uid://di80hejnbvpam" path="res://Assets/terrain/Snow_0_0.res" id="8_y3t1h"]
+[ext_resource type="Image" uid="uid://c1f6lc4ggmj07" path="res://Assets/terrain/Splatmap_0_0_0.res" id="9_xdhtk"]
+[ext_resource type="Image" uid="uid://day50ohe0kk4q" path="res://Assets/terrain/Foliage_0_1_0.res" id="10_gtnp8"]
+[ext_resource type="Image" uid="uid://baeb6yvc6p0j2" path="res://Assets/terrain/Foliage_0_1_1.res" id="11_ktm3c"]
+[ext_resource type="Image" uid="uid://bv086msivvwnp" path="res://Assets/terrain/Foliage_0_1_2.res" id="12_2jfx7"]
+[ext_resource type="Image" uid="uid://b337himipdgwb" path="res://Assets/terrain/Heightmap_0_1.res" id="13_u4bny"]
+[ext_resource type="Image" uid="uid://ckt4tskfri6wo" path="res://Assets/terrain/Object_0_1_0.res" id="14_o8306"]
+[ext_resource type="Image" uid="uid://bcgreogm2x4md" path="res://Assets/terrain/Object_0_1_1.res" id="14_v4i4x"]
+[ext_resource type="Image" uid="uid://cawvqp7pr4r0c" path="res://Assets/terrain/Snow_0_1.res" id="17_xi7hf"]
+[ext_resource type="Image" uid="uid://c1akb30a4i0lb" path="res://Assets/terrain/Splatmap_0_1_0.res" id="18_31sca"]
+[ext_resource type="Image" uid="uid://dva1pwhm5xjw0" path="res://Assets/terrain/Foliage_1_0_0.res" id="19_jtktr"]
+[ext_resource type="Image" uid="uid://d4k5klmwfgfg6" path="res://Assets/terrain/Foliage_1_0_1.res" id="20_1b7ti"]
+[ext_resource type="Image" uid="uid://dos1fkmgwluav" path="res://Assets/terrain/Foliage_1_0_2.res" id="21_c1xu8"]
+[ext_resource type="Image" uid="uid://deuem3d1nin13" path="res://Assets/terrain/Heightmap_1_0.res" id="22_6rxjc"]
+[ext_resource type="Image" uid="uid://d18l0abdff3pu" path="res://Assets/terrain/Object_1_0_1.res" id="22_ct1x0"]
+[ext_resource type="Image" uid="uid://cwq1mv2cgubqc" path="res://Assets/terrain/Object_1_0_0.res" id="23_u0buu"]
+[ext_resource type="Image" uid="uid://i7tv8hy3cshp" path="res://Assets/terrain/Snow_1_0.res" id="26_gjwc2"]
+[ext_resource type="Image" uid="uid://cmp8wlgrlhjmh" path="res://Assets/terrain/Splatmap_1_0_0.res" id="27_7xhrq"]
+[ext_resource type="Image" uid="uid://crd1te2o2nfx7" path="res://Assets/terrain/Foliage_1_1_0.res" id="28_cdelt"]
+[ext_resource type="Image" uid="uid://bbtmyw1sxb2s8" path="res://Assets/terrain/Foliage_1_1_1.res" id="29_2ufly"]
+[ext_resource type="Image" uid="uid://c4nnowvaf6y75" path="res://Assets/terrain/Foliage_1_1_2.res" id="30_ey7ts"]
+[ext_resource type="Image" uid="uid://bd2rq1031vp6v" path="res://Assets/terrain/Object_1_1_1.res" id="30_vxyvk"]
+[ext_resource type="Image" uid="uid://dxuwxoyfokjf3" path="res://Assets/terrain/Heightmap_1_1.res" id="31_ha4wg"]
+[ext_resource type="Image" uid="uid://dj75k8tbj1bmk" path="res://Assets/terrain/Object_1_1_0.res" id="32_0mfhc"]
+[ext_resource type="Image" uid="uid://bvy4lqdk5dela" path="res://Assets/terrain/Snow_1_1.res" id="35_wairg"]
+[ext_resource type="Image" uid="uid://d0w8gnw4w2kbw" path="res://Assets/terrain/Splatmap_1_1_0.res" id="36_ggwtr"]
+[ext_resource type="Image" uid="uid://bpmi88bwjj8v8" path="res://Assets/terrain/Foliage_-1_0_0.res" id="37_16kr4"]
+[ext_resource type="Image" uid="uid://blmqwlaqny3lf" path="res://Assets/terrain/Object_-1_0_1.res" id="38_83ov5"]
+[ext_resource type="Image" uid="uid://dib5cjdiqjfcr" path="res://Assets/terrain/Foliage_-1_0_1.res" id="38_f1qac"]
+[ext_resource type="Image" uid="uid://cukr0oea6udya" path="res://Assets/terrain/Foliage_-1_0_2.res" id="39_c1v2p"]
+[ext_resource type="Image" uid="uid://yhy8a00qnrsh" path="res://Assets/terrain/Heightmap_-1_0.res" id="40_jf6yk"]
+[ext_resource type="Image" uid="uid://clc3v8n4hnl4e" path="res://Assets/terrain/Object_-1_0_0.res" id="41_a3sw1"]
+[ext_resource type="Image" uid="uid://qqj1lmwo15fv" path="res://Assets/terrain/Snow_-1_0.res" id="44_q1ayn"]
+[ext_resource type="Image" uid="uid://uhirt1g0enfg" path="res://Assets/terrain/Splatmap_-1_0_0.res" id="45_ll3ni"]
+[ext_resource type="Image" uid="uid://cep0my3sn2bbs" path="res://Assets/terrain/Foliage_-1_1_0.res" id="46_63med"]
+[ext_resource type="Image" uid="uid://cofu61hohlmi5" path="res://Assets/terrain/Object_-1_1_1.res" id="46_vsa6e"]
+[ext_resource type="Image" uid="uid://2gn8h7a4h4pv" path="res://Assets/terrain/Foliage_-1_1_1.res" id="47_oqjik"]
+[ext_resource type="Image" uid="uid://b4okdgo7cn0up" path="res://Assets/terrain/Foliage_-1_1_2.res" id="48_6cj1m"]
+[ext_resource type="Image" uid="uid://cbnooklf3ws8o" path="res://Assets/terrain/Heightmap_-1_1.res" id="49_j0vhs"]
+[ext_resource type="Image" uid="uid://dmgdpegww1r7h" path="res://Assets/terrain/Object_-1_1_0.res" id="50_ci0jr"]
+[ext_resource type="Image" uid="uid://bdnaj1gi0uoin" path="res://Assets/terrain/Snow_-1_1.res" id="53_ypt4b"]
+[ext_resource type="Image" uid="uid://bk0w7lnngkcal" path="res://Assets/terrain/Object_-1_-1_1.res" id="54_b6uag"]
+[ext_resource type="Image" uid="uid://dyelmqwgm5cnk" path="res://Assets/terrain/Splatmap_-1_1_0.res" id="54_g7qup"]
+[ext_resource type="Image" uid="uid://b720x0d6rweyl" path="res://Assets/terrain/Foliage_-1_-1_0.res" id="55_a7lqk"]
+[ext_resource type="Image" uid="uid://b3b32qwa7wy6d" path="res://Assets/terrain/Foliage_-1_-1_1.res" id="56_ivmk1"]
+[ext_resource type="Image" uid="uid://vra7fbn18ifm" path="res://Assets/terrain/Foliage_-1_-1_2.res" id="57_peyfg"]
+[ext_resource type="Image" uid="uid://dxvureo3awo23" path="res://Assets/terrain/Heightmap_-1_-1.res" id="58_24mcw"]
+[ext_resource type="Image" uid="uid://pgc81gc56jyn" path="res://Assets/terrain/Object_-1_-1_0.res" id="59_agepy"]
+[ext_resource type="Image" uid="uid://dcipdiddi0qgl" path="res://Assets/terrain/Object_0_-1_1.res" id="62_2eu6r"]
+[ext_resource type="Image" uid="uid://ba3f17y681udl" path="res://Assets/terrain/Snow_-1_-1.res" id="62_lgnwh"]
+[ext_resource type="Image" uid="uid://n642gt24nj7" path="res://Assets/terrain/Splatmap_-1_-1_0.res" id="63_1q0ga"]
+[ext_resource type="Image" uid="uid://dyitjvh0gpyb8" path="res://Assets/terrain/Foliage_0_-1_0.res" id="64_typ2a"]
+[ext_resource type="Image" uid="uid://bwhhukvgy1x5i" path="res://Assets/terrain/Foliage_0_-1_1.res" id="65_h16yq"]
+[ext_resource type="Image" uid="uid://dirn3hsigw4ck" path="res://Assets/terrain/Foliage_0_-1_2.res" id="66_navwm"]
+[ext_resource type="Image" uid="uid://vvyvkhbvs00u" path="res://Assets/terrain/Heightmap_0_-1.res" id="67_jccxn"]
+[ext_resource type="Image" uid="uid://n88p72i7pv3i" path="res://Assets/terrain/Object_0_-1_0.res" id="68_30aq2"]
+[ext_resource type="Image" uid="uid://dnqlodxwekdw5" path="res://Assets/terrain/Object_1_-1_1.res" id="70_g0emv"]
+[ext_resource type="Image" uid="uid://c7na7vmeub010" path="res://Assets/terrain/Snow_0_-1.res" id="71_ad1bl"]
+[ext_resource type="Image" uid="uid://br2po8eogi4jw" path="res://Assets/terrain/Splatmap_0_-1_0.res" id="72_jhmka"]
+[ext_resource type="Image" uid="uid://cppymdtti2i55" path="res://Assets/terrain/Foliage_1_-1_0.res" id="73_3a281"]
+[ext_resource type="Image" uid="uid://cy4sftpj6m13h" path="res://Assets/terrain/Foliage_1_-1_1.res" id="74_v4i4x"]
+[ext_resource type="Image" uid="uid://c3lys66xx4c7v" path="res://Assets/terrain/Foliage_1_-1_2.res" id="75_ct1x0"]
+[ext_resource type="Image" uid="uid://csjk1lfeeh366" path="res://Assets/terrain/Heightmap_1_-1.res" id="76_vxyvk"]
+[ext_resource type="Image" uid="uid://dw017tkcn28rf" path="res://Assets/terrain/Object_1_-1_0.res" id="77_83ov5"]
+[ext_resource type="Image" uid="uid://b4xpltl75o13e" path="res://Assets/terrain/Object_0_-2_1.res" id="78_6orvv"]
+[ext_resource type="Image" uid="uid://cg16iv6h10l57" path="res://Assets/terrain/Snow_1_-1.res" id="80_2eu6r"]
+[ext_resource type="Image" uid="uid://tuhyowcuxcsp" path="res://Assets/terrain/Splatmap_1_-1_0.res" id="81_g0emv"]
+[ext_resource type="Image" uid="uid://8o7lek8378vx" path="res://Assets/terrain/Foliage_0_-2_0.res" id="82_6orvv"]
+[ext_resource type="Image" uid="uid://cdn2xisvjswb0" path="res://Assets/terrain/Foliage_0_-2_1.res" id="83_wuxb7"]
+[ext_resource type="Image" uid="uid://uou53ixdl6s5" path="res://Assets/terrain/Foliage_0_-2_2.res" id="84_b58ov"]
+[ext_resource type="Image" uid="uid://c1rm122fvaqcn" path="res://Assets/terrain/Heightmap_0_-2.res" id="85_bbl8e"]
+[ext_resource type="Image" uid="uid://dvatem222xeo" path="res://Assets/terrain/Object_0_-2_0.res" id="86_5ufm4"]
+[ext_resource type="Image" uid="uid://cy85u0kf1lxvp" path="res://Assets/terrain/Object_1_-2_1.res" id="86_wuxb7"]
+[ext_resource type="Image" uid="uid://6v6wklqlap84" path="res://Assets/terrain/Snow_0_-2.res" id="89_gbwts"]
+[ext_resource type="Image" uid="uid://bo0xo3tphrlqo" path="res://Assets/terrain/Splatmap_0_-2_0.res" id="90_k3e6v"]
+[ext_resource type="Image" uid="uid://c0mi3dny8hsqm" path="res://Assets/terrain/Foliage_1_-2_0.res" id="91_ol7ug"]
+[ext_resource type="Image" uid="uid://c6b2yt6mauvai" path="res://Assets/terrain/Foliage_1_-2_1.res" id="92_bnp65"]
+[ext_resource type="Image" uid="uid://bt4rg8rthpfnj" path="res://Assets/terrain/Foliage_1_-2_2.res" id="93_uwls1"]
+[ext_resource type="Image" uid="uid://8oxletxcqooj" path="res://Assets/terrain/Object_-1_-2_1.res" id="94_b58ov"]
+[ext_resource type="Image" uid="uid://geqm61equt26" path="res://Assets/terrain/Heightmap_1_-2.res" id="94_nqjr7"]
+[ext_resource type="Image" uid="uid://rvuwtixh4evi" path="res://Assets/terrain/Object_1_-2_0.res" id="95_hp3i3"]
+[ext_resource type="Image" uid="uid://bhtvxeljo8rup" path="res://Assets/terrain/Snow_1_-2.res" id="98_gceni"]
+[ext_resource type="Image" uid="uid://dsjigjtih1vyx" path="res://Assets/terrain/Splatmap_1_-2_0.res" id="99_ruaw3"]
+[ext_resource type="Image" uid="uid://c1lgada1kcwkc" path="res://Assets/terrain/Foliage_-1_-2_0.res" id="100_lxrto"]
+[ext_resource type="Image" uid="uid://btlywtovxctvp" path="res://Assets/terrain/Foliage_-1_-2_1.res" id="101_cqquf"]
+[ext_resource type="Image" uid="uid://bxhaglew8ahxu" path="res://Assets/terrain/Object_1_-3_1.res" id="102_bbl8e"]
+[ext_resource type="Image" uid="uid://cgu386pv25hfk" path="res://Assets/terrain/Foliage_-1_-2_2.res" id="102_pulrt"]
+[ext_resource type="Image" uid="uid://67md8wl7omxt" path="res://Assets/terrain/Heightmap_-1_-2.res" id="103_sjmo2"]
+[ext_resource type="Image" uid="uid://bwi3ybhnuq85n" path="res://Assets/terrain/Object_-1_-2_0.res" id="104_bn3wv"]
+[ext_resource type="Image" uid="uid://568dwsv87xt3" path="res://Assets/terrain/Snow_-1_-2.res" id="107_46en5"]
+[ext_resource type="Image" uid="uid://dhmrsg5uee2wf" path="res://Assets/terrain/Splatmap_-1_-2_0.res" id="108_uuv6l"]
+[ext_resource type="Image" uid="uid://b5bu6wajlfsw8" path="res://Assets/terrain/Foliage_1_-3_0.res" id="109_uuft0"]
+[ext_resource type="Image" uid="uid://d0hy80qodw8er" path="res://Assets/terrain/Object_0_-3_1.res" id="110_5ufm4"]
+[ext_resource type="Image" uid="uid://dw62uolnasbsn" path="res://Assets/terrain/Foliage_1_-3_1.res" id="110_pihtl"]
+[ext_resource type="Image" uid="uid://xvfuycl720sw" path="res://Assets/terrain/Foliage_1_-3_2.res" id="111_g7eop"]
+[ext_resource type="Image" uid="uid://3wnbcpw7ajuc" path="res://Assets/terrain/Heightmap_1_-3.res" id="112_osgvq"]
+[ext_resource type="Image" uid="uid://cbgjiitx1l8q4" path="res://Assets/terrain/Object_1_-3_0.res" id="113_pukxw"]
+[ext_resource type="Image" uid="uid://cb1nn0hdpwmwx" path="res://Assets/terrain/Snow_1_-3.res" id="116_ftde0"]
+[ext_resource type="Image" uid="uid://db744ju7yftuo" path="res://Assets/terrain/Splatmap_1_-3_0.res" id="117_gk0ev"]
+[ext_resource type="Image" uid="uid://bj1p7ccxvsymr" path="res://Assets/terrain/Foliage_0_-3_0.res" id="118_5ug1y"]
+[ext_resource type="Image" uid="uid://tw7844m347c7" path="res://Assets/terrain/Object_-1_-3_1.res" id="118_ubwsu"]
+[ext_resource type="Image" uid="uid://brcaxyicrgl7x" path="res://Assets/terrain/Foliage_0_-3_1.res" id="119_qgd46"]
+[ext_resource type="Image" uid="uid://d3xiwixk75p6q" path="res://Assets/terrain/Foliage_0_-3_2.res" id="120_fmact"]
+[ext_resource type="Image" uid="uid://q4lxuhl0ix6v" path="res://Assets/terrain/Heightmap_0_-3.res" id="121_22u0q"]
+[ext_resource type="Image" uid="uid://dfjlppsem08c2" path="res://Assets/terrain/Object_0_-3_0.res" id="122_1vcm1"]
+[ext_resource type="Image" uid="uid://bw4u5bl3eetrl" path="res://Assets/terrain/Snow_0_-3.res" id="125_7laxs"]
+[ext_resource type="Image" uid="uid://fvgi2fet4btb" path="res://Assets/terrain/Splatmap_0_-3_0.res" id="126_oeq63"]
+[ext_resource type="Image" uid="uid://x4epq45g8avq" path="res://Assets/terrain/Object_0_-4_1.res" id="126_sdkkp"]
+[ext_resource type="Image" uid="uid://bkdee31cm062i" path="res://Assets/terrain/Heightmap_0_-5.res" id="127_cctu0"]
+[ext_resource type="Image" uid="uid://dr4usvt5to25l" path="res://Assets/terrain/Foliage_-1_-3_0.res" id="127_huq61"]
+[ext_resource type="Image" uid="uid://cjfajwfx67pyq" path="res://Assets/terrain/Object_0_-5_0.res" id="128_bfm4r"]
+[ext_resource type="Image" uid="uid://cn0feur2g0yxa" path="res://Assets/terrain/Foliage_-1_-3_1.res" id="128_gvo2x"]
+[ext_resource type="Image" uid="uid://48en3h64whp8" path="res://Assets/terrain/Snow_0_-5.res" id="129_hq6ob"]
+[ext_resource type="Image" uid="uid://b0kc4gmdotiu4" path="res://Assets/terrain/Foliage_-1_-3_2.res" id="129_ibxt3"]
+[ext_resource type="Image" uid="uid://daexjv8mxyyaj" path="res://Assets/terrain/Heightmap_-1_-3.res" id="130_is2xg"]
+[ext_resource type="Image" uid="uid://blwo5ol1qhdf3" path="res://Assets/terrain/Splatmap_0_-5_0.res" id="130_q7h6a"]
+[ext_resource type="Image" uid="uid://hk4mtj2jlu4h" path="res://Assets/terrain/Heightmap_-1_-5.res" id="131_7w34n"]
+[ext_resource type="Image" uid="uid://cqo6h8km1lppw" path="res://Assets/terrain/Object_-1_-3_0.res" id="131_bqama"]
+[ext_resource type="Image" uid="uid://brfmxf2rhbjfh" path="res://Assets/terrain/Heightmap_1_-5.res" id="131_w12na"]
+[ext_resource type="Image" uid="uid://d1ynj2p0dhvfo" path="res://Assets/terrain/Object_-1_-5_0.res" id="132_4ss0x"]
+[ext_resource type="Image" uid="uid://d1f5jwuvfkwpt" path="res://Assets/terrain/Object_1_-5_0.res" id="132_gjwc2"]
+[ext_resource type="Image" uid="uid://c8ceimv1fjdg0" path="res://Assets/terrain/Snow_1_-5.res" id="133_7xhrq"]
+[ext_resource type="Image" uid="uid://dds0o0jw7ppiq" path="res://Assets/terrain/Snow_-1_-5.res" id="133_ioxko"]
+[ext_resource type="Image" uid="uid://u7kglax4sboq" path="res://Assets/terrain/Splatmap_-1_-5_0.res" id="134_ashts"]
+[ext_resource type="Image" uid="uid://bmvrk8si1u4r7" path="res://Assets/terrain/Splatmap_1_-5_0.res" id="134_cdelt"]
+[ext_resource type="Image" uid="uid://c5hek0e5tbs3w" path="res://Assets/terrain/Snow_-1_-3.res" id="134_e2gd4"]
+[ext_resource type="Image" uid="uid://b3gmx12wtleb5" path="res://Assets/terrain/Object_1_-4_1.res" id="134_gbwts"]
+[ext_resource type="Image" uid="uid://cs3e2hfx0fui2" path="res://Assets/terrain/Heightmap_0_-6.res" id="135_0ib3d"]
+[ext_resource type="Image" uid="uid://3vexsk54ctv2" path="res://Assets/terrain/Splatmap_-1_-3_0.res" id="135_1glyk"]
+[ext_resource type="Image" uid="uid://u006v75ixr8s" path="res://Assets/terrain/Foliage_0_-4_0.res" id="136_1bqti"]
+[ext_resource type="Image" uid="uid://0h8qtmp05yhq" path="res://Assets/terrain/Object_0_-6_0.res" id="136_s7qhf"]
+[ext_resource type="Image" uid="uid://crrlrihujnkbr" path="res://Assets/terrain/Snow_0_-6.res" id="137_0oeps"]
+[ext_resource type="Image" uid="uid://nko17tpu6f33" path="res://Assets/terrain/Foliage_0_-4_1.res" id="137_1q2bi"]
+[ext_resource type="Image" uid="uid://c3tfw6xrvwekv" path="res://Assets/terrain/Foliage_0_-4_2.res" id="138_by1a1"]
+[ext_resource type="Image" uid="uid://cb7ydldvbxuh4" path="res://Assets/terrain/Splatmap_0_-6_0.res" id="138_qt0mg"]
+[ext_resource type="Image" uid="uid://pjj7kxh3c6w0" path="res://Assets/terrain/Heightmap_1_-6.res" id="139_4j4yb"]
+[ext_resource type="Image" uid="uid://dwliexgqu0h45" path="res://Assets/terrain/Heightmap_0_-4.res" id="139_r1c2x"]
+[ext_resource type="Image" uid="uid://bkkoq4wnjipmy" path="res://Assets/terrain/Object_0_-4_0.res" id="140_kvb03"]
+[ext_resource type="Image" uid="uid://c3xvw3k3yqm0k" path="res://Assets/terrain/Object_1_-6_0.res" id="140_wx0r3"]
+[ext_resource type="Image" uid="uid://dhiebjbwaj0rm" path="res://Assets/terrain/Snow_1_-6.res" id="141_urdib"]
+[ext_resource type="Image" uid="uid://bwv156y2x1cd5" path="res://Assets/terrain/Object_-1_-4_1.res" id="142_k3e6v"]
+[ext_resource type="Image" uid="uid://be1a122tal2p6" path="res://Assets/terrain/Splatmap_1_-6_0.res" id="142_y3t1h"]
+[ext_resource type="Image" uid="uid://o2inefgltnxu" path="res://Assets/terrain/Snow_0_-4.res" id="143_57ta3"]
+[ext_resource type="Image" uid="uid://na7or23i5u5c" path="res://Assets/terrain/Heightmap_-1_-6.res" id="143_xdhtk"]
+[ext_resource type="Image" uid="uid://botw7goboxwhm" path="res://Assets/terrain/Object_-1_-6_0.res" id="144_gtnp8"]
+[ext_resource type="Image" uid="uid://0s0brybvkue3" path="res://Assets/terrain/Splatmap_0_-4_0.res" id="144_xmqy1"]
+[ext_resource type="Image" uid="uid://ckvbmyctjm2kt" path="res://Assets/terrain/Foliage_1_-4_0.res" id="145_1w1e0"]
+[ext_resource type="Image" uid="uid://bokrrg73123hp" path="res://Assets/terrain/Snow_-1_-6.res" id="145_ktm3c"]
+[ext_resource type="Image" uid="uid://gio8vs5uv4gl" path="res://Assets/terrain/Splatmap_-1_-6_0.res" id="146_2jfx7"]
+[ext_resource type="Image" uid="uid://bn6ykogf1wy8s" path="res://Assets/terrain/Foliage_1_-4_1.res" id="146_54if4"]
+[ext_resource type="Image" uid="uid://dtsx6owhe3rci" path="res://Assets/terrain/Foliage_1_-4_2.res" id="147_gffxf"]
+[ext_resource type="Image" uid="uid://dsa7ianh7j0br" path="res://Assets/terrain/Object_0_-5_1.res" id="147_ol7ug"]
+[ext_resource type="Image" uid="uid://dxr2n1vujyt7w" path="res://Assets/terrain/Heightmap_-2_-6.res" id="147_u4bny"]
+[ext_resource type="Image" uid="uid://dxpm4o6st1p0" path="res://Assets/terrain/Object_-2_-6_0.res" id="148_o8306"]
+[ext_resource type="Image" uid="uid://cwu7d85bk8v45" path="res://Assets/terrain/Heightmap_1_-4.res" id="148_twk6t"]
+[ext_resource type="Image" uid="uid://cxmnvufku4nex" path="res://Assets/terrain/Snow_-2_-6.res" id="149_dqo5x"]
+[ext_resource type="Image" uid="uid://d4gwqrsj3oaso" path="res://Assets/terrain/Object_1_-4_0.res" id="149_equ3a"]
+[ext_resource type="Image" uid="uid://gdyiocnar0bb" path="res://Assets/terrain/Splatmap_-2_-6_0.res" id="150_kxi7j"]
+[ext_resource type="Image" uid="uid://3igkb66c8cl1" path="res://Assets/terrain/Heightmap_2_-5.res" id="151_2ufly"]
+[ext_resource type="Image" uid="uid://b2rimti041n4x" path="res://Assets/terrain/Heightmap_-2_-5.res" id="151_xi7hf"]
+[ext_resource type="Image" uid="uid://wjbdtwvacfqq" path="res://Assets/terrain/Object_-2_-5_0.res" id="152_31sca"]
+[ext_resource type="Image" uid="uid://o5dg0vqtj4w6" path="res://Assets/terrain/Object_1_-5_1.res" id="152_bnp65"]
+[ext_resource type="Image" uid="uid://dyrs8a82im2yt" path="res://Assets/terrain/Object_2_-5_0.res" id="152_ey7ts"]
+[ext_resource type="Image" uid="uid://db13lyxej1ub7" path="res://Assets/terrain/Snow_1_-4.res" id="152_j3whs"]
+[ext_resource type="Image" uid="uid://bs58undmnbxc" path="res://Assets/terrain/Snow_2_-5.res" id="153_ha4wg"]
+[ext_resource type="Image" uid="uid://deyxnhwgw0up4" path="res://Assets/terrain/Snow_-2_-5.res" id="153_jtktr"]
+[ext_resource type="Image" uid="uid://m568ygqmtncy" path="res://Assets/terrain/Splatmap_1_-4_0.res" id="153_mly1x"]
+[ext_resource type="Image" uid="uid://8iwbjfd4a3s0" path="res://Assets/terrain/Splatmap_2_-5_0.res" id="154_0mfhc"]
+[ext_resource type="Image" uid="uid://dlphmblx6omrv" path="res://Assets/terrain/Splatmap_-2_-5_0.res" id="154_1b7ti"]
+[ext_resource type="Image" uid="uid://bjydoskrqyypv" path="res://Assets/terrain/Foliage_-1_-4_0.res" id="154_ltex2"]
+[ext_resource type="Image" uid="uid://d0w8ilvr3prpm" path="res://Assets/terrain/Foliage_-1_-4_1.res" id="155_bnsrt"]
+[ext_resource type="Image" uid="uid://yl5pq8abeegh" path="res://Assets/terrain/Heightmap_2_-6.res" id="155_marvq"]
+[ext_resource type="Image" uid="uid://cc47qfma7o3a2" path="res://Assets/terrain/Object_2_-6_0.res" id="156_dv7ux"]
+[ext_resource type="Image" uid="uid://507woo6w2lda" path="res://Assets/terrain/Foliage_-1_-4_2.res" id="156_hleo8"]
+[ext_resource type="Image" uid="uid://dq5awkoywvhyu" path="res://Assets/terrain/Heightmap_-1_-4.res" id="157_ow6a3"]
+[ext_resource type="Image" uid="uid://b42hvcsxtgb3e" path="res://Assets/terrain/Object_-1_-5_1.res" id="157_uwls1"]
+[ext_resource type="Image" uid="uid://c63n0jecvv5q2" path="res://Assets/terrain/Snow_2_-6.res" id="157_wairg"]
+[ext_resource type="Image" uid="uid://daxl0ql57wn2g" path="res://Assets/terrain/Object_-1_-4_0.res" id="158_0xi8n"]
+[ext_resource type="Image" uid="uid://cqlfyvgi810cg" path="res://Assets/terrain/Splatmap_2_-6_0.res" id="158_ggwtr"]
+[ext_resource type="Image" uid="uid://k7ncqdrdkbn6" path="res://Assets/terrain/Heightmap_1_-7.res" id="159_16kr4"]
+[ext_resource type="Image" uid="uid://beamg225y2pgk" path="res://Assets/terrain/Object_1_-7_0.res" id="160_f1qac"]
+[ext_resource type="Image" uid="uid://bop8ibu6peup3" path="res://Assets/terrain/Snow_-1_-4.res" id="161_bferd"]
+[ext_resource type="Image" uid="uid://bcevk4m8l2cu5" path="res://Assets/terrain/Snow_1_-7.res" id="161_c1v2p"]
+[ext_resource type="Image" uid="uid://chnjo5vc17gh2" path="res://Assets/terrain/Splatmap_1_-7_0.res" id="162_jf6yk"]
+[ext_resource type="Image" uid="uid://bvixp6a8dmtcq" path="res://Assets/terrain/Object_0_-6_1.res" id="162_nqjr7"]
+[ext_resource type="Image" uid="uid://btxc0ljbwq8ha" path="res://Assets/terrain/Splatmap_-1_-4_0.res" id="162_w4n28"]
+[ext_resource type="Image" uid="uid://bblratgjdxsf8" path="res://Assets/terrain/Heightmap_2_-7.res" id="163_a3sw1"]
+[ext_resource type="Image" uid="uid://deunvxhyrh1sh" path="res://Assets/terrain/Object_2_-7_0.res" id="164_bjdxa"]
+[ext_resource type="Image" uid="uid://n2686r3j5rgx" path="res://Assets/terrain/Snow_2_-7.res" id="165_eo170"]
+[ext_resource type="Image" uid="uid://c7xwxhb6t7i8o" path="res://Assets/terrain/Splatmap_2_-7_0.res" id="166_q1ayn"]
+[ext_resource type="Image" uid="uid://n6ila35dj2dg" path="res://Assets/terrain/Object_1_-6_1.res" id="167_hp3i3"]
+[ext_resource type="Image" uid="uid://bl2qv6e8vfr7o" path="res://Assets/terrain/Heightmap_0_-7.res" id="167_ll3ni"]
+[ext_resource type="Image" uid="uid://bluem4dwbvbau" path="res://Assets/terrain/Object_0_-7_0.res" id="168_63med"]
+[ext_resource type="Image" uid="uid://434q103uwr41" path="res://Assets/terrain/Snow_0_-7.res" id="169_oqjik"]
+[ext_resource type="Image" uid="uid://dx4e7cqolhsds" path="res://Assets/terrain/Splatmap_0_-7_0.res" id="170_6cj1m"]
+[ext_resource type="Image" uid="uid://ptk247dnmxqh" path="res://Assets/terrain/Heightmap_-1_-7.res" id="171_j0vhs"]
+[ext_resource type="Image" uid="uid://bi210l1ued3om" path="res://Assets/terrain/Object_-1_-7_0.res" id="172_ci0jr"]
+[ext_resource type="Image" uid="uid://cv7ag8vr1c11a" path="res://Assets/terrain/Object_-1_-6_1.res" id="172_spgv3"]
+[ext_resource type="Image" uid="uid://ct6yuqt6kip1l" path="res://Assets/terrain/Snow_-1_-7.res" id="173_5gcvr"]
+[ext_resource type="Image" uid="uid://bcsrknh124fwj" path="res://Assets/terrain/Splatmap_-1_-7_0.res" id="174_ov21q"]
+[ext_resource type="Image" uid="uid://cu8f7jylpkm78" path="res://Assets/terrain/Heightmap_-2_-7.res" id="175_ypt4b"]
+[ext_resource type="Image" uid="uid://ddddffjyvwi3p" path="res://Assets/terrain/Object_-2_-7_0.res" id="176_g7qup"]
+[ext_resource type="Image" uid="uid://bmjw1mlgj7a3y" path="res://Assets/terrain/Snow_-2_-7.res" id="177_a7lqk"]
+[ext_resource type="Image" uid="uid://ujxgujqb1xig" path="res://Assets/terrain/Object_2_-5_1.res" id="177_ev1qr"]
+[ext_resource type="Image" uid="uid://dv2d3kjemmlcc" path="res://Assets/terrain/Splatmap_-2_-7_0.res" id="178_ivmk1"]
+[ext_resource type="Image" uid="uid://6yxoybjqdsbd" path="res://Assets/terrain/Object_2_-6_1.res" id="182_gceni"]
+[ext_resource type="Image" uid="uid://c5lq207j8klem" path="res://Assets/terrain/Heightmap_0_-8.res" id="187_16kr4"]
+[ext_resource type="Image" uid="uid://cttjhe7jnkhy5" path="res://Assets/terrain/Object_1_-7_1.res" id="187_ruaw3"]
+[ext_resource type="Image" uid="uid://cut1xqo6pv1ux" path="res://Assets/terrain/Object_0_-8_0.res" id="188_f1qac"]
+[ext_resource type="Image" uid="uid://bo4qbqjrmxsyj" path="res://Assets/terrain/Snow_0_-8.res" id="189_c1v2p"]
+[ext_resource type="Image" uid="uid://dji5vlk3b2e60" path="res://Assets/terrain/Splatmap_0_-8_0.res" id="190_jf6yk"]
+[ext_resource type="Image" uid="uid://nsdaacw4t1e0" path="res://Assets/terrain/Heightmap_-1_-8.res" id="191_a3sw1"]
+[ext_resource type="Image" uid="uid://b0lskwlv24mn8" path="res://Assets/terrain/Object_-1_-8_0.res" id="192_bjdxa"]
+[ext_resource type="Image" uid="uid://cis7hse0u8nw7" path="res://Assets/terrain/Object_2_-7_1.res" id="192_lxrto"]
+[ext_resource type="Image" uid="uid://behb7il0mau7q" path="res://Assets/terrain/Snow_-1_-8.res" id="193_eo170"]
+[ext_resource type="Image" uid="uid://dqhrbkpw6igre" path="res://Assets/terrain/Splatmap_-1_-8_0.res" id="194_q1ayn"]
+[ext_resource type="Image" uid="uid://btuum7vsocrdo" path="res://Assets/terrain/Heightmap_1_-8.res" id="195_ll3ni"]
+[ext_resource type="Image" uid="uid://t0dr4v24gv2h" path="res://Assets/terrain/Object_1_-8_0.res" id="196_63med"]
+[ext_resource type="Image" uid="uid://caxqgr72e8ala" path="res://Assets/terrain/Object_0_-7_1.res" id="197_cqquf"]
+[ext_resource type="Image" uid="uid://dgwhahx535xrv" path="res://Assets/terrain/Snow_1_-8.res" id="197_oqjik"]
+[ext_resource type="Image" uid="uid://ni1o1gsocl4c" path="res://Assets/terrain/Splatmap_1_-8_0.res" id="198_6cj1m"]
+[ext_resource type="Image" uid="uid://22gbpeewnwmf" path="res://Assets/terrain/Object_-1_-7_1.res" id="202_pulrt"]
+[ext_resource type="Image" uid="uid://bq41sh1simcgd" path="res://Assets/terrain/Object_-2_-7_1.res" id="207_sjmo2"]
+[ext_resource type="Image" uid="uid://dq3hhkj1twqb6" path="res://Assets/terrain/Object_-2_-6_1.res" id="212_bn3wv"]
+[ext_resource type="Image" uid="uid://c1v2nudk21ave" path="res://Assets/terrain/Object_-2_-5_1.res" id="217_boxu7"]
+[ext_resource type="Image" uid="uid://ujf4y3h038ac" path="res://Assets/terrain/Object_0_-8_1.res" id="222_vgmhm"]
+[ext_resource type="Image" uid="uid://bdqr3ogpp3w8f" path="res://Assets/terrain/Object_-1_-8_1.res" id="227_46en5"]
+[ext_resource type="Image" uid="uid://dit8v0lcqa3x8" path="res://Assets/terrain/Object_1_-8_1.res" id="232_uuv6l"]
+
+[sub_resource type="ZoneResource" id="ZoneResource_vimpv"]
+heightMapImage = ExtResource("4_qt0mg")
+splatmapsImage = Array[Image]([ExtResource("9_xdhtk")])
+foliagesImage = Array[Image]([ExtResource("1_0ib3d"), ExtResource("2_s7qhf"), ExtResource("3_0oeps")])
+objectsImage = Array[Image]([ExtResource("5_4j4yb"), ExtResource("6_3a281")])
+snowImage = ExtResource("8_y3t1h")
+
+[sub_resource type="ZoneResource" id="ZoneResource_6kcn7"]
+zonePosition = Vector2i(0, 1)
+heightMapImage = ExtResource("13_u4bny")
+splatmapsImage = Array[Image]([ExtResource("18_31sca")])
+foliagesImage = Array[Image]([ExtResource("10_gtnp8"), ExtResource("11_ktm3c"), ExtResource("12_2jfx7")])
+objectsImage = Array[Image]([ExtResource("14_o8306"), ExtResource("14_v4i4x")])
+snowImage = ExtResource("17_xi7hf")
+
+[sub_resource type="ZoneResource" id="ZoneResource_eqw4n"]
+zonePosition = Vector2i(1, 0)
+heightMapImage = ExtResource("22_6rxjc")
+splatmapsImage = Array[Image]([ExtResource("27_7xhrq")])
+foliagesImage = Array[Image]([ExtResource("19_jtktr"), ExtResource("20_1b7ti"), ExtResource("21_c1xu8")])
+objectsImage = Array[Image]([ExtResource("23_u0buu"), ExtResource("22_ct1x0")])
+snowImage = ExtResource("26_gjwc2")
+
+[sub_resource type="ZoneResource" id="ZoneResource_fai4h"]
+zonePosition = Vector2i(1, 1)
+heightMapImage = ExtResource("31_ha4wg")
+splatmapsImage = Array[Image]([ExtResource("36_ggwtr")])
+foliagesImage = Array[Image]([ExtResource("28_cdelt"), ExtResource("29_2ufly"), ExtResource("30_ey7ts")])
+objectsImage = Array[Image]([ExtResource("32_0mfhc"), ExtResource("30_vxyvk")])
+snowImage = ExtResource("35_wairg")
+
+[sub_resource type="ZoneResource" id="ZoneResource_eypid"]
+zonePosition = Vector2i(-1, 0)
+heightMapImage = ExtResource("40_jf6yk")
+splatmapsImage = Array[Image]([ExtResource("45_ll3ni")])
+foliagesImage = Array[Image]([ExtResource("37_16kr4"), ExtResource("38_f1qac"), ExtResource("39_c1v2p")])
+objectsImage = Array[Image]([ExtResource("41_a3sw1"), ExtResource("38_83ov5")])
+snowImage = ExtResource("44_q1ayn")
+
+[sub_resource type="ZoneResource" id="ZoneResource_ghw72"]
+zonePosition = Vector2i(-1, 1)
+heightMapImage = ExtResource("49_j0vhs")
+splatmapsImage = Array[Image]([ExtResource("54_g7qup")])
+foliagesImage = Array[Image]([ExtResource("46_63med"), ExtResource("47_oqjik"), ExtResource("48_6cj1m")])
+objectsImage = Array[Image]([ExtResource("50_ci0jr"), ExtResource("46_vsa6e")])
+snowImage = ExtResource("53_ypt4b")
+
+[sub_resource type="ZoneResource" id="ZoneResource_tnk4g"]
+zonePosition = Vector2i(-1, -1)
+heightMapImage = ExtResource("58_24mcw")
+splatmapsImage = Array[Image]([ExtResource("63_1q0ga")])
+foliagesImage = Array[Image]([ExtResource("55_a7lqk"), ExtResource("56_ivmk1"), ExtResource("57_peyfg")])
+objectsImage = Array[Image]([ExtResource("59_agepy"), ExtResource("54_b6uag")])
+snowImage = ExtResource("62_lgnwh")
+
+[sub_resource type="ZoneResource" id="ZoneResource_ch3ob"]
+zonePosition = Vector2i(0, -1)
+heightMapImage = ExtResource("67_jccxn")
+splatmapsImage = Array[Image]([ExtResource("72_jhmka")])
+foliagesImage = Array[Image]([ExtResource("64_typ2a"), ExtResource("65_h16yq"), ExtResource("66_navwm")])
+objectsImage = Array[Image]([ExtResource("68_30aq2"), ExtResource("62_2eu6r")])
+snowImage = ExtResource("71_ad1bl")
+
+[sub_resource type="ZoneResource" id="ZoneResource_u40a1"]
+zonePosition = Vector2i(1, -1)
+heightMapImage = ExtResource("76_vxyvk")
+splatmapsImage = Array[Image]([ExtResource("81_g0emv")])
+foliagesImage = Array[Image]([ExtResource("73_3a281"), ExtResource("74_v4i4x"), ExtResource("75_ct1x0")])
+objectsImage = Array[Image]([ExtResource("77_83ov5"), ExtResource("70_g0emv")])
+snowImage = ExtResource("80_2eu6r")
+
+[sub_resource type="ZoneResource" id="ZoneResource_a5r6f"]
+zonePosition = Vector2i(0, -2)
+heightMapImage = ExtResource("85_bbl8e")
+splatmapsImage = Array[Image]([ExtResource("90_k3e6v")])
+foliagesImage = Array[Image]([ExtResource("82_6orvv"), ExtResource("83_wuxb7"), ExtResource("84_b58ov")])
+objectsImage = Array[Image]([ExtResource("86_5ufm4"), ExtResource("78_6orvv")])
+snowImage = ExtResource("89_gbwts")
+
+[sub_resource type="ZoneResource" id="ZoneResource_fdf8h"]
+zonePosition = Vector2i(1, -2)
+heightMapImage = ExtResource("94_nqjr7")
+splatmapsImage = Array[Image]([ExtResource("99_ruaw3")])
+foliagesImage = Array[Image]([ExtResource("91_ol7ug"), ExtResource("92_bnp65"), ExtResource("93_uwls1")])
+objectsImage = Array[Image]([ExtResource("95_hp3i3"), ExtResource("86_wuxb7")])
+snowImage = ExtResource("98_gceni")
+
+[sub_resource type="ZoneResource" id="ZoneResource_n73do"]
+zonePosition = Vector2i(-1, -2)
+heightMapImage = ExtResource("103_sjmo2")
+splatmapsImage = Array[Image]([ExtResource("108_uuv6l")])
+foliagesImage = Array[Image]([ExtResource("100_lxrto"), ExtResource("101_cqquf"), ExtResource("102_pulrt")])
+objectsImage = Array[Image]([ExtResource("104_bn3wv"), ExtResource("94_b58ov")])
+snowImage = ExtResource("107_46en5")
+
+[sub_resource type="ZoneResource" id="ZoneResource_brwxm"]
+zonePosition = Vector2i(1, -3)
+heightMapImage = ExtResource("112_osgvq")
+splatmapsImage = Array[Image]([ExtResource("117_gk0ev")])
+foliagesImage = Array[Image]([ExtResource("109_uuft0"), ExtResource("110_pihtl"), ExtResource("111_g7eop")])
+objectsImage = Array[Image]([ExtResource("113_pukxw"), ExtResource("102_bbl8e")])
+snowImage = ExtResource("116_ftde0")
+
+[sub_resource type="ZoneResource" id="ZoneResource_ewgrc"]
+zonePosition = Vector2i(0, -3)
+heightMapImage = ExtResource("121_22u0q")
+splatmapsImage = Array[Image]([ExtResource("126_oeq63")])
+foliagesImage = Array[Image]([ExtResource("118_5ug1y"), ExtResource("119_qgd46"), ExtResource("120_fmact")])
+objectsImage = Array[Image]([ExtResource("122_1vcm1"), ExtResource("110_5ufm4")])
+snowImage = ExtResource("125_7laxs")
+
+[sub_resource type="ZoneResource" id="ZoneResource_snkb1"]
+zonePosition = Vector2i(-1, -3)
+heightMapImage = ExtResource("130_is2xg")
+splatmapsImage = Array[Image]([ExtResource("135_1glyk")])
+foliagesImage = Array[Image]([ExtResource("127_huq61"), ExtResource("128_gvo2x"), ExtResource("129_ibxt3")])
+objectsImage = Array[Image]([ExtResource("131_bqama"), ExtResource("118_ubwsu")])
+snowImage = ExtResource("134_e2gd4")
+
+[sub_resource type="ZoneResource" id="ZoneResource_rai8g"]
+zonePosition = Vector2i(0, -4)
+heightMapImage = ExtResource("139_r1c2x")
+splatmapsImage = Array[Image]([ExtResource("144_xmqy1")])
+foliagesImage = Array[Image]([ExtResource("136_1bqti"), ExtResource("137_1q2bi"), ExtResource("138_by1a1")])
+objectsImage = Array[Image]([ExtResource("140_kvb03"), ExtResource("126_sdkkp")])
+snowImage = ExtResource("143_57ta3")
+
+[sub_resource type="ZoneResource" id="ZoneResource_gpcit"]
+zonePosition = Vector2i(1, -4)
+heightMapImage = ExtResource("148_twk6t")
+splatmapsImage = Array[Image]([ExtResource("153_mly1x")])
+foliagesImage = Array[Image]([ExtResource("145_1w1e0"), ExtResource("146_54if4"), ExtResource("147_gffxf")])
+objectsImage = Array[Image]([ExtResource("149_equ3a"), ExtResource("134_gbwts")])
+snowImage = ExtResource("152_j3whs")
+
+[sub_resource type="ZoneResource" id="ZoneResource_gq5x6"]
+zonePosition = Vector2i(-1, -4)
+heightMapImage = ExtResource("157_ow6a3")
+splatmapsImage = Array[Image]([ExtResource("162_w4n28")])
+foliagesImage = Array[Image]([ExtResource("154_ltex2"), ExtResource("155_bnsrt"), ExtResource("156_hleo8")])
+objectsImage = Array[Image]([ExtResource("158_0xi8n"), ExtResource("142_k3e6v")])
+snowImage = ExtResource("161_bferd")
+
+[sub_resource type="ZoneResource" id="ZoneResource_c1xu8"]
+zonePosition = Vector2i(0, -5)
+heightMapImage = ExtResource("127_cctu0")
+splatmapsImage = Array[Image]([ExtResource("130_q7h6a")])
+objectsImage = Array[Image]([ExtResource("128_bfm4r"), ExtResource("147_ol7ug")])
+snowImage = ExtResource("129_hq6ob")
+
+[sub_resource type="ZoneResource" id="ZoneResource_peyfg"]
+zonePosition = Vector2i(1, -5)
+heightMapImage = ExtResource("131_w12na")
+splatmapsImage = Array[Image]([ExtResource("134_cdelt")])
+objectsImage = Array[Image]([ExtResource("132_gjwc2"), ExtResource("152_bnp65")])
+snowImage = ExtResource("133_7xhrq")
+
+[sub_resource type="ZoneResource" id="ZoneResource_6rxjc"]
+zonePosition = Vector2i(-1, -5)
+heightMapImage = ExtResource("131_7w34n")
+splatmapsImage = Array[Image]([ExtResource("134_ashts")])
+objectsImage = Array[Image]([ExtResource("132_4ss0x"), ExtResource("157_uwls1")])
+snowImage = ExtResource("133_ioxko")
+
+[sub_resource type="ZoneResource" id="ZoneResource_u0buu"]
+zonePosition = Vector2i(0, -6)
+heightMapImage = ExtResource("135_0ib3d")
+splatmapsImage = Array[Image]([ExtResource("138_qt0mg")])
+objectsImage = Array[Image]([ExtResource("136_s7qhf"), ExtResource("162_nqjr7")])
+snowImage = ExtResource("137_0oeps")
+
+[sub_resource type="ZoneResource" id="ZoneResource_be2qn"]
+zonePosition = Vector2i(1, -6)
+heightMapImage = ExtResource("139_4j4yb")
+splatmapsImage = Array[Image]([ExtResource("142_y3t1h")])
+objectsImage = Array[Image]([ExtResource("140_wx0r3"), ExtResource("167_hp3i3")])
+snowImage = ExtResource("141_urdib")
+
+[sub_resource type="ZoneResource" id="ZoneResource_w12na"]
+zonePosition = Vector2i(-1, -6)
+heightMapImage = ExtResource("143_xdhtk")
+splatmapsImage = Array[Image]([ExtResource("146_2jfx7")])
+objectsImage = Array[Image]([ExtResource("144_gtnp8"), ExtResource("172_spgv3")])
+snowImage = ExtResource("145_ktm3c")
+
+[sub_resource type="ZoneResource" id="ZoneResource_24mcw"]
+zonePosition = Vector2i(2, -5)
+heightMapImage = ExtResource("151_2ufly")
+splatmapsImage = Array[Image]([ExtResource("154_0mfhc")])
+objectsImage = Array[Image]([ExtResource("152_ey7ts"), ExtResource("177_ev1qr")])
+snowImage = ExtResource("153_ha4wg")
+
+[sub_resource type="ZoneResource" id="ZoneResource_agepy"]
+zonePosition = Vector2i(2, -6)
+heightMapImage = ExtResource("155_marvq")
+splatmapsImage = Array[Image]([ExtResource("158_ggwtr")])
+objectsImage = Array[Image]([ExtResource("156_dv7ux"), ExtResource("182_gceni")])
+snowImage = ExtResource("157_wairg")
+
+[sub_resource type="ZoneResource" id="ZoneResource_h07ex"]
+zonePosition = Vector2i(1, -7)
+heightMapImage = ExtResource("159_16kr4")
+splatmapsImage = Array[Image]([ExtResource("162_jf6yk")])
+objectsImage = Array[Image]([ExtResource("160_f1qac"), ExtResource("187_ruaw3")])
+snowImage = ExtResource("161_c1v2p")
+
+[sub_resource type="ZoneResource" id="ZoneResource_gpecy"]
+zonePosition = Vector2i(2, -7)
+heightMapImage = ExtResource("163_a3sw1")
+splatmapsImage = Array[Image]([ExtResource("166_q1ayn")])
+objectsImage = Array[Image]([ExtResource("164_bjdxa"), ExtResource("192_lxrto")])
+snowImage = ExtResource("165_eo170")
+
+[sub_resource type="ZoneResource" id="ZoneResource_lgnwh"]
+zonePosition = Vector2i(0, -7)
+heightMapImage = ExtResource("167_ll3ni")
+splatmapsImage = Array[Image]([ExtResource("170_6cj1m")])
+objectsImage = Array[Image]([ExtResource("168_63med"), ExtResource("197_cqquf")])
+snowImage = ExtResource("169_oqjik")
+
+[sub_resource type="ZoneResource" id="ZoneResource_1q0ga"]
+zonePosition = Vector2i(-1, -7)
+heightMapImage = ExtResource("171_j0vhs")
+splatmapsImage = Array[Image]([ExtResource("174_ov21q")])
+objectsImage = Array[Image]([ExtResource("172_ci0jr"), ExtResource("202_pulrt")])
+snowImage = ExtResource("173_5gcvr")
+
+[sub_resource type="ZoneResource" id="ZoneResource_typ2a"]
+zonePosition = Vector2i(-2, -7)
+heightMapImage = ExtResource("175_ypt4b")
+splatmapsImage = Array[Image]([ExtResource("178_ivmk1")])
+objectsImage = Array[Image]([ExtResource("176_g7qup"), ExtResource("207_sjmo2")])
+snowImage = ExtResource("177_a7lqk")
+
+[sub_resource type="ZoneResource" id="ZoneResource_h16yq"]
+zonePosition = Vector2i(-2, -6)
+heightMapImage = ExtResource("147_u4bny")
+splatmapsImage = Array[Image]([ExtResource("150_kxi7j")])
+objectsImage = Array[Image]([ExtResource("148_o8306"), ExtResource("212_bn3wv")])
+snowImage = ExtResource("149_dqo5x")
+
+[sub_resource type="ZoneResource" id="ZoneResource_navwm"]
+zonePosition = Vector2i(-2, -5)
+heightMapImage = ExtResource("151_xi7hf")
+splatmapsImage = Array[Image]([ExtResource("154_1b7ti")])
+objectsImage = Array[Image]([ExtResource("152_31sca"), ExtResource("217_boxu7")])
+snowImage = ExtResource("153_jtktr")
+
+[sub_resource type="ZoneResource" id="ZoneResource_j0vhs"]
+zonePosition = Vector2i(0, -8)
+heightMapImage = ExtResource("187_16kr4")
+splatmapsImage = Array[Image]([ExtResource("190_jf6yk")])
+objectsImage = Array[Image]([ExtResource("188_f1qac"), ExtResource("222_vgmhm")])
+snowImage = ExtResource("189_c1v2p")
+
+[sub_resource type="ZoneResource" id="ZoneResource_ci0jr"]
+zonePosition = Vector2i(-1, -8)
+heightMapImage = ExtResource("191_a3sw1")
+splatmapsImage = Array[Image]([ExtResource("194_q1ayn")])
+objectsImage = Array[Image]([ExtResource("192_bjdxa"), ExtResource("227_46en5")])
+snowImage = ExtResource("193_eo170")
+
+[sub_resource type="ZoneResource" id="ZoneResource_5gcvr"]
+zonePosition = Vector2i(1, -8)
+heightMapImage = ExtResource("195_ll3ni")
+splatmapsImage = Array[Image]([ExtResource("198_6cj1m")])
+objectsImage = Array[Image]([ExtResource("196_63med"), ExtResource("232_uuv6l")])
+snowImage = ExtResource("197_oqjik")
+
+[resource]
+zones = Array[ZoneResource]([SubResource("ZoneResource_vimpv"), SubResource("ZoneResource_6kcn7"), SubResource("ZoneResource_eqw4n"), SubResource("ZoneResource_fai4h"), SubResource("ZoneResource_eypid"), SubResource("ZoneResource_ghw72"), SubResource("ZoneResource_tnk4g"), SubResource("ZoneResource_ch3ob"), SubResource("ZoneResource_u40a1"), SubResource("ZoneResource_a5r6f"), SubResource("ZoneResource_fdf8h"), SubResource("ZoneResource_n73do"), SubResource("ZoneResource_brwxm"), SubResource("ZoneResource_ewgrc"), SubResource("ZoneResource_snkb1"), SubResource("ZoneResource_rai8g"), SubResource("ZoneResource_gpcit"), SubResource("ZoneResource_gq5x6"), SubResource("ZoneResource_c1xu8"), SubResource("ZoneResource_peyfg"), SubResource("ZoneResource_6rxjc"), SubResource("ZoneResource_u0buu"), SubResource("ZoneResource_be2qn"), SubResource("ZoneResource_w12na"), SubResource("ZoneResource_24mcw"), SubResource("ZoneResource_agepy"), SubResource("ZoneResource_h07ex"), SubResource("ZoneResource_gpecy"), SubResource("ZoneResource_lgnwh"), SubResource("ZoneResource_1q0ga"), SubResource("ZoneResource_typ2a"), SubResource("ZoneResource_h16yq"), SubResource("ZoneResource_navwm"), SubResource("ZoneResource_j0vhs"), SubResource("ZoneResource_ci0jr"), SubResource("ZoneResource_5gcvr")])

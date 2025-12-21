@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://vj8rpvty2v8f"]
+
+[ext_resource type="Script" uid="uid://cg0o3vuh3ja2r" path="res://Scenes/ui/endings/ending_options.gd" id="1_fln0n"]
+[ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_rpaex"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnn7q"]
+
+[node name="EndingOptions" type="BoxContainer"]
+offset_right = 256.0
+offset_bottom = 119.0
+theme = ExtResource("1_rpaex")
+vertical = true
+script = ExtResource("1_fln0n")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "You Learned To Fly!
+"
+label_settings = SubResource("LabelSettings_lnn7q")
+horizontal_alignment = 1
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 2
+text = "Quit"
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

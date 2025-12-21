@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b77fpoolp5uko"
+path="res://.godot/imported/VB GWJ 88 - rocket burning (loop).wav-834e7c95917b6ae7db82d1733ecb3d86.sample"
+
+[deps]
+
+source_file="res://Assets/audio/sfx/VB GWJ 88 - rocket burning (loop).wav"
+dest_files=["res://.godot/imported/VB GWJ 88 - rocket burning (loop).wav-834e7c95917b6ae7db82d1733ecb3d86.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

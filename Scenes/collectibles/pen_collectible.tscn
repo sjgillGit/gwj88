@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://drcvhv5jd0sqr"]
+
+[ext_resource type="Script" uid="uid://rmgtllhh3d5s" path="res://Scenes/collectibles/pen_collectible.gd" id="1_ocdwb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ocdwb"]
+margin = 0.0
+
+[node name="PenCollectible" type="RigidBody3D"]
+angular_damp = 0.9
+script = ExtResource("1_ocdwb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ocdwb")

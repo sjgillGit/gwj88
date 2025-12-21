@@ -6,6 +6,7 @@ func _ready():
 var last_pos := Vector3()
 
 func set_thrusting(value: bool):
+
 	%ThrustParticles.emitting = value
 
 func _physics_process(delta: float) -> void:

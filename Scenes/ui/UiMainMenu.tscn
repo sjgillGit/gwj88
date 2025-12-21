@@ -103,7 +103,16 @@ offset_bottom = 73.0
 text = "Quit"
 horizontal_alignment = 1
 
+[node name="OptionButton" type="OptionButton" parent="."]
+modulate = Color(1, 1, 1, 0.08627451)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="mouse_entered" from="OptionButton" to="." method="_on_option_button_mouse_entered"]
+[connection signal="mouse_exited" from="OptionButton" to="." method="_on_option_button_mouse_exited"]

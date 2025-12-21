@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp32yx8421hi"]
+[gd_scene load_steps=5 format=3 uid="uid://cp32yx8421hi"]
 
 [ext_resource type="Script" uid="uid://dn30jntq0y1yq" path="res://Scripts/collectibles/collecter.gd" id="1_ag2ay"]
+[ext_resource type="AudioStream" uid="uid://c5im58ue35xnu" path="res://Assets/audio/sfx/VB GWJ 88 - small pickup.wav" id="2_1x2e0"]
+[ext_resource type="AudioStream" uid="uid://bs72sjfgenm2y" path="res://Assets/audio/sfx/VB GWJ 88 - big pickup.wav" id="2_7x2u3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ophcc"]
 
@@ -13,5 +15,14 @@ script = ExtResource("1_ag2ay")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_ophcc")
 debug_color = Color(0.76496416, 0.44135654, 0.2332983, 0.41960785)
+
+[node name="CollectBigAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_7x2u3")
+bus = &"SFX"
+
+[node name="CollectSmallAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_1x2e0")
+max_polyphony = 5
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

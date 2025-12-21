@@ -33,11 +33,18 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 		if is_node_ready():
 			%DebugUi.visible = value
 
-@onready var camera_animation := %CameraAnimationPlayer
-
 @export_category("GUIDE")
 @export var movement: GUIDEAction
 @export var boost: GUIDEAction
+
+@onready var camera_animation := %CameraAnimationPlayer
+
+@onready var _ramp_skid_sfx := $AudioRampSkid as AudioStreamPlayer3D
+@onready var _hoof_beats_sfx := $AudioHoofBeats as AudioStreamPlayer3D
+@onready var _collide_sfx := $AudioCollision as AudioStreamPlayer3D
+@onready var _snow_slide_sfx := $AudioSnowSlide as AudioStreamPlayer3D
+@onready var _boost_sfx := $AudioBigBoost as AudioStreamPlayer3D
+@onready var _boost_small_sfx := $AudioSmallBoost as AudioStreamPlayer3D
 
 var flight_distance := 0.0
 var roll_distance := 0.0
@@ -59,6 +66,7 @@ var _upgrade_control := 0.0
 var _player_inputs: Vector3
 var _on_platform := true
 var _on_ramp := false
+var _on_ground := false
 var _in_launch_zone := false
 var _in_staging_area := false
 var _stats := {}
@@ -149,6 +157,9 @@ func _flight_state_changed(new_state: FlightState):
 		axis_lock_angular_y = false
 	if _current_flight_state == FlightState.PRE_FLIGHT:
 		camera_animation.speed_scale = 100.0
+		%TimeLeftLabel.visible = false
+		$AudioCountDownFinished.play()
+		_qte_start.cancel_action()
 	if _current_flight_state == FlightState.FLIGHT:
 		_camera_mark_pos = %CameraFollowMark.position
 		for u in _launch_upgrades:
@@ -170,9 +181,9 @@ func _on_flight_state_timer_timeout() -> void:
 			_setup_time_left -= $FlightStateTimer.wait_time
 			%TimeLeftLabel.visible = true
 			%TimeLeftLabel.text = "< %d >" % _setup_time_left
+			if _setup_time_left <= 3:
+				$AudioCountDown.play()
 		else:
-			%TimeLeftLabel.visible = false
-			_qte_start.cancel_action()
 			_flight_state_changed(FlightState.PRE_FLIGHT)
 	var flight_state := get_flight_state()
 	_update_distances()
@@ -245,6 +256,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var _distance_updated := false
 	_on_ramp = false
 	_on_platform = false
+	_on_ground = false
 	_apply_upgrade_stats()
 
 	var cb := get_colliding_bodies()
@@ -255,7 +267,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			_distance_updated = true
 			_on_ramp = true
 		elif b is Ground || _is_terrain(b):
-			_on_ramp = false
+			_on_ground = true
 			if !_landed:
 				_impact_point = global_position
 				_distance_updated = true
@@ -274,11 +286,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var wind_direction := Vector3()
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
-		if a is LaunchZone:
-			# probably redundant, above code worked ok to detect _on_ramp status
-			# but this is how to add boost areas also..
-			_on_ramp = true
-		elif a is DeerArea:
+		if a is DeerArea:
 			a.apply_physics(state, mass)
 			if a is Wind:
 				wind_direction += a.get_global_wind_direction() * a.strength
@@ -312,11 +320,43 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	if _camera_mark_pos && forward_speed > -1.0:
 		%CameraFollowMark.position = _camera_mark_pos + Vector3.MODEL_REAR * forward_speed * camera_follow_speed_distance
+
+	_apply_sfx(forward_speed)
+
 	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
 	if abs(forward_speed) < 0.001:
 		forward_speed = 0
 	%Reindeer.set_run_speed(forward_speed)
 	_print_stats()
+
+
+func _apply_sfx(forward_speed: float):
+	# quantize a bit so it doesn't sound like a slide whistle...
+	var ps := clampf(round(forward_speed / walk_speed) * (1 / 3.0), 0.5, 1.5)
+	var volume := clampf((forward_speed / (walk_speed * 5.0)) * 0.15, 0.0, 0.2)
+	_ramp_skid_sfx.pitch_scale = ps
+
+	_ramp_skid_sfx.volume_linear = volume
+	if _ramp_skid_sfx.playing != _on_ramp:
+		_ramp_skid_sfx.playing = _on_ramp
+	var y_up := global_basis.y.y > 0.75
+	# todo: cast to ground to find normal of ground
+	var walking := _on_ramp || _on_platform || (_on_ground && y_up)
+
+	ps = clampf(round(forward_speed / walk_speed) * (1 / 3.0), 0.75, 1.1)
+	_hoof_beats_sfx.volume_linear = volume
+	_hoof_beats_sfx.pitch_scale = ps
+	var bus_idx := AudioServer.get_bus_index(_hoof_beats_sfx.bus)
+	var pse := AudioServer.get_bus_effect(bus_idx, 0) as AudioEffectPitchShift
+	pse.pitch_scale = 1.0 / ps
+	if _hoof_beats_sfx.playing != walking:
+		_hoof_beats_sfx.playing = walking
+	var sliding = _on_ground && linear_velocity.length() > 0.1
+	# todo: detect snow from terrain
+	if sliding != _snow_slide_sfx.playing:
+		_snow_slide_sfx.playing = sliding
+	_snow_slide_sfx.volume_linear = clampf(linear_velocity.length() / 100.0, 0.0, 0.1)
+
 
 func _apply_player_input(state: PhysicsDirectBodyState3D):
 	var gbasis := state.transform.basis
@@ -351,7 +391,7 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 		var local_av := gbasis.inverse() * state.angular_velocity
 		var up_vector := (gbasis.inverse() * Vector3.UP * Vector3(1.0, 1.0, 0.0)).normalized()
 		var up_dist := up_vector.x
-		if up_vector.y > 0.0 && abs(up_dist) > 0.001:
+		if up_vector.y > 0.0: #&& abs(up_dist) > 0.001:
 			var amount := up_dist
 			var accel := local_av.z - up_dist
 			if up_dist < 0:
@@ -442,13 +482,16 @@ func _update_input() -> void:
 	_player_inputs = Vector3(clampf(movement.value_axis_2d.x, -1, 1), clampf(movement.value_axis_2d.y, -1, 1), 0)
 	if _current_flight_state == FlightState.SETUP && abs(movement.value_axis_2d.y) > 0.5:
 			_flight_state_changed(FlightState.PRE_FLIGHT)
-			%TimeLeftLabel.visible = false
-			_qte_start.cancel_action()
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
 
 
 func add_area(area: Area3D):
+	if area is Booster:
+		if _boost_sfx.playing:
+			_boost_small_sfx.play()
+		else:
+			_boost_sfx.play()
 	if area is LaunchZone:
 		_in_launch_zone = true
 	elif area is StagingArea:
@@ -462,3 +505,32 @@ func remove_area(area: Area3D):
 	elif area is StagingArea:
 		_in_staging_area = false
 	_overlapping_areas.erase(area.get_instance_id())
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is PhysicalRamp:
+		return
+	var collision := _get_collision()
+	if collision:
+		var cv:Vector3 = linear_velocity * collision.normal
+		var volume := clampf(cv.length() / 50, 0.25, 1.0)
+		_collide_sfx.volume_linear = volume
+		if volume > 0:
+			_collide_sfx.play()
+	else:
+		_collide_sfx.volume_linear = 0.25
+		_collide_sfx.play()
+
+
+func _get_collision() -> Dictionary:
+	var state := get_world_3d().direct_space_state
+	var q := PhysicsShapeQueryParameters3D.new()
+	q.collision_mask = collision_mask
+	q.exclude = [get_rid()]
+	for s: CollisionShape3D in find_children("*", "CollisionShape3D", false):
+		q.transform = s.global_transform.translated(linear_velocity.normalized() * 0.5)
+		q.shape = s.shape
+		var rest_info := state.get_rest_info(q)
+		if rest_info:
+			return rest_info
+	return {}

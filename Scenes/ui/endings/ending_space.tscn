@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu7s514e6qev7"]
+
+[ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_ekpc3"]
+[ext_resource type="Texture2D" uid="uid://dfax0ak2yk57p" path="res://Scenes/ui/endings/ending_hole.jpg" id="2_rvvow"]
+[ext_resource type="PackedScene" uid="uid://vj8rpvty2v8f" path="res://Scenes/ui/endings/ending_options.tscn" id="3_2xjc2"]
+[ext_resource type="Script" uid="uid://cg0o3vuh3ja2r" path="res://Scenes/ui/endings/ending_options.gd" id="4_cdvq8"]
+
+[node name="EndingWin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ekpc3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1415927
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("2_rvvow")
+expand_mode = 5
+
+[node name="EndingOptions" parent="." instance=ExtResource("3_2xjc2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -188.0
+offset_top = 54.0
+offset_right = 242.0
+offset_bottom = 173.0
+grow_horizontal = 2
+script = ExtResource("4_cdvq8")
+label_text = "You returned to your home planet
+"
