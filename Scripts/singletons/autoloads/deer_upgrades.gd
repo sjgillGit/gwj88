@@ -37,15 +37,28 @@ const _upgrade_order: Array[Category] = [
 
 var _upgrades: Array[Category] = []
 
+const _upgrade_stats: Dictionary[Category, UpgradeStats] = {
+	Category.SMALL_ANTLERS: preload("res://Scripts/upgrades/antlers_small.tres"),
+	Category.ROCKETS: preload("res://Scripts/upgrades/rocket.tres"),
+	Category.COLLAR: preload("res://Scripts/upgrades/collar.tres"),
+	Category.WINGS: preload("res://Scripts/upgrades/wings.tres"),
+	Category.LARGE_ANTLERS: preload("res://Scripts/upgrades/antlers_big.tres"),
+	Category.DECORATED_ANTLERS: preload("res://Scripts/upgrades/ornaments.tres")
+}
 
-func increment_upgrade():
+func increment_upgrade() -> bool:
 	for upgrade in _upgrade_order:
 		if upgrade == DeerUpgrades.Category.NONE || upgrade in _upgrades:
 			continue
+		var ustats := _upgrade_stats[upgrade]
+		if ustats.cost > GameStats.money:
+			return false
 		_upgrades.append(upgrade)
+		GameStats.money -= ustats.cost
 		print("Adding upgrade: %s" % Category.find_key(upgrade))
 		upgrades_updated.emit()
-		break
+		return true
+	return false
 
 
 func upgrade_available_for_purchase() -> bool:

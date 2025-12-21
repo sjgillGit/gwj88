@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_wssjf")
 upgrade_name = "Rockets"
-description = "3, 2, 1, Liftoff!"
+description = "IT'S NOT GOOD ENOUGH! WE NEED POWER!!"
 control = 0.30000000000000004
 thrust = 980.0
 fuel_capacity_seconds = 3.8

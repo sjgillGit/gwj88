@@ -108,8 +108,8 @@ func _on_flight_state_changed(flight_state: FlightState):
 	var menu := _get_menu()
 	if menu:
 		if flight_state == FlightState.POST_FLIGHT:
-			menu.flight_money = int(_player.flight_distance)
-			menu.roll_money = int(_player.roll_distance)
+			menu.flight_money = int(_player.flight_distance * 0.1)
+			menu.roll_money = int(_player.roll_distance * 0.05)
 			GameStats.money += menu.flight_money + menu.roll_money
 		menu.flight_state = flight_state
 	elif flight_state == FlightState.POST_FLIGHT:
@@ -119,12 +119,6 @@ func _on_flight_state_changed(flight_state: FlightState):
 
 func _on_timer_timeout() -> void:
 	_on_distance_updated()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		get_viewport().set_input_as_handled()
-		_on_flight_state_changed(FlightState.POST_FLIGHT)
 
 
 func _on_play_area_body_exited(body: Node3D) -> void:

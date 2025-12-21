@@ -19,19 +19,19 @@ var current_StoreState: StoreState = StoreState.DISABLED:
 		current_StoreState = v
 		check_status()
 
-@export var price: int = 500
+@export var upgrade: UpgradeStats
 
 @onready var button: TextureButton = get_child(0)
 
 func _ready() -> void:
 	button.modulate = COLOR_DISABLED
-	tooltip_text = DeerUpgrades.Category.find_key(id)
+	tooltip_text = "" #DeerUpgrades.Category.find_key(id)
 	button.pressed.connect(_on_pressed)
 	DeerUpgrades.upgrades_updated.connect(_on_updated_upgrades)
 	if id == DeerUpgrades.Category.SMALL_ANTLERS:
 		current_StoreState = StoreState.ENABLED
 	check_status()
- 
+
 
 func check_status():
 	match current_StoreState:
@@ -46,11 +46,10 @@ func check_status():
 			button.disabled = true
 
 func _on_pressed() -> void:
-	current_StoreState = StoreState.PURCHASED
-	DeerUpgrades.increment_upgrade()
+	if DeerUpgrades.increment_upgrade():
+		current_StoreState = StoreState.PURCHASED
 	check_status()
 
 func _on_updated_upgrades() -> void:
-	print("A")
 	if DeerUpgrades.get_next_upgrade() == id:
 		current_StoreState = StoreState.ENABLED

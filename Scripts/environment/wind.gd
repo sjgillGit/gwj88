@@ -51,11 +51,19 @@ func get_global_wind_direction():
 func _physics_process(_delta: float) -> void:
 	for body in get_overlapping_bodies():
 		if body is RigidBody3D:
-			body.apply_central_force(global_basis * direction * strength * body.mass)
-			if body is DeerMissile:
+			var hs_mod := 1.0
+			var dm := body as DeerMissile
+			if dm:
+				var hs :float= dm.get_holiday_spirit()
+				if hs > 1:
+					hs_mod = -1.0
+				elif hs > 0:
+					hs_mod = 0.1
+			body.apply_central_force(global_basis * direction * hs_mod * strength * body.mass)
+			if dm:
 				for p in [particles, snow_particles]:
-					p.global_position = body.global_position + body.linear_velocity.clampf(-25, 25)
-					p.global_position = body.global_position + body.linear_velocity.clampf(-25, 25)
+					p.global_position = dm.global_position + dm.linear_velocity.clampf(-25, 25)
+					p.global_position = dm.global_position + dm.linear_velocity.clampf(-25, 25)
 
 
 func _update_shape() -> void:

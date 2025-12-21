@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://i8r2m0h57x57"]
+[gd_scene load_steps=28 format=3 uid="uid://i8r2m0h57x57"]
 
 [ext_resource type="PackedScene" uid="uid://byy2i68ydoi8d" path="res://Assets/Reindeer.gltf" id="1_34b0x"]
 [ext_resource type="Script" uid="uid://cocohxcqvp1m4" path="res://Assets/reindeer_with_upgrades.gd" id="2_7wal2"]
@@ -13,6 +13,29 @@
 [ext_resource type="Resource" uid="uid://diesm5f71fu8x" path="res://Scripts/upgrades/antlers_small.tres" id="11_ebm55"]
 [ext_resource type="Resource" uid="uid://5y66yrwidgai" path="res://Scripts/upgrades/collar.tres" id="12_bdedn"]
 [ext_resource type="Resource" uid="uid://dbe41hj187ejm" path="res://Scripts/upgrades/ornaments.tres" id="13_u1qbl"]
+[ext_resource type="AudioStream" uid="uid://cpy10da4uw201" path="res://Assets/audio/sfx/VB GWJ 88 - jingle bell loop.wav" id="14_bdedn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdedn"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.8, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u1qbl"]
+material = SubResource("StandardMaterial3D_bdedn")
+radius = 0.01
+height = 0.02
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shkaw"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.8, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3w26"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.30666676, 0.8, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xbmk"]
 size = Vector3(1, 1, 0.61450195)
@@ -28,7 +51,6 @@ animation = &"Running"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_eftuo"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0xbmk"]
-graph_offset = Vector2(-216.58026, -36.98329)
 nodes/output/position = Vector2(720, 120)
 nodes/running/node = SubResource("AnimationNodeBlend2_eftuo")
 nodes/running/position = Vector2(460, 80)
@@ -39,6 +61,43 @@ nodes/Running/position = Vector2(60, 240)
 nodes/run_timescale/node = SubResource("AnimationNodeTimeScale_0j4hg")
 nodes/run_timescale/position = Vector2(220, 200)
 node_connections = [&"output", 0, &"running", &"running", 0, &"Idle", &"running", 1, &"run_timescale", &"run_timescale", 0, &"Running"]
+
+[sub_resource type="Animation" id="Animation_bdedn"]
+resource_name = "holiday_spirit"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1), Quaternion(0, 1, 0, 4.371139e-08)]
+}
+
+[sub_resource type="Animation" id="Animation_u1qbl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0.023996053, 0.040001646, 0.32017374, 0.9462097)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shkaw"]
+_data = {
+&"RESET": SubResource("Animation_u1qbl"),
+&"holiday_spirit": SubResource("Animation_bdedn")
+}
 
 [node name="Reindeer" instance=ExtResource("1_34b0x")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
@@ -57,9 +116,9 @@ bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.999835
 bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
 bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
 bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.41760886, -0.014567176, -0.04692367, 0.9072976)
-bones/8/rotation = Quaternion(-0.084354386, 0.008692223, -0.008464754, 0.996362)
-bones/9/rotation = Quaternion(0.56314456, 0.18255916, -0.24233507, 0.7686444)
+bones/7/rotation = Quaternion(-0.43032506, -0.008407625, -0.027081868, 0.9022285)
+bones/8/rotation = Quaternion(-0.083749555, 0.005036854, -0.004905093, 0.9964621)
+bones/9/rotation = Quaternion(0.60515064, 0.106394075, -0.14123173, 0.7762259)
 bones/10/rotation = Quaternion(-0.10381317, -0.170628, 0.61718214, 0.76104873)
 bones/11/rotation = Quaternion(-0.10381446, 0.17062953, -0.6171818, 0.7610485)
 bones/12/position = Vector3(0.0780042, 0.23866656, -0.055951495)
@@ -73,7 +132,7 @@ bones/19/rotation = Quaternion(-0.2599413, 0.011224373, -0.032679897, 0.965006)
 bones/20/rotation = Quaternion(-0.0506018, -0.023735443, 0.022546005, 0.99818224)
 bones/21/rotation = Quaternion(-0.005801933, 0.8009831, -0.5986583, 0.0009571037)
 bones/24/position = Vector3(-2.358284e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.36258373, -0.007058494, -0.027344653, 0.9315232)
+bones/24/rotation = Quaternion(-0.36217654, -0.0040724035, -0.015775537, 0.93196714)
 bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
 bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.604624e-07, 4.8117187e-07, 0.7587796)
@@ -110,43 +169,129 @@ stats = ExtResource("7_vlw85")
 [node name="elf" parent="metarig/Skeleton3D/BoneAttachment3D" index="2" instance=ExtResource("6_tyukh")]
 transform = Transform3D(-1.0000001, 1.0036416e-13, 8.7422876e-08, -8.715337e-08, -0.07845911, -0.99691737, 6.8589006e-09, -0.9969177, 0.07845908, -0.0025459745, 0.087706886, -0.055452432)
 
-[node name="Cube" parent="metarig/Skeleton3D" index="1"]
+[node name="BoneAttachmentOrnaments" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="1"]
+transform = Transform3D(0.920063, 0.38718218, -0.059788678, -0.02198007, -0.1013584, -0.9946229, -0.39115426, 0.91641575, -0.084741846, 0.02963131, 1.5790727, 0.5960218)
+bone_name = "spine.011"
+bone_idx = 9
+
+[node name="HSLights" type="Node3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments" index="0"]
+unique_name_in_owner = true
+transform = Transform3D(1.5835543, -1.2079666, 0.18213142, 1.2156453, 1.5876518, -0.039591298, -0.12066814, 0.1420511, 1.9912965, 0.033218987, 0.063613236, -0.8510548)
+rotation_edit_mode = 1
 visible = false
 
-[node name="Cube_001" parent="metarig/Skeleton3D" index="2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="0"]
+transform = Transform3D(0.93083483, 0.3654368, -0.0017944238, -0.36306268, 0.92420596, -0.118445285, -0.041625857, 0.110904366, 0.9929589, -0.14769906, 0.054423153, -0.0040533543)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="1"]
+transform = Transform3D(0.93083483, 0.3654368, -0.0017944238, -0.36306268, 0.92420596, -0.118445285, -0.041625857, 0.110904366, 0.9929589, 0.09583433, -0.040564537, -0.014943361)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="2"]
+transform = Transform3D(-0.61770535, -0.08647793, 0.7816408, -0.40440628, 0.88737404, -0.22141308, -0.6744603, -0.4528681, -0.5831075, 0.054872677, 0.059831858, 0.07872915)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="3"]
+transform = Transform3D(-0.61770535, -0.08647793, 0.7816408, -0.40440628, 0.88737404, -0.22141308, -0.6744603, -0.4528681, -0.5831075, -0.10673746, -0.045972645, -0.097726345)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="4"]
+transform = Transform3D(-0.67754114, -0.39081675, -0.6230581, -0.31698364, 0.91958934, -0.23211598, 0.66367215, 0.04023109, -0.7469416, -0.0140364915, 0.048395872, -0.09631634)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="5"]
+transform = Transform3D(-0.67754114, -0.39081675, -0.6230581, -0.31698364, 0.91958934, -0.23211598, 0.66367215, 0.04023109, -0.7469416, -0.19130056, -0.03453636, 0.07731724)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="6"]
+transform = Transform3D(0.93083483, 0.3654368, -0.0017944238, -0.36306268, 0.92420596, -0.118445285, -0.041625857, 0.110904366, 0.9929589, -0.14769906, 0.054423153, -0.0040533543)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="7"]
+transform = Transform3D(0.93083483, 0.3654368, -0.0017944238, -0.36306268, 0.92420596, -0.118445285, -0.041625857, 0.110904366, 0.9929589, 0.09583433, -0.040564537, -0.014943361)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="8"]
+transform = Transform3D(-0.8387303, -0.2310167, 0.49311665, -0.3854714, 0.89150214, -0.23798582, -0.3846355, -0.3896879, -0.8367793, 0.08378622, 0.13697398, 0.03561449)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="9"]
+transform = Transform3D(-0.8387303, -0.2310167, 0.49311665, -0.3854714, 0.89150214, -0.23798582, -0.3846355, -0.3896879, -0.8367793, -0.13565044, 0.036123276, -0.06501579)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="10"]
+transform = Transform3D(0.7043077, 0.1375443, -0.6964435, -0.31890786, 0.9377888, -0.13730006, 0.63423187, 0.31880242, 0.7043549, -0.118066356, -0.06395364, -0.08510685)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="11"]
+transform = Transform3D(0.7043077, 0.1375443, -0.6964435, -0.31890786, 0.9377888, -0.13730006, 0.63423187, 0.31880242, 0.7043549, 0.06620136, -0.147389, 0.080822945)
+mesh = SubResource("SphereMesh_u1qbl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="12"]
+transform = Transform3D(0.5517675, 8.940697e-08, 1.899898e-07, 0, 0.5517672, -3.0323863e-06, 1.8626451e-09, -3.7252903e-09, 0.5517591, -0.01660949, -0.031806603, 0.09052408)
+
+[node name="Cube" parent="metarig/Skeleton3D" index="2"]
 visible = false
 
-[node name="Cube_002" parent="metarig/Skeleton3D" index="3"]
+[node name="Cube_001" parent="metarig/Skeleton3D" index="3"]
 visible = false
 
-[node name="Cube_003" parent="metarig/Skeleton3D" index="4"]
+[node name="Cube_002" parent="metarig/Skeleton3D" index="4"]
 visible = false
 
-[node name="Cube_004" parent="metarig/Skeleton3D" index="5"]
+[node name="Cube_003" parent="metarig/Skeleton3D" index="5"]
 visible = false
 
-[node name="Cube_005" parent="metarig/Skeleton3D" index="6"]
+[node name="Cube_004" parent="metarig/Skeleton3D" index="6"]
 visible = false
 
-[node name="Cube_006" parent="metarig/Skeleton3D" index="7"]
+[node name="Cube_005" parent="metarig/Skeleton3D" index="7"]
 visible = false
 
-[node name="Cube_007" parent="metarig/Skeleton3D" index="8"]
+[node name="Cube_006" parent="metarig/Skeleton3D" index="8"]
 visible = false
 
-[node name="Cube_008" parent="metarig/Skeleton3D" index="9"]
+[node name="Cube_007" parent="metarig/Skeleton3D" index="9"]
 visible = false
 
-[node name="Cube_009" parent="metarig/Skeleton3D" index="10"]
+[node name="Cube_008" parent="metarig/Skeleton3D" index="10"]
 visible = false
 
-[node name="Cube_010" parent="metarig/Skeleton3D" index="11"]
+[node name="Cube_009" parent="metarig/Skeleton3D" index="11"]
 visible = false
 
-[node name="Cylinder" parent="metarig/Skeleton3D" index="12"]
+[node name="Cube_010" parent="metarig/Skeleton3D" index="12"]
 visible = false
 
-[node name="U AntlersBIG UPGRADE" parent="metarig/Skeleton3D" index="18"]
+[node name="Cylinder" parent="metarig/Skeleton3D" index="13"]
+visible = false
+
+[node name="U AntlersBIG UPGRADE" parent="metarig/Skeleton3D" index="19"]
 script = ExtResource("2_16e41")
 enabled = true
 category = 3
@@ -156,23 +301,25 @@ stats = ExtResource("10_tp044")
 transform = Transform3D(0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, 2.0858052, 0.77564067)
 shape = SubResource("BoxShape3D_0xbmk")
 
-[node name="U AntlersSMALL" parent="metarig/Skeleton3D" index="19"]
+[node name="U AntlersSMALL" parent="metarig/Skeleton3D" index="20"]
 script = ExtResource("2_16e41")
 overridden_by = 3
 category = 2
 stats = ExtResource("11_ebm55")
 
-[node name="U Collar UPGRADE" parent="metarig/Skeleton3D" index="20"]
+[node name="U Collar UPGRADE" parent="metarig/Skeleton3D" index="21"]
+unique_name_in_owner = true
 script = ExtResource("2_16e41")
 category = 5
 stats = ExtResource("12_bdedn")
 
-[node name="U Ornaments UPGRADE" parent="metarig/Skeleton3D" index="21"]
+[node name="U Ornaments UPGRADE" parent="metarig/Skeleton3D" index="22"]
+unique_name_in_owner = true
 script = ExtResource("2_16e41")
 category = 4
 stats = ExtResource("13_u1qbl")
 
-[node name="U Sadle UPGRADE" parent="metarig/Skeleton3D" index="22"]
+[node name="U Sadle UPGRADE" parent="metarig/Skeleton3D" index="23"]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
@@ -182,5 +329,16 @@ tree_root = SubResource("AnimationNodeBlendTree_0xbmk")
 anim_player = NodePath("../AnimationPlayer")
 parameters/running/blend_amount = 0.0
 parameters/run_timescale/scale = 1.0
+
+[node name="AnimateHolidaySpirit" type="AnimationPlayer" parent="." index="5"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_shkaw")
+}
+speed_scale = 1000.0
+
+[node name="AudioHolidaySpirit" type="AudioStreamPlayer3D" parent="." index="6"]
+unique_name_in_owner = true
+stream = ExtResource("14_bdedn")
 
 [connection signal="visibility_changed" from="metarig/Skeleton3D/Cube" to="." method="_on_cube_visibility_changed"]

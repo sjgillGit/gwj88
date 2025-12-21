@@ -32,7 +32,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 60),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -2081)]
+"values": [Vector2(120, 120), Vector2(120, -2081)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_po1gh"]
@@ -56,33 +56,50 @@ grow_vertical = 2
 theme = ExtResource("2_git7w")
 script = ExtResource("1_5j1v5")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 5.0
-offset_top = -2081.0
-offset_right = 5.0
-offset_bottom = -1.0
-grow_horizontal = 2
-text = "
-
-
-
-
-
-
-
-
-
-Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It’s not a story the Jedi would tell you. It’s a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life… He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful… the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but not himself"
-fit_content = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_po1gh")
 }
 autoplay = "scroll"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -2081.0
+offset_right = 917.0
+offset_bottom = -391.0
+grow_horizontal = 2
+text = "Ringo, the best, my reindeer
+Wi-ith such strong strong legs
+And if you ever saw him,
+You could never catch his face.
+
+All of the other reindeer,
+Never make it through testing,
+None of those other reindeer,
+Co-uld ever work for me.
+
+Then one foggy winter night,
+I found him asleep.
+Ringo now that you're all mine,
+You will fly in all due time.
+
+Now that he's here in my pen.
+I can work in blissful glee.
+Ringo, when I make you fly,
+You'll go down in his-toh-ryyyyy."
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 120
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

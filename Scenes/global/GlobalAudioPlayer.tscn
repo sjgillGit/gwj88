@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dbjyf6vhenixv" path="res://Assets/audio/placeholder_audio/253168__suntemple__sfx-ui-button-click.wav" id="2_d68i0"]
 [ext_resource type="AudioStream" uid="uid://dt4l5uty0t35g" path="res://Assets/audio/placeholder_audio/533568__jaoreir__button-bleep-01.wav" id="3_hpwkh"]
 [ext_resource type="AudioStream" uid="uid://dqvd8j5yiy0qm" path="res://Assets/audio/placeholder_audio/739251__avaol__menu-ui-hover.wav" id="4_1hcb2"]
-[ext_resource type="AudioStream" uid="uid://bulyej67snho1" path="res://Assets/audio/placeholder_audio/a theme.mp3" id="5_d68i0"]
+[ext_resource type="AudioStream" uid="uid://b0gc8iw212b36" path="res://Assets/audio/music/VB GWJ 88 elf singing.ogg" id="5_d68i0"]
 
 [node name="GlobalAudioPlayer" type="Node"]
 script = ExtResource("1_3a15j")
@@ -28,6 +28,7 @@ bus = &"Ui"
 
 [node name="Egg" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("5_d68i0")
+volume_db = -15.0
 
 [node name="PLAYER" type="Node" parent="."]
 

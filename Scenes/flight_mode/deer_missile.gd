@@ -65,6 +65,7 @@ var _upgrade_drag := 0.0
 var _upgrade_control := 0.0
 var _upgrade_walk_speed := 0.0
 var _upgrade_ramp_downforce := 0.0
+var _upgrade_holiday_spirit := 0.0
 var _player_inputs: Vector3
 var _on_platform := true
 var _on_ramp := false
@@ -74,6 +75,8 @@ var _in_staging_area := false
 var _stats := {}
 var _landed := false
 var _launch_upgrades: Array[Upgrade]
+
+var _holiday_spirit_activated := false
 
 var _default_angular_damp := angular_damp
 
@@ -86,6 +89,7 @@ var _wind_time := 0.0
 var _wind_amount := 0.0
 var _qte_start: QuickTimeEventScreen.QTE
 var _qte_end: QuickTimeEventScreen.QTE
+var _qte_wind: QuickTimeEventScreen.QTE
 
 @onready var _wind_indicator := %WindIndicator
 
@@ -105,7 +109,7 @@ func _ready():
 		control_envelope.add_point(Vector2(2, 1.0))
 		control_envelope.add_point(Vector2(120, 1.0))
 		control_envelope.add_point(Vector2(200, 0))
-	show_debug_ui = true # show_debug_ui
+	show_debug_ui = show_debug_ui
 	# don't worry about the upgrade changed signal,
 	# they can't be toggled in this game state
 	set_enabled_upgrades(DeerUpgrades.get_upgrades())
@@ -228,6 +232,7 @@ func _apply_upgrade_stats():
 	_upgrade_control = 0
 	_upgrade_walk_speed = 0
 	_upgrade_ramp_downforce = 0
+	_upgrade_holiday_spirit = 0
 	for u in _launch_upgrades:
 		_upgrade_mass += u.get_mass()
 		_upgrade_control += u.get_control()
@@ -236,6 +241,7 @@ func _apply_upgrade_stats():
 		_upgrade_drag += u.get_drag()
 		_upgrade_walk_speed += u.stats.ramp_walk_speed
 		_upgrade_ramp_downforce += u.stats.ramp_downforce
+		_upgrade_holiday_spirit += u.stats.holiday_spirit
 
 	# mass is the only builtin stat on RigidBody3D
 	mass = base_mass + _upgrade_mass
@@ -263,6 +269,17 @@ func _setup_quick_time_event_landed():
 			_qte_end = null
 		)
 	)
+
+
+func activate_holiday_spirit(value: bool):
+	%Reindeer.show_holiday_spirit(value)
+	_holiday_spirit_activated = true
+
+## 0.0, 1.0, 2.0
+func get_holiday_spirit() -> float:
+	if _holiday_spirit_activated:
+		return _upgrade_holiday_spirit
+	return 0.0
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -303,6 +320,20 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			a.apply_physics(state, mass)
 			if a is Wind:
 				wind_direction += a.get_global_wind_direction() * a.strength
+				if !_qte_wind && _current_flight_state == FlightState.FLIGHT:
+					_qte_wind = QuickTimeEventScreen.add_quick_time_event(
+						self,
+						"Activate Christmas Spirit",
+						4,
+						4,
+						(func(success):
+						if success:
+							activate_holiday_spirit(true)
+						_qte_wind.queue_free()
+						_qte_wind = null
+						)
+
+					)
 
 	if wind_direction:
 		_wind_amount = wind_direction.length()
@@ -517,6 +548,10 @@ func remove_area(area: Area3D):
 		_in_launch_zone = false
 	elif area is StagingArea:
 		_in_staging_area = false
+	elif area is Wind:
+		if _qte_wind:
+			_qte_wind.queue_free()
+			activate_holiday_spirit(false)
 	_overlapping_areas.erase(area.get_instance_id())
 
 
@@ -558,15 +593,17 @@ func trigger_snowball_qte(snowball: Snowball) -> void:
 	_qte_snowball = QuickTimeEventScreen.add_quick_time_event(
 		self,
 		"Block Snowball!",
-		1,
+		5,
 		setup_seconds,
-		(func (_unused):
-		if snowballs.size() > 0:
-			for sn: Node in snowballs:
-				if sn.is_inside_tree():
-					sn.parry()
-			snowballs.clear()
+		(func (success):
+		if success:
+			if snowballs.size() > 0:
+				for sn: Node in snowballs:
+					if sn.is_inside_tree():
+						sn.parry()
+				snowballs.clear()
 		if _qte_snowball:
+			_qte_snowball.queue_free()
 			_qte_snowball = null
 		)
 	)

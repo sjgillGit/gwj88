@@ -4,6 +4,16 @@ extends Node3D
 @onready var pellet_producer: PelletProducer = %PelletProducer
 
 
+func show_holiday_spirit(value: bool):
+	if value:
+		%AnimateHolidaySpirit.play("holiday_spirit")
+	else:
+		%AnimateHolidaySpirit.stop()
+
+	%AudioHolidaySpirit.playing = value && %"U Collar UPGRADE".enabled
+	%HSLights.visible = value && %"U Ornaments UPGRADE".enabled
+
+
 func set_run_speed(value: float):
 	var at := %AnimationTree
 	at.set("parameters/running/blend_amount", absf(value))
@@ -14,6 +24,7 @@ func _ready() -> void:
 	set_run_speed(0)
 	_update_upgrades()
 	DeerUpgrades.upgrades_updated.connect(_update_upgrades)
+	show_holiday_spirit(false)
 
 
 func _get_upgrade_node_3ds() -> Array[Upgrade]:

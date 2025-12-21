@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnxusy2ufsi40"]
 
-[ext_resource type="PackedScene" uid="uid://flpf4ya8guhb" path="res://Assets/collectibles/Collectable SNOWMAN.glb" id="1_m4tnj"]
+[ext_resource type="PackedScene" uid="uid://ic6sqtry6c4f" path="res://Assets/collectibles/Collectable SNOWMAN.gltf" id="1_m4tnj"]
 [ext_resource type="Script" uid="uid://clk55lf6vtstd" path="res://Scenes/environment/snowman/snowman.gd" id="1_qu4mm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qiq65"]
