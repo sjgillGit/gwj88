@@ -6,5 +6,6 @@
 script = ExtResource("1_fsqjg")
 upgrade_name = "Big Antlers"
 description = "Larger Antlers for better protection"
+drag = -2.0000000000020002e-05
 toughness = 10.0
 metadata/_custom_type_script = "uid://07r7h8akr6m1"
