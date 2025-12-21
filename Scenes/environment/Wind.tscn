@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdirnrwxprue5"]
+[gd_scene load_steps=23 format=3 uid="uid://cdirnrwxprue5"]
 
 [ext_resource type="Script" uid="uid://cp816wn6um6ql" path="res://Scripts/environment/wind.gd" id="1_ut56u"]
 [ext_resource type="Texture2D" uid="uid://dusf20bqxkhya" path="res://Assets/environment/cloud_particle.png" id="2_atssy"]
 [ext_resource type="Material" uid="uid://crikjnvec7gpd" path="res://Scenes/environment/Windfog.tres" id="2_b7dpt"]
+[ext_resource type="AudioStream" uid="uid://bs0q3qu7y22ce" path="res://Assets/audio/sfx/VB GWJ 88 - wind howling (loop).wav" id="4_atssy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ut56u"]
 resource_local_to_scene = true
@@ -29,8 +30,8 @@ emission_shape = 3
 emission_box_extents = Vector3(5.9475, 4.5, 3.3025)
 direction = Vector3(0, 0, 1)
 spread = 0.0
-initial_velocity_min = 100.0
-initial_velocity_max = 200.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_ami4o")
 turbulence_enabled = true
@@ -121,7 +122,7 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_ej8b2"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_dnpcu")
-size = Vector2(8.156548, 8.156548)
+size = Vector2(3.262619, 3.262619)
 
 [node name="Wind" type="Area3D"]
 collision_layer = 0
@@ -138,7 +139,6 @@ debug_color = Color(0.5132329, 0.5132329, 0.5132329, 1)
 [node name="WindParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
 amount = 25
-lifetime = 2.0
 randomness = 1.0
 visibility_aabb = AABB(-11.895, -9, -6.605, 23.79, 18, 13.21)
 process_material = SubResource("ParticleProcessMaterial_ut56u")
@@ -168,3 +168,13 @@ draw_pass_1 = SubResource("QuadMesh_ej8b2")
 [node name="FogVolume" type="FogVolume" parent="."]
 size = Vector3(11.895, 9, 6.605)
 material = ExtResource("2_b7dpt")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_atssy")
+max_db = -9.0
+autoplay = true
+max_distance = 100.0
+max_polyphony = 20
+bus = &"SFX"

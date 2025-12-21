@@ -3,12 +3,18 @@ extends Node3D
 
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 
+@export_range(0.0, 1.0, 0.01) var music_volume := 0.075
+
 var _player: DeerMissile
 var _despawning := false
 var _frame_time := 0.0
 
 func _ready():
 	_spawn_deer()
+	for n in $Collectibles.find_children("*"):
+		var c := n as Collectible
+		if c && c.item in GameStats.collectibles_collected:
+			c.queue_free()
 
 
 func _find_cams():
@@ -87,12 +93,24 @@ func _on_camera_option_item_selected(index: int) -> void:
 
 
 func _on_flight_state_changed(flight_state: FlightState):
+	if flight_state == FlightState.SETUP:
+		$RampIntroJingleAudio.play()
+	else:
+		$RampIntroJingleAudio.playing = false
+		var upgrade_count = len(DeerUpgrades.get_upgrades())
+		match upgrade_count:
+			0,1:
+				_play_music($Music1)
+			2,3:
+				_play_music($Music2)
+			_:
+				_play_music($Music3)
 	var menu := _get_menu()
 	if menu:
 		if flight_state == FlightState.POST_FLIGHT:
 			menu.flight_money = int(_player.flight_distance)
 			menu.roll_money = int(_player.roll_distance)
-			GameState.money += menu.flight_money + menu.roll_money
+			GameStats.money += menu.flight_money + menu.roll_money
 		menu.flight_state = flight_state
 	elif flight_state == FlightState.POST_FLIGHT:
 		# if we are debugging the scene, just restart
@@ -117,3 +135,41 @@ func _on_play_area_body_exited(body: Node3D) -> void:
 
 func _on_vsync_button_toggled(toggled_on: bool) -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED)
+
+
+func _play_music(music: AudioStreamPlayer):
+	for m in [$Music1, $Music2, $Music3, $MusicElf]:
+		m.volume_linear = music_volume if m == music else 0.0
+
+func _on_music_1_finished() -> void:
+	_play_music($MusicElf)
+
+func _on_music_elf_finished() -> void:
+	_play_music($Music2)
+
+func _on_music_2_finished() -> void:
+	_play_music($Music2)
+
+
+func _on_music_3_finished() -> void:
+	_play_music($Music1)
+
+
+func _on_ending_win_body_entered(body: Node3D) -> void:
+	if body is DeerMissile:
+		GameState.current = GameState.State.ENDING_WIN
+
+
+func _on_ending_space_body_entered(body: Node3D) -> void:
+	if body is DeerMissile:
+		GameState.current = GameState.State.ENDING_SPACE
+
+
+func _on_ending_hole_body_entered(body: Node3D) -> void:
+	if body is DeerMissile:
+		GameState.current = GameState.State.ENDING_HOLE
+
+
+func _on_ending_beach_body_entered(body: Node3D) -> void:
+	if body is DeerMissile:
+		GameState.current = GameState.State.ENDING_BEACH

@@ -24,12 +24,14 @@ class_name Wind
 		strength = value
 		if is_node_ready():
 			_update_particles()
+			_update_audio()
 
-@export_range(0.1, 2.0, 0.1) var particle_speed_multiplier: float = 10.0:
+@export_range(0.1, 5.0, 0.1) var particle_speed_multiplier: float = 10.0:
 	set(value):
 		particle_speed_multiplier = value
 		if is_node_ready():
 			_update_particles()
+			_update_audio()
 
 func _ready() -> void:
 	area_size = area_size
@@ -62,9 +64,18 @@ func _update_shape() -> void:
 	$FogVolume.size = area_size
 
 
+func _update_audio() -> void:
+	var volume := -(20.0 - clampf(strength, 0.0, 20.0))
+	var pitch_scale := clampf(strength / 10, 0.8, 1.5) + randf_range(-0.1, 0.1)
+	$AudioStreamPlayer3D.pitch_scale = pitch_scale
+	$AudioStreamPlayer3D.volume_db = volume
+	# average of all three sides.. I guess we should try to make them squarish in the editor
+	$AudioStreamPlayer3D.max_distance = (area_size.length() / 3.0) * 1.5
+
 func _update_particles() -> void:
 	if not particles:
 		return
+
 	snow_particles.amount_ratio = clampf(0.10 + strength / 100.0, 0.0, 1.0)
 	for p: GPUParticles3D in [particles, snow_particles]:
 		var mat := p.process_material

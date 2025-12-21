@@ -1,26 +1,181 @@
-[gd_scene load_steps=9 format=3 uid="uid://7iukt2vlfaaf"]
+[gd_scene load_steps=34 format=3 uid="uid://7iukt2vlfaaf"]
 
 [ext_resource type="Script" uid="uid://qgd6g6fo4745" path="res://Scenes/ui/pen_3d.gd" id="1_jlhhw"]
 [ext_resource type="PackedScene" uid="uid://cvmuxb0lqym4u" path="res://Assets/pen_updated.tscn" id="2_cih2e"]
+[ext_resource type="VoxelGIData" uid="uid://jw15inlhut33" path="res://Scenes/ui/Pen3D_voxelgi.tres" id="2_mwaui"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_jlhhw"]
 [ext_resource type="PackedScene" uid="uid://dc26ocp4eku6k" path="res://Assets/ui/pen/candles/candles.tscn" id="4_4je65"]
 [ext_resource type="PackedScene" uid="uid://dy0rv65ceao3" path="res://Assets/ui/pen/food/apple.tscn" id="4_cih2e"]
+[ext_resource type="PackedScene" uid="uid://ca2m7pgh4th3" path="res://Assets/environment/AFirepit.glb" id="6_ln2li"]
+[ext_resource type="PackedScene" uid="uid://bemir0lgexf5w" path="res://Assets/environment/tree1.glb" id="6_vqbuy"]
+[ext_resource type="AudioStream" uid="uid://57a6rjjqipp0" path="res://Assets/audio/sfx/VB GWJ 88 - crackling fireplace.wav" id="7_2uts6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4je65"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vqbuy"]
+size = Vector3(3, 3, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4je65"]
+
+[sub_resource type="Sky" id="Sky_vqbuy"]
+sky_material = SubResource("ProceduralSkyMaterial_4je65")
 
 [sub_resource type="Environment" id="Environment_wxwfb"]
+background_mode = 2
+sky = SubResource("Sky_vqbuy")
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jlhhw"]
 friction = 3.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_cih2e"]
 
+[sub_resource type="Gradient" id="Gradient_0ny05"]
+offsets = PackedFloat32Array(0, 0.6695279, 0.8369099, 0.9522184, 1)
+colors = PackedColorArray(0.98, 0, 0, 1, 1, 0.9333334, 0, 0.09803922, 0.55, 0.55, 0.55, 0.6627451, 0.52, 0.52, 0.52, 0.3254902, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qnxgd"]
+gradient = SubResource("Gradient_0ny05")
+
+[sub_resource type="Curve" id="Curve_wxxik"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7411894, 0), 0.0, 0.0, 0, 0, Vector2(0.85352427, 0.8945465), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_smn34"]
+texture_mode = 1
+curve = SubResource("Curve_wxxik")
+
+[sub_resource type="Curve" id="Curve_55iev"]
+_data = [Vector2(0, 0.7334138), 0.0, 0.0, 0, 0, Vector2(0.28787878, 1), 0.0, 0.0, 0, 0, Vector2(0.6944444, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.11399281), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_8uyhi"]
+curve = SubResource("Curve_55iev")
+
+[sub_resource type="Curve" id="Curve_lh8l5"]
+_data = [Vector2(0, 0.28648978), 0.0, 0.0, 0, 0, Vector2(0.08494208, 1), 0.0, 0.0, 0, 0, Vector2(0.3050193, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.059107423), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_h4wu8"]
+curve = SubResource("Curve_lh8l5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u2a67"]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.1, 0.1)
+angle_min = -89.99999
+angle_max = 90.000015
+direction = Vector3(0, 1, 0)
+spread = 25.0
+initial_velocity_min = 0.7
+initial_velocity_max = 1.1999999
+angular_velocity_min = 43.03998
+angular_velocity_max = 43.03998
+gravity = Vector3(0, 0, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+damping_curve = SubResource("CurveTexture_smn34")
+scale_curve = SubResource("CurveTexture_h4wu8")
+color_ramp = SubResource("GradientTexture1D_qnxgd")
+emission_curve = SubResource("CurveTexture_8uyhi")
+turbulence_enabled = true
+turbulence_influence_min = 0.0050000004
+turbulence_influence_max = 0.0050000004
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2k0m"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_37ppu"]
+material = SubResource("StandardMaterial3D_m2k0m")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_2uts6"]
+colors = PackedColorArray(0, 0, 0, 1, 0.39308554, 0.3930855, 0.39308548, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mwaui"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ln2li"]
+noise = SubResource("FastNoiseLite_mwaui")
+color_ramp = SubResource("Gradient_2uts6")
+seamless = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mwaui"]
+noise = SubResource("FastNoiseLite_mwaui")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6chd"]
+albedo_texture = SubResource("NoiseTexture2D_ln2li")
+normal_enabled = true
+normal_scale = 16.0
+normal_texture = SubResource("NoiseTexture2D_mwaui")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nvcx"]
+albedo_color = Color(0.23031491, 0.23031494, 0.23031494, 1)
+
 [node name="Pen3D" type="Node3D"]
 script = ExtResource("1_jlhhw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0844333, 2.3322725, -2.854422)
+
+[node name="CollectibleEmitter" type="Marker3D" parent="StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8463512, -1.8359573, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5618942, -2.9319532, 0.18145704)
+shape = SubResource("BoxShape3D_4je65")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5618942, -1.9319532, 1.0441135)
+shape = SubResource("BoxShape3D_vqbuy")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5618942, -1.9319532, 0.18145704)
+shape = SubResource("BoxShape3D_vqbuy")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5618942, -1.9319532, -1.9366775)
+shape = SubResource("BoxShape3D_vqbuy")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -0.43810558, -1.9319532, 0.18145752)
+shape = SubResource("BoxShape3D_vqbuy")
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -7)
+size = Vector3(23, 20, 20)
+data = ExtResource("2_mwaui")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wxwfb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.71336204, -0.30367076, -0.63158417, -0.68730855, 0.47912943, 0.5459322, 0.1368269, 0.8235405, -0.55050844, -5.5527906, 8.089537, 2.6664023)
+light_energy = 2.0
+light_indirect_energy = 5.0
 shadow_enabled = true
 
 [node name="Pen_Updated" parent="." instance=ExtResource("2_cih2e")]
@@ -48,7 +203,19 @@ fov = 83.58761
 [node name="Lighting" type="Node3D" parent="."]
 
 [node name="Candles" parent="Lighting" instance=ExtResource("4_4je65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.798481, -0.10101056, -3.592075)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.798481, 0.73516345, -4.4990907)
+
+[node name="Candles2" parent="Lighting" instance=ExtResource("4_4je65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.798481, 0.73516345, -4.6749344)
+
+[node name="Candles3" parent="Lighting" instance=ExtResource("4_4je65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.289703, 0.73516345, -2.5212069)
+
+[node name="Candles4" parent="Lighting" instance=ExtResource("4_4je65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.289703, 0.73516345, -0.52120686)
+
+[node name="Candles5" parent="Lighting" instance=ExtResource("4_4je65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2897029, 0.73516345, -4.863924)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10279763, 0)
@@ -57,7 +224,56 @@ physics_material_override = SubResource("PhysicsMaterial_jlhhw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_cih2e")
 
+[node name="FireParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.9999999, 1.3278267e-13, 5.684342e-14, -1.6564528e-13, 0.99999964, -1.8626451e-09, -5.1159077e-13, -8.381903e-09, 0.99999887, 2.9728112, 0.26538616, 0.82369924)
+cast_shadow = 0
+amount = 1000
+visibility_aabb = AABB(-0.5, -6, -0.5, 1, 8, 1)
+process_material = SubResource("ParticleProcessMaterial_u2a67")
+draw_pass_1 = SubResource("QuadMesh_37ppu")
+
+[node name="FireLight" type="OmniLight3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 1.6564525e-13, 5.1159066e-13, -1.6564525e-13, 1, 8.381903e-09, -5.1159066e-13, -8.381903e-09, 1, 2.9728112, 0.94209427, 0.8106824)
+light_color = Color(0.99999994, 0.9398715, 0.8942475, 1)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="AFirepit" parent="." instance=ExtResource("6_ln2li")]
+transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 3.073162, 0, 0.72722006)
+
 [node name="Apple" parent="." instance=ExtResource("4_cih2e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44261125, -0.12970018, -0.96263385)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1878972, 0.9081762, 1)
+visible = false
+size = Vector3(3, 2, 1)
+material = SubResource("StandardMaterial3D_w6chd")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.12678957)
+operation = 2
+size = Vector3(2, 1, 1)
+material = SubResource("StandardMaterial3D_8nvcx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2467518, 0.21566665)
+size = Vector3(1, 3, 0.75)
+material = SubResource("StandardMaterial3D_w6chd")
+
+[node name="tree1" parent="CSGBox3D" instance=ExtResource("6_vqbuy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4635148, -1, -0.92752314)
+
+[node name="FireplaceSound" type="AudioStreamPlayer3D" parent="CSGBox3D"]
+stream = ExtResource("7_2uts6")
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67359483, 2.9650931, -3.4859111)
+omni_range = 7.304
 
 [connection signal="ate_apple" from="Apple" to="." method="_on_apple_ate_apple"]

@@ -1,0 +1,175 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4hqahtd7nmog"]
+
+[ext_resource type="Texture2D" uid="uid://dqcg1r2pchhb4" path="res://Assets/environment/bullseye.svg" id="1_xkgr4"]
+[ext_resource type="PackedScene" uid="uid://bhyt5uewuka7y" path="res://Assets/elf.glb" id="2_mpw36"]
+[ext_resource type="PackedScene" uid="uid://cav6o5xtjgggq" path="res://Assets/environment/houses.glb" id="3_1ihcv"]
+
+[node name="Villiage" type="Node3D"]
+
+[node name="Decal" type="Decal" parent="."]
+size = Vector3(30, 2, 30)
+texture_albedo = ExtResource("1_xkgr4")
+cull_mask = 1048574
+
+[node name="Elves" type="Node3D" parent="."]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, -9.143265, -0.33145142, -12.235962)
+
+[node name="elf" parent="Elves" instance=ExtResource("2_mpw36")]
+
+[node name="elf2" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(-0.33686525, 0, 0.94155294, 0, 1, 0, -0.94155294, 0, -0.33686525, 14.737565, 0, -23.440876)
+
+[node name="elf3" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(-0.8359703, 0, 0.54877484, 0, 1, 0, -0.54877484, 0, -0.8359703, 8.126784, 0, -29.050663)
+
+[node name="elf4" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(-0.9657812, 0, -0.2593585, 0, 1, 0, 0.2593585, 0, -0.9657812, 0.81680685, 0, -30.630491)
+
+[node name="elf5" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(-0.47011882, 0, -0.8826032, 0, 1, 0, 0.8826032, 0, -0.47011882, -6.239857, 0, -27.265825)
+
+[node name="elf6" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(0.23224029, 0, 0.9726585, 0, 1, 0, -0.9726585, 0, 0.23224029, 17.471287, 0, -12.524162)
+
+[node name="elf7" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(0.35035452, 0, -0.93661726, 0, 1, 0, 0.93661726, 0, 0.35035452, -12.591841, 0, -10.811783)
+
+[node name="elf8" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(0.8770623, 0, 0.48037648, 0, 1, 0, -0.48037648, 0, 0.8770623, 11.554062, 0, -3.2637436)
+
+[node name="elf9" parent="Elves" instance=ExtResource("2_mpw36")]
+transform = Transform3D(0.78014666, 0, -0.6255968, 0, 1, 0, 0.6255968, 0, 0.78014666, -5.909404, 0, -2.3338552)
+
+[node name="Houses" type="Node3D" parent="."]
+
+[node name="houses" parent="Houses" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -110)
+
+[node name="houses" parent="Houses2" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses2" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses2" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses2" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.31856, 1.5258789e-05, -99.58374)
+
+[node name="houses" parent="Houses3" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses3" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses3" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses3" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.31856, 1.5258789e-05, 6.903076)
+
+[node name="houses" parent="Houses4" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses4" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses4" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses4" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 110.31856, 1.5258789e-05, 109.903076)
+
+[node name="houses" parent="Houses5" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses5" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses5" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses5" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3185577, 1.5258789e-05, 109.903076)
+
+[node name="houses" parent="Houses6" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses6" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses6" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses6" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses7" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.68144, 1.5258789e-05, 109.903076)
+
+[node name="houses" parent="Houses7" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses7" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses7" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses7" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses8" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.17447, 1.5258789e-05, 7.903076)
+
+[node name="houses" parent="Houses8" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.6086588, -0.32495117, -32.237427)
+
+[node name="houses2" parent="Houses8" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses8" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -31.057142, -0.32495117, 10.2907715)
+
+[node name="houses4" parent="Houses8" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)
+
+[node name="Houses9" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.48565, 1.5258789e-05, -97.096924)
+
+[node name="houses" parent="Houses9" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 40.60866, -0.32495117, -47.23742)
+
+[node name="houses2" parent="Houses9" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.280689, -0.32495117, 36.762573)
+
+[node name="houses3" parent="Houses9" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.057142, -0.32495117, 38.29077)
+
+[node name="houses4" parent="Houses9" instance=ExtResource("3_1ihcv")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, 40.301994, -0.32495117, -1.6962891)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b15yotaim23x3"]
+
+[ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_mknl4"]
+[ext_resource type="Texture2D" uid="uid://baox3iy17p4dl" path="res://Scenes/ui/endings/ending_beach.jpg" id="2_wgm2b"]
+[ext_resource type="PackedScene" uid="uid://vj8rpvty2v8f" path="res://Scenes/ui/endings/ending_options.tscn" id="3_c0j4s"]
+[ext_resource type="Script" uid="uid://cg0o3vuh3ja2r" path="res://Scenes/ui/endings/ending_options.gd" id="4_xl1ip"]
+
+[node name="EndingWin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mknl4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wgm2b")
+expand_mode = 5
+
+[node name="EndingOptions" parent="." instance=ExtResource("3_c0j4s")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -464.0
+offset_top = -95.0
+offset_right = -66.0
+offset_bottom = 24.0
+grow_horizontal = 0
+script = ExtResource("4_xl1ip")
+label_text = "You found Santa's
+secret vacation spot!"

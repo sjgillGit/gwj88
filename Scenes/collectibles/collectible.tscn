@@ -5,7 +5,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ibyil"]
 resource_local_to_scene = true
-radius = 3.7357585
+radius = 3.75
 
 [sub_resource type="Animation" id="Animation_d0plv"]
 length = 0.001

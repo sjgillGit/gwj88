@@ -23,7 +23,7 @@ func _on_upgrade_button_pressed() -> void:
 
 
 func _update_money_label():
-	var count = GameState.money
+	var count = GameStats.money
 	money_label.text = orig_money_label_text.replace("{0}", str(count))
 
 
@@ -39,7 +39,7 @@ func _update_price_label(current_price: int):
 func _ready():
 	orig_money_label_text = money_label.text
 	_update_money_label()
-	GameState.money_changed.connect(_update_money_label)
+	GameStats.money_changed.connect(_update_money_label)
 	_update_price_label(0)
 	for child: UiShopButton in find_children("*", "UiShopButton"):
 		child.mouse_entered.connect(_update_price_label.bind(child.price))

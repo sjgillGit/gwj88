@@ -1,18 +1,17 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://yo7josk7ecp2"]
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://yo7josk7ecp2"]
 
-[ext_resource type="Texture2D" uid="uid://f5opooec7e3b" path="res://Assets/environment/Sky Box_Untitled.png" id="1_ksa5g"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2e01o"]
-panorama = ExtResource("1_ksa5g")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ggf85"]
 
 [sub_resource type="Sky" id="Sky_7afml"]
-sky_material = SubResource("PanoramaSkyMaterial_2e01o")
+sky_material = SubResource("ProceduralSkyMaterial_ggf85")
 
 [resource]
+background_mode = 2
 sky = SubResource("Sky_7afml")
 ambient_light_source = 2
 ambient_light_color = Color(0.78200006, 0.82733333, 0.85, 1)
 ambient_light_energy = 0.2
+reflected_light_source = 2
 fog_enabled = true
 fog_light_color = Color(0.3391186, 0.36918375, 0.4159603, 1)
 fog_density = 0.001

@@ -1,0 +1,39 @@
+[gd_resource type="TextureSetsResource" load_steps=10 format=3 uid="uid://cykwtc41je7tc"]
+
+[sub_resource type="Gradient" id="Gradient_jn6ig"]
+colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5q7js"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7afml"]
+noise = SubResource("FastNoiseLite_5q7js")
+color_ramp = SubResource("Gradient_jn6ig")
+seamless = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i2wt2"]
+noise = SubResource("FastNoiseLite_5q7js")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="TextureSetResource" id="TextureSetResource_rm4vd"]
+albedoTexture = SubResource("NoiseTexture2D_7afml")
+normalTexture = SubResource("NoiseTexture2D_i2wt2")
+
+[sub_resource type="Gradient" id="Gradient_4kb6n"]
+colors = PackedColorArray(0.7, 0.6346667, 0.42000002, 1, 0.66, 0.56914, 0.27060002, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_48j3h"]
+noise_type = 0
+fractal_type = 0
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2ets7"]
+noise = SubResource("FastNoiseLite_48j3h")
+color_ramp = SubResource("Gradient_4kb6n")
+
+[sub_resource type="TextureSetResource" id="TextureSetResource_1pd0o"]
+albedoTexture = SubResource("NoiseTexture2D_2ets7")
+
+[resource]
+textureSets = Array[TextureSetResource]([SubResource("TextureSetResource_rm4vd"), SubResource("TextureSetResource_1pd0o")])
