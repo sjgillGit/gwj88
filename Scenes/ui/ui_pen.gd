@@ -41,7 +41,7 @@ func _update_description_label(description: String):
 
 func _ready():
 	$PlayContainer/PlayButton.grab_focus()
-	GameStats.money = 10000
+
 	orig_money_label_text = money_label.text
 	orig_price_label_text = price_label.text
 	_update_money_label()
