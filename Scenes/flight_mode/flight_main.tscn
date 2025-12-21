@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=70 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -376,7 +376,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 21.7
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman1" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 3.2897358, -152.96298, -1602.2772)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.2897358, -152.96298, -1602.2772)
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Terrain" type="Node3D" parent="."]
@@ -745,6 +745,14 @@ mesh = SubResource("PlaneMesh_3kocc")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.9382336, 0.18174252, 0.29442713, -0.34600243, 0.49282008, 0.7983801, 0, -0.8509395, 0.5252637, 0, 252.31131, 220.36183)
 
+[node name="FlightStats" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 811.0
+offset_top = 42.0
+offset_right = 812.0
+offset_bottom = 56.0
+label_settings = SubResource("LabelSettings_yr5ue")
+
 [node name="BoxContainer" type="BoxContainer" parent="."]
 visible = false
 anchors_preset = 1
@@ -776,12 +784,6 @@ label_settings = SubResource("LabelSettings_yr5ue")
 visible = false
 layout_mode = 2
 text = "Emit Cube"
-
-[node name="FlightStats" type="Label" parent="BoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-label_settings = SubResource("LabelSettings_yr5ue")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

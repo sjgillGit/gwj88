@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="5_d1etx"]
 [ext_resource type="Resource" uid="uid://diesm5f71fu8x" path="res://Scripts/upgrades/antlers_small.tres" id="6_3gsb7"]
 [ext_resource type="Script" uid="uid://1udhbw83ko2l" path="res://Scripts/ui/button.gd" id="6_d1etx"]
-[ext_resource type="Texture2D" uid="uid://c43tocs30urn" path="res://Assets/ui/pen/saddle.png" id="7_6puqo"]
 [ext_resource type="Texture2D" uid="uid://bh0587mph4euh" path="res://Assets/ui/pen/antler1.png" id="8_5je5q"]
 [ext_resource type="Texture2D" uid="uid://cmhyab3qlpc3o" path="res://Assets/ui/pen/rockets.png" id="9_2rr6g"]
 [ext_resource type="Texture2D" uid="uid://d2rip6rwx4wfe" path="res://Assets/ui/pen/antler2.png" id="9_12tqk"]
@@ -17,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://5y66yrwidgai" path="res://Scripts/upgrades/collar.tres" id="11_mjvai"]
 [ext_resource type="FontFile" uid="uid://dudi2ia68oxm5" path="res://Assets/fonts/Cowboy-Western-All/Cowboy_Western.ttf" id="12_0wjhc"]
 [ext_resource type="Texture2D" uid="uid://cwncesug1i4n" path="res://Assets/ui/coin_01.png" id="12_208sv"]
+[ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="12_o27j7"]
 [ext_resource type="FontFile" uid="uid://br8526wyvqdrk" path="res://Assets/fonts/Disco-Party-All/Disco_Party.ttf" id="13_2rr6g"]
 [ext_resource type="Resource" uid="uid://dbkq6x3h6him5" path="res://Scripts/upgrades/wings.tres" id="13_wwodq"]
 [ext_resource type="Resource" uid="uid://d3yx2qjrylqse" path="res://Scripts/upgrades/antlers_big.tres" id="15_3b3mm"]
@@ -95,7 +95,7 @@ layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
 mouse_filter = 1
-texture_normal = ExtResource("7_6puqo")
+texture_normal = ExtResource("9_2rr6g")
 script = ExtResource("6_d1etx")
 
 [node name="UpgradeCollar" type="TextureRect" parent="Shop"]
@@ -115,7 +115,7 @@ layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
 mouse_filter = 1
-texture_normal = ExtResource("9_2rr6g")
+texture_normal = ExtResource("12_o27j7")
 script = ExtResource("6_d1etx")
 
 [node name="UpgradeWings" type="TextureRect" parent="Shop"]
