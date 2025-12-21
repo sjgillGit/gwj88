@@ -1,0 +1,221 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v4.1.63",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0,
+        1
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "Cube.008",
+      "rotation": [
+        -0.4160856008529663,
+        0.8825173377990723,
+        0.01180962659418583,
+        0.2188526690006256
+      ],
+      "scale": [
+        0.2594197392463684,
+        0.2594197392463684,
+        0.2594197392463684
+      ],
+      "translation": [
+        -0.8912436962127686,
+        4.604642868041992,
+        -0.5794675946235657
+      ]
+    },
+    {
+      "mesh": 1,
+      "name": "Cube.009",
+      "rotation": [
+        -0.268229603767395,
+        0.9380921721458435,
+        0.046969037503004074,
+        0.2140790969133377
+      ],
+      "scale": [
+        0.07379209995269775,
+        0.24261429905891418,
+        0.07379209995269775
+      ],
+      "translation": [
+        -0.4146449565887451,
+        3.8452532291412354,
+        -0.5514721870422363
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Material.002",
+      "pbrMetallicRoughness": {}
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Cube.005",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    },
+    {
+      "name": "Cube.004",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 1834,
+      "max": [
+        8.975321769714355,
+        3.1462059020996094,
+        8.833046913146973
+      ],
+      "min": [
+        -8.902547836303711,
+        -5.224210739135742,
+        -7.830989837646484
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 1834,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 1834,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 10896,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 210,
+      "max": [
+        27.88035011291504,
+        3.6612675189971924,
+        2.571290969848633
+      ],
+      "min": [
+        -2.3206543922424316,
+        -15.498019218444824,
+        -13.073532104492188
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 210,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 210,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5123,
+      "count": 480,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 22008,
+      "byteOffset": 0,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 22008,
+      "byteOffset": 22008,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 14672,
+      "byteOffset": 44016,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 21792,
+      "byteOffset": 58688,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2520,
+      "byteOffset": 80480,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2520,
+      "byteOffset": 83000,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1680,
+      "byteOffset": 85520,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 960,
+      "byteOffset": 87200,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "palm tree_data.bin",
+      "byteLength": 88160
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 [gd_resource type="ObjectResource" load_steps=5 format=3 uid="uid://cla6r7bxvw8gp"]
 
-[ext_resource type="PackedScene" uid="uid://bemir0lgexf5w" path="res://Assets/environment/tree1.glb" id="1_d0wfc"]
-[ext_resource type="PackedScene" uid="uid://d33elhaxkw2ak" path="res://Assets/environment/tree2.glb" id="2_nlqc5"]
-[ext_resource type="PackedScene" uid="uid://dgw7go24q6e8x" path="res://Assets/environment/tree3.glb" id="3_4omr7"]
+[ext_resource type="PackedScene" uid="uid://bhkeow0pjkitl" path="res://Assets/environment/tree1.gltf" id="1_d0wfc"]
+[ext_resource type="PackedScene" uid="uid://rlqff15xmuiy" path="res://Assets/environment/tree2.gltf" id="2_nlqc5"]
+[ext_resource type="PackedScene" uid="uid://mjsne3xi51hn" path="res://Assets/environment/tree3.gltf" id="3_4omr7"]
 
 [sub_resource type="ObjectDefinitionResource" id="ObjectDefinitionResource_qnuc5"]
 objectFrequency = 3

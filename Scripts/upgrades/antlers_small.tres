@@ -6,4 +6,6 @@
 script = ExtResource("1_18fml")
 upgrade_name = "Small Antlers"
 description = "These antlers will provide protection, but you'll have to have quick reflexes!"
+mass = -9.0
+ramp_downforce = 3.5
 metadata/_custom_type_script = "uid://07r7h8akr6m1"

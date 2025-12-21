@@ -63,6 +63,8 @@ var _upgrade_thrust := 0.0
 var _upgrade_lift := 0.0
 var _upgrade_drag := 0.0
 var _upgrade_control := 0.0
+var _upgrade_walk_speed := 0.0
+var _upgrade_ramp_downforce := 0.0
 var _player_inputs: Vector3
 var _on_platform := true
 var _on_ramp := false
@@ -217,12 +219,16 @@ func _apply_upgrade_stats():
 	_upgrade_thrust = 0
 	_upgrade_drag = 0
 	_upgrade_control = 0
+	_upgrade_walk_speed = 0
+	_upgrade_ramp_downforce = 0
 	for u in _launch_upgrades:
 		_upgrade_mass += u.get_mass()
 		_upgrade_control += u.get_control()
 		_upgrade_thrust += u.get_thrust()
 		_upgrade_lift += u.get_lift()
 		_upgrade_drag += u.get_drag()
+		_upgrade_walk_speed += u.stats.ramp_walk_speed
+		_upgrade_ramp_downforce += u.stats.ramp_downforce
 
 	# mass is the only builtin stat on RigidBody3D
 	mass = base_mass + _upgrade_mass

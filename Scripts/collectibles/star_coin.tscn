@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dcivogbnss7o8"]
 
-[ext_resource type="PackedScene" uid="uid://ci6c7qf2dk80p" path="res://Assets/collectibles/Collectable STAR.glb" id="1_gegtm"]
+[ext_resource type="PackedScene" path="res://Assets/collectibles/Collectable STAR.gltf" id="1_gegtm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7p5vh"]
 albedo_color = Color(0.77, 0.6500083, 0.11549998, 1)
