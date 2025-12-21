@@ -290,6 +290,7 @@ contact_monitor = true
 max_contacts_reported = 10
 angular_damp = 0.1
 script = ExtResource("2_vmpjy")
+ramp_downforce = 3.2
 control_envelope = SubResource("Curve_wqsbj")
 movement = ExtResource("3_eftuo")
 boost = ExtResource("4_5a4eb")

@@ -185,7 +185,7 @@
 [ext_resource type="Image" uid="uid://daxl0ql57wn2g" path="res://Assets/terrain/Object_-1_-4_0.res" id="163_bc2ml"]
 [ext_resource type="Image" uid="uid://bwv156y2x1cd5" path="res://Assets/terrain/Object_-1_-4_1.res" id="164_yo2cv"]
 [ext_resource type="Image" uid="uid://bsw7bpyrf6m7c" path="res://Assets/terrain/Object_-1_-4_2.res" id="165_3n5go"]
-[ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
+[ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
 [ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="187_cek4m"]
 
 [sub_resource type="Gradient" id="Gradient_jn6ig"]
@@ -845,23 +845,27 @@ curve = SubResource("Curve3D_3kocc")
 
 [node name="Booster" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -8.9063255e-09, -38.92404, -28.00557)
+speed_boost = 2.25
 
 [node name="Booster2" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, 2, -38.92404, -28.00557)
+speed_boost = 2.25
 
 [node name="Booster3" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -2, -38.92404, -28.00557)
+speed_boost = 2.25
 
 [node name="Booster4" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 1.6106684e-06, -50.368805, -65.05713)
+speed_boost = 2.25
 
 [node name="Booster5" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 2.0000017, -50.368805, -65.05713)
-speed_boost = 2.6
+speed_boost = 2.25
 
 [node name="Booster6" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, -1.9999985, -50.368805, -65.05713)
-speed_boost = 2.6
+speed_boost = 2.25
 
 [node name="PlayArea" type="Area3D" parent="."]
 
