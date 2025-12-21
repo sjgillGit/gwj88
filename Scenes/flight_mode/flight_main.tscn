@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=64 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://csydagtxm53un" path="res://Scenes/flight_mode/cave.tscn" id="8_hcd8f"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/booster.tscn" id="9_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="9_jp6c5"]
+[ext_resource type="PackedScene" uid="uid://dnxusy2ufsi40" path="res://Scenes/environment/snowman/snowman.tscn" id="9_ydv3d"]
 [ext_resource type="PackedScene" uid="uid://c51djvfclnyar" path="res://Scenes/collectibles/collectible.tscn" id="11_d51bt"]
 [ext_resource type="ObjectResource" uid="uid://dktxmq3xdtd3v" path="res://Scenes/flight_mode/flight_main_terrain_obj2.tres" id="11_phe0t"]
 [ext_resource type="TextureSetsResource" uid="uid://cykwtc41je7tc" path="res://Scenes/flight_mode/flight_main_terrain_texsets.tres" id="11_vqvor"]
@@ -27,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://b4hqahtd7nmog" path="res://Scenes/flight_mode/villiage.tscn" id="25_phe0t"]
 [ext_resource type="PackedScene" uid="uid://c4wlvqxeux131" path="res://Scenes/environment/icicle_cluster.tscn" id="134_mp7iw"]
 [ext_resource type="Script" uid="uid://bkb4pnsolfh03" path="res://Scenes/flight_mode/staging_area.gd" id="136_f6rav"]
-[ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
+[ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
 [ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="187_cek4m"]
 [ext_resource type="AudioStream" uid="uid://dtwftphfv6btc" path="res://Assets/audio/sfx/VB GWJ 88 - ramp jingle.wav" id="188_wtr7q"]
 [ext_resource type="AudioStream" uid="uid://o8q0823s7cms" path="res://Assets/audio/music/VB GWJ 88 game music (classic).ogg" id="189_wtr7q"]
@@ -321,6 +322,14 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.28320503, 159.3062, -96.48
 
 [node name="Cave" parent="." instance=ExtResource("8_hcd8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -497.28036)
+
+[node name="Snowmen" type="Node3D" parent="."]
+
+[node name="SnowballContainer" type="Node3D" parent="Snowmen"]
+
+[node name="Snowman" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 17.06015, 269.5778, -400.55624)
+snowball_container = NodePath("../SnowballContainer")
 
 [node name="Terrain" type="Node3D" parent="."]
 
