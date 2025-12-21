@@ -1,0 +1,140 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v4.2.57",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "Cylinder.017",
+      "scale": [
+        0.2814996838569641,
+        0.2814996838569641,
+        0.2814996838569641
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Material.001",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Cylinder.022",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    }
+  ],
+  "images": [
+    {
+      "name": "A color pallet",
+      "uri": "../color_pallet.png"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 460,
+      "max": [
+        7.1907548904418945,
+        14.03459644317627,
+        7.190413951873779
+      ],
+      "min": [
+        -7.191062927246094,
+        -4.76837158203125e-7,
+        -7.191403865814209
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 460,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 460,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 2124,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 5520,
+      "byteOffset": 0,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 5520,
+      "byteOffset": 5520,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 3680,
+      "byteOffset": 11040,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 4248,
+      "byteOffset": 14720,
+      "target": 34963
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "tree2_data.bin",
+      "byteLength": 18968
+    }
+  ]
+}

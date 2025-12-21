@@ -4,15 +4,16 @@ importer="2d_array_texture"
 type="CompressedTexture2DArray"
 uid="uid://d4ct3bai0qd7w"
 path.bptc="res://.godot/imported/Pen3D.exr-ad0ac99d8abbeaaa53cd9512cb991daa.bptc.ctexarray"
+path.astc="res://.godot/imported/Pen3D.exr-ad0ac99d8abbeaaa53cd9512cb991daa.astc.ctexarray"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Scenes/ui/Pen3D.exr"
-dest_files=["res://.godot/imported/Pen3D.exr-ad0ac99d8abbeaaa53cd9512cb991daa.bptc.ctexarray"]
+dest_files=["res://.godot/imported/Pen3D.exr-ad0ac99d8abbeaaa53cd9512cb991daa.bptc.ctexarray", "res://.godot/imported/Pen3D.exr-ad0ac99d8abbeaaa53cd9512cb991daa.astc.ctexarray"]
 
 [params]
 

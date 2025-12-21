@@ -1,0 +1,234 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v4.1.63",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0,
+        1
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "Pit",
+      "scale": [
+        0.41784679889678955,
+        0.41784679889678955,
+        0.41784679889678955
+      ],
+      "translation": [
+        0,
+        -0.0628962516784668,
+        0
+      ]
+    },
+    {
+      "mesh": 1,
+      "name": "Wood",
+      "rotation": [
+        -0.011906161904335022,
+        0.8490304946899414,
+        0.46988487243652344,
+        0.24127522110939026
+      ],
+      "translation": [
+        -0.06013935059309006,
+        0.7645177245140076,
+        -0.030710570514202118
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "Material",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.748031497001648
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Cube.001",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    },
+    {
+      "name": "Cylinder.003",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    }
+  ],
+  "images": [
+    {
+      "name": "A color pallet",
+      "uri": "../color_pallet.png"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 4926,
+      "max": [
+        1.2425284385681152,
+        13.776056289672852,
+        4.54185676574707
+      ],
+      "min": [
+        -4.135807037353516,
+        -0.055847883224487305,
+        -4.547483444213867
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 4926,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 4926,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 5682,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 174,
+      "max": [
+        0.43323832750320435,
+        0.5277917385101318,
+        0.16099488735198975
+      ],
+      "min": [
+        -0.5565020442008972,
+        -0.5734265446662903,
+        -0.462490439414978
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 174,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 174,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5123,
+      "count": 828,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 59112,
+      "byteOffset": 0,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 59112,
+      "byteOffset": 59112,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 39408,
+      "byteOffset": 118224,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 11364,
+      "byteOffset": 157632,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2088,
+      "byteOffset": 168996,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2088,
+      "byteOffset": 171084,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1392,
+      "byteOffset": 173172,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1656,
+      "byteOffset": 174564,
+      "target": 34963
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "AFirepit_data.bin",
+      "byteLength": 176220
+    }
+  ]
+}

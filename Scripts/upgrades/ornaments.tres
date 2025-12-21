@@ -8,4 +8,5 @@ upgrade_name = "Christmas Ornaments"
 description = "Enhances Christmas Spirit so much that the wind is (almost) always at your back."
 cost = 400
 mass = -9.0
+holiday_spirit = 10.0
 metadata/_custom_type_script = "uid://07r7h8akr6m1"

@@ -288,7 +288,7 @@ _data = {
 }
 
 [node name="DeerMissile" type="RigidBody3D"]
-collision_layer = 3
+collision_layer = 7
 collision_mask = 3
 mass = 50.0
 physics_material_override = ExtResource("1_k7jrr")

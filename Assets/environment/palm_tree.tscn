@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://chdkega0lj3lf"]
 
-[ext_resource type="PackedScene" uid="uid://df7x6scad4n0n" path="res://Assets/environment/palm tree.glb" id="1_48p2k"]
-[ext_resource type="Texture2D" uid="uid://7wgmh8665l5s" path="res://Assets/elf_A color pallet.png" id="2_jt8ij"]
+[ext_resource type="PackedScene" uid="uid://bgn62rwpmxxv7" path="res://Assets/environment/palm tree.gltf" id="1_48p2k"]
+[ext_resource type="Texture2D" uid="uid://c1oyg74g1jhgl" path="res://Assets/color_pallet.png" id="2_jt8ij"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pty8u"]
 resource_name = "Material.002"

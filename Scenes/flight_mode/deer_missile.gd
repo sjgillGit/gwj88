@@ -63,6 +63,8 @@ var _upgrade_thrust := 0.0
 var _upgrade_lift := 0.0
 var _upgrade_drag := 0.0
 var _upgrade_control := 0.0
+var _upgrade_walk_speed := 0.0
+var _upgrade_ramp_downforce := 0.0
 var _player_inputs: Vector3
 var _on_platform := true
 var _on_ramp := false
@@ -113,6 +115,13 @@ func _ready():
 	_flight_state_changed(FlightState.SETUP)
 	_setup_quick_time_action_to_start()
 
+func _exit_tree() -> void:
+	if _qte_start:
+		QuickTimeEventScreen.remove_quick_time_event(_qte_start)
+		_qte_start = null
+	if _qte_snowball:
+		QuickTimeEventScreen.remove_quick_time_event(_qte_snowball)
+		_qte_snowball = null
 
 func _setup_quick_time_action_to_start():
 	_qte_start = QuickTimeEventScreen.add_quick_time_event(
@@ -217,12 +226,16 @@ func _apply_upgrade_stats():
 	_upgrade_thrust = 0
 	_upgrade_drag = 0
 	_upgrade_control = 0
+	_upgrade_walk_speed = 0
+	_upgrade_ramp_downforce = 0
 	for u in _launch_upgrades:
 		_upgrade_mass += u.get_mass()
 		_upgrade_control += u.get_control()
 		_upgrade_thrust += u.get_thrust()
 		_upgrade_lift += u.get_lift()
 		_upgrade_drag += u.get_drag()
+		_upgrade_walk_speed += u.stats.ramp_walk_speed
+		_upgrade_ramp_downforce += u.stats.ramp_downforce
 
 	# mass is the only builtin stat on RigidBody3D
 	mass = base_mass + _upgrade_mass
@@ -534,3 +547,29 @@ func _get_collision() -> Dictionary:
 		if rest_info:
 			return rest_info
 	return {}
+
+var _qte_snowball
+var snowballs: Array = []
+
+func trigger_snowball_qte(snowball: Snowball) -> void:
+	snowballs.append(snowball)
+	if _qte_snowball != null:
+		return
+	_qte_snowball = QuickTimeEventScreen.add_quick_time_event(
+		self,
+		"Block Snowball!",
+		1,
+		setup_seconds,
+		(func (_unused):
+		if snowballs.size() > 0:
+			for sn: Node in snowballs:
+				if sn.is_inside_tree():
+					sn.parry()
+			snowballs.clear()
+		if _qte_snowball:
+			_qte_snowball = null
+		)
+	)
+
+func remove_snowball(snowball: Snowball) -> void:
+	snowballs.erase(snowball)

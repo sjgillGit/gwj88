@@ -1,0 +1,15 @@
+{
+  "name": "gltf-convert",
+  "version": "1.0.0",
+  "description": "need to cenvert!",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "gltf-import-export": "^1.0.22"
+  }
+}

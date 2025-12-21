@@ -9,8 +9,12 @@ extends Resource
 @export_range(-1.0, 1.0, 0.001) var control := 0.0
 @export var thrust := 0.0
 @export var lift := 0
-@export_range(-1.0, 1.0, 0.000001) var drag := 0
+@export_range(-1.0, 1.0, 0.000001) var drag := 0.0
+# (-1.0, 1.0, 0.00001)
 @export var mass := 1.0
+
+@export var ramp_walk_speed := 0.0
+@export var ramp_downforce := 0.0
 
 ## possible other stats?
 # resist wind/snow? idk

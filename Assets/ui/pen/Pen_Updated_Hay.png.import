@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0oegf6gricgi"
 path.s3tc="res://.godot/imported/Pen_Updated_Hay.png-7797e1cd131e0870c21665825c9e490d.s3tc.ctex"
+path.etc2="res://.godot/imported/Pen_Updated_Hay.png-7797e1cd131e0870c21665825c9e490d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://Assets/ui/pen/Pen_Updated_Hay.png"
-dest_files=["res://.godot/imported/Pen_Updated_Hay.png-7797e1cd131e0870c21665825c9e490d.s3tc.ctex"]
+dest_files=["res://.godot/imported/Pen_Updated_Hay.png-7797e1cd131e0870c21665825c9e490d.s3tc.ctex", "res://.godot/imported/Pen_Updated_Hay.png-7797e1cd131e0870c21665825c9e490d.etc2.ctex"]
 
 [params]
 

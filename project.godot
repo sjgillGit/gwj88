@@ -92,9 +92,15 @@ action={
 
 3d_render/layer_2="GroundDecals"
 3d_physics/layer_1="Player"
+3d_physics/layer_3="SnowmanDetection"
+3d_physics/layer_4="Snowball"
 3d_physics/layer_5="Collectable"
 3d_physics/layer_6="Obstacle"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
