@@ -21,7 +21,6 @@ linear_velocity = Vector3(0, 10, -40)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.180645, 0, -9)
 
 [node name="Snowman" parent="." node_paths=PackedStringArray("snowball_container") instance=ExtResource("4_k3440")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.280566, -9.836769, 1.5611959)
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -35,7 +34,8 @@ transform = Transform3D(0.9809146, -0.056696143, -0.18599029, 0.19443983, 0.2860
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.628778, 0, -20)
-collision_layer = 5
+collision_layer = 6
+collision_mask = 2
 gravity_scale = 0.0
 linear_velocity = Vector3(10, 0, 0)
 
