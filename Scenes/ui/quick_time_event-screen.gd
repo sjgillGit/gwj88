@@ -97,6 +97,8 @@ func add_quick_time_event(
 			_quick_time_events_queue.insert(insert_index, qte)
 	return qte
 
+func remove_quick_time_event(qte) -> void:
+	_quick_time_events_queue.erase(qte)
 
 func _process(_delta):
 	if not _quick_time_events_queue.is_empty():
