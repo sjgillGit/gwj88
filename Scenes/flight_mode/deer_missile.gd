@@ -25,7 +25,8 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 ## 'ideal' roll by roll_speed% of the distance
 @export_range(0.0, 1.0, 0.01) var roll_speed := 0.05
 @export_range(0.0, PI, 0.1) var roll_limit := PI * 0.25
-@export_range(0.0, 10.0, 0.001) var roll_correction_speed := 0.05
+@export_range(0.0, 10.0, 0.001) var roll_correction_speed := 0.5
+@export_range(0.0, 10.0, 0.001) var camera_follow_speed_distance := 0.1
 
 @export var show_debug_ui := true:
 	set(value):
@@ -69,6 +70,7 @@ var _default_angular_damp := angular_damp
 var _overlapping_areas: Array[int]
 var _current_flight_state := FlightState.SETUP
 var _setup_time_left := 0.0
+var _camera_mark_pos := Vector3()
 
 var _wind_time := 0.0
 var _wind_amount := 0.0
@@ -148,7 +150,7 @@ func _flight_state_changed(new_state: FlightState):
 	if _current_flight_state == FlightState.PRE_FLIGHT:
 		camera_animation.speed_scale = 100.0
 	if _current_flight_state == FlightState.FLIGHT:
-		%CameraFollowMark.position += Vector3.MODEL_REAR * 2.0
+		_camera_mark_pos = %CameraFollowMark.position
 		for u in _launch_upgrades:
 			u.start_thrust()
 		%CollisionPolygonFeet.disabled = true
@@ -308,10 +310,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if _distance_updated:
 		_update_distances()
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
+	if _camera_mark_pos && forward_speed > -1.0:
+		%CameraFollowMark.position = _camera_mark_pos + Vector3.MODEL_REAR * forward_speed * camera_follow_speed_distance
 	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
 	if abs(forward_speed) < 0.001:
 		forward_speed = 0
-
 	%Reindeer.set_run_speed(forward_speed)
 	_print_stats()
 
@@ -345,10 +348,16 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 		%FlightRoll.rotation.z = lerp(%FlightRoll.rotation.z, roll_target, roll_speed)
 
 		# automatically roll 'upward' until your z rotation is 0
+		var local_av := gbasis.inverse() * state.angular_velocity
 		var up_vector := (gbasis.inverse() * Vector3.UP * Vector3(1.0, 1.0, 0.0)).normalized()
-		var up_dist = -up_vector.x
+		var up_dist := up_vector.x
 		if up_vector.y > 0.0 && abs(up_dist) > 0.001:
-			var amount := up_vector.x
+			var amount := up_dist
+			var accel := local_av.z - up_dist
+			if up_dist < 0:
+				accel *= -1
+			if accel > 0:
+				amount = local_av.z * 5.0
 			state.apply_torque(gbasis * roll_correction_speed * amount * Vector3.FORWARD * mass)
 
 
@@ -401,7 +410,8 @@ func _apply_control(state: PhysicsDirectBodyState3D):
 
 
 func _update_distances():
-	speed_str = "Speed: %.2f m/s" % [linear_velocity.length()]
+	var hspeed := (linear_velocity * Vector3(1.0, 0.0, 1.0)).length()
+	speed_str = "Speed: %.2f m/s" % [hspeed]
 	var start_pos := _impact_point if _impact_point != Vector3.ZERO else global_position
 	flight_distance = start_pos.distance_to(_launch_point)
 	roll_distance = global_position.distance_to(_impact_point) if _landed else 0.0

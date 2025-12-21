@@ -20,11 +20,11 @@ colors = PackedColorArray(0.98, 0.686, 0, 1, 1, 0.9333334, 0, 0.09803922, 0.55, 
 gradient = SubResource("Gradient_wqsbj")
 
 [sub_resource type="Curve" id="Curve_peinc"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15686277, 0), 0.0, 0.0, 0, 0, Vector2(0.24836604, 3.7612), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7411894, 0), 0.0, 0.0, 0, 0, Vector2(0.85352427, 0.8945465), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_bnam2"]
+texture_mode = 1
 curve = SubResource("Curve_peinc")
 
 [sub_resource type="Curve" id="Curve_5mwn2"]
@@ -46,16 +46,15 @@ emission_shape = 1
 emission_sphere_radius = 0.1
 angle_min = -89.99999
 angle_max = 90.000015
-inherit_velocity_ratio = 1.0
-direction = Vector3(0, 0, -1)
+direction = Vector3(0, -1, 0)
 spread = 5.0
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
 angular_velocity_min = 43.03998
 angular_velocity_max = 43.03998
 gravity = Vector3(0, 0, 0)
-damping_min = 1.0
-damping_max = 1.0
+damping_min = 100.00001
+damping_max = 100.00001
 damping_curve = SubResource("CurveTexture_bnam2")
 scale_curve = SubResource("CurveTexture_xvt68")
 color_ramp = SubResource("GradientTexture1D_nv1pf")
@@ -65,7 +64,10 @@ emission_curve = SubResource("CurveTexture_wqsbj")
 transparency = 3
 alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
+shading_mode = 2
 vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+emission_enabled = true
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -94,10 +96,10 @@ script = ExtResource("1_peinc")
 
 [node name="ThrustParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.9999999, 0, 1.2878587e-14, -4.6629367e-14, -4.377216e-08, 0.9999998, -5.684342e-14, -0.9999998, -4.5634806e-08, 3.038094e-08, -0.40197748, 0.0011859736)
+transform = Transform3D(0.9999999, 1.3278267e-13, 5.684342e-14, -1.6564528e-13, 0.99999964, -1.8626451e-09, -5.1159077e-13, -8.381903e-09, 0.99999887, 2.0800783e-08, -0.36995012, 0.0008119985)
 emitting = false
 amount = 1000
-visibility_aabb = AABB(-0.5, -0.5, -6, 1, 1, 8)
+visibility_aabb = AABB(-0.5, -6, -0.5, 1, 8, 1)
 process_material = SubResource("ParticleProcessMaterial_5mwn2")
 draw_pass_1 = SubResource("QuadMesh_nv1pf")
 

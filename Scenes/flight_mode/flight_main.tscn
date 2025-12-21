@@ -1,4 +1,4 @@
-[gd_scene load_steps=235 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=237 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -185,6 +185,8 @@
 [ext_resource type="Image" uid="uid://daxl0ql57wn2g" path="res://Assets/terrain/Object_-1_-4_0.res" id="163_bc2ml"]
 [ext_resource type="Image" uid="uid://bwv156y2x1cd5" path="res://Assets/terrain/Object_-1_-4_1.res" id="164_yo2cv"]
 [ext_resource type="Image" uid="uid://bsw7bpyrf6m7c" path="res://Assets/terrain/Object_-1_-4_2.res" id="165_3n5go"]
+[ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
+[ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="187_cek4m"]
 
 [sub_resource type="Gradient" id="Gradient_jn6ig"]
 colors = PackedColorArray(0.1882353, 0.23137255, 0.23137255, 1, 0.5593162, 0.49933064, 0.42494488, 1)
@@ -562,26 +564,31 @@ strength = 100.0
 [node name="Collectibles" type="Node3D" parent="."]
 
 [node name="Star" parent="Collectibles" instance=ExtResource("11_d51bt")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 37.290062, 157.43332, -79.77217)
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.20499563, 176.29121, -96.601845)
 item = ExtResource("4_5q7js")
 
-[node name="Coin" parent="Collectibles" instance=ExtResource("11_d51bt")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 2.3250313, 192.79039, 113.33736)
+[node name="6Coins" type="Node3D" parent="Collectibles"]
 
-[node name="Coin2" parent="Collectibles" instance=ExtResource("11_d51bt")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 2.3250313, 195.79039, 113.33736)
+[node name="Coin" parent="Collectibles/6Coins" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 5.190256, 192.79039, 113.33736)
 
-[node name="Coin3" parent="Collectibles" instance=ExtResource("11_d51bt")]
+[node name="Coin2" parent="Collectibles/6Coins" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 5.190256, 198.65106, 113.33736)
+
+[node name="Coin3" parent="Collectibles/6Coins" instance=ExtResource("11_d51bt")]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.6749687, 192.79039, 113.33736)
 
-[node name="Coin4" parent="Collectibles" instance=ExtResource("11_d51bt")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.6749687, 195.79039, 113.33736)
+[node name="Coin4" parent="Collectibles/6Coins" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.6749687, 198.65106, 113.33736)
 
-[node name="Coin5" parent="Collectibles" instance=ExtResource("11_d51bt")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -3.6749687, 192.79039, 113.33736)
+[node name="Coin5" parent="Collectibles/6Coins" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.603224, 192.79039, 113.33736)
 
-[node name="Coin6" parent="Collectibles" instance=ExtResource("11_d51bt")]
-transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -3.6749687, 195.79039, 113.33736)
+[node name="Coin6" parent="Collectibles/6Coins" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.603224, 198.65106, 113.33736)
+
+[node name="tree3" parent="Collectibles" instance=ExtResource("5_jn6ig")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.28320503, 159.3062, -96.48997)
 
 [node name="Cave" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -500.93088)
@@ -922,6 +929,10 @@ label_settings = SubResource("LabelSettings_yr5ue")
 autostart = true
 
 [node name="GuideDebugger" parent="." instance=ExtResource("9_jp6c5")]
+
+[node name="GUIDEContext" type="Node" parent="."]
+script = ExtResource("186_7afml")
+game_context = ExtResource("187_cek4m")
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
 [connection signal="toggled" from="BoxContainer/VsyncButton" to="." method="_on_vsync_button_toggled"]
