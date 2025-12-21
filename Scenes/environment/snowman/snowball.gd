@@ -8,10 +8,9 @@ func init(speed: float, dir: Vector3) -> void:
 	velocity = dir * speed
 
 func _physics_process(_delta: float) -> void:
-	if not target:
-		return
-	look_at(target.global_position)
-	velocity = -basis.z * speed
+	if target:
+		look_at(target.global_position)
+		velocity = -basis.z * speed
 	move_and_slide()
 	for idx in get_slide_collision_count():
 		var collision = get_slide_collision(idx)

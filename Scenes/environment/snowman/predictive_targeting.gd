@@ -129,7 +129,8 @@ static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3,
 	var Az: float = targetLocation.z
 
 	var As: float = targetVelocity.length()
-	var Av: Vector3 = targetVelocity.normalized()
+	targetVelocity = targetVelocity.normalized()
+	var Av: Vector3 = targetVelocity
 	var Avx: float = Av.x
 	var Avy: float = Av.y
 	var Avz: float = Av.z
@@ -196,9 +197,14 @@ static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3,
 	print_debug("t = ", t)
 	print_debug("Bs = ", Bs)
 
-	var Bvx: float = (Ax - Bx + (t * As + Avx)) / (t * pow(Bs, 2.0))
-	var Bvy: float = (Ay - By + (t * As + Avy)) / (t * pow(Bs, 2.0))
-	var Bvz: float = (Az - Bz + (t * As + Avz)) / (t * pow(Bs, 2.0))
+	var bst = (t * pow(Bs, 2.0))
+
+	#var Bvx: float = (Ax - Bx + (t * As + Avx)) / bst
+	#var Bvy: float = (Ay - By + (t * As + Avy)) / bst
+	#var Bvz: float = (Az - Bz + (t * As + Avz)) / bst
+	var Bvx: float = (Ax - Bx + (t * As * Avx)) / bst
+	var Bvy: float = (Ay - By + (t * As * Avy)) / bst
+	var Bvz: float = (Az - Bz + (t * As * Avz)) / bst
 
 	var Bv: Vector3 = Vector3(Bvx, Bvy, Bvz)
 

@@ -21,12 +21,12 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func _on_timer_timeout() -> void:
 	#var aim := PredictiveTargeting.PredictiveAim(marker_3d.global_position, projectile_speed, target.global_position, target.linear_velocity, gravity)
-	#var aim := PredictiveTargeting.CalculateIntercept(target.global_position, target.linear_velocity, marker_3d.global_position, projectile_speed)
+	var aim := PredictiveTargeting.CalculateIntercept(target.global_position, target.linear_velocity, marker_3d.global_position, projectile_speed)
 	#if not aim:
 		#return
 	var projectile: Node3D = SNOWBALL.instantiate()
-	projectile.target = target
+	# projectile.target = target
 	projectile.global_position = marker_3d.global_position
 	snowball_container.add_child(projectile)
-	projectile.speed = projectile_speed
-	#projectile.init(projectile_speed, aim)
+	# projectile.speed = projectile_speed
+	projectile.init(projectile_speed, aim)
