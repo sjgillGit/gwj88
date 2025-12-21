@@ -113,6 +113,13 @@ func _ready():
 	_flight_state_changed(FlightState.SETUP)
 	_setup_quick_time_action_to_start()
 
+func _exit_tree() -> void:
+	if _qte_start:
+		QuickTimeEventScreen.remove_quick_time_event(_qte_start)
+		_qte_start = null
+	if _qte_snowball:
+		QuickTimeEventScreen.remove_quick_time_event(_qte_snowball)
+		_qte_snowball = null
 
 func _setup_quick_time_action_to_start():
 	_qte_start = QuickTimeEventScreen.add_quick_time_event(
@@ -534,3 +541,29 @@ func _get_collision() -> Dictionary:
 		if rest_info:
 			return rest_info
 	return {}
+
+var _qte_snowball
+var snowballs: Array = []
+
+func trigger_snowball_qte(snowball: Snowball) -> void:
+	snowballs.append(snowball)
+	if _qte_snowball != null:
+		return
+	_qte_snowball = QuickTimeEventScreen.add_quick_time_event(
+		self,
+		"Block Snowball!",
+		1,
+		setup_seconds,
+		(func (_unused):
+		if snowballs.size() > 0:
+			for sn: Node in snowballs:
+				if sn.is_inside_tree():
+					sn.parry()
+			snowballs.clear()
+		if _qte_snowball:
+			_qte_snowball = null
+		)
+	)
+
+func remove_snowball(snowball: Snowball) -> void:
+	snowballs.erase(snowball)

@@ -5,8 +5,8 @@ const SNOWBALL = preload("uid://dsovid6f4r4ca")
 @onready var marker_3d: Marker3D = $Marker3D
 @onready var timer: Timer = $Timer
 
-@export var projectile_speed: float = 200
-@export var shot_delay: float = 3
+@export var projectile_speed: float = 300
+@export var shot_delay: float = 6
 @export var snowball_container: Node3D
 
 var target: RigidBody3D
@@ -25,10 +25,12 @@ func _on_timer_timeout() -> void:
 	aim = aim + Vector3(randf_range(-accuracy, accuracy), randf_range(-accuracy, accuracy), 0)
 	
 	var projectile: Node3D = SNOWBALL.instantiate()
-	#projectile.target = target
+	projectile.target = target
 	projectile.global_position = marker_3d.global_position
 	snowball_container.add_child(projectile)
 	projectile.init(projectile_speed, aim)
+	if target.has_method("trigger_snowball_qte"):
+		target.trigger_snowball_qte(projectile)
 
 static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3, interceptorLocation: Vector3, interceptorSpeed: float) -> Vector3:
 	var Ax: float = targetLocation.x
