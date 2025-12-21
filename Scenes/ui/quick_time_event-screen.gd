@@ -9,6 +9,7 @@ var action: GUIDEAction = preload("res://Scripts/guide/action.tres")
 
 class QTE extends Node:
 	signal completion(action_taken: bool)
+	signal exiting_tree()
 
 	var event_text: String
 	var priority: int
@@ -37,7 +38,7 @@ class QTE extends Node:
 			)
 
 	func _exit_tree():
-		cancel_action()
+		exiting_tree.emit()
 
 	func complete_action():
 		completion.emit(true)
@@ -75,6 +76,10 @@ func add_quick_time_event(
 		parent.add_child(timer)
 
 	var qte = QTE.new(event_text, priority, timer, completion_callable)
+	qte.exiting_tree.connect(func(_unused):
+		_quick_time_events_queue.erase(qte)
+		qte.queue_free()
+	)
 	qte.completion.connect(func(_unused):
 		_quick_time_events_queue.erase(qte)
 		qte.queue_free()

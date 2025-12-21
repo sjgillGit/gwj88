@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://tpeoork5ic3y"
+path="res://.godot/imported/VB GWJ 88 - small boost.wav-2f8af10259bf97708343dce7c36081cd.sample"
+
+[deps]
+
+source_file="res://Assets/audio/sfx/VB GWJ 88 - small boost.wav"
+dest_files=["res://.godot/imported/VB GWJ 88 - small boost.wav-2f8af10259bf97708343dce7c36081cd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

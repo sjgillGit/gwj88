@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://csydagtxm53un"]
+
+[ext_resource type="Script" uid="uid://m410she5703r" path="res://Scenes/flight_mode/ground.gd" id="1_0e1pf"]
+[ext_resource type="Shape3D" uid="uid://cwj1lb33u07uc" path="res://Assets/environment/cave_collision.tres" id="2_2044b"]
+[ext_resource type="ArrayMesh" uid="uid://h3x2hhbtnshm" path="res://Assets/environment/cave_mesh.tres" id="3_h4p0e"]
+
+[node name="Cave" type="StaticBody3D"]
+script = ExtResource("1_0e1pf")
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="."]
+shape = ExtResource("2_2044b")
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_h4p0e")
+skeleton = NodePath("../..")

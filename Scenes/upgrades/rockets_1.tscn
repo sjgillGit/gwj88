@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjqetj7ue2x0s"]
+[gd_scene load_steps=6 format=3 uid="uid://bjqetj7ue2x0s"]
 
 [ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrades/upgrade.gd" id="1_ehoda"]
 [ext_resource type="PackedScene" uid="uid://b65c8fwljp8h" path="res://Scenes/upgrades/rocket_1.tscn" id="2_elqeh"]
+[ext_resource type="AudioStream" uid="uid://m14luc7pfrf0" path="res://Assets/audio/sfx/VB GWJ 88 - rocket ignite.wav" id="3_ecag8"]
+[ext_resource type="AudioStream" uid="uid://b77fpoolp5uko" path="res://Assets/audio/sfx/VB GWJ 88 - rocket burning (loop).wav" id="4_0n17e"]
+[ext_resource type="AudioStream" uid="uid://d3t2nffe6q10n" path="res://Assets/audio/sfx/VB GWJ 88 - rocket end.wav" id="5_ajye0"]
 
 [node name="Rockets1" type="Node3D"]
 transform = Transform3D(1.0000001, -5.684342e-14, 9.769963e-15, 2.842171e-14, 1, 1.8626451e-09, -7.1054274e-15, 1.8626451e-09, 0.99999994, 0, 0, 0)
@@ -12,3 +15,19 @@ transform = Transform3D(1.1035355, 0, 0, 0, -0.013481912, -1.1034528, 0, 1.10345
 
 [node name="RocketR" parent="." instance=ExtResource("2_elqeh")]
 transform = Transform3D(1.1035355, 0, 0, 0, -0.013481912, -1.1034528, 0, 1.1034526, -0.013481915, -0.45, 0.011, 0.179)
+
+[node name="IgniteAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ecag8")
+max_db = 0.0
+bus = &"SFX"
+
+[node name="BurnAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_0n17e")
+max_db = 0.0
+bus = &"SFX"
+
+[node name="ExtinguishAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_ajye0")
+volume_db = -10.0
+pitch_scale = 1.8
+bus = &"SFX"

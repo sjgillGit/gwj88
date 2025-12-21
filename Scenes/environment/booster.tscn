@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://i54xyk4duyd2"]
 
 [ext_resource type="Script" uid="uid://db6wj4ubjudo2" path="res://Scenes/environment/booster.gd" id="1_tf3vi"]
-[ext_resource type="Shader" uid="uid://b1l4hsdrg8mk2" path="res://Scripts/environment/booster.gdshader" id="2_tf3vi"]
+[ext_resource type="Shader" path="res://Scripts/environment/booster.gdshader" id="2_tf3vi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ntnxt"]
 radius = 1.2

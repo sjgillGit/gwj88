@@ -3,6 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://d1o2wfr4q3ebt" path="res://Assets/ui/pen/Pen_Updated.glb" id="1_ni3ij"]
 
 [node name="Pen_Updated" instance=ExtResource("1_ni3ij")]
-
-[node name="Plane" parent="." index="20"]
-visible = false

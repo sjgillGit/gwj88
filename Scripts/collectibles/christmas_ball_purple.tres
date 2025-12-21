@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d06tliby3n4bo"]
+
+[ext_resource type="PackedScene" uid="uid://b5nwr38jpuk5b" path="res://Scripts/collectibles/christmas_ball.tscn" id="1_gvaow"]
+[ext_resource type="Script" uid="uid://bgeplv5gp0ubu" path="res://Scripts/collectibles/item.gd" id="2_077mp"]
+
+[resource]
+script = ExtResource("2_077mp")
+name = "Christmas Ball"
+game_scale = 5.0
+asset = ExtResource("1_gvaow")
+color = Color(0.38777602, 0.0015975559, 0.87521434, 1)
+metadata/_custom_type_script = "uid://bgeplv5gp0ubu"

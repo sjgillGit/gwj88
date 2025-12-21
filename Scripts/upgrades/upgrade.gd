@@ -16,6 +16,10 @@ signal thrusting_changed(value: bool)
 #upgrade_stats
 @export var stats: UpgradeStats
 
+@onready var _ignite_audio :AudioStreamPlayer3D = get_node_or_null("IgniteAudio")
+@onready var _burn_audio :AudioStreamPlayer3D = get_node_or_null("BurnAudio")
+@onready var _extinguish_audio :AudioStreamPlayer3D = get_node_or_null("ExtinguishAudio")
+
 var _fuel_seconds := 0.0
 var _thrusting := false
 
@@ -38,17 +42,25 @@ func _physics_process(delta: float) -> void:
 	if _thrusting:
 		_fuel_seconds -= delta
 		if _fuel_seconds <= 0:
-			_thrusting = false
-			thrusting_changed.emit(_thrusting)
+			end_thrust()
 
 
 func start_thrust():
-	_thrusting = true
-	thrusting_changed.emit(_thrusting)
+	if _fuel_seconds > 0:
+		_thrusting = true
+		thrusting_changed.emit(_thrusting)
+		if _ignite_audio:
+			_ignite_audio.play()
+		if _burn_audio:
+			_burn_audio.play()
 
 
 func end_thrust():
 	_thrusting = false
+	if _burn_audio:
+		if _burn_audio.playing && _extinguish_audio:
+			_extinguish_audio.play()
+		_burn_audio.stop()
 	thrusting_changed.emit(_thrusting)
 
 func get_control():

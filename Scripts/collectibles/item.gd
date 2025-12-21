@@ -12,3 +12,13 @@ class_name Item
 	set(value):
 		asset = value
 		emit_changed()
+
+@export var big_pickup_sound := false:
+	set(value):
+		big_pickup_sound = value
+		emit_changed()
+
+@export var color := Color.BLACK:
+	set(value):
+		color = value
+		emit_changed()

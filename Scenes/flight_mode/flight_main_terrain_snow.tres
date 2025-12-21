@@ -1,0 +1,33 @@
+[gd_resource type="SnowResource" load_steps=7 format=3 uid="uid://gpl0df2xtjwi"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yr5ue"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gsr07"]
+noise = SubResource("FastNoiseLite_yr5ue")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h2yge"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rtpbt"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_h2yge")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+colors = PackedColorArray(0.8827732, 0.96982795, 0.9999998, 1, 1, 1, 1, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1bvp3"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_h2yge")
+color_ramp = SubResource("Gradient_0xm2m")
+seamless = true
+
+[resource]
+snowFactor = 0.3
+snowInnerOffset = 0.2
+snowColorTexture = SubResource("NoiseTexture2D_1bvp3")
+snowColorNormal = SubResource("NoiseTexture2D_rtpbt")
+noise = SubResource("NoiseTexture2D_gsr07")

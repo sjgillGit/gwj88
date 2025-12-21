@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://crk0h1lduqcn3"
+path="res://.godot/imported/VB GWJ 88 - hit the ground once.wav-316f42fa9ea19c00df1549204e5d16b0.sample"
+
+[deps]
+
+source_file="res://Assets/audio/sfx/VB GWJ 88 - hit the ground once.wav"
+dest_files=["res://.godot/imported/VB GWJ 88 - hit the ground once.wav-316f42fa9ea19c00df1549204e5d16b0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

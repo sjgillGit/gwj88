@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://daydq5empd444"]
+
+[ext_resource type="TextureSetsResource" uid="uid://cykwtc41je7tc" path="res://Scenes/flight_mode/flight_main_terrain_texsets.tres" id="1_urc2n"]
+[ext_resource type="ObjectResource" uid="uid://cla6r7bxvw8gp" path="res://Scenes/flight_mode/flight_main_terrain_obj1.tres" id="2_me4rx"]
+[ext_resource type="ObjectResource" uid="uid://dktxmq3xdtd3v" path="res://Scenes/flight_mode/flight_main_terrain_obj2.tres" id="3_d55os"]
+[ext_resource type="SnowResource" uid="uid://gpl0df2xtjwi" path="res://Scenes/flight_mode/flight_main_terrain_snow.tres" id="3_njp82"]
+[ext_resource type="ZonesResource" uid="uid://dq7mowtumyvy6" path="res://Scenes/flight_mode/flight_main_zones.tres" id="4_d55os"]
+[ext_resource type="PackedScene" uid="uid://csydagtxm53un" path="res://Scenes/flight_mode/cave.tscn" id="5_me4rx"]
+[ext_resource type="PackedScene" uid="uid://b4hqahtd7nmog" path="res://Scenes/flight_mode/villiage.tscn" id="7_d55os"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="TerraBrush" type="TerraBrush" parent="."]
+dataPath = "res://Assets/terrain"
+visualInstanceLayers = 3
+lodLevels = 6
+collisionLayers = 3
+collisionMask = 3
+textureSets = ExtResource("1_urc2n")
+objects = Array[ObjectResource]([ExtResource("2_me4rx"), ExtResource("3_d55os")])
+snowDefinition = ExtResource("3_njp82")
+terrainZones = ExtResource("4_d55os")
+metadata/_edit_lock_ = true
+
+[node name="Cave" parent="TerraBrush" instance=ExtResource("5_me4rx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.2254, 172.11255, -498.61612)
+
+[node name="Villiage" parent="." instance=ExtResource("7_d55os")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4238796, -152.59038, -1523.7598)

@@ -16,6 +16,14 @@ func _game_state_changed(new_state: GameState.State, _old_state: GameState.State
 			new_scene = preload("res://Scenes/flight_mode/flight_main.tscn")
 		GameState.State.QUIT:
 			pass
+		GameState.State.ENDING_WIN:
+			new_scene = preload("res://Scenes/ui/endings/ending_win.tscn")
+		GameState.State.ENDING_SPACE:
+			new_scene = preload("res://Scenes/ui/endings/ending_space.tscn")
+		GameState.State.ENDING_BEACH:
+			new_scene = preload("res://Scenes/ui/endings/ending_beach.tscn")
+		GameState.State.ENDING_HOLE:
+			new_scene = preload("res://Scenes/ui/endings/ending_hole.tscn")
 		_:
 			assert(false, "I don't know what to do here with this new game state: %s" % [new_state])
 	if _old_scene != new_scene:
