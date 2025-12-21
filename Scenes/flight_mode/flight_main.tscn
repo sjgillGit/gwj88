@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=69 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -16,12 +16,17 @@
 [ext_resource type="Script" uid="uid://ci5fibeb4q8ya" path="res://Scenes/flight_mode/physical_ramp.gd" id="7_m27rb"]
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
 [ext_resource type="PackedScene" uid="uid://csydagtxm53un" path="res://Scenes/flight_mode/cave.tscn" id="8_hcd8f"]
+[ext_resource type="Resource" uid="uid://b2s31dfnwed7n" path="res://Scripts/collectibles/christmas_ball_red.tres" id="8_y5w0d"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/booster.tscn" id="9_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="9_jp6c5"]
+[ext_resource type="Resource" uid="uid://chtcd67td0opx" path="res://Scripts/collectibles/christmas_ball_blue.tres" id="9_jxov2"]
 [ext_resource type="PackedScene" uid="uid://dnxusy2ufsi40" path="res://Scenes/environment/snowman/snowman.tscn" id="9_ydv3d"]
+[ext_resource type="Resource" uid="uid://beehu1nb8b2uq" path="res://Scripts/collectibles/christmas_ball_green.tres" id="10_cn3vy"]
+[ext_resource type="Resource" uid="uid://d06tliby3n4bo" path="res://Scripts/collectibles/christmas_ball_purple.tres" id="11_c5u5f"]
 [ext_resource type="PackedScene" uid="uid://c51djvfclnyar" path="res://Scenes/collectibles/collectible.tscn" id="11_d51bt"]
 [ext_resource type="ObjectResource" uid="uid://dktxmq3xdtd3v" path="res://Scenes/flight_mode/flight_main_terrain_obj2.tres" id="11_phe0t"]
 [ext_resource type="TextureSetsResource" uid="uid://cykwtc41je7tc" path="res://Scenes/flight_mode/flight_main_terrain_texsets.tres" id="11_vqvor"]
+[ext_resource type="Resource" uid="uid://bptv8e21pgjb3" path="res://Scripts/collectibles/christmas_ball_silver.tres" id="12_40fe5"]
 [ext_resource type="ObjectResource" uid="uid://cla6r7bxvw8gp" path="res://Scenes/flight_mode/flight_main_terrain_obj1.tres" id="12_phe0t"]
 [ext_resource type="SnowResource" uid="uid://gpl0df2xtjwi" path="res://Scenes/flight_mode/flight_main_terrain_snow.tres" id="13_ydv3d"]
 [ext_resource type="ZonesResource" uid="uid://dq7mowtumyvy6" path="res://Scenes/flight_mode/flight_main_zones.tres" id="14_meee6"]
@@ -255,12 +260,6 @@ strength = 1.0
 transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, 108.2236, 234.34697, -118.895226)
 area_size = Vector3(200, 100, 200)
 
-[node name="WindStart3" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-2.9802322e-08, 0, -1, 0, 1, 0, 1, 0, -2.9802322e-08, 22.223604, 221.34697, 56.104774)
-area_size = Vector3(75, 75, 75)
-strength = 5.0
-particle_speed_multiplier = 2.0
-
 [node name="WindStart4" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.7620454e-08, 0, 1, 0, 1, 0, -1, 0, -5.7620454e-08, -38.50708, 221.34697, -42.493435)
 area_size = Vector3(75, 75, 75)
@@ -320,6 +319,50 @@ transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49
 [node name="tree3" parent="Collectibles" instance=ExtResource("5_jn6ig")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.28320503, 159.3062, -96.48997)
 
+[node name="BallRed" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.03668, 130.39986, -400.20746)
+item = ExtResource("8_y5w0d")
+
+[node name="BallBlue" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.28363, -4.444565, -925.54224)
+item = ExtResource("9_jxov2")
+
+[node name="BallGreen" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.89656, 19.062408, -934.8055)
+item = ExtResource("10_cn3vy")
+
+[node name="BallPurple" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -243.90675, 15.570944, -944.0687)
+item = ExtResource("11_c5u5f")
+
+[node name="BallSilver" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.32213, 147.51253, -672.3368)
+item = ExtResource("12_40fe5")
+
+[node name="Coin7" parent="Collectibles" instance=ExtResource("11_d51bt")]
+transform = Transform3D(-0.5000001, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.5000001, 130.11671, 130.39139, -389.65814)
+
+[node name="6Coins1" type="Node3D" parent="Collectibles"]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 4.6486053, 47.782555, 174.40662)
+
+[node name="Coin" parent="Collectibles/6Coins1" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 5.190256, 192.79039, 113.33736)
+
+[node name="Coin2" parent="Collectibles/6Coins1" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 5.190256, 198.65106, 113.33736)
+
+[node name="Coin3" parent="Collectibles/6Coins1" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.6749687, 192.79039, 113.33736)
+
+[node name="Coin4" parent="Collectibles/6Coins1" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.6749687, 198.65106, 113.33736)
+
+[node name="Coin5" parent="Collectibles/6Coins1" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.603224, 192.79039, 113.33736)
+
+[node name="Coin6" parent="Collectibles/6Coins1" instance=ExtResource("11_d51bt")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -7.603224, 198.65106, 113.33736)
+
 [node name="Cave" parent="." instance=ExtResource("8_hcd8f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -497.28036)
 
@@ -329,6 +372,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -497.2
 
 [node name="Snowman" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 17.06015, 269.5778, -400.55624)
+snowball_container = NodePath("../SnowballContainer")
+
+[node name="Snowman1" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 3.2897358, -152.96298, -1602.2772)
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Terrain" type="Node3D" parent="."]

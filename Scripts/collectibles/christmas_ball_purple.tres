@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_077mp")
 name = "Christmas Ball"
-game_scale = 5.0
+game_scale = 10.0
 asset = ExtResource("1_gvaow")
 color = Color(0.38777602, 0.0015975559, 0.87521434, 1)
 metadata/_custom_type_script = "uid://bgeplv5gp0ubu"
