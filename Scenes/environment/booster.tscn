@@ -20,12 +20,14 @@ material = SubResource("ShaderMaterial_o0tsq")
 
 [node name="Booster" type="Area3D"]
 script = ExtResource("1_tf3vi")
+decal_scale = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47310078, 0)
 shape = SubResource("SphereShape3D_ntnxt")
 
 [node name="Decal" type="Decal" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 visible = false
 layers = 3
 size = Vector3(5, 5, 5)

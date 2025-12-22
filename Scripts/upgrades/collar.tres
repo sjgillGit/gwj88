@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_vywt3")
 upgrade_name = "Jingle Bell Collar"
-description = "Enhances Christmas Spirit, reducing headwinds"
+description = "Let's get some jinglies in your ear!"
 cost = 200
 ramp_walk_speed = 1.0
+holiday_spirit = 1.0
 metadata/_custom_type_script = "uid://07r7h8akr6m1"

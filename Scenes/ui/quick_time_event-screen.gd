@@ -76,7 +76,7 @@ func add_quick_time_event(
 		parent.add_child(timer)
 
 	var qte = QTE.new(event_text, priority, timer, completion_callable)
-	qte.exiting_tree.connect(func(_unused):
+	qte.exiting_tree.connect(func():
 		_quick_time_events_queue.erase(qte)
 		qte.queue_free()
 	)
@@ -102,7 +102,7 @@ func remove_quick_time_event(qte) -> void:
 
 func _process(_delta):
 	if not _quick_time_events_queue.is_empty():
-		var qte: QTE = _quick_time_events_queue.front()
+		var qte: QTE = _quick_time_events_queue.get(0)
 		event.text = qte.event_text
 		quick_time_event_panel.show()
 	else:
@@ -111,7 +111,7 @@ func _process(_delta):
 
 func _ready():
 	action.triggered.connect(func():
-		var qte: QTE = _quick_time_events_queue.front()
+		var qte: QTE = _quick_time_events_queue.get(0)
 		if qte:
 			qte.complete_action()
 	)

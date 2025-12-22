@@ -1,17 +1,36 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv6fkpx6hbgrx"]
+[gd_scene load_steps=24 format=3 uid="uid://i4hgl17h5n1r"]
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
 [ext_resource type="Script" path="res://Scenes/ui/shop.gd" id="2_d1etx"]
-[ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="4_vjfc7"]
-[ext_resource type="Script" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
+[ext_resource type="Script" uid="uid://k5af4gxc8bm7" path="res://Scenes/ui/ui_shop_button.gd" id="5_208sv"]
 [ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="5_d1etx"]
+[ext_resource type="Resource" uid="uid://diesm5f71fu8x" path="res://Scripts/upgrades/antlers_small.tres" id="6_3gsb7"]
 [ext_resource type="Script" uid="uid://1udhbw83ko2l" path="res://Scripts/ui/button.gd" id="6_d1etx"]
-[ext_resource type="Texture2D" uid="uid://c43tocs30urn" path="res://Assets/ui/pen/saddle.png" id="7_6puqo"]
 [ext_resource type="Texture2D" uid="uid://bh0587mph4euh" path="res://Assets/ui/pen/antler1.png" id="8_5je5q"]
+[ext_resource type="Texture2D" uid="uid://cmhyab3qlpc3o" path="res://Assets/ui/pen/rockets.png" id="9_2rr6g"]
 [ext_resource type="Texture2D" uid="uid://d2rip6rwx4wfe" path="res://Assets/ui/pen/antler2.png" id="9_12tqk"]
+[ext_resource type="Resource" uid="uid://cb6438vv0gdpi" path="res://Scripts/upgrades/rocket.tres" id="9_o27j7"]
+[ext_resource type="Texture2D" uid="uid://dvvr51rmd8bhr" path="res://Assets/ui/pen/wing.png" id="10_3gsb7"]
 [ext_resource type="Texture2D" uid="uid://dp5ba27mieaf3" path="res://Assets/ui/pen/antler3.png" id="10_30hcq"]
+[ext_resource type="Resource" uid="uid://5y66yrwidgai" path="res://Scripts/upgrades/collar.tres" id="11_mjvai"]
+[ext_resource type="FontFile" uid="uid://dudi2ia68oxm5" path="res://Assets/fonts/Cowboy-Western-All/Cowboy_Western.ttf" id="12_0wjhc"]
 [ext_resource type="Texture2D" uid="uid://cwncesug1i4n" path="res://Assets/ui/coin_01.png" id="12_208sv"]
+[ext_resource type="Texture2D" uid="uid://du1awemqttyv" path="res://Assets/ui/pen/collar.png" id="12_o27j7"]
+[ext_resource type="FontFile" uid="uid://br8526wyvqdrk" path="res://Assets/fonts/Disco-Party-All/Disco_Party.ttf" id="13_2rr6g"]
+[ext_resource type="Resource" uid="uid://dbkq6x3h6him5" path="res://Scripts/upgrades/wings.tres" id="13_wwodq"]
+[ext_resource type="Resource" uid="uid://d3yx2qjrylqse" path="res://Scripts/upgrades/antlers_big.tres" id="15_3b3mm"]
+[ext_resource type="Resource" uid="uid://dbe41hj187ejm" path="res://Scripts/upgrades/ornaments.tres" id="17_da4ha"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e2ty7"]
+font = ExtResource("13_2rr6g")
+font_color = Color(0.09411765, 0.40392157, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3gsb7"]
+font = ExtResource("12_0wjhc")
+font_size = 14
+outline_size = 7
+outline_color = Color(0.11578893, 0.32127082, 0.195194, 1)
 
 [node name="UiPen" type="Control" groups=["ui"]]
 layout_mode = 3
@@ -49,11 +68,13 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
 script = ExtResource("5_208sv")
 id = 2
+upgrade = ExtResource("6_3gsb7")
 
 [node name="TextureButton" type="TextureButton" parent="Shop/UpgradeAntlers1"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
+mouse_filter = 1
 texture_normal = ExtResource("8_5je5q")
 script = ExtResource("6_d1etx")
 
@@ -67,12 +88,14 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
 script = ExtResource("5_208sv")
 id = 8
+upgrade = ExtResource("9_o27j7")
 
 [node name="TextureButton" type="TextureButton" parent="Shop/UpgradeRockets"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
-texture_normal = ExtResource("7_6puqo")
+mouse_filter = 1
+texture_normal = ExtResource("9_2rr6g")
 script = ExtResource("6_d1etx")
 
 [node name="UpgradeCollar" type="TextureRect" parent="Shop"]
@@ -85,12 +108,14 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
 script = ExtResource("5_208sv")
 id = 5
+upgrade = ExtResource("11_mjvai")
 
 [node name="TextureButton" type="TextureButton" parent="Shop/UpgradeCollar"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
-texture_normal = ExtResource("4_vjfc7")
+mouse_filter = 1
+texture_normal = ExtResource("12_o27j7")
 script = ExtResource("6_d1etx")
 
 [node name="UpgradeWings" type="TextureRect" parent="Shop"]
@@ -103,12 +128,14 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
 script = ExtResource("5_208sv")
 id = 9
+upgrade = ExtResource("13_wwodq")
 
 [node name="TextureButton" type="TextureButton" parent="Shop/UpgradeWings"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
-texture_normal = ExtResource("4_vjfc7")
+mouse_filter = 1
+texture_normal = ExtResource("10_3gsb7")
 script = ExtResource("6_d1etx")
 
 [node name="UpgradeAntlers2" type="TextureRect" parent="Shop"]
@@ -121,11 +148,13 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
 script = ExtResource("5_208sv")
 id = 3
+upgrade = ExtResource("15_3b3mm")
 
 [node name="TextureButton" type="TextureButton" parent="Shop/UpgradeAntlers2"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
+mouse_filter = 1
 texture_normal = ExtResource("9_12tqk")
 script = ExtResource("6_d1etx")
 
@@ -139,11 +168,13 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_d1etx")
 script = ExtResource("5_208sv")
 id = 4
+upgrade = ExtResource("17_da4ha")
 
 [node name="TextureButton" type="TextureButton" parent="Shop/UpgradeAntlers3"]
 layout_mode = 0
 offset_right = 550.0
 offset_bottom = 550.0
+mouse_filter = 1
 texture_normal = ExtResource("10_30hcq")
 script = ExtResource("6_d1etx")
 
@@ -161,35 +192,49 @@ offset_top = 111.0
 offset_right = 1100.0
 offset_bottom = 537.0
 
-[node name="PlayButton" type="TextureButton" parent="."]
+[node name="PlayContainer" type="BoxContainer" parent="."]
 layout_mode = 0
-offset_left = 855.0
-offset_top = 276.0
-offset_right = 1008.0
-offset_bottom = 372.0
+offset_left = 835.0
+offset_top = 178.0
+offset_right = 1034.0
+offset_bottom = 472.0
+alignment = 2
+vertical = true
+
+[node name="PriceLabel" type="Label" parent="PlayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Price: {0}"
+label_settings = SubResource("LabelSettings_e2ty7")
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="PlayContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_3gsb7")
+autowrap_mode = 2
+
+[node name="PlayButton" type="TextureButton" parent="PlayContainer"]
+custom_minimum_size = Vector2(0, 84.02)
+layout_mode = 2
 texture_normal = ExtResource("5_d1etx")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("6_d1etx")
 
-[node name="Label" type="Label" parent="PlayButton"]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 29.0
-offset_right = 133.0
-offset_bottom = 72.0
+[node name="Label" type="Label" parent="PlayContainer/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Play"
-
-[node name="PriceLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 837.0
-offset_top = 396.0
-offset_right = 1109.0
-offset_bottom = 439.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "Price: {0}"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MoneyContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -220,5 +265,5 @@ text = " : {0}"
 horizontal_alignment = 1
 
 [connection signal="visibility_changed" from="." to="Shop" method="_on_ui_pen_visibility_changed"]
-[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="PlayContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="pressed" from="PlayContainer/PlayButton" to="." method="_on_play_button_pressed"]

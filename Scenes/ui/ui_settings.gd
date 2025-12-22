@@ -14,3 +14,9 @@ func _on_setting_2_pressed() -> void:
 
 func _on_setting_1_pressed() -> void:
 	_remapping_dialog.open()
+
+
+func _on_vsync_pressed() -> void:
+	var toggled_on = DisplayServer.window_get_vsync_mode() != DisplayServer.VSYNC_ENABLED
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED)
+	%Vsync/Label.text = 'vsync %s' % ["☐" if !toggled_on else "☑"]

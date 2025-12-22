@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-const SNOWBALL = preload("uid://dsovid6f4r4ca")
+const SNOWBALL = preload("res://Scenes/environment/snowman/snowball.tscn")
 
 @onready var marker_3d: Marker3D = $Marker3D
 @onready var timer: Timer = $Timer
@@ -23,7 +23,7 @@ func _on_timer_timeout() -> void:
 	var aim := CalculateIntercept(target.global_position, target.linear_velocity, marker_3d.global_position, projectile_speed + randf_range(-40, 40))
 	var accuracy = PI/500
 	aim = aim + Vector3(randf_range(-accuracy, accuracy), randf_range(-accuracy, accuracy), 0)
-	
+
 	var projectile: Node3D = SNOWBALL.instantiate()
 	projectile.target = target
 	projectile.global_position = marker_3d.global_position
