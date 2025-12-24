@@ -1,10 +1,13 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://wnjx0277ks75"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://wnjx0277ks75"]
 
 [ext_resource type="FontFile" uid="uid://br8526wyvqdrk" path="res://Assets/fonts/Disco-Party-All/Disco_Party.ttf" id="1_m520p"]
+[ext_resource type="StyleBox" uid="uid://cjbaa3e4ea0bk" path="res://Assets/ui/buttons/styleBox_button_disabled.tres" id="2_on443"]
 [ext_resource type="StyleBox" uid="uid://dagvxksushulb" path="res://Assets/ui/buttons/styleBox_button_hover.tres" id="2_yh0e6"]
 [ext_resource type="StyleBox" uid="uid://bxqhjcwxjpq6j" path="res://Assets/ui/buttons/styleBox_button_normal.tres" id="3_on443"]
+[ext_resource type="StyleBox" uid="uid://ppwesxkdoyl3" path="res://Assets/ui/buttons/stylebox_button_focused.tres" id="3_ro6t1"]
 [ext_resource type="Texture2D" uid="uid://budb2prl270mc" path="res://Assets/art ~ licensed/VEXED ~ Mini-Medieval UI/Banners.png" id="4_ro6t1"]
 [ext_resource type="StyleBox" uid="uid://shfvgyx2xgeu" path="res://Assets/ui/panel_menu.tres" id="5_m520p"]
+[ext_resource type="StyleBox" uid="uid://dwciy1l53xmev" path="res://Assets/ui/buttons/styleBox_button_pressed.tres" id="5_ro6t1"]
 [ext_resource type="FontFile" uid="uid://dxkvfvt32k2u" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Ribs.ttf" id="6_q0gd3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2x4uk"]
@@ -46,11 +49,12 @@ Button/colors/font_hover_color = Color(0.9137255, 0.9137255, 0.9137255, 1)
 Button/colors/font_hover_pressed_color = Color(0.92941177, 0.21176471, 0.21176471, 1)
 Button/colors/font_outline_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
 Button/fonts/font = ExtResource("1_m520p")
-Button/styles/disabled = ExtResource("2_yh0e6")
-Button/styles/focus = ExtResource("2_yh0e6")
+Button/styles/disabled = ExtResource("2_on443")
+Button/styles/focus = ExtResource("3_ro6t1")
 Button/styles/hover = ExtResource("2_yh0e6")
+Button/styles/hover_pressed = ExtResource("5_ro6t1")
 Button/styles/normal = ExtResource("3_on443")
-Button/styles/pressed = ExtResource("2_yh0e6")
+Button/styles/pressed = ExtResource("5_ro6t1")
 HSeparator/styles/separator = SubResource("StyleBoxTexture_mtws8")
 Label/font_sizes/font_size = 32
 Label/fonts/font = ExtResource("1_m520p")

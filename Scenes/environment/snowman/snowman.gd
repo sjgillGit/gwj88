@@ -13,11 +13,19 @@ var target: RigidBody3D
 var gravity: float = 0#9.8
 
 func _ready() -> void:
+	%RangeIndicator.visible = false
 	assert(snowball_container != null, "ERROR: snowball_container must be set. %s" % get_path())
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	target = body
 	timer.start(shot_delay)
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if target == body:
+		target = null
+		timer.stop()
+
 
 func _on_timer_timeout() -> void:
 	var aim := CalculateIntercept(target.global_position, target.linear_velocity, marker_3d.global_position, projectile_speed + randf_range(-40, 40))
@@ -25,12 +33,12 @@ func _on_timer_timeout() -> void:
 	aim = aim + Vector3(randf_range(-accuracy, accuracy), randf_range(-accuracy, accuracy), 0)
 
 	var projectile: Node3D = SNOWBALL.instantiate()
+	snowball_container.add_child(projectile)
 	projectile.target = target
 	projectile.global_position = marker_3d.global_position
-	snowball_container.add_child(projectile)
-	projectile.init(projectile_speed, aim)
-	if target.has_method("trigger_snowball_qte"):
-		target.trigger_snowball_qte(projectile)
+	projectile.init(self, projectile_speed, aim)
+	if target is DeerMissile:
+		target.add_snowball(projectile)
 
 static func CalculateIntercept(targetLocation: Vector3, targetVelocity: Vector3, interceptorLocation: Vector3, interceptorSpeed: float) -> Vector3:
 	var Ax: float = targetLocation.x

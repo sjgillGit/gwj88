@@ -9,6 +9,10 @@ func _ready():
 
 func _game_state_changed(new_state: GameState.State, _old_state: GameState.State):
 	var new_scene: PackedScene = null
+	if new_state == GameState.State.REPLAY:
+		# force a restart
+		_old_scene = null
+		new_state = GameState.State.PLAY
 	match new_state:
 		GameState.State.STARTUP, GameState.State.MAIN_MENU, GameState.State.PEN, GameState.State.CREDITS, GameState.State.SETTINGS, GameState.State.PAUSE:
 			new_scene = preload("res://Scenes/ui/Pen3D.tscn")

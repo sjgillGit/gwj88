@@ -1,7 +1,8 @@
 
 class_name UiShopButton
-extends TextureRect
+extends Button
 
+signal enabled_changed(button: UiShopButton, enabled: bool)
 
 const COLOR_DISABLED: Color = Color()
 const COLOR_ENABLED: Color = Color("ffffff")
@@ -21,12 +22,13 @@ var current_StoreState: StoreState = StoreState.DISABLED:
 
 @export var upgrade: UpgradeStats
 
-@onready var button: TextureButton = get_child(0)
+@onready var button: TextureRect = get_child(0)
 
 func _ready() -> void:
+	disabled = true
 	button.modulate = COLOR_DISABLED
 	tooltip_text = "" #DeerUpgrades.Category.find_key(id)
-	button.pressed.connect(_on_pressed)
+	pressed.connect(_on_pressed)
 	DeerUpgrades.upgrades_updated.connect(_on_updated_upgrades)
 	if id == DeerUpgrades.Category.SMALL_ANTLERS:
 		current_StoreState = StoreState.ENABLED
@@ -37,13 +39,15 @@ func check_status():
 	match current_StoreState:
 		StoreState.ENABLED:
 			button.modulate = COLOR_ENABLED
-			button.disabled = false
+			disabled = false
+
 		StoreState.DISABLED:
 			button.modulate = COLOR_DISABLED
-			button.disabled = true
+			disabled = true
 		StoreState.PURCHASED:
 			button.modulate = COLOR_PURCHASED
-			button.disabled = true
+			disabled = true
+	enabled_changed.emit(self, !disabled)
 
 func _on_pressed() -> void:
 	if DeerUpgrades.increment_upgrade():
@@ -53,3 +57,4 @@ func _on_pressed() -> void:
 func _on_updated_upgrades() -> void:
 	if DeerUpgrades.get_next_upgrade() == id:
 		current_StoreState = StoreState.ENABLED
+	check_status()

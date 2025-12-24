@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cjbaa3e4ea0bk"]
+
+[ext_resource type="Texture2D" uid="uid://cub3gf1hup4ok" path="res://Assets/ui/main/menu-button.png" id="1_yv465"]
+
+[resource]
+texture = ExtResource("1_yv465")
+region_rect = Rect2(0, 0, 292, 134)
+modulate_color = Color(0.7529412, 0.7529412, 0.7529412, 1)

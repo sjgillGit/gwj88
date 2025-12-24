@@ -9,5 +9,6 @@ description = "IT'S NOT GOOD ENOUGH! WE NEED POWER!!"
 cost = 40
 control = 0.30000000000000004
 thrust = 980.0
+mass = 10.0
 fuel_capacity_seconds = 3.8
 metadata/_custom_type_script = "uid://07r7h8akr6m1"

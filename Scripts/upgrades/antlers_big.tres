@@ -8,5 +8,5 @@ upgrade_name = "Big Antlers"
 description = "Don't stop now! I raised you to make me rich!"
 cost = 350
 drag = -2.000000000002e-05
-toughness = 10.0
+toughness = 1.0
 metadata/_custom_type_script = "uid://07r7h8akr6m1"

@@ -5,3 +5,4 @@
 [resource]
 texture = ExtResource("1_esl6c")
 region_rect = Rect2(0, 0, 292, 134)
+modulate_color = Color(0.84000003, 1, 0.896, 1)

@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7g5whk4u801n"]
+[gd_scene load_steps=6 format=3 uid="uid://b7g5whk4u801n"]
 
 [ext_resource type="Script" uid="uid://8wjafmqddqgm" path="res://Scenes/ui/ui_play.gd" id="1_cd4xp"]
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_fml7s"]
 [ext_resource type="Texture2D" uid="uid://cwncesug1i4n" path="res://Assets/ui/coin_01.png" id="3_vyvps"]
+[ext_resource type="Script" uid="uid://b7f0lpj1i0yeb" path="res://Scenes/ui/format_label.gd" id="4_kjhvq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjhvq"]
+font_size = 24
+font_color = Color(0.082500026, 0.45, 0, 1)
+outline_size = 4
+outline_color = Color(0.7137255, 0.7764706, 0.7372549, 1)
 
 [node name="UiPlay" type="Control" groups=["ui"]]
 layout_mode = 3
@@ -14,105 +21,188 @@ grow_vertical = 2
 theme = ExtResource("1_fml7s")
 script = ExtResource("1_cd4xp")
 
-[node name="MainVBox" type="VBoxContainer" parent="."]
+[node name="MainBox" type="BoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = -20.0
-offset_right = 119.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+vertical = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainBox"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MainBox/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="MainBox/HBoxContainer3/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 5
+texture = ExtResource("3_vyvps")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TotalMoney" type="Label" parent="MainBox/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = " : {0}"
+label_settings = SubResource("LabelSettings_kjhvq")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_kjhvq")
+
+[node name="MainVBox" type="VBoxContainer" parent="MainBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 theme_override_constants/separation = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="MainVBox"]
+[node name="PanelContainer" type="PanelContainer" parent="MainBox/MainVBox"]
 layout_mode = 2
 theme = ExtResource("1_fml7s")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainVBox/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainBox/MainVBox/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainVBox/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 0
-theme_override_constants/margin_bottom = 40
 
-[node name="GameStatsTitle" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="GameStatsTitle" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "Game Stats"
+text = "Results"
+label_settings = SubResource("LabelSettings_kjhvq")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Flight" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Flight" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 5
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Flight"
+label_settings = SubResource("LabelSettings_kjhvq")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 5
 texture = ExtResource("3_vyvps")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="FlightMoney" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="FlightMoney" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 5
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = " : {0}"
+label_settings = SubResource("LabelSettings_kjhvq")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Roll" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Roll" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 5
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Tumble"
+label_settings = SubResource("LabelSettings_kjhvq")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 5
 texture = ExtResource("3_vyvps")
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="RollMoney" type="Label" parent="MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="RollMoney" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 5
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = " : {0}"
+label_settings = SubResource("LabelSettings_kjhvq")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MainVBox"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 5
+texture = ExtResource("3_vyvps")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinMoney" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = " : {0}"
+label_settings = SubResource("LabelSettings_kjhvq")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_kjhvq")
+
+[node name="Button" type="Button" parent="MainBox/MainVBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
@@ -121,4 +211,18 @@ theme = ExtResource("1_fml7s")
 theme_override_font_sizes/font_size = 24
 text = "Back To Pen"
 
-[connection signal="pressed" from="MainVBox/Button" to="." method="_on_button_pressed"]
+[node name="Button2" type="Button" parent="MainBox/MainVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_fml7s")
+theme_override_font_sizes/font_size = 24
+text = "Try Again"
+
+[node name="CenterContainer" type="CenterContainer" parent="MainBox"]
+layout_mode = 2
+
+[connection signal="visibility_changed" from="MainBox" to="." method="_on_main_box_visibility_changed"]
+[connection signal="pressed" from="MainBox/MainVBox/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainBox/MainVBox/Button2" to="." method="_on_button_2_pressed"]
