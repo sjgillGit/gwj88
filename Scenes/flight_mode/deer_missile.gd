@@ -17,6 +17,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 ## speeds at which we have flight control
 @export var control_envelope: Curve
 @export var setup_seconds := 10.0
+@export var snowball_block_seconds := 1.0
 
 @export var walk_speed := 5.0
 @export var pitch_speed := 0.25
@@ -28,7 +29,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export_range(0.0, 10.0, 0.001) var roll_correction_speed := 0.5
 @export_range(0.0, 10.0, 0.001) var camera_follow_speed_distance := 0.1
 
-@export var show_debug_ui := true:
+@export var show_debug_ui := false:
 	set(value):
 		if is_node_ready():
 			%DebugUi.visible = value
@@ -66,6 +67,7 @@ var _upgrade_control := 0.0
 var _upgrade_walk_speed := 0.0
 var _upgrade_ramp_downforce := 0.0
 var _upgrade_holiday_spirit := 0.0
+var _upgrade_toughness := 0.0
 var _player_inputs: Vector3
 var _on_platform := true
 var _on_ramp := false
@@ -232,6 +234,7 @@ func _apply_upgrade_stats():
 	_upgrade_control = 0
 	_upgrade_walk_speed = 0
 	_upgrade_ramp_downforce = 0
+	_upgrade_toughness = 0
 	_upgrade_holiday_spirit = 0
 	for u in _launch_upgrades:
 		_upgrade_mass += u.get_mass()
@@ -260,7 +263,7 @@ func _setup_quick_time_event_landed():
 	_qte_end = QuickTimeEventScreen.add_quick_time_event(
 		self,
 		"Collect Rewards!",
-		1,
+		6,
 		5.0,
 		(func(_unused):
 		_flight_state_changed(FlightState.POST_FLIGHT)
@@ -320,7 +323,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			a.apply_physics(state, mass)
 			if a is Wind:
 				wind_direction += a.get_global_wind_direction() * a.strength
-				if !_qte_wind && _current_flight_state == FlightState.FLIGHT:
+				if !_qte_wind && _current_flight_state == FlightState.FLIGHT && _upgrade_holiday_spirit > 0:
 					_qte_wind = QuickTimeEventScreen.add_quick_time_event(
 						self,
 						"Activate Christmas Spirit",
@@ -592,9 +595,9 @@ func trigger_snowball_qte(snowball: Snowball) -> void:
 		return
 	_qte_snowball = QuickTimeEventScreen.add_quick_time_event(
 		self,
-		"Block Snowball!",
+		"Bash snowball with your antlers",
 		5,
-		setup_seconds,
+		snowball_block_seconds * _upgrade_toughness,
 		(func (success):
 		if success:
 			if snowballs.size() > 0:

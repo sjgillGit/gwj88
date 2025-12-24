@@ -19,6 +19,13 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	target = body
 	timer.start(shot_delay)
 
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if target == body:
+		target = null
+		timer.stop()
+
+
 func _on_timer_timeout() -> void:
 	var aim := CalculateIntercept(target.global_position, target.linear_velocity, marker_3d.global_position, projectile_speed + randf_range(-40, 40))
 	var accuracy = PI/500

@@ -747,6 +747,7 @@ transform = Transform3D(0.9382336, 0.18174252, 0.29442713, -0.34600243, 0.492820
 
 [node name="FlightStats" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = 811.0
 offset_top = 42.0
 offset_right = 812.0

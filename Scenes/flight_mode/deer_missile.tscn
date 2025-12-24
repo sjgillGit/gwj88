@@ -288,8 +288,7 @@ _data = {
 }
 
 [node name="DeerMissile" type="RigidBody3D"]
-collision_layer = 7
-collision_mask = 3
+collision_layer = 5
 mass = 50.0
 physics_material_override = ExtResource("1_k7jrr")
 center_of_mass_mode = 1
@@ -387,16 +386,18 @@ autostart = true
 
 [node name="TimeLeftLabel" type="Label" parent="."]
 unique_name_in_owner = true
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -162.0
+anchor_bottom = 0.5
+offset_top = -47.0
+offset_bottom = 47.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 text = "Get Ready"
 label_settings = SubResource("LabelSettings_g2hql")
 horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="Collecter" parent="." instance=ExtResource("5_j778o")]
 

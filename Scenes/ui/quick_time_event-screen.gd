@@ -5,6 +5,7 @@ extends Control
 @onready var instruction = %Instruction
 
 var _quick_time_events_queue: Array = []
+var _formatter: GUIDEInputFormatter
 var action: GUIDEAction = preload("res://Scripts/guide/action.tres")
 
 class QTE extends Node:
@@ -115,7 +116,19 @@ func _ready():
 		if qte:
 			qte.complete_action()
 	)
+	GUIDE.input_mappings_changed.connect(_update_instruction)
+	_formatter = GUIDEInputFormatter.for_active_contexts(32)
+	_update_instruction()
 
+
+func _update_instruction():
+	if !len(GUIDE.get_enabled_mapping_contexts()):
+		%Instruction.text = "Press ACTION"
+		return
+	var replacements: Array[String] = []
+	var action := preload("res://Scripts/guide/action.tres")
+	var action_bbcode := await _formatter.action_as_richtext_async(action)
+	%Instruction.parse_bbcode("Press %s" % [action_bbcode])
 
 func _sample_usage():
 	var qte: QuickTimeEventScreen.QTE = QuickTimeEventScreen.add_quick_time_event(
