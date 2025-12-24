@@ -3,6 +3,7 @@ extends Resource
 
 @export var upgrade_name := ""
 @export_multiline var description := ""
+@export_multiline var hint := ""
 @export var cost := 1000
 # Upgrade stat static values
 # use get_x() in the upgrade to get the current dynamic value

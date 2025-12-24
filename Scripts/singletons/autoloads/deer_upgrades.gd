@@ -72,3 +72,10 @@ func get_next_upgrade() -> Category:
 	if upgrade_available_for_purchase():
 		return _upgrade_order[_upgrades.size()]
 	return Category.NONE
+
+func get_hint() -> String:
+	var cat = get_next_upgrade()
+	if cat == Category.NONE:
+		return ""
+	var ustats = _upgrade_stats[cat]
+	return ustats.hint

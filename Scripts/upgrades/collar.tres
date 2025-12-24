@@ -6,6 +6,7 @@
 script = ExtResource("1_vywt3")
 upgrade_name = "Jingle Bell Collar"
 description = "Let's get some jinglies in your ear!"
+hint = "With enough Holiday Spirit, the wind will always be at your back."
 cost = 200
 ramp_walk_speed = 1.0
 ramp_downforce = 3.0

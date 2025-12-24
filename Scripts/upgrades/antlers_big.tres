@@ -6,6 +6,7 @@
 script = ExtResource("1_fsqjg")
 upgrade_name = "Big Antlers"
 description = "Don't stop now! I raised you to make me rich!"
+hint = "Bigger antlers make it easier to deflect snowballs."
 cost = 330
 drag = -2.000000000002e-05
 toughness = 1.0
