@@ -7,5 +7,6 @@
 script = ExtResource("1_lrwgo")
 name = "Coin"
 asset = ExtResource("1_3hjde")
+big_pickup_sound = false
 color = Color(0.9778351, 0.91910547, 0.76789063, 1)
 metadata/_custom_type_script = "uid://bgeplv5gp0ubu"

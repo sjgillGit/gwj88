@@ -6,7 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://tb4kx5pahuh7" path="res://Scenes/environment/snowblock.tres" id="4_ndjx7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fygv4"]
-size = Vector3(0.5, 0.25, 0.5)
+size = Vector3(0.5, 0.1, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inor1"]
 transparency = 1
@@ -73,7 +73,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster2"]
 transform = Transform3D(0.9992802, -0.0378914, -0.0018048072, -0.022282789, -0.6248205, 0.7804506, -0.030700035, -0.7798486, -0.62521505, 0, 0, 0)
-depth = 0.125
+depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster2/CollisionShape3D4"]
@@ -92,7 +92,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster3"]
 transform = Transform3D(0.9992802, -0.0378914, -0.0018048072, -0.022282789, -0.6248205, 0.7804506, -0.030700035, -0.7798486, -0.62521505, 0, 0, 0)
-depth = 0.125
+depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster3/CollisionShape3D4"]
@@ -111,7 +111,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster4"]
 transform = Transform3D(0.9992802, -0.0378914, -0.0018048072, -0.022282789, -0.6248205, 0.7804506, -0.030700035, -0.7798486, -0.62521505, 0, 0, 0)
-depth = 0.125
+depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster4/CollisionShape3D4"]
@@ -130,7 +130,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster5"]
 transform = Transform3D(0.9992802, -0.0378914, -0.0018048072, -0.022282789, -0.6248205, 0.7804506, -0.030700035, -0.7798486, -0.62521505, 0, 0, 0)
-depth = 0.125
+depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster5/CollisionShape3D4"]
@@ -149,7 +149,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster6"]
 transform = Transform3D(0.9992802, -0.0378914, -0.0018048072, -0.022282789, -0.6248205, 0.7804506, -0.030700035, -0.7798486, -0.62521505, 0, 0, 0)
-depth = 0.125
+depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster6/CollisionShape3D4"]

@@ -9,6 +9,7 @@ extends BoxContainer
 
 func _ready():
 	label_text = label_text
+	$MainMenuButton.grab_focus()
 
 
 func _on_quit_button_pressed() -> void:

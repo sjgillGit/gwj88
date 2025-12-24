@@ -1,7 +1,6 @@
 class_name UiMainMenu
 extends Control
 
-
 func _on_play_button_pressed() -> void:
 	GameState.current = GameState.State.PEN
 
@@ -41,3 +40,8 @@ func _on_option_button_item_selected(index: int) -> void:
 		var id := $OptionButton.get_item_id(index) as GameState.State
 		if id > 0:
 			GameState.current = id
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		%PlayButton.grab_focus()

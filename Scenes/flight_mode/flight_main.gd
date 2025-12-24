@@ -8,6 +8,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 var _player: DeerMissile
 var _despawning := false
 var _frame_time := 0.0
+var _music_next: AudioStreamPlayer
 
 func _ready():
 	_spawn_deer()
@@ -95,7 +96,7 @@ func _on_camera_option_item_selected(index: int) -> void:
 func _on_flight_state_changed(flight_state: FlightState):
 	if flight_state == FlightState.SETUP:
 		$RampIntroJingleAudio.play()
-	else:
+	elif flight_state == FlightState.PRE_FLIGHT:
 		$RampIntroJingleAudio.playing = false
 		var upgrade_count = len(DeerUpgrades.get_upgrades())
 		match upgrade_count:
@@ -110,6 +111,7 @@ func _on_flight_state_changed(flight_state: FlightState):
 		if flight_state == FlightState.POST_FLIGHT:
 			menu.flight_money = int(_player.flight_distance * 0.1)
 			menu.roll_money = int(_player.roll_distance * 0.05)
+			menu.coin_money = _player.money_collected
 			GameStats.money += menu.flight_money + menu.roll_money
 		menu.flight_state = flight_state
 	elif flight_state == FlightState.POST_FLIGHT:
@@ -134,19 +136,29 @@ func _on_vsync_button_toggled(toggled_on: bool) -> void:
 func _play_music(music: AudioStreamPlayer):
 	for m in [$Music1, $Music2, $Music3, $MusicElf]:
 		m.volume_linear = music_volume if m == music else 0.0
+		m.play()
 
 func _on_music_1_finished() -> void:
-	_play_music($MusicElf)
-
-func _on_music_elf_finished() -> void:
-	_play_music($Music2)
+	if $Music1.volume_linear:
+		_music_next = $Music2
+		_play_music($MusicElf)
 
 func _on_music_2_finished() -> void:
-	_play_music($Music2)
+	if $Music2.volume_linear:
+		_music_next = $Music3
+		_play_music($MusicElf)
 
 
 func _on_music_3_finished() -> void:
-	_play_music($Music1)
+	if $Music3.volume_linear:
+		_music_next = $Music1
+		_play_music($MusicElf)
+
+
+func _on_music_elf_finished() -> void:
+	if $MusicElf.volume_linear:
+		if _music_next:
+			_play_music(_music_next)
 
 
 func _on_ending_win_body_entered(body: Node3D) -> void:

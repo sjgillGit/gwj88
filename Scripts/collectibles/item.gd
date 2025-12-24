@@ -13,7 +13,7 @@ class_name Item
 		asset = value
 		emit_changed()
 
-@export var big_pickup_sound := false:
+@export var big_pickup_sound := true:
 	set(value):
 		big_pickup_sound = value
 		emit_changed()

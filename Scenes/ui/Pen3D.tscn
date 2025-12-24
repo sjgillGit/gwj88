@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_jlhhw"]
 [ext_resource type="PackedScene" uid="uid://dc26ocp4eku6k" path="res://Assets/ui/pen/candles/candles.tscn" id="4_4je65"]
 [ext_resource type="PackedScene" uid="uid://dy0rv65ceao3" path="res://Assets/ui/pen/food/apple.tscn" id="4_cih2e"]
-[ext_resource type="PackedScene" path="res://Assets/environment/AFirepit.gltf" id="6_ln2li"]
-[ext_resource type="PackedScene" path="res://Assets/environment/tree1.gltf" id="6_vqbuy"]
+[ext_resource type="PackedScene" uid="uid://hldl0t5ppogq" path="res://Assets/environment/AFirepit.gltf" id="6_ln2li"]
+[ext_resource type="PackedScene" uid="uid://bhkeow0pjkitl" path="res://Assets/environment/tree1.gltf" id="6_vqbuy"]
 [ext_resource type="AudioStream" uid="uid://57a6rjjqipp0" path="res://Assets/audio/sfx/VB GWJ 88 - crackling fireplace.wav" id="7_2uts6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4je65"]
@@ -268,8 +268,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4635148, -1, -0.92752314)
 
 [node name="FireplaceSound" type="AudioStreamPlayer3D" parent="CSGBox3D"]
 stream = ExtResource("7_2uts6")
-volume_db = -10.0
+volume_db = -3.0
+unit_size = 0.5
+max_db = 0.0
 autoplay = true
+panning_strength = 0.5
 bus = &"SFX"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

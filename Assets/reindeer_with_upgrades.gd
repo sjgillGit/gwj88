@@ -12,6 +12,7 @@ func show_holiday_spirit(value: bool):
 
 	%AudioHolidaySpirit.playing = value && %"U Collar UPGRADE".enabled
 	%HSLights.visible = value && %"U Ornaments UPGRADE".enabled
+	%HSLights2.visible = value && %"U Collar UPGRADE".enabled
 
 
 func set_run_speed(value: float):
