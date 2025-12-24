@@ -17,6 +17,8 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 ## speeds at which we have flight control
 @export var control_envelope: Curve
 @export var setup_seconds := 10.0
+@export var snowball_block_seconds := 0.5
+@export var snowball_block_range := 1.0
 
 @export var walk_speed := 5.0
 @export var pitch_speed := 0.25
@@ -28,7 +30,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export_range(0.0, 10.0, 0.001) var roll_correction_speed := 0.5
 @export_range(0.0, 10.0, 0.001) var camera_follow_speed_distance := 0.1
 
-@export var show_debug_ui := true:
+@export var show_debug_ui := false:
 	set(value):
 		if is_node_ready():
 			%DebugUi.visible = value
@@ -45,6 +47,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @onready var _snow_slide_sfx := $AudioSnowSlide as AudioStreamPlayer3D
 @onready var _boost_sfx := $AudioBigBoost as AudioStreamPlayer3D
 @onready var _boost_small_sfx := $AudioSmallBoost as AudioStreamPlayer3D
+@onready var _elf_gib_b_sfx := $AudioElfGibberishB as AudioStreamPlayer3D
 
 var flight_distance := 0.0
 var roll_distance := 0.0
@@ -52,6 +55,7 @@ var roll_distance := 0.0
 ## string versions of these stats
 var flight_distance_str := ""
 var roll_distance_str := ""
+var money_collected := 0
 var speed_str := ""
 
 var _launch_point: Vector3
@@ -66,6 +70,7 @@ var _upgrade_control := 0.0
 var _upgrade_walk_speed := 0.0
 var _upgrade_ramp_downforce := 0.0
 var _upgrade_holiday_spirit := 0.0
+var _upgrade_toughness := 0.0
 var _player_inputs: Vector3
 var _on_platform := true
 var _on_ramp := false
@@ -87,6 +92,9 @@ var _camera_mark_pos := Vector3()
 
 var _wind_time := 0.0
 var _wind_amount := 0.0
+var _snowballs: Array = []
+
+var _qte_snowball: QuickTimeEventScreen.QTE
 var _qte_start: QuickTimeEventScreen.QTE
 var _qte_end: QuickTimeEventScreen.QTE
 var _qte_wind: QuickTimeEventScreen.QTE
@@ -98,7 +106,12 @@ func _ready():
 	# when running the scene directly from the editor, we want some upgrades
 	for a in  OS.get_cmdline_args():
 		if a.ends_with('flight_main.tscn'):
-			DeerUpgrades._upgrades = [DeerUpgrades.Category.WINGS, DeerUpgrades.Category.ROCKETS]
+			DeerUpgrades._upgrades = [
+				DeerUpgrades.Category.SMALL_ANTLERS,
+				DeerUpgrades.Category.COLLAR,
+				DeerUpgrades.Category.WINGS,
+				DeerUpgrades.Category.ROCKETS
+			]
 			break
 	# invoke setter!
 	_setup_time_left = setup_seconds
@@ -119,18 +132,11 @@ func _ready():
 	_flight_state_changed(FlightState.SETUP)
 	_setup_quick_time_action_to_start()
 
-func _exit_tree() -> void:
-	if _qte_start:
-		QuickTimeEventScreen.remove_quick_time_event(_qte_start)
-		_qte_start = null
-	if _qte_snowball:
-		QuickTimeEventScreen.remove_quick_time_event(_qte_snowball)
-		_qte_snowball = null
 
 func _setup_quick_time_action_to_start():
 	_qte_start = QuickTimeEventScreen.add_quick_time_event(
 		self,
-		"START!",
+		"Start the run",
 		1,
 		setup_seconds,
 		(func (_unused):
@@ -232,6 +238,7 @@ func _apply_upgrade_stats():
 	_upgrade_control = 0
 	_upgrade_walk_speed = 0
 	_upgrade_ramp_downforce = 0
+	_upgrade_toughness = 0
 	_upgrade_holiday_spirit = 0
 	for u in _launch_upgrades:
 		_upgrade_mass += u.get_mass()
@@ -241,6 +248,7 @@ func _apply_upgrade_stats():
 		_upgrade_drag += u.get_drag()
 		_upgrade_walk_speed += u.stats.ramp_walk_speed
 		_upgrade_ramp_downforce += u.stats.ramp_downforce
+		_upgrade_toughness += u.stats.toughness
 		_upgrade_holiday_spirit += u.stats.holiday_spirit
 
 	# mass is the only builtin stat on RigidBody3D
@@ -259,9 +267,9 @@ func _is_terrain(b: Node3D) -> bool:
 func _setup_quick_time_event_landed():
 	_qte_end = QuickTimeEventScreen.add_quick_time_event(
 		self,
-		"Collect Rewards!",
-		1,
-		5.0,
+		"End this run and collect rewards",
+		6,
+		INF,
 		(func(_unused):
 		_flight_state_changed(FlightState.POST_FLIGHT)
 		if _qte_end:
@@ -273,7 +281,7 @@ func _setup_quick_time_event_landed():
 
 func activate_holiday_spirit(value: bool):
 	%Reindeer.show_holiday_spirit(value)
-	_holiday_spirit_activated = true
+	_holiday_spirit_activated = value
 
 ## 0.0, 1.0, 2.0
 func get_holiday_spirit() -> float:
@@ -313,6 +321,34 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		angular_damp = _default_angular_damp
 
 	_update_input()
+	_update_wind(state)
+	_update_snowballs(state)
+
+	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
+	state.apply_central_force(local_thrust)
+
+	_apply_drag(state)
+	_apply_lift(state)
+	_apply_control(state)
+
+	_apply_player_input(state)
+
+	if _distance_updated:
+		_update_distances()
+	var forward_speed := (state.transform.basis * state.linear_velocity).z
+	if _camera_mark_pos && forward_speed > -1.0:
+		%CameraFollowMark.position = _camera_mark_pos + Vector3.MODEL_REAR * forward_speed * camera_follow_speed_distance
+
+	_apply_sfx(forward_speed)
+
+	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
+	if abs(forward_speed) < 0.001:
+		forward_speed = 0
+	%Reindeer.set_run_speed(forward_speed)
+	_print_stats()
+
+
+func _update_wind(state: PhysicsDirectBodyState3D):
 	var wind_direction := Vector3()
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
@@ -320,10 +356,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			a.apply_physics(state, mass)
 			if a is Wind:
 				wind_direction += a.get_global_wind_direction() * a.strength
-				if !_qte_wind && _current_flight_state == FlightState.FLIGHT:
+				var can_use := _current_flight_state == FlightState.FLIGHT && \
+					_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated
+				if !_qte_wind && can_use:
 					_qte_wind = QuickTimeEventScreen.add_quick_time_event(
 						self,
-						"Activate Christmas Spirit",
+						"Activate Holiday Spirit",
 						4,
 						4,
 						(func(success):
@@ -350,29 +388,45 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		mi.transparency = 1.0 - opacity
 	_wind_indicator.visible = opacity > 0
 
-	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
-	state.apply_central_force(local_thrust)
 
-	_apply_drag(state)
-	_apply_lift(state)
-	_apply_control(state)
-
-	_apply_player_input(state)
-
-	if _distance_updated:
-		_update_distances()
-	var forward_speed := (state.transform.basis * state.linear_velocity).z
-	if _camera_mark_pos && forward_speed > -1.0:
-		%CameraFollowMark.position = _camera_mark_pos + Vector3.MODEL_REAR * forward_speed * camera_follow_speed_distance
-
-	_apply_sfx(forward_speed)
-
-	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
-	if abs(forward_speed) < 0.001:
-		forward_speed = 0
-	%Reindeer.set_run_speed(forward_speed)
-	_print_stats()
-
+func _update_snowballs(state: PhysicsDirectBodyState3D):
+	if _qte_snowball != null || _upgrade_toughness < 1.0 || _current_flight_state != FlightState.FLIGHT:
+		return
+	for snowball: Snowball in _snowballs:
+		var self_pred_pos := state.transform.origin + state.linear_velocity * snowball_block_seconds
+		var current_dist_s := snowball.global_position.distance_to(self_pred_pos) / snowball.velocity.length()
+		var pred_pos := snowball.global_position + snowball.velocity * minf(snowball_block_seconds, current_dist_s)
+		var dist := pred_pos.distance_to(self_pred_pos)
+		_stats.snowball = "\n".join([
+			"dist: %s" % [dist],
+			"s_pos: %s" % [snowball.global_position],
+			"s_pred_pos: %s" % [pred_pos],
+			"d_pos: %s" % [state.transform.origin],
+			"d_pred_pos: %s" % [self_pred_pos]
+		])
+		_stats.snowball_pos = {
+			s=pred_pos,
+			d=self_pred_pos
+		}
+		if dist < snowball_block_range + snowball.size:
+			_qte_snowball = QuickTimeEventScreen.add_quick_time_event(
+				self,
+				"Deflect snowball",
+				5,
+				snowball_block_seconds * _upgrade_toughness,
+				(func (success):
+				if success:
+					if _snowballs.size() > 0:
+						for sn: Node in _snowballs:
+							if sn.is_inside_tree():
+								sn.parry()
+						_snowballs.clear()
+				if _qte_snowball:
+					_qte_snowball.queue_free()
+					_qte_snowball = null
+				)
+			)
+			break
 
 func _apply_sfx(forward_speed: float):
 	# quantize a bit so it doesn't sound like a slide whistle...
@@ -498,7 +552,7 @@ func _update_distances():
 	speed_str = "Speed: %.2f m/s" % [hspeed]
 	var start_pos := _impact_point if _impact_point != Vector3.ZERO else global_position
 	flight_distance = start_pos.distance_to(_launch_point)
-	roll_distance = global_position.distance_to(_impact_point) if _landed else 0.0
+	roll_distance = global_position.distance_to(_impact_point) if _landed && _impact_point else 0.0
 	flight_distance_str = ("Flight Distance: %.2f m" % [flight_distance]) if flight_distance > 5.0 else ""
 	roll_distance_str = ("Roll Distance: %.2f m" % [roll_distance]) if roll_distance > 5.0 else ""
 	distance_updated.emit()
@@ -532,10 +586,14 @@ func _update_input() -> void:
 
 func add_area(area: Area3D):
 	if area is Booster:
-		if _boost_sfx.playing:
-			_boost_small_sfx.play()
+		if area.speed_boost > 0:
+			var pos :=  _boost_sfx.get_playback_position()
+			if pos < 0.1 && _boost_sfx.playing:
+				_boost_small_sfx.play()
+			else:
+				_boost_sfx.play()
 		else:
-			_boost_sfx.play()
+			_elf_gib_b_sfx.play()
 	if area is LaunchZone:
 		_in_launch_zone = true
 	elif area is StagingArea:
@@ -551,7 +609,7 @@ func remove_area(area: Area3D):
 	elif area is Wind:
 		if _qte_wind:
 			_qte_wind.queue_free()
-			activate_holiday_spirit(false)
+		activate_holiday_spirit(false)
 	_overlapping_areas.erase(area.get_instance_id())
 
 
@@ -583,30 +641,14 @@ func _get_collision() -> Dictionary:
 			return rest_info
 	return {}
 
-var _qte_snowball
-var snowballs: Array = []
+func add_snowball(snowball: Snowball) -> void:
+	_snowballs.append(snowball)
 
-func trigger_snowball_qte(snowball: Snowball) -> void:
-	snowballs.append(snowball)
-	if _qte_snowball != null:
-		return
-	_qte_snowball = QuickTimeEventScreen.add_quick_time_event(
-		self,
-		"Block Snowball!",
-		5,
-		setup_seconds,
-		(func (success):
-		if success:
-			if snowballs.size() > 0:
-				for sn: Node in snowballs:
-					if sn.is_inside_tree():
-						sn.parry()
-				snowballs.clear()
-		if _qte_snowball:
-			_qte_snowball.queue_free()
-			_qte_snowball = null
-		)
-	)
 
 func remove_snowball(snowball: Snowball) -> void:
-	snowballs.erase(snowball)
+	_snowballs.erase(snowball)
+
+
+func _on_collecter_item_collected(item: Item) -> void:
+	if item == preload("res://Scripts/collectibles/star_coin.tres"):
+		money_collected += 1

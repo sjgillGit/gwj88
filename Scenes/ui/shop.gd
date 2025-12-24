@@ -23,13 +23,11 @@ func _return_to_start() -> void:
 	position = POSITION_STARTING
 
 
-func _on_ui_pen_visibility_changed() -> void:
+func set_camera_position() -> void:
 	if position != POSITION_STARTING:
 		_return_to_start()
-	if visible:
-		tween = create_tween()
-		tween.tween_property(self, "position", POSITION_FINAL, 1.16).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
-
+	tween = create_tween()
+	tween.tween_property(self, "position", POSITION_FINAL, 1.16).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 
 func _disable_button() -> void:
 	pass

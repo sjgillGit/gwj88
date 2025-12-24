@@ -8,5 +8,6 @@ upgrade_name = "Small Antlers"
 description = "Here we go! You're gonna go really far now that you're growing up!"
 cost = 30
 mass = -9.0
-ramp_downforce = 3.5
+ramp_downforce = 5.0
+toughness = 1.0
 metadata/_custom_type_script = "uid://07r7h8akr6m1"

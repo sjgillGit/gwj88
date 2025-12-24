@@ -9,6 +9,7 @@ enum State{
 	SETTINGS, ## Should mirror the structure of the first scene
 	CREDITS, ## Whatever we may come up with
 	PLAY, ## Should point to the scene created by the 3D team
+	REPLAY, ## Reset the play scene and try again
 	PEN, ## Upgrades screen
 	QUIT, ## Should just auto close the game
 	PAUSE, ## TODO

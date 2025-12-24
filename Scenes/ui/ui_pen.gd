@@ -38,18 +38,36 @@ func _update_description_label(description: String):
 	description_label.visible = description != ""
 	description_label.text = description
 
+func _update_labels(upgrade: UpgradeStats):
+	_update_description_label(upgrade.description if upgrade else "")
+	_update_price_label(upgrade.cost if upgrade else 0)
+
 
 func _ready():
-	$PlayContainer/PlayButton.grab_focus()
-
 	orig_money_label_text = money_label.text
 	orig_price_label_text = price_label.text
 	_update_money_label()
 	GameStats.money_changed.connect(_update_money_label)
 	_update_price_label(0)
 	_update_description_label("")
-	for child: UiShopButton in find_children("*", "UiShopButton"):
-		child.mouse_entered.connect(_update_price_label.bind(child.upgrade.cost))
-		child.mouse_exited.connect(_update_price_label.bind(0))
-		child.mouse_entered.connect(_update_description_label.bind(child.upgrade.description))
-		child.mouse_exited.connect(_update_description_label.bind(""))
+	for button: UiShopButton in find_children("*", "UiShopButton"):
+		button.enabled_changed.connect(_on_button_enabled)
+		button.focus_entered.connect(_update_labels.bind(button.upgrade))
+		button.focus_exited.connect(_update_labels.bind(null))
+		button.mouse_entered.connect(_update_labels.bind(button.upgrade))
+		button.mouse_exited.connect(_update_labels.bind(null))
+
+
+func _on_button_enabled(button: UiShopButton, enabled: bool):
+	if enabled:
+		var path :=  %PlayButton.get_path_to(button)
+		%PlayButton.focus_neighbor_left = path
+		%PlayButton.focus_neighbor_right = path
+		%PlayButton.focus_neighbor_top = path
+		%PlayButton.focus_neighbor_bottom = path
+
+
+func _on_visibility_changed() -> void:
+	$Shop.set_camera_position()
+	if visible:
+		%PlayButton.grab_focus()

@@ -15,8 +15,6 @@ script = ExtResource("1_fln0n")
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-text = "You Learned To Fly!
-"
 label_settings = SubResource("LabelSettings_lnn7q")
 horizontal_alignment = 1
 

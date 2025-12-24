@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://dla4j3yggya2y"]
+
+[ext_resource type="Script" uid="uid://dew4x2pl8l3ol" path="res://Scenes/environment/icicle_cluster.gd" id="1_ybiiq"]
+[ext_resource type="ArrayMesh" uid="uid://tb4kx5pahuh7" path="res://Scenes/environment/snowblock.tres" id="2_rpnwp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3871l"]
+size = Vector3(0.1, 0.05, 0.1)
+
+[node name="IcicleDebris" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_ybiiq")
+destroy_after = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.0007580817, 0, -0.00013232231)
+mesh = ExtResource("2_rpnwp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007580817, 0, -0.00013232231)
+shape = SubResource("BoxShape3D_3871l")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052350447, 0, 0)
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_ybiiq")
+destroy_after = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.0007580817, 0, -0.00013232231)
+mesh = ExtResource("2_rpnwp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007580817, 0, -0.00013232231)
+shape = SubResource("BoxShape3D_3871l")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05140996, 0, 0)
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_ybiiq")
+destroy_after = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3"]
+transform = Transform3D(0.2, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.0007580817, 0, -0.00013232231)
+mesh = ExtResource("2_rpnwp")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="RigidBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0007580817, 0, -0.00013232231)
+shape = SubResource("BoxShape3D_3871l")

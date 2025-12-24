@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnxusy2ufsi40"]
+[gd_scene load_steps=7 format=3 uid="uid://dnxusy2ufsi40"]
 
 [ext_resource type="PackedScene" uid="uid://ic6sqtry6c4f" path="res://Assets/collectibles/Collectable SNOWMAN.gltf" id="1_m4tnj"]
 [ext_resource type="Script" uid="uid://clk55lf6vtstd" path="res://Scenes/environment/snowman/snowman.gd" id="1_qu4mm"]
@@ -6,9 +6,23 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qiq65"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m4tnj"]
-radius = 500.0
+radius = 200.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qu4mm"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.35686275, 0.2901961, 0.17254902)
+
+[sub_resource type="SphereMesh" id="SphereMesh_t3d6a"]
+material = SubResource("StandardMaterial3D_qu4mm")
+radius = 200.0
+height = 400.0
+radial_segments = 8
+rings = 4
 
 [node name="Snowman" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_qu4mm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -23,12 +37,19 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -245.97284)
 shape = SubResource("SphereShape3D_m4tnj")
 
+[node name="RangeIndicator" type="MeshInstance3D" parent="Area3D/CollisionShape3D"]
+unique_name_in_owner = true
+mesh = SubResource("SphereMesh_t3d6a")
+skeleton = NodePath("../..")
+
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2675524, 9.837679, -1.5788918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5268297, 17.576458, -11.878892)
 
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

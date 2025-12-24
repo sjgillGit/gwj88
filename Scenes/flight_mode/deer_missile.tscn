@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=50 format=4 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://b4qeqbj8cvhy4" path="res://Assets/audio/sfx/VB GWJ 88 - jingle bell one-shot.wav" id="15_y3c05"]
 [ext_resource type="AudioStream" uid="uid://bk2dwgcp6k4a7" path="res://Assets/audio/sfx/VB GWJ 88 - jingle bell three-shot.wav" id="16_33sep"]
 [ext_resource type="AudioStream" uid="uid://tpeoork5ic3y" path="res://Assets/audio/sfx/VB GWJ 88 - small boost.wav" id="16_wt145"]
+[ext_resource type="AudioStream" uid="uid://cbabbcqrtqen6" path="res://Assets/audio/sfx/VB GWJ 88 elf gibberish B.wav" id="17_5nlby"]
 
 [sub_resource type="Curve" id="Curve_wqsbj"]
 _limits = [0.0, 1.0, 0.0, 1000.0]
@@ -288,8 +289,7 @@ _data = {
 }
 
 [node name="DeerMissile" type="RigidBody3D"]
-collision_layer = 7
-collision_mask = 3
+collision_layer = 5
 mass = 50.0
 physics_material_override = ExtResource("1_k7jrr")
 center_of_mass_mode = 1
@@ -387,16 +387,18 @@ autostart = true
 
 [node name="TimeLeftLabel" type="Label" parent="."]
 unique_name_in_owner = true
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -162.0
+anchor_bottom = 0.5
+offset_top = -47.0
+offset_bottom = 47.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 text = "Get Ready"
 label_settings = SubResource("LabelSettings_g2hql")
 horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="Collecter" parent="." instance=ExtResource("5_j778o")]
 
@@ -446,7 +448,8 @@ bus = &"SFX"
 
 [node name="AudioBigBoost" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("15_33sep")
-volume_db = -15.0
+volume_db = -5.0
+max_polyphony = 2
 bus = &"SFX"
 
 [node name="AudioSmallBoost" type="AudioStreamPlayer3D" parent="."]
@@ -454,6 +457,9 @@ stream = ExtResource("16_wt145")
 volume_db = -15.0
 max_polyphony = 4
 bus = &"SFX"
+
+[node name="AudioElfGibberishB" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("17_5nlby")
 
 [node name="AudioCountDown" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_y3c05")
@@ -463,6 +469,7 @@ stream = ExtResource("16_33sep")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
+[connection signal="item_collected" from="Collecter" to="." method="_on_collecter_item_collected"]
 
 [editable path="Collecter"]
 [editable path="WindIndicator/wind_indicator"]
