@@ -1,10 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://i54xyk4duyd2"]
+[gd_scene load_steps=11 format=3 uid="uid://i54xyk4duyd2"]
 
 [ext_resource type="Script" uid="uid://db6wj4ubjudo2" path="res://Scenes/environment/booster.gd" id="1_tf3vi"]
-[ext_resource type="Shader" path="res://Scripts/environment/booster.gdshader" id="2_tf3vi"]
+[ext_resource type="Texture2D" uid="uid://bn2pf1mnjq4jx" path="res://Assets/environment/booster_decal.svg" id="2_iocca"]
+[ext_resource type="Shader" uid="uid://b1l4hsdrg8mk2" path="res://Scripts/environment/booster.gdshader" id="2_tf3vi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ntnxt"]
 radius = 1.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_he0to"]
+size = Vector2(10, 10)
+
+[sub_resource type="Animation" id="Animation_iocca"]
+resource_name = "decal"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decal:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0, 0), Vector3(-1, 0, 0), Vector3(1, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_he0to"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7xxxj"]
+_data = {
+&"RESET": SubResource("Animation_he0to"),
+&"decal": SubResource("Animation_iocca")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o0tsq"]
 render_priority = 0
@@ -14,25 +56,49 @@ shader_parameter/band_size = 0.5
 shader_parameter/speed = 1.0
 shader_parameter/color_a = Color(0.86863697, 0, 0.094559304, 1)
 shader_parameter/color_b = Color(0.080434956, 0.50532824, 0, 1)
+shader_parameter/emission = 0.25
 
 [sub_resource type="PrismMesh" id="PrismMesh_j8mli"]
 material = SubResource("ShaderMaterial_o0tsq")
 
 [node name="Booster" type="Area3D"]
 script = ExtResource("1_tf3vi")
-decal_scale = null
+texture = ExtResource("2_iocca")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47310078, 0)
 shape = SubResource("SphereShape3D_ntnxt")
 
-[node name="Decal" type="Decal" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+[node name="DecalDemo" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 0)
 visible = false
 layers = 3
+mesh = SubResource("PlaneMesh_he0to")
+skeleton = NodePath("../Decal")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 0)
+layers = 3
 size = Vector3(5, 5, 5)
+texture_albedo = ExtResource("2_iocca")
 cull_mask = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-5.9010375e-08, -1.35, -5.9010374e-09, 0, -5.9010375e-08, 0.135, -1.35, 5.9010375e-08, 2.5794255e-16, 0, 0, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Decal"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_7xxxj")
+}
+
+[node name="Mesh" type="Node3D" parent="."]
+transform = Transform3D(-5.9010375e-08, -1.35, -5.9010374e-09, 0, -5.9010375e-08, 0.135, -1.35, 5.9010375e-08, 2.5794255e-16, 0.32866186, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, -3.5527137e-15, -1.323489e-23, 3.5527137e-15, 1, 8.351871e-24, 0, -2.842171e-14, 1, 0, 0, 0)
 mesh = SubResource("PrismMesh_j8mli")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, -7.1054274e-15, -3.970467e-23, 7.1054274e-15, 1, 8.351872e-24, 0, -2.842171e-14, 1, 2.2460007e-08, 0.5138251, 0.14210123)
+mesh = SubResource("PrismMesh_j8mli")
+skeleton = NodePath("../..")

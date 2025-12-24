@@ -9,9 +9,11 @@
 radius = 200.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qu4mm"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 0.35686275, 0.2901961, 0.17254902)
+transparency = 3
+alpha_hash_scale = 2.0
+alpha_antialiasing_mode = 0
+shading_mode = 2
+albedo_color = Color(1, 0.3574912, 0.28918967, 0.133)
 
 [sub_resource type="SphereMesh" id="SphereMesh_t3d6a"]
 material = SubResource("StandardMaterial3D_qu4mm")

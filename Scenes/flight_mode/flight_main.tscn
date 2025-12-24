@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=69 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -31,7 +31,6 @@
 [ext_resource type="SnowResource" uid="uid://gpl0df2xtjwi" path="res://Scenes/flight_mode/flight_main_terrain_snow.tres" id="13_ydv3d"]
 [ext_resource type="ZonesResource" uid="uid://dq7mowtumyvy6" path="res://Scenes/flight_mode/flight_main_zones.tres" id="14_meee6"]
 [ext_resource type="PackedScene" uid="uid://b4hqahtd7nmog" path="res://Scenes/flight_mode/villiage.tscn" id="25_phe0t"]
-[ext_resource type="Texture2D" uid="uid://bn2pf1mnjq4jx" path="res://Assets/environment/booster_decal.svg" id="26_meee6"]
 [ext_resource type="PackedScene" uid="uid://c4wlvqxeux131" path="res://Scenes/environment/icicle_cluster.tscn" id="134_mp7iw"]
 [ext_resource type="Script" uid="uid://bkb4pnsolfh03" path="res://Scenes/flight_mode/staging_area.gd" id="136_f6rav"]
 [ext_resource type="Script" uid="uid://cjwkhx5a5i7b7" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
@@ -724,14 +723,12 @@ script = ExtResource("7_m27rb")
 [node name="HayPile" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.053, -52.064125, -53.901672)
 monitorable = false
-decal_scale = 1.0
 texture = ExtResource("6_jp6c4")
 speed_boost = -2.0
 
 [node name="HayPile2" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.0231085, -50.524815, -46.00142)
 monitorable = false
-decal_scale = 1.0
 texture = ExtResource("6_jp6c4")
 speed_boost = -2.0
 
@@ -741,37 +738,31 @@ curve = SubResource("Curve3D_3kocc")
 [node name="Booster" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -8.9063255e-09, -38.92404, -28.00557)
 decal_scale = 0.5
-texture = ExtResource("26_meee6")
 speed_boost = 2.25
 
 [node name="Booster2" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, 2, -38.92404, -28.00557)
 decal_scale = 0.5
-texture = ExtResource("26_meee6")
 speed_boost = 2.25
 
 [node name="Booster3" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.2215045e-08, 2.9544484e-08, -1, 0.67589897, 0.7369943, 0, 0.7369943, -0.67589897, -4.371139e-08, -2, -38.92404, -28.00557)
 decal_scale = 0.5
-texture = ExtResource("26_meee6")
 speed_boost = 2.25
 
 [node name="Booster4" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 1.6106684e-06, -50.368805, -65.05713)
 decal_scale = 0.5
-texture = ExtResource("26_meee6")
 speed_boost = 2.25
 
 [node name="Booster5" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, 2.0000017, -50.368805, -65.05713)
 decal_scale = 0.5
-texture = ExtResource("26_meee6")
 speed_boost = 2.25
 
 [node name="Booster6" parent="Platform/PhysicalRamp" instance=ExtResource("9_jp6c4")]
 transform = Transform3D(-3.8906183e-08, -1.9924721e-08, -1, -0.4558246, 0.8900696, 0, 0.8900696, 0.4558246, -4.371139e-08, -1.9999985, -50.368805, -65.05713)
 decal_scale = 0.5
-texture = ExtResource("26_meee6")
 speed_boost = 2.25
 
 [node name="PlayArea" type="Area3D" parent="."]

@@ -12,9 +12,15 @@ extends DeerArea
 	set(value):
 		texture = value
 		if is_node_ready():
-			$Decal.visible = !!texture
-			$MeshInstance3D.visible = !texture
+			var fallback := RenderingServer.get_current_rendering_method() == "gl_compatibility"
+			$Mesh.visible = !texture || fallback
+			$Decal.visible = !!(texture && !fallback)
 			$Decal.texture_albedo = texture
+			$Decal.visible = !$Mesh.visible
+			if speed_boost < 0:
+				$Mesh.basis = Basis().rotated(Vector3.UP, PI)
+			else:
+				%AnimationPlayer.play("decal")
 
 @export var add_emission: bool:
 	set(value):
