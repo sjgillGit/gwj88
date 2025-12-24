@@ -385,6 +385,10 @@ rotation_edit_mode = 1
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="HSCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="TimeLeftLabel" type="Label" parent="."]
 unique_name_in_owner = true
 anchors_preset = 14
@@ -469,6 +473,7 @@ stream = ExtResource("16_33sep")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
+[connection signal="timeout" from="HSCooldown" to="." method="_on_hs_cooldown_timeout"]
 [connection signal="item_collected" from="Collecter" to="." method="_on_collecter_item_collected"]
 
 [editable path="Collecter"]

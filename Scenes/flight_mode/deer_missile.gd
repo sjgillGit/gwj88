@@ -82,6 +82,7 @@ var _landed := false
 var _launch_upgrades: Array[Upgrade]
 
 var _holiday_spirit_activated := false
+var _holiday_spirit_on_cooldown := false
 
 var _default_angular_damp := angular_damp
 
@@ -282,6 +283,9 @@ func _setup_quick_time_event_landed():
 func activate_holiday_spirit(value: bool):
 	%Reindeer.show_holiday_spirit(value)
 	_holiday_spirit_activated = value
+	if value:
+		_holiday_spirit_on_cooldown = true
+		$HSCooldown.start()
 
 ## 0.0, 1.0, 2.0
 func get_holiday_spirit() -> float:
@@ -357,7 +361,8 @@ func _update_wind(state: PhysicsDirectBodyState3D):
 			if a is Wind:
 				wind_direction += a.get_global_wind_direction() * a.strength
 				var can_use := _current_flight_state == FlightState.FLIGHT && \
-					_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated
+					_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated && \
+					!_holiday_spirit_on_cooldown
 				if !_qte_wind && can_use:
 					_qte_wind = QuickTimeEventScreen.add_quick_time_event(
 						self,
@@ -652,3 +657,7 @@ func remove_snowball(snowball: Snowball) -> void:
 func _on_collecter_item_collected(item: Item) -> void:
 	if item == preload("res://Scripts/collectibles/star_coin.tres"):
 		money_collected += 1
+
+
+func _on_hs_cooldown_timeout() -> void:
+	_holiday_spirit_on_cooldown = false
