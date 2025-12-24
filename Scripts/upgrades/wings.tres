@@ -6,7 +6,7 @@
 script = ExtResource("1_f14lv")
 upgrade_name = "Wings"
 description = "Why did you think you'd learn to fly without these?"
-cost = 250
+cost = 290
 control = 0.30000000000000004
 lift = 280
 metadata/_custom_type_script = "uid://07r7h8akr6m1"
