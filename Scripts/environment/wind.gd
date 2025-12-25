@@ -33,15 +33,17 @@ class_name Wind
 			_update_particles()
 			_update_audio()
 
+static var disable_cloud_alpha := false
+
 func _ready() -> void:
 	area_size = area_size
 	direction = direction
 	strength = strength
 	particle_speed_multiplier = particle_speed_multiplier
-	if RenderingServer.get_current_rendering_method() != "forward_plus":
-		cloud_particles.visible = true
-		cloud_particles.emitting = true
+	cloud_particles.visible = true
+	cloud_particles.emitting = true
 	super()
+	_update_cloud_alpha()
 
 
 func get_global_wind_direction():
@@ -56,9 +58,9 @@ func _physics_process(_delta: float) -> void:
 			if dm:
 				var hs :float= dm.get_holiday_spirit()
 				if hs > 1:
-					hs_mod = -1.0
+					hs_mod = -0.2
 				elif hs > 0:
-					hs_mod = 0.1
+					hs_mod = 0.01
 			body.apply_central_force(global_basis * direction * hs_mod * strength * body.mass)
 			if dm:
 				for p in [particles, snow_particles]:
@@ -104,12 +106,14 @@ func _reset_particle_sizes():
 	aabb = aabb.expand(area_size)
 	aabb = aabb.expand(area_size * -1)
 	var cloud_mesh := cloud_particles.draw_pass_1 as QuadMesh
-	cloud_mesh.size = Vector2.ONE * area_size.length() * 0.2
+	cloud_mesh.size = Vector2.ONE * area_size.length() * 0.25
+	cloud_particles.amount_ratio = minf(1.0, 50.0 / area_size.length())
 
 	for p: GPUParticles3D in [particles, snow_particles, cloud_particles]:
 		p.visibility_aabb = aabb
 		var mat := p.process_material as ParticleProcessMaterial
-		mat.emission_box_extents = area_size * 0.5
+		var modifier := Vector3(0.95, 0.25, 0.95) if p == cloud_particles else Vector3.ONE
+		mat.emission_box_extents = area_size * modifier
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -126,3 +130,17 @@ func _on_body_exited(body: Node3D) -> void:
 	super(body)
 	if !get_overlapping_bodies().any(func(b): return b is DeerMissile):
 		_reset_particle_sizes()
+
+
+func _on_timer_timeout() -> void:
+	# alpha clouds half the fps, disable them if we have a low frame rate
+	if Engine.get_frames_per_second() < 45 && !Engine.is_editor_hint():
+		Wind.disable_cloud_alpha = true
+		_update_cloud_alpha()
+
+
+func _update_cloud_alpha():
+	if Wind.disable_cloud_alpha:
+		$CloudParticles.draw_order = GPUParticles3D.DRAW_ORDER_INDEX
+		var mat := $CloudParticles.draw_pass_1.material as StandardMaterial3D
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_SCISSOR

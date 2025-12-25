@@ -25,11 +25,9 @@
 font = ExtResource("13_2rr6g")
 font_color = Color(0.09411765, 0.40392157, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_3gsb7"]
-font = ExtResource("12_0wjhc")
-font_size = 14
-outline_size = 7
-outline_color = Color(0.11578893, 0.32127082, 0.195194, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mobbj"]
+content_margin_left = 5.0
+content_margin_right = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_mobbj"]
 font_size = 24
@@ -45,6 +43,9 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_s3urb")
 script = ExtResource("1_twpca")
+all_unlocked_decription = "All upgrades have been unlocked!
+
+Have you collected all the decorations?"
 
 [node name="Shop" type="Control" parent="."]
 anchors_preset = 0
@@ -227,12 +228,28 @@ text = "Price: {0}"
 label_settings = SubResource("LabelSettings_e2ty7")
 horizontal_alignment = 1
 
-[node name="DescriptionLabel" type="Label" parent="PanelContainer/MarginContainer/PlayContainer"]
+[node name="HintLabel" type="Label" parent="PanelContainer/MarginContainer/PlayContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Hint:"
+label_settings = SubResource("LabelSettings_e2ty7")
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/PlayContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-label_settings = SubResource("LabelSettings_3gsb7")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.11578893, 0.32127082, 0.195194, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/normal_font = ExtResource("12_0wjhc")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mobbj")
+bbcode_enabled = true
 autowrap_mode = 2
+vertical_alignment = 1
 
 [node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/PlayContainer"]
 unique_name_in_owner = true

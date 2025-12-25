@@ -157,12 +157,12 @@ operator = 1
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D HeightmapTexture : repeat_disable;
-uniform float HeightmapFactor = 1;
+uniform float HeightmapFactor = 1.0;
 uniform sampler2D WaterTexture : repeat_disable;
-uniform float WaterFactor = 1;
+uniform float WaterFactor = 1.0;
 uniform sampler2DArray Textures : source_color;
 uniform sampler2DArray Splatmaps : repeat_disable;
 uniform int TextureDetail;

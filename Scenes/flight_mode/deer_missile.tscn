@@ -362,9 +362,7 @@ layout_mode = 2
 transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.4202485e-07, 0.07109706, -0.9974694, 0, 1.432, -3.5)
 current = true
 script = ExtResource("7_62wey")
-max_distance = 400.0
 max_fov = 75
-slerp_amount = 0.08296321451663971
 attach_point = NodePath("../CameraFollowMark")
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="FollowCamera"]
@@ -384,6 +382,10 @@ rotation_edit_mode = 1
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="HSCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="TimeLeftLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -468,7 +470,9 @@ stream = ExtResource("15_y3c05")
 stream = ExtResource("16_33sep")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
+[connection signal="timeout" from="HSCooldown" to="." method="_on_hs_cooldown_timeout"]
 [connection signal="item_collected" from="Collecter" to="." method="_on_collecter_item_collected"]
 
 [editable path="Collecter"]

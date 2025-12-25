@@ -2,12 +2,14 @@ extends Camera3D
 
 
 @export var min_distance := 2.0
-@export var max_distance := 40.0
+@export var max_distance := 100.0
 @export var angle_v_adjust := 0.0
 @export var max_attached_velocity := 5.0
 @export var max_fov := 100
-@export var slerp_amount := 0.5
+@export var slerp_amount := 0.25
 @export var bubble_radius := 1.25
+@export var allow_attach := true
+@export var reattach_min_time_seconds := 3.0
 
 @export var height := 1.5
 @export_node_path var attach_point: NodePath
@@ -16,6 +18,7 @@ var _collision_exception: Array[RID] = []
 var _attach_point: Node3D
 var _bubble_shape := SphereShape3D.new()
 var _bubble_q_params := PhysicsShapeQueryParameters3D.new()
+var _detach_time := 0
 
 @onready var _base_fov := fov
 
@@ -37,11 +40,11 @@ func _ready():
 	# This detaches the camera transform from the parent spatial node.
 	top_level = true
 
-func _safe_global_pos(body: RigidBody3D, state: PhysicsDirectSpaceState3D):
+func _safe_global_pos(body: RigidBody3D, state: PhysicsDirectSpaceState3D, attached: bool):
 	_bubble_q_params.collision_mask = body.collision_mask
 	_bubble_q_params.transform = global_transform
 	_bubble_q_params.exclude = [body]
-	var dist := 10.0
+	var dist := 5.0 if attached else 50.0
 	_bubble_q_params.transform.origin += Vector3.UP * dist
 	_bubble_q_params.motion = Vector3.DOWN * dist
 	var amounts := state.cast_motion(_bubble_q_params)
@@ -56,35 +59,38 @@ func _physics_process(_delta):
 
 	var state := get_world_3d().direct_space_state
 
-	if body.angular_velocity.length() < max_attached_velocity && _attach_point != null:
+	var attach_time_ok := Time.get_ticks_msec() > _detach_time + reattach_min_time_seconds * 1000.0
+	if body.angular_velocity.length() < max_attached_velocity && _attach_point != null && allow_attach && attach_time_ok:
+		_detach_time = 0.0
 		assert(_attach_point.get_parent() == get_parent(), "attach_point should be a sibling otherwise we need better math")
 		var a_tfm = _attach_point.transform
 		transform = Transform3D(transform.basis.slerp(a_tfm.basis, slerp_amount), transform.origin.lerp(a_tfm.origin, slerp_amount))
-		global_position = _safe_global_pos(body, state)
+		global_position = _safe_global_pos(body, state, true)
 		top_level = false
 		fov = clampf(_base_fov + body.linear_velocity.length(), _base_fov, max_fov)
 	else:
+		if _detach_time == 0.0:
+			_detach_time = Time.get_ticks_msec()
 		fov = _base_fov
 		top_level = true
 		var target = get_parent().get_global_transform().origin
 		var pos = get_global_transform().origin
 
-		var q := PhysicsRayQueryParameters3D.create(pos, target, 0xFF, _collision_exception)
-		var col := state.intersect_ray(q)
-		if col:
-			pos = col.position - col.normal * 10
 		var from_target = pos - target
-
-		# Check ranges.
-		if !col:
-			if from_target.length() < min_distance:
-				from_target = from_target.normalized() * min_distance
-			elif from_target.length() > max_distance:
-				from_target = from_target.normalized() * max_distance
+		if from_target.length() < min_distance:
+			from_target = from_target.normalized() * min_distance
+		elif from_target.length() > max_distance:
+			from_target = Vector3(-1.0, 1.0, -1.0) * from_target.normalized() * max_distance
 
 		from_target.y = height
 
 		pos = target + from_target
+		var q := PhysicsRayQueryParameters3D.create(pos, target, 0xFF, _collision_exception)
+		var col := state.intersect_ray(q)
+		if col:
+			pos = pos.lerp(col.position - col.normal * 1, slerp_amount * 0.25)
+
+
 
 		look_at_from_position(pos, target, Vector3.UP)
 
@@ -92,4 +98,4 @@ func _physics_process(_delta):
 		var t = transform
 		t.basis = Basis(t.basis[0], deg_to_rad(angle_v_adjust)) * t.basis
 		transform = t
-		global_position = _safe_global_pos(body, state)
+		global_position = _safe_global_pos(body, state, false)

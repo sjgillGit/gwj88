@@ -1,6 +1,8 @@
 class_name UiPen
 extends Control
 
+@export_multiline var all_unlocked_decription := ""
+
 @onready var upgrade_button: TextureButton = $UpgradeButton
 @onready var money_label = %MoneyLabel
 @onready var price_label = %PriceLabel
@@ -35,21 +37,27 @@ func _update_price_label(current_price: int):
 
 
 func _update_description_label(description: String):
+	if description == "":
+		description = all_unlocked_decription
 	description_label.visible = description != ""
 	description_label.text = description
 
 func _update_labels(upgrade: UpgradeStats):
-	_update_description_label(upgrade.description if upgrade else "")
+	var desc = upgrade.description if upgrade else ""
+	%HintLabel.visible = !desc
+	if desc:
+		desc = "[img=64]res://Assets/ui/pen/elf_head.png[/img]\n%s" % [desc]
+	_update_description_label(desc if desc else DeerUpgrades.get_hint())
 	_update_price_label(upgrade.cost if upgrade else 0)
 
 
 func _ready():
+	GameStats.money = 10000
 	orig_money_label_text = money_label.text
 	orig_price_label_text = price_label.text
 	_update_money_label()
 	GameStats.money_changed.connect(_update_money_label)
-	_update_price_label(0)
-	_update_description_label("")
+	_update_labels(null)
 	for button: UiShopButton in find_children("*", "UiShopButton"):
 		button.enabled_changed.connect(_on_button_enabled)
 		button.focus_entered.connect(_update_labels.bind(button.upgrade))

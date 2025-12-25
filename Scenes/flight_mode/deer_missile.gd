@@ -23,6 +23,8 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var walk_speed := 5.0
 @export var pitch_speed := 0.25
 @export var yaw_speed := 0.25
+
+@export var max_follow_cam_degrees := 80.0
 ## This should be a fraction, every frame it tries to get to the
 ## 'ideal' roll by roll_speed% of the distance
 @export_range(0.0, 1.0, 0.01) var roll_speed := 0.05
@@ -82,6 +84,7 @@ var _landed := false
 var _launch_upgrades: Array[Upgrade]
 
 var _holiday_spirit_activated := false
+var _holiday_spirit_on_cooldown := false
 
 var _default_angular_damp := angular_damp
 
@@ -282,6 +285,9 @@ func _setup_quick_time_event_landed():
 func activate_holiday_spirit(value: bool):
 	%Reindeer.show_holiday_spirit(value)
 	_holiday_spirit_activated = value
+	if value:
+		_holiday_spirit_on_cooldown = true
+		$HSCooldown.start()
 
 ## 0.0, 1.0, 2.0
 func get_holiday_spirit() -> float:
@@ -310,6 +316,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				_impact_point = global_position
 				_distance_updated = true
 				_landed = true
+				$FollowCamera.allow_attach = false
 				for u in _launch_upgrades:
 					u.end_thrust()
 				_setup_quick_time_event_landed()
@@ -324,8 +331,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_update_wind(state)
 	_update_snowballs(state)
 
-	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
-	state.apply_central_force(local_thrust)
+	var global_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
+	state.apply_central_force(global_thrust)
 
 	_apply_drag(state)
 	_apply_lift(state)
@@ -337,14 +344,26 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		_update_distances()
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	if _camera_mark_pos && forward_speed > -1.0:
-		%CameraFollowMark.position = _camera_mark_pos + Vector3.MODEL_REAR * forward_speed * camera_follow_speed_distance
+		var follow_cam_dir := Vector3.MODEL_REAR
+		if forward_speed > 0:
+			var local_velocity_dir_inv = -(state.transform.basis.inverse() * state.linear_velocity.normalized())
+			var angle := acos(local_velocity_dir_inv.dot(follow_cam_dir))
+			var max_angle := deg_to_rad(max_follow_cam_degrees)
+			if angle > max_angle:
+				follow_cam_dir = local_velocity_dir_inv.slerp(follow_cam_dir, max_angle / angle)
+			else:
+				follow_cam_dir = local_velocity_dir_inv
+		%CameraFollowMark.position = _camera_mark_pos + follow_cam_dir * forward_speed * camera_follow_speed_distance
 
 	_apply_sfx(forward_speed)
-
-	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
-	if abs(forward_speed) < 0.001:
-		forward_speed = 0
-	%Reindeer.set_run_speed(forward_speed)
+	var run_speed = forward_speed
+	if run_speed > walk_speed && (_on_ramp || _on_ground):
+		# skid and 'try to slow down' if going too fast
+		run_speed = walk_speed - run_speed
+	run_speed = clampf(run_speed / walk_speed , -1.0, 1.0)
+	if abs(run_speed) < 0.001:
+		run_speed = 0
+	%Reindeer.set_run_speed(run_speed)
 	_print_stats()
 
 
@@ -357,7 +376,8 @@ func _update_wind(state: PhysicsDirectBodyState3D):
 			if a is Wind:
 				wind_direction += a.get_global_wind_direction() * a.strength
 				var can_use := _current_flight_state == FlightState.FLIGHT && \
-					_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated
+					_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated && \
+					!_holiday_spirit_on_cooldown
 				if !_qte_wind && can_use:
 					_qte_wind = QuickTimeEventScreen.add_quick_time_event(
 						self,
@@ -416,6 +436,7 @@ func _update_snowballs(state: PhysicsDirectBodyState3D):
 				snowball_block_seconds * _upgrade_toughness,
 				(func (success):
 				if success:
+					%Reindeer.deflect()
 					if _snowballs.size() > 0:
 						for sn: Node in _snowballs:
 							if sn.is_inside_tree():
@@ -497,6 +518,13 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 			if accel > 0:
 				amount = local_av.z * 5.0
 			state.apply_torque(gbasis * roll_correction_speed * amount * Vector3.FORWARD * mass)
+	elif _landed:
+		# If you are not landing 'upward' play the fetal position pose
+		var local_av := gbasis.inverse() * state.angular_velocity
+		var up_vector := (gbasis.inverse() * Vector3.UP * Vector3(1.0, 1.0, 0.0)).normalized()
+		var up_dist := up_vector.y
+		assert(up_dist <= 1.0)
+		%Reindeer.horns_down = minf(1.0 - up_dist, 1.0)
 
 
 func _apply_drag(state: PhysicsDirectBodyState3D):
@@ -652,3 +680,12 @@ func remove_snowball(snowball: Snowball) -> void:
 func _on_collecter_item_collected(item: Item) -> void:
 	if item == preload("res://Scripts/collectibles/star_coin.tres"):
 		money_collected += 1
+
+
+func _on_hs_cooldown_timeout() -> void:
+	_holiday_spirit_on_cooldown = false
+
+
+func _on_sleeping_state_changed() -> void:
+	if sleeping:
+		%Reindeer.set_run_speed(0)

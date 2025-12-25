@@ -6,6 +6,7 @@
 script = ExtResource("1_18fml")
 upgrade_name = "Small Antlers"
 description = "Here we go! You're gonna go really far now that you're growing up!"
+hint = "Watch out for snowballs! You can deflect them if you have antlers."
 cost = 35
 mass = -9.0
 ramp_downforce = 5.0
