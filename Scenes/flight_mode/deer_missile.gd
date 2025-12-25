@@ -23,6 +23,8 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var walk_speed := 5.0
 @export var pitch_speed := 0.25
 @export var yaw_speed := 0.25
+
+@export var max_follow_cam_degrees := 80.0
 ## This should be a fraction, every frame it tries to get to the
 ## 'ideal' roll by roll_speed% of the distance
 @export_range(0.0, 1.0, 0.01) var roll_speed := 0.05
@@ -314,6 +316,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				_impact_point = global_position
 				_distance_updated = true
 				_landed = true
+				$FollowCamera.allow_attach = false
 				for u in _launch_upgrades:
 					u.end_thrust()
 				_setup_quick_time_event_landed()
@@ -328,8 +331,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_update_wind(state)
 	_update_snowballs(state)
 
-	var local_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
-	state.apply_central_force(local_thrust)
+	var global_thrust := global_basis * _thrust_vector * (base_thrust + _upgrade_thrust)
+	state.apply_central_force(global_thrust)
 
 	_apply_drag(state)
 	_apply_lift(state)
@@ -341,7 +344,16 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		_update_distances()
 	var forward_speed := (state.transform.basis * state.linear_velocity).z
 	if _camera_mark_pos && forward_speed > -1.0:
-		%CameraFollowMark.position = _camera_mark_pos + Vector3.MODEL_REAR * forward_speed * camera_follow_speed_distance
+		var follow_cam_dir := Vector3.MODEL_REAR
+		if forward_speed > 0:
+			var local_velocity_dir_inv = -(state.transform.basis.inverse() * state.linear_velocity.normalized())
+			var angle := acos(local_velocity_dir_inv.dot(follow_cam_dir))
+			var max_angle := deg_to_rad(max_follow_cam_degrees)
+			if angle > max_angle:
+				follow_cam_dir = local_velocity_dir_inv.slerp(follow_cam_dir, max_angle / angle)
+			else:
+				follow_cam_dir = local_velocity_dir_inv
+		%CameraFollowMark.position = _camera_mark_pos + follow_cam_dir * forward_speed * camera_follow_speed_distance
 
 	_apply_sfx(forward_speed)
 	var run_speed = forward_speed
