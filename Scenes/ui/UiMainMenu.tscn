@@ -7,7 +7,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_vlppe"]
 line_spacing = 7.0
 font_size = 19
-outline_size = 4
+outline_size = 3
 outline_color = Color(0, 0.47648424, 0, 1)
 
 [node name="UiMainMenu" type="Control" groups=["ui"]]

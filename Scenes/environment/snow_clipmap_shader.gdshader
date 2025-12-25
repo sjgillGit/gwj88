@@ -1,7 +1,7 @@
 shader_type spatial;
-render_mode cull_back,diffuse_burley,specular_schlick_ggx, blend_mix;
+render_mode cull_back,diffuse_burley,specular_schlick_ggx, blend_mix, depth_draw_opaque;
 
-#include "res://addons/terrabrush/Resources/Shaders/snow_clipmap_shader_include.gdshaderinc"
+#include "snow_clipmap_shader_include.gdshaderinc"
 
 varying vec3 _worldVertex;
 
@@ -24,6 +24,7 @@ void fragment() {
 		NORMAL_MAP,
 		METALLIC,
 		ROUGHNESS,
-		ALPHA
+		ALPHA,
+		ALPHA_SCISSOR_THRESHOLD
 	);
 }

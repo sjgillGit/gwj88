@@ -3,6 +3,12 @@ extends Node3D
 
 @onready var pellet_producer: PelletProducer = %PelletProducer
 
+@export var horns_down: float = 0.0:
+	set(v):
+		horns_down = v * 0.5
+		if is_inside_tree():
+			%AnimationTree.set("parameters/horns_down/add_amount", horns_down)
+
 
 func show_holiday_spirit(value: bool):
 	if value:
@@ -16,10 +22,14 @@ func show_holiday_spirit(value: bool):
 
 
 func set_run_speed(value: float):
+	assert(value >= -1.0 && value <= 1.0)
 	var at := %AnimationTree
-	at.set("parameters/running/blend_amount", absf(value))
-	at.set("parameters/run_timescale/scale", value * 3)
+	at.set("parameters/run_timescale/scale", absf(value) * 3)
+	at.set("parameters/running/blend_amount", value)
 
+
+func deflect():
+	$AnimateDeflect.play("deflect")
 
 func _ready() -> void:
 	set_run_speed(0)

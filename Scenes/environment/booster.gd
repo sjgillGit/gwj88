@@ -18,7 +18,7 @@ extends DeerArea
 			$Decal.texture_albedo = texture
 			$Decal.visible = !$Mesh.visible
 			if speed_boost < 0:
-				$Mesh.basis = Basis().rotated(Vector3.UP, PI)
+				$Mesh.basis = Basis().rotated(Vector3.UP, PI * 0.5)
 			else:
 				%AnimationPlayer.play("decal")
 

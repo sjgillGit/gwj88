@@ -472,6 +472,7 @@ stream = ExtResource("15_y3c05")
 stream = ExtResource("16_33sep")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
 [connection signal="timeout" from="HSCooldown" to="." method="_on_hs_cooldown_timeout"]
 [connection signal="item_collected" from="Collecter" to="." method="_on_collecter_item_collected"]

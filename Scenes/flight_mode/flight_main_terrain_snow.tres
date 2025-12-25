@@ -1,4 +1,20 @@
-[gd_resource type="SnowResource" load_steps=7 format=3 uid="uid://gpl0df2xtjwi"]
+[gd_resource type="SnowResource" load_steps=9 format=3 uid="uid://gpl0df2xtjwi"]
+
+[ext_resource type="Shader" uid="uid://bk17o78nwmlc8" path="res://Scenes/environment/snow_clipmap_shader.gdshader" id="1_ym4a6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrtyw"]
+render_priority = 0
+shader = ExtResource("1_ym4a6")
+shader_parameter/InitialCellWidth = 1.0
+shader_parameter/OffsetPosition = Vector3(0, 0, 0)
+shader_parameter/ZonesSize = 0.0
+shader_parameter/Resolution = 0.0
+shader_parameter/NumberOfZones = 0.0
+shader_parameter/SnowFactor = 1.0
+shader_parameter/SnowInnerOffset = 0.3
+shader_parameter/SnowColorDetail = 20.0
+shader_parameter/NoiseFactor = 0.1
+shader_parameter/Metallic = 0.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yr5ue"]
 
@@ -31,3 +47,4 @@ snowInnerOffset = 0.2
 snowColorTexture = SubResource("NoiseTexture2D_1bvp3")
 snowColorNormal = SubResource("NoiseTexture2D_rtpbt")
 noise = SubResource("NoiseTexture2D_gsr07")
+customShader = SubResource("ShaderMaterial_mrtyw")

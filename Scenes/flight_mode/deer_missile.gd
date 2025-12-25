@@ -344,11 +344,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		%CameraFollowMark.position = _camera_mark_pos + Vector3.MODEL_REAR * forward_speed * camera_follow_speed_distance
 
 	_apply_sfx(forward_speed)
-
-	forward_speed = clampf(forward_speed / walk_speed , -1.0, 1.0)
-	if abs(forward_speed) < 0.001:
-		forward_speed = 0
-	%Reindeer.set_run_speed(forward_speed)
+	var run_speed = forward_speed
+	if run_speed > walk_speed && (_on_ramp || _on_ground):
+		# skid and 'try to slow down' if going too fast
+		run_speed = walk_speed - run_speed
+	run_speed = clampf(run_speed / walk_speed , -1.0, 1.0)
+	if abs(run_speed) < 0.001:
+		run_speed = 0
+	%Reindeer.set_run_speed(run_speed)
 	_print_stats()
 
 
@@ -421,6 +424,7 @@ func _update_snowballs(state: PhysicsDirectBodyState3D):
 				snowball_block_seconds * _upgrade_toughness,
 				(func (success):
 				if success:
+					%Reindeer.deflect()
 					if _snowballs.size() > 0:
 						for sn: Node in _snowballs:
 							if sn.is_inside_tree():
@@ -502,6 +506,13 @@ func _apply_player_input(state: PhysicsDirectBodyState3D):
 			if accel > 0:
 				amount = local_av.z * 5.0
 			state.apply_torque(gbasis * roll_correction_speed * amount * Vector3.FORWARD * mass)
+	elif _landed:
+		# If you are not landing 'upward' play the fetal position pose
+		var local_av := gbasis.inverse() * state.angular_velocity
+		var up_vector := (gbasis.inverse() * Vector3.UP * Vector3(1.0, 1.0, 0.0)).normalized()
+		var up_dist := up_vector.y
+		assert(up_dist <= 1.0)
+		%Reindeer.horns_down = minf(1.0 - up_dist, 1.0)
 
 
 func _apply_drag(state: PhysicsDirectBodyState3D):
@@ -661,3 +672,8 @@ func _on_collecter_item_collected(item: Item) -> void:
 
 func _on_hs_cooldown_timeout() -> void:
 	_holiday_spirit_on_cooldown = false
+
+
+func _on_sleeping_state_changed() -> void:
+	if sleeping:
+		%Reindeer.set_run_speed(0)

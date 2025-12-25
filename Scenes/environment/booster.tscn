@@ -10,6 +10,21 @@ radius = 1.2
 [sub_resource type="PlaneMesh" id="PlaneMesh_he0to"]
 size = Vector2(10, 10)
 
+[sub_resource type="Animation" id="Animation_he0to"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_iocca"]
 resource_name = "decal"
 length = 0.5
@@ -25,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(1, 0, 0), Vector3(-1, 0, 0), Vector3(1, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_he0to"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Decal:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7xxxj"]
@@ -78,9 +78,11 @@ skeleton = NodePath("../Decal")
 
 [node name="Decal" type="Decal" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 0)
+visible = false
 layers = 3
 size = Vector3(5, 5, 5)
 texture_albedo = ExtResource("2_iocca")
+texture_emission = ExtResource("2_iocca")
 cull_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Decal"]
@@ -91,14 +93,14 @@ libraries = {
 }
 
 [node name="Mesh" type="Node3D" parent="."]
-transform = Transform3D(-5.9010375e-08, -1.35, -5.9010374e-09, 0, -5.9010375e-08, 0.135, -1.35, 5.9010375e-08, 2.5794255e-16, 0.32866186, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32866186, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, -3.5527137e-15, -1.323489e-23, 3.5527137e-15, 1, 8.351871e-24, 0, -2.842171e-14, 1, 0, 0, 0)
+transform = Transform3D(-5.901038e-08, -1.35, -5.901037e-09, -2.0964697e-22, -5.901038e-08, 0.135, -1.35, 5.901038e-08, 2.5794258e-16, 0, 0, 0)
 mesh = SubResource("PrismMesh_j8mli")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, -7.1054274e-15, -3.970467e-23, 7.1054274e-15, 1, 8.351872e-24, 0, -2.842171e-14, 1, 2.2460007e-08, 0.5138251, 0.14210123)
+transform = Transform3D(-5.9010386e-08, -1.35, -5.901037e-09, -4.1929393e-22, -5.901038e-08, 0.135, -1.35, 5.9010386e-08, 2.579426e-16, -0.6936639, 0.019183638, 3.6653955e-17)
 mesh = SubResource("PrismMesh_j8mli")
 skeleton = NodePath("../..")

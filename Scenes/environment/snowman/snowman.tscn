@@ -44,6 +44,7 @@ shape = SubResource("SphereShape3D_m4tnj")
 
 [node name="RangeIndicator" type="MeshInstance3D" parent="Area3D/CollisionShape3D"]
 unique_name_in_owner = true
+visible = false
 mesh = SubResource("SphereMesh_t3d6a")
 skeleton = NodePath("../..")
 
