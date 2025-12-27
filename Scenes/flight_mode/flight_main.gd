@@ -163,7 +163,7 @@ func _on_music_elf_finished() -> void:
 
 func _on_ending_win_body_entered(body: Node3D) -> void:
 	if body is DeerMissile:
-		GameState.current = GameState.State.ENDING_WIN
+		%EndTimer.start()
 
 
 func _on_ending_space_body_entered(body: Node3D) -> void:

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=35 format=3 uid="uid://bxku7vfyd1dkg"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=38 format=3 uid="uid://bxku7vfyd1dkg"]
 
 [ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_xoqw5"]
 [ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="2_kxvmh"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c47lkb48itd6l" path="res://addons/guide/modifiers/guide_modifier_deadzone.gd" id="10_xoqw5"]
 [ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/action.tres" id="11_xoqw5"]
 [ext_resource type="Script" uid="uid://rvttn472ix6v" path="res://addons/guide/inputs/guide_input_joy_button.gd" id="12_kxvmh"]
+[ext_resource type="Script" uid="uid://b52rqq28tuqpg" path="res://addons/guide/triggers/guide_trigger_pressed.gd" id="12_owsi8"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="13_nw5kw"]
 
 [sub_resource type="Resource" id="Resource_mc3a8"]
@@ -100,15 +101,23 @@ input_mappings = Array[ExtResource("3_owsi8")]([SubResource("Resource_5p4qq"), S
 script = ExtResource("4_j60yr")
 key = 32
 
+[sub_resource type="Resource" id="Resource_y58hj"]
+script = ExtResource("12_owsi8")
+
 [sub_resource type="Resource" id="Resource_m67xt"]
 script = ExtResource("3_owsi8")
 override_action_settings = true
 is_remappable = true
 display_name = "Boost"
 input = SubResource("Resource_aluli")
+triggers = Array[ExtResource("8_xb0tc")]([SubResource("Resource_y58hj")])
+metadata/_guide_modifiers_collapsed = false
 
 [sub_resource type="Resource" id="Resource_j60yr"]
 script = ExtResource("12_kxvmh")
+
+[sub_resource type="Resource" id="Resource_dt8dx"]
+script = ExtResource("12_owsi8")
 
 [sub_resource type="Resource" id="Resource_bgls8"]
 script = ExtResource("3_owsi8")
@@ -116,6 +125,7 @@ override_action_settings = true
 is_remappable = true
 display_name = "Boost"
 input = SubResource("Resource_j60yr")
+triggers = Array[ExtResource("8_xb0tc")]([SubResource("Resource_dt8dx")])
 metadata/_guide_modifiers_collapsed = false
 
 [sub_resource type="Resource" id="Resource_8di5u"]

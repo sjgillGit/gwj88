@@ -269,7 +269,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4635148, -1, -0.92752314)
 [node name="FireplaceSound" type="AudioStreamPlayer3D" parent="CSGBox3D"]
 stream = ExtResource("7_2uts6")
 volume_db = -3.0
-unit_size = 0.5
+unit_size = 1.0
 max_db = 0.0
 autoplay = true
 panning_strength = 0.5

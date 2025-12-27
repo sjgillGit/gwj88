@@ -1,13 +1,13 @@
-[gd_scene load_steps=23 format=3 uid="uid://cdirnrwxprue5"]
+[gd_scene load_steps=33 format=3 uid="uid://cdirnrwxprue5"]
 
 [ext_resource type="Script" uid="uid://cp816wn6um6ql" path="res://Scripts/environment/wind.gd" id="1_ut56u"]
 [ext_resource type="Texture2D" uid="uid://dusf20bqxkhya" path="res://Assets/environment/cloud_particle.png" id="2_atssy"]
 [ext_resource type="Material" uid="uid://crikjnvec7gpd" path="res://Scenes/environment/Windfog.tres" id="2_b7dpt"]
+[ext_resource type="Texture2D" uid="uid://3f4rgb0n6fyl" path="res://Assets/environment/snowflake.png" id="2_wxiuv"]
 [ext_resource type="AudioStream" uid="uid://bs0q3qu7y22ce" path="res://Assets/audio/sfx/VB GWJ 88 - wind howling (loop).wav" id="4_atssy"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ut56u"]
-resource_local_to_scene = true
-size = Vector3(11.895, 9, 6.605)
+[sub_resource type="BoxShape3D" id="BoxShape3D_wxiuv"]
+size = Vector3(500, 10, 500)
 
 [sub_resource type="Curve" id="Curve_wxiuv"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.078653, 0.0, 0, 0]
@@ -27,37 +27,52 @@ curve = SubResource("Curve_b7dpt")
 resource_local_to_scene = true
 particle_flag_align_y = true
 emission_shape = 3
-emission_box_extents = Vector3(5.9475, 4.5, 3.3025)
-direction = Vector3(0, 0, 1)
+emission_box_extents = Vector3(5, 5, 5)
+direction = Vector3(0, 0, 0)
 spread = 0.0
-initial_velocity_min = 20.0
-initial_velocity_max = 40.0
+initial_velocity_max = 16.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_ami4o")
+scale_over_velocity_min = 5.0
+scale_over_velocity_max = 5.0
 turbulence_enabled = true
 turbulence_noise_strength = 100.0
 turbulence_noise_scale = 1.0
+turbulence_noise_speed_random = 0.1
 turbulence_influence_over_life = SubResource("CurveTexture_atssy")
 
+[sub_resource type="Curve" id="Curve_atssy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.4257812, 1), 0.0, 0.0, 0, 0, Vector2(0.57031244, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ut56u"]
+cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.6706895, 0.6706895, 0.6706895, 0.8117647)
+use_particle_trails = true
+distance_fade_mode = 2
+distance_fade_min_distance = 100.0
+distance_fade_max_distance = 50.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_wxiuv"]
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_wxiuv"]
 material = SubResource("StandardMaterial3D_ut56u")
-size = Vector2(0.3, 3.6)
-orientation = 0
+size = 0.1
+sections = 4
+section_length = 1.0
+section_segments = 6
+curve = SubResource("Curve_atssy")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b7dpt"]
 resource_local_to_scene = true
 particle_flag_align_y = true
 emission_shape = 3
-emission_box_extents = Vector3(5.9475, 4.5, 3.3025)
-direction = Vector3(0, 0, 1)
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, 0, 0)
 spread = 0.0
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
 gravity = Vector3(0, -1, 0)
+attractor_interaction_enabled = false
 scale_curve = SubResource("CurveTexture_ami4o")
 turbulence_enabled = true
 turbulence_noise_strength = 100.0
@@ -65,8 +80,11 @@ turbulence_noise_scale = 1.0
 turbulence_influence_over_life = SubResource("CurveTexture_atssy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atssy"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 shading_mode = 2
-albedo_color = Color(1, 1, 1, 0.8117647)
+albedo_texture = ExtResource("2_wxiuv")
 emission_enabled = true
 emission = Color(0.49, 0.49, 0.49, 1)
 disable_receive_shadows = true
@@ -79,7 +97,7 @@ fixed_size = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_wxiuv"]
 material = SubResource("StandardMaterial3D_atssy")
-size = Vector2(0.01, 0.01)
+size = Vector2(0.015, 0.015)
 
 [sub_resource type="Curve" id="Curve_u5glr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.078653, 0.0, 0, 0]
@@ -98,27 +116,25 @@ curve = SubResource("Curve_x2n8c")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8yjqj"]
 resource_local_to_scene = true
 emission_shape = 3
-emission_box_extents = Vector3(5.9475, 4.5, 3.3025)
+emission_box_extents = Vector3(4.5, 3.5, 4.5)
 direction = Vector3(0, 0, 1)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
-radial_accel_min = -0.10000224
-radial_accel_max = -0.10000224
 scale_curve = SubResource("CurveTexture_y8cac")
 turbulence_noise_strength = 100.0
 turbulence_noise_scale = 1.0
 turbulence_influence_over_life = SubResource("CurveTexture_kw758")
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 5
+sub_emitter_keep_velocity = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnpcu"]
-transparency = 2
-alpha_scissor_threshold = 0.02
-alpha_antialiasing_mode = 0
-shading_mode = 2
-albedo_color = Color(1, 1, 1, 0.409)
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.5019608, 0.5019608, 0.5019608, 0.62352943)
 albedo_texture = ExtResource("2_atssy")
-emission_enabled = true
-emission = Color(0.09998604, 0.099985994, 0.09998598, 1)
-emission_operator = 1
 disable_receive_shadows = true
 billboard_mode = 3
 particles_anim_h_frames = 1
@@ -128,60 +144,189 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_ej8b2"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_dnpcu")
-size = Vector2(3.262619, 3.262619)
+size = Vector2(4.3301272, 4.3301272)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxiuv"]
+transparency = 1
+albedo_color = Color(1, 0.71000004, 0.71000004, 0.105882354)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wxiuv"]
+material = SubResource("StandardMaterial3D_wxiuv")
+size = Vector3(50, 50, 1)
+
+[sub_resource type="Curve" id="Curve_y8cac"]
+_data = [Vector2(0, 0.32584274), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x2n8c"]
+curve = SubResource("Curve_y8cac")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kw758"]
+resource_local_to_scene = true
+emission_shape = 3
+emission_box_extents = Vector3(4.5, 3.5, 4.5)
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_y8cac")
+alpha_curve = SubResource("CurveTexture_x2n8c")
+turbulence_noise_strength = 100.0
+turbulence_noise_scale = 1.0
+turbulence_influence_over_life = SubResource("CurveTexture_kw758")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8yjqj"]
+load_path = "res://.godot/imported/cloud_particle.png-c84b579aab9e48473fb31ccb8f400c74.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ej8b2"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.5, 0.5, 0.5, 0.62352943)
+albedo_texture = SubResource("CompressedTexture2D_8yjqj")
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_80008"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ej8b2")
+size = Vector2(4.3301272, 4.3301272)
 
 [node name="Wind" type="Area3D"]
 collision_layer = 0
+monitorable = false
 script = ExtResource("1_ut56u")
-area_size = Vector3(11.895, 9, 6.605)
+area_size = Vector3(10, 10, 10)
 strength = 10.0
-particle_speed_multiplier = 1.0
 
-[node name="WindShape" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
-shape = SubResource("BoxShape3D_ut56u")
-debug_color = Color(0.5132329, 0.5132329, 0.5132329, 1)
+shape = SubResource("BoxShape3D_wxiuv")
+debug_color = Color(0.95, 0, 0.6016665, 1)
 
 [node name="WindParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-amount = 25
-randomness = 1.0
-visibility_aabb = AABB(-11.895, -9, -6.605, 23.79, 18, 13.21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+cast_shadow = 0
+amount = 100
+amount_ratio = 0.4
+lifetime = 1.1
+randomness = 0.1
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
+trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_ut56u")
-draw_pass_1 = SubResource("PlaneMesh_wxiuv")
+draw_pass_1 = SubResource("RibbonTrailMesh_wxiuv")
 
 [node name="SnowParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+cast_shadow = 0
 amount = 500
-amount_ratio = 0.2
+amount_ratio = 0.4
 lifetime = 5.0
 randomness = 1.0
-visibility_aabb = AABB(-11.895, -9, -6.605, 23.79, 18, 13.21)
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
 process_material = SubResource("ParticleProcessMaterial_b7dpt")
 draw_pass_1 = SubResource("QuadMesh_wxiuv")
 
 [node name="CloudParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-extra_cull_margin = 500.0
+layers = 128
+extra_cull_margin = 50.0
 amount = 50
-lifetime = 9999999.0
+amount_ratio = 0.58660257
+sub_emitter = NodePath("../CloudParticles2")
+lifetime = 120.0
 explosiveness = 1.0
-visibility_aabb = AABB(-11.895, -9, -6.605, 23.79, 18, 13.21)
+collision_base_size = 1.7320509
+visibility_aabb = AABB(-10, -10, -10, 20, 20, 20)
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_8yjqj")
 draw_pass_1 = SubResource("QuadMesh_ej8b2")
 
+[node name="GPUParticlesCollisionBox3D_Zminus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+layers = 128
+size = Vector3(500, 500, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D_Zminus"]
+visible = false
+mesh = SubResource("BoxMesh_wxiuv")
+
+[node name="GPUParticlesCollisionBox3D2_Zplus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+layers = 128
+size = Vector3(500, 500, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D2_Zplus"]
+visible = false
+mesh = SubResource("BoxMesh_wxiuv")
+
+[node name="GPUParticlesCollisionBox3D3_Xminus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+layers = 128
+size = Vector3(1, 500, 500)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D3_Xminus"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_wxiuv")
+
+[node name="GPUParticlesCollisionBox3D4_Xplus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+layers = 128
+size = Vector3(1, 500, 500)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D4_Xplus"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_wxiuv")
+
+[node name="GPUParticlesCollisionBox3D6_Yminus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+layers = 128
+size = Vector3(500, 1, 500)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D6_Yminus"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_wxiuv")
+
+[node name="GPUParticlesCollisionBox3D5_Yplus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+layers = 128
+size = Vector3(500, 1, 500)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D5_Yplus"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_wxiuv")
+
+[node name="CloudParticles2" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+layers = 128
+extra_cull_margin = 500.0
+amount = 50
+collision_base_size = 1.7916473
+visibility_aabb = AABB(-11, -10, -10, 22, 20, 20)
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_kw758")
+draw_pass_1 = SubResource("QuadMesh_80008")
+
 [node name="FogVolume" type="FogVolume" parent="."]
-size = Vector3(11.895, 9, 6.605)
+size = Vector3(10, 10, 10)
 material = ExtResource("2_b7dpt")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_atssy")
 volume_db = -10.0
 max_db = -9.0
-pitch_scale = 1.0228883
+pitch_scale = 1.0587173
 autoplay = true
-max_distance = 8.156548
+max_distance = 86.60254
 max_polyphony = 20
 bus = &"SFX"
 
@@ -189,5 +334,10 @@ bus = &"SFX"
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.666704)
+strength = -10.0
+radius = 25.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
