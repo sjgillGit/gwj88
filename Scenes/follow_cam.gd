@@ -4,7 +4,7 @@ extends Camera3D
 @export var min_distance := 2.0
 @export var max_distance := 100.0
 @export var angle_v_adjust := 0.0
-@export var max_attached_velocity := 5.0
+@export var max_attached_avelocity := 8.0
 @export var max_fov := 100
 @export var slerp_amount := 0.25
 @export var bubble_radius := 1.25
@@ -60,7 +60,7 @@ func _physics_process(_delta):
 	var state := get_world_3d().direct_space_state
 
 	var attach_time_ok := Time.get_ticks_msec() > _detach_time + reattach_min_time_seconds * 1000.0
-	if body.angular_velocity.length() < max_attached_velocity && _attach_point != null && allow_attach && attach_time_ok:
+	if body.angular_velocity.length() < max_attached_avelocity && _attach_point != null && allow_attach && attach_time_ok:
 		_detach_time = 0.0
 		assert(_attach_point.get_parent() == get_parent(), "attach_point should be a sibling otherwise we need better math")
 		var a_tfm = _attach_point.transform

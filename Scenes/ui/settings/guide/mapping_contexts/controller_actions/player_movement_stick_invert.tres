@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_geiqh")
 x = false
+y = false
 z = false

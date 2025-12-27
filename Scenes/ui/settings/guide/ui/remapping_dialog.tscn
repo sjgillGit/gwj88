@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bq0w7uaotgfct"]
+[gd_scene load_steps=28 format=3 uid="uid://bq0w7uaotgfct"]
 
 [ext_resource type="Script" uid="uid://5crxnd8ysf6" path="res://Scenes/ui/settings/guide/ui/remapping_dialog.gd" id="1_6hgqj"]
-[ext_resource type="Resource" uid="uid://cu0dhstc00cj5" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard.tres" id="2_cgour"]
+[ext_resource type="Resource" uid="uid://cu0dhstc00cj5" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard_map_context.tres" id="2_cgour"]
 [ext_resource type="Script" uid="uid://db27ccgomq455" path="res://addons/guide/remapping/guide_input_detector.gd" id="3_o0nvn"]
-[ext_resource type="Resource" uid="uid://dxue2qfb0qr24" path="res://Scenes/ui/settings/guide/mapping_contexts/controller.tres" id="3_tgkdx"]
+[ext_resource type="Resource" uid="uid://dxue2qfb0qr24" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_map_context.tres" id="3_tgkdx"]
 [ext_resource type="PackedScene" uid="uid://bme1y0ikthda7" path="res://Scenes/ui/settings/guide/ui/binding_row.tscn" id="4_iojgu"]
 [ext_resource type="PackedScene" uid="uid://cj1h0wxamje4s" path="res://Scenes/ui/settings/guide/ui/binding_section.tscn" id="5_8v80s"]
 [ext_resource type="Resource" uid="uid://bqd45wwsetlyg" path="res://Scenes/ui/settings/guide/mapping_contexts/binding_keyboard.tres" id="5_tw3jw"]
@@ -18,8 +18,14 @@
 [ext_resource type="Script" uid="uid://rvttn472ix6v" path="res://addons/guide/inputs/guide_input_joy_button.gd" id="12_hftpv"]
 [ext_resource type="PackedScene" uid="uid://cillnccaqrc6p" path="res://Scenes/ui/settings/guide/ui/action_binding.tscn" id="14_el3u1"]
 [ext_resource type="Theme" uid="uid://dot0gi1yoqmrl" path="res://Scenes/ui/settings/guide/settings_ui_theme.tres" id="15_tnwfp"]
+[ext_resource type="StyleBox" uid="uid://b5davwrjdekqg" path="res://Scenes/ui/panel_menu_sm.tres" id="15_ui755"]
 [ext_resource type="Script" uid="uid://cluhc11vixkf1" path="res://addons/guide/guide_action.gd" id="17_ui755"]
+[ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="18_kpuy5"]
 [ext_resource type="Script" uid="uid://ccvqqvfooyvn0" path="res://addons/guide/inputs/guide_input.gd" id="19_kpuy5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tnwfp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ui755"]
 
 [sub_resource type="Resource" id="Resource_f3bao"]
 script = ExtResource("11_e078a")
@@ -33,7 +39,8 @@ button = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bagfg"]
 bg_color = Color(0.266575, 0.266575, 0.266575, 1)
 
-[node name="RemappingDialog" type="MarginContainer"]
+[node name="RemappingDialog" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -55,40 +62,61 @@ binding_section_scene = ExtResource("5_8v80s")
 action_binding_scene = ExtResource("14_el3u1")
 
 [node name="Blocker" type="ColorRect" parent="."]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(8.66354e-07, 0.331199, 0.634906, 0.352941)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_right = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
 theme = ExtResource("15_tnwfp")
+theme_override_styles/panel = ExtResource("15_ui755")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
-custom_minimum_size = Vector2(800, 600)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("15_tnwfp")
 theme_type_variation = &"HeaderLarge"
 text = "Input Rebinding"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
-[node name="TabContainer" type="TabContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -97,71 +125,88 @@ tab_alignment = 1
 current_tab = 1
 clip_tabs = false
 
-[node name="Keyboard" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
+[node name="Keyboard" type="Panel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tnwfp")
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard/MarginContainer"]
-layout_mode = 2
-
-[node name="KeyboardBindings" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard/MarginContainer/ScrollContainer"]
+[node name="KeyboardBindings" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Controller" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
+[node name="Controller" type="Panel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ui755")
 metadata/_tab_index = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 
-[node name="ControllerBindings" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ControllerBindings" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Section" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_8v80s")]
+[node name="Section" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_8v80s")]
 layout_mode = 2
 text = "Miscellaneous"
 
-[node name="ControllerInvertHorizontal" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ControllerInvertHorizontal" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Invert horizontal movement"
 
-[node name="ControllerInvertVertical" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ControllerInvertVertical" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Invert vertical movement"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="DeadzoneLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="DeadzoneLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Deadzone"
 
-[node name="DeadzoneHSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="DeadzoneHSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
@@ -169,18 +214,18 @@ size_flags_vertical = 4
 max_value = 0.99
 step = 0.01
 
-[node name="DeadzoneSpinBox" type="SpinBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="DeadzoneSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 2
 max_value = 0.99
 step = 0.01
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true
@@ -190,12 +235,12 @@ script = ExtResource("10_xsw70")
 instructions_text = "%s"
 actions = Array[ExtResource("17_ui755")]([ExtResource("11_uxwof")])
 
-[node name="Control" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true
@@ -205,13 +250,15 @@ script = ExtResource("10_xsw70")
 instructions_text = "%s"
 actions = Array[ExtResource("17_ui755")]([ExtResource("12_byojv")])
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="ReturnToGame" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ReturnToGame" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 40)
 layout_mode = 2
+theme = ExtResource("18_kpuy5")
 text = "Return to game"
 
 [node name="GUIDEInputDetector" type="Node" parent="."]
@@ -224,7 +271,18 @@ abort_detection_on = Array[ExtResource("19_kpuy5")]([SubResource("Resource_f3bao
 [node name="PressPrompt" type="MarginContainer" parent="."]
 unique_name_in_owner = true
 visible = false
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.5
+offset_top = -37.0
+offset_right = 122.5
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="PressPrompt"]
@@ -246,8 +304,8 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 text = "Press new input..."
 
-[connection signal="toggled" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer/ControllerInvertHorizontal" to="." method="_on_controller_invert_horizontal_toggled"]
-[connection signal="toggled" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer/ControllerInvertVertical" to="." method="_on_controller_invert_vertical_toggled"]
-[connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/DeadzoneHSlider" to="." method="_on_deadzone_h_slider_value_changed"]
-[connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/DeadzoneSpinBox" to="." method="_on_deadzone_spin_box_value_changed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ReturnToGame" to="." method="_on_return_to_game_pressed"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/ControllerInvertHorizontal" to="." method="_on_controller_invert_horizontal_toggled"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/ControllerInvertVertical" to="." method="_on_controller_invert_vertical_toggled"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/DeadzoneHSlider" to="." method="_on_deadzone_h_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/DeadzoneSpinBox" to="." method="_on_deadzone_spin_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ReturnToGame" to="." method="_on_return_to_game_pressed"]

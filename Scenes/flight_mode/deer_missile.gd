@@ -6,7 +6,7 @@ signal flight_state_changed(state: FlightState)
 
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 
-@export var ramp_downforce := 3.0
+@export var ramp_downforce := 4.0
 
 @export var base_thrust := 0.0
 @export var base_lift := 0.0
@@ -21,10 +21,11 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var snowball_block_range := 1.0
 
 @export var walk_speed := 5.0
-@export var pitch_speed := 0.25
+@export var pitch_speed := 0.5
 @export var yaw_speed := 0.25
 
 @export var max_follow_cam_degrees := 80.0
+
 ## This should be a fraction, every frame it tries to get to the
 ## 'ideal' roll by roll_speed% of the distance
 @export_range(0.0, 1.0, 0.01) var roll_speed := 0.05
@@ -32,9 +33,15 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export_range(0.0, 10.0, 0.001) var roll_correction_speed := 0.5
 @export_range(0.0, 10.0, 0.001) var camera_follow_speed_distance := 0.1
 
+## time you need to hold left or right to get the 'do a barrel roll' prompt on keyboard
+## on controller it will be the amount of input
+@export var barrel_roll_hold_seconds := 0.2
+
+
 @export var show_debug_ui := false:
 	set(value):
-		if is_node_ready():
+		show_debug_ui = value
+		if is_node_ready() && EngineDebugger.is_active():
 			%DebugUi.visible = value
 
 @export_category("GUIDE")
@@ -50,6 +57,9 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @onready var _boost_sfx := $AudioBigBoost as AudioStreamPlayer3D
 @onready var _boost_small_sfx := $AudioSmallBoost as AudioStreamPlayer3D
 @onready var _elf_gib_b_sfx := $AudioElfGibberishB as AudioStreamPlayer3D
+@onready var _particle_repellant := %GPUParticlesAttractorSphere3D as GPUParticlesAttractorSphere3D
+@onready var _snow_debris_particles := %GPUParticlesSnowDebris
+
 
 var flight_distance := 0.0
 var roll_distance := 0.0
@@ -74,6 +84,7 @@ var _upgrade_ramp_downforce := 0.0
 var _upgrade_holiday_spirit := 0.0
 var _upgrade_toughness := 0.0
 var _player_inputs: Vector3
+var _input_x_hold_time := 0.0
 var _on_platform := true
 var _on_ramp := false
 var _on_ground := false
@@ -96,11 +107,14 @@ var _camera_mark_pos := Vector3()
 var _wind_time := 0.0
 var _wind_amount := 0.0
 var _snowballs: Array = []
+var _debris: Array[int]
+var _last_debris_pos: Vector3
 
 var _qte_snowball: QuickTimeEventScreen.QTE
 var _qte_start: QuickTimeEventScreen.QTE
 var _qte_end: QuickTimeEventScreen.QTE
 var _qte_wind: QuickTimeEventScreen.QTE
+var _qte_barrel_roll: QuickTimeEventScreen.QTE
 
 @onready var _wind_indicator := %WindIndicator
 
@@ -258,13 +272,14 @@ func _apply_upgrade_stats():
 	mass = base_mass + _upgrade_mass
 
 
-func _is_terrain(b: Node3D) -> bool:
-	var p := b.get_parent()
+func _is_terrain(b: Node3D) -> Ground:
+	var p := b
 	while p:
 		if p is Ground:
-			return true
-		p = p.get_parent()
-	return false
+			return p
+		var pp = p.get_parent()
+		p = pp if pp is Node3D else null
+	return null
 
 
 func _setup_quick_time_event_landed():
@@ -302,16 +317,27 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_on_platform = false
 	_on_ground = false
 	_apply_upgrade_stats()
-
+	var on_snow := 0.0
 	var cb := get_colliding_bodies()
 	for b in cb:
+		var ground := _is_terrain(b) if b is not Ground else b
 		if b is PhysicalRamp:
 			_launch_point = global_position
 			_impact_point = Vector3()
 			_distance_updated = true
 			_on_ramp = true
-		elif b is Ground || _is_terrain(b):
+		elif ground:
 			_on_ground = true
+			var tb := ground as TerraBrush
+			if tb:
+				var pos := tb.global_transform.affine_inverse() * global_position
+				var ti := tb.getPositionInformation(pos.x, pos.z)
+				var sf := ti.get_snowFactor()
+				on_snow = maxf(sf - tb.snowDefinition.snowFactor, 0.0)
+				if on_snow < 0.0:
+					print(sf)
+					pass
+
 			if !_landed:
 				_impact_point = global_position
 				_distance_updated = true
@@ -327,7 +353,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	else:
 		angular_damp = _default_angular_damp
 
-	_update_input()
+	_update_input(state.step)
 	_update_wind(state)
 	_update_snowballs(state)
 
@@ -340,9 +366,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	_apply_player_input(state)
 
+	%CameraSnow.amount_ratio = minf(linear_velocity.length(), 1.0)
 	if _distance_updated:
 		_update_distances()
-	var forward_speed := (state.transform.basis * state.linear_velocity).z
+	var forward_speed := (state.transform.basis.inverse() * state.linear_velocity).z
 	if _camera_mark_pos && forward_speed > -1.0:
 		var follow_cam_dir := Vector3.MODEL_REAR
 		if forward_speed > 0:
@@ -355,26 +382,51 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				follow_cam_dir = local_velocity_dir_inv
 		%CameraFollowMark.position = _camera_mark_pos + follow_cam_dir * forward_speed * camera_follow_speed_distance
 
-	_apply_sfx(forward_speed)
 	var run_speed = forward_speed
-	if run_speed > walk_speed && (_on_ramp || _on_ground):
+	if run_speed > walk_speed && _current_flight_state != FlightState.FLIGHT:
 		# skid and 'try to slow down' if going too fast
 		run_speed = walk_speed - run_speed
 	run_speed = clampf(run_speed / walk_speed , -1.0, 1.0)
 	if abs(run_speed) < 0.001:
 		run_speed = 0
 	%Reindeer.set_run_speed(run_speed)
+	_apply_sfx(run_speed)
 	_print_stats()
+	var lv_len := state.linear_velocity.length()
+	var min_dist := clampf((1.0 - minf(lv_len / 5.0, 1.0)) * 1, 0.1, 1.0)
+
+	_snow_debris_particles.emitting = false
+	if on_snow > 0.0 && lv_len > 1.0 && _last_debris_pos.distance_to(state.transform.origin) > min_dist:
+		var d := preload("res://Scenes/environment/icicle_debris.tscn").instantiate()
+		get_parent().add_child(d)
+		d.mesh_scale = clampf(lv_len * on_snow, 1.0, 3.0)
+		_snow_debris_particles.emitting = true
+		_snow_debris_particles.amount_ratio = clampf(lv_len * on_snow, 0.0, 1.0)
+		var randv := Vector3(randf_range(-0.4, 0.4),randf_range(-0.2, 0.2), randf_range(-0.4, 0.4))
+		var speed_dist := clampf(lv_len, 0.5, 2.0)
+		d.global_position = %CenterOfMassMarker.global_position + state.linear_velocity.normalized() * speed_dist + randv
+		_snow_debris_particles.global_position = d.global_position
+		_debris.append(d.get_instance_id())
+		_last_debris_pos = state.transform.origin
+		if len(_debris) > 200 || Engine.get_frames_per_second() < 45:
+			var id = _debris.pop_front()
+			d = instance_from_id(id)
+			if d:
+				d.queue_free()
 
 
 func _update_wind(state: PhysicsDirectBodyState3D):
 	var wind_direction := Vector3()
+	var wind_strength := 0.0
+	var hs := get_holiday_spirit()
 	for a_id in _overlapping_areas:
 		var a := instance_from_id(a_id)
 		if a is DeerArea:
 			a.apply_physics(state, mass)
 			if a is Wind:
-				wind_direction += a.get_global_wind_direction() * a.strength
+				var ws = a.get_wind_strength_w_hs(hs)
+				wind_direction += a.get_global_wind_direction() * ws
+				wind_strength += ws
 				var can_use := _current_flight_state == FlightState.FLIGHT && \
 					_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated && \
 					!_holiday_spirit_on_cooldown
@@ -392,7 +444,8 @@ func _update_wind(state: PhysicsDirectBodyState3D):
 						)
 
 					)
-
+	var wrs := -(hs * 250.0) - 0.01
+	_particle_repellant.strength = wrs
 	if wind_direction:
 		_wind_amount = wind_direction.length()
 		if _wind_time < 2.0:
@@ -449,10 +502,10 @@ func _update_snowballs(state: PhysicsDirectBodyState3D):
 			)
 			break
 
-func _apply_sfx(forward_speed: float):
+func _apply_sfx(run_speed: float):
 	# quantize a bit so it doesn't sound like a slide whistle...
-	var ps := clampf(round(forward_speed / walk_speed) * (1 / 3.0), 0.5, 1.5)
-	var volume := clampf((forward_speed / (walk_speed * 5.0)) * 0.15, 0.0, 0.2)
+	var ps := clampf(round(absf(run_speed) / walk_speed) * (1 / 3.0), 0.5, 1.5)
+	var volume := clampf((absf(run_speed) / (walk_speed * 1.0)) * 1.0, 0.0, 0.2)
 	_ramp_skid_sfx.pitch_scale = ps
 
 	_ramp_skid_sfx.volume_linear = volume
@@ -460,9 +513,9 @@ func _apply_sfx(forward_speed: float):
 		_ramp_skid_sfx.playing = _on_ramp
 	var y_up := global_basis.y.y > 0.75
 	# todo: cast to ground to find normal of ground
-	var walking := _on_ramp || _on_platform || (_on_ground && y_up)
+	var walking := (_on_ramp || _on_platform || (_on_ground && y_up)) && run_speed > 0.0
 
-	ps = clampf(round(forward_speed / walk_speed) * (1 / 3.0), 0.75, 1.1)
+	ps = clampf(round(absf(run_speed) / walk_speed) * (1 / 3.0), 0.75, 1.1)
 	_hoof_beats_sfx.volume_linear = volume
 	_hoof_beats_sfx.pitch_scale = ps
 	var bus_idx := AudioServer.get_bus_index(_hoof_beats_sfx.bus)
@@ -595,10 +648,10 @@ func _print_stats():
 		speed_str,
 		flight_distance_str,
 		roll_distance_str,
-		"\n".join(stats)
+		"\n".join(stats.filter(func(s): return s is String))
 	])
 
-func _update_input() -> void:
+func _update_input(delta) -> void:
 	if _landed:
 		_player_inputs = Vector3.ZERO
 		return
@@ -610,6 +663,36 @@ func _update_input() -> void:
 			_flight_state_changed(FlightState.PRE_FLIGHT)
 	if _player_inputs.length_squared() > 0:
 		sleeping = false
+	if _player_inputs.x == 0:
+		_input_x_hold_time = 0
+	elif absf(_player_inputs.x) == 1.0:
+		_input_x_hold_time += _player_inputs.x * delta
+	else:
+		_input_x_hold_time += _player_inputs.x * delta
+	if absf(_player_inputs.x) > 0.5 && !_on_ground && _current_flight_state == FlightState.FLIGHT && abs(_input_x_hold_time) > barrel_roll_hold_seconds:
+		var playback := %BarrelRollAnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+		var node := playback.get_current_node()
+		if !_qte_barrel_roll && node == "idle":
+			_qte_barrel_roll = QuickTimeEventScreen.add_quick_time_event(
+				self,
+				"Do a Barrel Roll",
+				1,
+				INF,
+				_do_a_barrel_roll
+			)
+	elif _qte_barrel_roll:
+		_qte_barrel_roll.queue_free()
+		_qte_barrel_roll = null
+
+
+func _do_a_barrel_roll(success):
+	if success:
+		var state := "roll_right" if  _player_inputs.x > 0 else "roll_left"
+		var playback := %BarrelRollAnimationTree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+		playback.travel(state)
+	if _qte_barrel_roll && !_qte_barrel_roll.is_queued_for_deletion():
+		_qte_barrel_roll.queue_free()
+	_qte_barrel_roll = null
 
 
 func add_area(area: Area3D):

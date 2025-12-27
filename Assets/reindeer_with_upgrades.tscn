@@ -22,8 +22,8 @@ emission = Color(0.8, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_u1qbl"]
 material = SubResource("StandardMaterial3D_bdedn")
-radius = 0.01
-height = 0.02
+radius = 0.05
+height = 0.1
 radial_segments = 8
 rings = 4
 
@@ -82,7 +82,6 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_seofb"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0xbmk"]
-graph_offset = Vector2(-354.1518, -100.23781)
 nodes/output/position = Vector2(1080, 180)
 nodes/running/node = SubResource("AnimationNodeBlend3_seofb")
 nodes/running/position = Vector2(480, 80)
@@ -107,60 +106,556 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights:quaternion")
+tracks/0/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3DRed:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Quaternion(0.023996053, 0.040001646, 0.32017374, 0.9462097)]
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2:quaternion")
+tracks/1/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D2Green:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D3Red:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D4Green:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D5Red:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D6Green:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D7Red:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D8Green:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D11Red:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D12Green:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D9Red:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D10GReen:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/OmniLight3DGreen:light_energy")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Quaternion(0.023996051, 0.04000165, 0.32017374, 0.9462097)]
+"values": [1.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/OmniLight3DRed:light_energy")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3DRed:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D2Green:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D3Red:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D4Green:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D5Red:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D6Green:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/OmniLight3DRed:light_energy")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/OmniLight3DGreen:light_energy")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_bdedn"]
 resource_name = "holiday_spirit"
+length = 3.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights:quaternion")
-tracks/0/interp = 0
+tracks/0/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3DRed:visible")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Quaternion(0, 0, 0, 1), Quaternion(1.4901163e-08, 0.45399055, 1.3038518e-08, 0.89100647), Quaternion(0, 0.7089247, 3.7252892e-09, 0.7052842), Quaternion(1.7510363e-16, 0.95105654, 5.587934e-09, 0.30901688), Quaternion(-7.4505815e-09, 0.30901706, -1.6763808e-08, 0.9510565), Quaternion(0, 0.5877854, -5.122274e-09, 0.8090169), Quaternion(0, 0.7089247, 3.7252892e-09, 0.7052842), Quaternion(-2.9802322e-08, 0.8910066, -2.7939677e-09, 0.45399037), Quaternion(-1.4901163e-08, 0.8090172, -3.7252907e-09, 0.58778507), Quaternion(4.215931e-17, 0.15746346, 2.9103835e-09, 0.9875248), Quaternion(0, 1, 0, 4.371139e-08)]
+"times": PackedFloat32Array(0, 0.4771834, 0.9, 1.5035056, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, true, true, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2:quaternion")
-tracks/1/interp = 0
+tracks/1/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D2Green:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.46666664, 0.9, 1.5, 2.070172, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D3Red:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4771834, 0.9, 1.5035056, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, true, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D4Green:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.46666664, 0.9, 1.5, 2.070172, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D5Red:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4771834, 0.9, 1.5035056, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, true, true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D6Green:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.46666664, 0.9, 1.5, 2.070172, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D7Red:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4771834, 0.9, 1.5035056, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D8Green:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.46666664, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, false, false, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D11Red:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.4771834, 0.9, 1.5035056, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D12Green:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.46666664, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, false, false, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D9Red:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.46666664, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/MeshInstance3D10GReen:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.46666664, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, false, false, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/OmniLight3DGreen:light_energy")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Quaternion(0.023996051, 0.04000165, 0.32017374, 0.9462097), Quaternion(0.02108403, 0.4787651, 0.2813195, 0.83138365), Quaternion(0.016594788, 0.7228465, 0.22142005, 0.6543628), Quaternion(0.007238148, 0.95349896, 0.09657651, 0.28541258), Quaternion(0.02259065, 0.33929676, 0.30142212, 0.8907929), Quaternion(0.019084295, 0.6070364, 0.25463757, 0.7525306), Quaternion(0.016594788, 0.7228465, 0.22142005, 0.6543628), Quaternion(0.010645086, 0.89639175, 0.14203478, 0.4197554), Quaternion(0.01380309, 0.8183205, 0.18417124, 0.54428124), Quaternion(0.023564281, 0.19288954, 0.31441268, 0.929184), Quaternion(0, 1, 0, 4.371139e-08)]
+"values": [0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights/OmniLight3DRed:light_energy")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.4666666, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3DRed:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.47017226, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, true, true, true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D2Green:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.003505591, 0.46666667, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D3Red:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 0.47017226, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, true, true, true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D4Green:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0.003505591, 0.46666667, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D5Red:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 0.47017226, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, false, true, true, true]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/MeshInstance3D6Green:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0.003505591, 0.46666667, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, false, false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/OmniLight3DRed:light_energy")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("metarig/Skeleton3D/BoneAttachmentCollar/HSLights2/OmniLight3DGreen:light_energy")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 0.9, 1.5, 2.0666666, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_shkaw"]
 _data = {
 &"RESET": SubResource("Animation_u1qbl"),
 &"holiday_spirit": SubResource("Animation_bdedn")
+}
+
+[sub_resource type="Animation" id="Animation_g3w26"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:horns_down")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_shkaw"]
@@ -177,21 +672,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_g3w26"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:horns_down")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g3w26"]
@@ -217,9 +697,9 @@ bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.999835
 bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
 bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
 bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.4377261, -0.004759465, -0.015330032, 0.8989652)
-bones/8/rotation = Quaternion(-0.08339276, 0.0028867729, -0.0028113134, 0.9965086)
-bones/9/rotation = Quaternion(0.6250416, 0.060134172, -0.07982526, 0.7741672)
+bones/7/rotation = Quaternion(-0.37647852, -0.024958313, -0.030629573, 0.92558247)
+bones/8/rotation = Quaternion(-0.07075812, -0.007725384, 0.0033234195, 0.99745816)
+bones/9/rotation = Quaternion(0.54029197, 0.17709011, -0.2275104, 0.7905459)
 bones/10/rotation = Quaternion(-0.10381317, -0.170628, 0.61718214, 0.76104873)
 bones/11/rotation = Quaternion(-0.10381446, 0.17062953, -0.6171818, 0.7610485)
 bones/12/position = Vector3(0.0780042, 0.23866656, -0.055951495)
@@ -233,7 +713,7 @@ bones/19/rotation = Quaternion(-0.2599413, 0.011224373, -0.032679897, 0.965006)
 bones/20/rotation = Quaternion(-0.0506018, -0.023735443, 0.022546005, 0.99818224)
 bones/21/rotation = Quaternion(-0.005801933, 0.8009831, -0.5986583, 0.0009571037)
 bones/24/position = Vector3(-2.358284e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.36191142, -0.0023069421, -0.008935548, 0.9321668)
+bones/24/rotation = Quaternion(-0.35371038, -0.009238666, -0.024782041, 0.9349811)
 bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
 bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.604624e-07, 4.8117187e-07, 0.7587796)
@@ -271,190 +751,180 @@ stats = ExtResource("7_vlw85")
 transform = Transform3D(-1.0000001, 1.0036416e-13, 8.7422876e-08, -8.715337e-08, -0.07845911, -0.99691737, 6.8589006e-09, -0.9969177, 0.07845908, -0.0025459745, 0.087706886, -0.055452432)
 
 [node name="BoneAttachmentOrnaments" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="1"]
-transform = Transform3D(0.9744071, 0.22155331, -0.038022064, -0.013696898, -0.11031501, -0.993818, -0.22437459, 0.9688892, -0.10445283, 0.01676843, 1.5826083, 0.58924985)
+transform = Transform3D(0.8337985, 0.55034214, -0.043635774, 0.027066827, -0.11969811, -0.99245703, -0.55140555, 0.8263154, -0.11469564, 0.036517356, 1.5492445, 0.6542936)
 bone_name = "spine.011"
 bone_idx = 9
 
 [node name="HSLights" type="Node3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments" index="0"]
 unique_name_in_owner = true
-transform = Transform3D(3.9588861, -3.0199165, 0.45532855, 3.039114, 3.9691296, -0.098978244, -0.3016704, 0.35512775, 4.978241, -0.0629277, -0.10599032, -0.71060956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0629277, -0.10599032, -0.71060956)
 rotation_edit_mode = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="0"]
-transform = Transform3D(0.9354805, 0.3521221, 0.029782135, -0.34219962, 0.92369324, -0.17230831, -0.088183045, 0.15099978, 0.98459244, -0.08659546, 0.0770129, 0.009462625)
+[node name="OmniLight3DRed" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="0"]
+transform = Transform3D(1, 2.2792113e-17, -3.3757788e-09, 0, 1, 6.7516606e-09, 3.3757788e-09, -6.7516606e-09, 1, 0.13890465, 0, 4.6891135e-10)
+light_color = Color(0.5, 0.445, 0.445, 1)
+light_volumetric_fog_energy = 25.0
+omni_range = 2.0
+
+[node name="OmniLight3DGreen" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="1"]
+transform = Transform3D(1, 2.2792113e-17, -3.3757788e-09, 0, 1, 6.7516606e-09, 3.3757788e-09, -6.7516606e-09, 1, -0.13569643, 1.027745e-09, -2.0114826e-10)
+light_color = Color(0.425, 0.5, 0.425, 1)
+light_volumetric_fog_energy = 25.0
+omni_range = 2.0
+
+[node name="MeshInstance3DRed" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29778102, 0.38506448, 0.10703303)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="1"]
-transform = Transform3D(0.96376485, 0.26377386, 0.03976005, -0.24976516, 0.9446478, -0.21273842, -0.093674496, 0.19509894, 0.9762996, 0.03809625, 0.05516051, 0.033219397)
+[node name="MeshInstance3D2Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3589287, -0.37356693, -0.09788531)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="2"]
-transform = Transform3D(-0.59211814, -0.13290074, 0.7948169, -0.3846936, 0.9132844, -0.13387695, -0.7081015, -0.38503158, -0.5918979, 0.025322884, 0.0645122, 0.0621033)
+[node name="MeshInstance3D3Red" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="4"]
+transform = Transform3D(1.0000001, -3.7252903e-09, 0, 3.7252903e-09, 1.0000001, 0, 0, 0, 1, 0.46693248, -0.10120075, -0.004531145)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="3"]
-transform = Transform3D(-0.61770535, -0.08647793, 0.7816408, -0.40440628, 0.88737404, -0.22141308, -0.6744603, -0.4528681, -0.5831075, -0.014643185, 0.014320668, 0.002829574)
+[node name="MeshInstance3D4Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36454386, 0.04765822, 0.27793476)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="4"]
-transform = Transform3D(-0.6567643, -0.43604827, -0.61524284, -0.33167255, 0.89974785, -0.28363302, 0.677241, 0.017779142, -0.7355472, -0.052596677, 0.02402974, 0.055756927)
+[node name="MeshInstance3D5Red" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30962208, 0.25005922, -0.23089844)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="5"]
-transform = Transform3D(-0.60621023, -0.53542113, -0.5880772, -0.41089845, 0.8439562, -0.34482092, 0.6809356, 0.032606214, -0.7316182, -0.02515563, -0.029030211, 0.054473728)
+[node name="MeshInstance3D6Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45381427, 0.2714721, -0.17091937)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="6"]
-transform = Transform3D(0.9960587, 0.04081294, 0.078751974, -0.047460735, 0.99529445, 0.08447981, -0.07493369, -0.087884545, 0.99330795, -0.083154425, 0.024977967, -0.0044215024)
+[node name="MeshInstance3D7Red" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34956104, -0.09638618, -0.053420007)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="7"]
-transform = Transform3D(0.9317329, 0.36218944, 0.026334554, -0.36184767, 0.9320835, -0.016908139, -0.030670017, 0.0062249303, 0.99951005, 0.05477467, -0.022457257, -0.031665727)
+[node name="MeshInstance3D8Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48350736, -0.33322603, -0.11374763)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="8"]
-transform = Transform3D(-0.72252935, -0.45963037, 0.516423, -0.64761376, 0.71142817, -0.27288803, -0.24197008, -0.53161174, -0.81168944, 0.054848112, 0.05942187, -0.027258426)
+[node name="MeshInstance3D11Red" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="10"]
+transform = Transform3D(1.0000002, -7.450581e-09, 0, 7.450581e-09, 1.0000002, 0, -4.656613e-10, 0, 1, 0.42134506, 0.027259776, -0.33818606)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="9"]
-transform = Transform3D(-0.8347225, -0.26476473, 0.48284468, -0.39419642, 0.89954895, -0.18820931, -0.3845108, -0.3474379, -0.8552423, -0.053502306, 0.05490485, -0.04762417)
+[node name="MeshInstance3D12Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3000441, 0.043421313, -0.34607342)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="10"]
-transform = Transform3D(0.7253874, 0.12429878, -0.677026, -0.33351442, 0.92386705, -0.18772027, 0.6021485, 0.3619676, 0.71161616, -0.03672877, -0.03439281, -0.052118093)
+[node name="MeshInstance3D9Red" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36558554, 0.22671619, 0.3827617)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="11"]
-transform = Transform3D(0.8046817, 0.37962425, -0.45647988, -0.19472557, 0.89508784, 0.4011241, 0.5608659, -0.23388854, 0.79418266, 0.03656321, -0.032556262, 0.04286161)
+[node name="MeshInstance3D10GReen" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47522837, 0.041461587, 0.21430826)
+cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentOrnaments/HSLights" index="12"]
-transform = Transform3D(0.5517675, 8.940697e-08, 1.899898e-07, 0, 0.5517672, -3.0323863e-06, 1.8626451e-09, -3.7252903e-09, 0.5517591, 0, 0, 0)
-light_volumetric_fog_energy = 5.0
-shadow_enabled = true
 
 [node name="BoneAttachmentCollar" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.99948484, 0.031727355, 0.0048647705, -0.025797276, 0.8841932, -0.4664418, -0.0191, 0.4660664, 0.8845437, -2.3556638e-08, 1.1271229, 0.4011804)
+transform = Transform3D(0.9968781, 0.07549146, -0.023137735, -0.0749152, 0.8117401, -0.5792208, -0.024943797, 0.5791347, 0.81485033, -2.3556638e-08, 1.1271229, 0.4011804)
 bone_name = "spine.009"
 bone_idx = 7
 
 [node name="HSLights2" type="Node3D" parent="metarig/Skeleton3D/BoneAttachmentCollar" index="0"]
 unique_name_in_owner = true
-transform = Transform3D(5.54244, -4.2278833, 0.63746005, 4.254759, 5.5567822, -0.1385695, -0.4223386, 0.4971789, 6.9695373, 0, 0, 0)
+transform = Transform3D(0.9982204, 0.019360192, -0.056401767, 0.025320617, 0.71871996, 0.69483846, 0.053989284, -0.6950301, 0.7169507, 0, 0, 0)
 rotation_edit_mode = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="0"]
-transform = Transform3D(0.8907889, 0.45281494, 0.03813912, -0.4429196, 0.88394606, -0.14987257, -0.101577505, 0.11661214, 0.9879696, 0.030492358, -0.01288344, 0.085325524)
+[node name="OmniLight3DRed" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="0"]
+transform = Transform3D(1.1035349, 2.0256266e-06, 3.594905e-07, -4.656613e-10, 1.1035186, -5.7816505e-06, 1.8626451e-09, -2.9802322e-08, 1.1035346, 0.1389051, 0.25844917, -0.107327975)
+light_color = Color(0.5, 0.445, 0.445, 1)
+light_volumetric_fog_energy = 25.0
+omni_range = 2.0
+
+[node name="OmniLight3DGreen" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="1"]
+transform = Transform3D(1.1035349, 2.0256266e-06, 3.594905e-07, -4.656613e-10, 1.1035186, -5.7816505e-06, 1.8626451e-09, -2.9802322e-08, 1.1035346, -0.13569598, 0.2584491, -0.107327975)
+light_color = Color(0.425, 0.5, 0.425, 1)
+light_volumetric_fog_energy = 25.0
+omni_range = 2.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="2"]
+transform = Transform3D(0.97665346, -0.09578802, -0.19228292, 0.06802107, 0.9869211, -0.14615028, 0.20376752, 0.12965888, 0.9703955, -0.9339979, -0.47849607, 4.6365705)
+light_color = Color(0.8796396, 0.835692, 0.68249947, 1)
+light_volumetric_fog_energy = 50.0
+omni_range = 11.238847
+
+[node name="MeshInstance3DRed" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="3"]
+transform = Transform3D(1, -6.0535967e-09, 1.8626451e-09, -5.5879354e-09, 1, 1.4901161e-08, -1.8626451e-09, 0, 1, 0.100932986, 0.3000788, -0.048)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="1"]
-transform = Transform3D(0.9327573, 0.34153897, -0.11539392, -0.35887474, 0.9101001, -0.20718923, 0.0342568, 0.234669, 0.97147137, 0.07823343, -0.03533922, -0.00066881254)
+[node name="MeshInstance3D2Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="4"]
+transform = Transform3D(1, -6.0535967e-09, 1.8626451e-09, -5.5879354e-09, 1, 1.4901161e-08, -1.8626451e-09, 0, 1, 0.23551482, 0.21551588, -0.06459666)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="2"]
-transform = Transform3D(-0.61770535, -0.08647792, 0.78164077, -0.4044063, 0.88737404, -0.22141308, -0.67446023, -0.45286804, -0.5831075, 0.0294438, 0.08653581, 0.049236298)
+[node name="MeshInstance3D3Red" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="5"]
+transform = Transform3D(1, -6.0535967e-09, 1.8626451e-09, -5.5879354e-09, 1, 1.4901161e-08, -1.8626451e-09, 0, 1, 0.37622964, 0.061790124, -0.073345676)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="3"]
-transform = Transform3D(-0.6177054, -0.08647796, 0.7816407, -0.4044063, 0.88737404, -0.22141302, -0.6744602, -0.45286804, -0.5831074, -0.023811102, -0.09251121, -0.034047157)
+[node name="MeshInstance3D4Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="6"]
+transform = Transform3D(1, -6.0535967e-09, 1.8626451e-09, -5.5879354e-09, 1, 1.4901161e-08, -1.8626451e-09, 0, 1, -0.13333221, 0.2818612, -0.037052084)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="4"]
-transform = Transform3D(-0.6725476, -0.3605839, -0.6462663, -0.29642376, 0.93141156, -0.21120252, 0.6780957, 0.049525052, -0.73330367, 0.0034753904, 0.044638813, -0.0762341)
+[node name="MeshInstance3D5Red" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="7"]
+transform = Transform3D(1, -9.778887e-09, 3.7252903e-09, -9.313226e-09, 1, 2.9802322e-08, -3.7252903e-09, 0, 1, -0.2790644, 0.16045448, -0.030503007)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="5"]
-transform = Transform3D(-0.737329, -0.53588694, -0.41130513, -0.5025584, 0.8420037, -0.19612756, 0.4514224, 0.06209424, -0.8901477, 0.019005984, -0.037014186, 0.08251965)
+[node name="MeshInstance3D6Green" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="8"]
+transform = Transform3D(1, -6.0535967e-09, 1.8626451e-09, -5.5879354e-09, 1, 1.4901161e-08, -1.8626451e-09, 0, 1, -0.35407785, -0.006533306, -0.017407924)
 cast_shadow = 0
 mesh = SubResource("SphereMesh_u1qbl")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="6"]
-transform = Transform3D(0.8947102, 0.44415563, 0.04712011, -0.4438488, 0.8959335, -0.017360836, -0.049927264, -0.005381629, 0.99873805, 0.09651473, 0.011136055, -0.01756823)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_u1qbl")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="7"]
-transform = Transform3D(0.9461007, 0.32174313, -0.03708826, -0.32379383, 0.93710285, -0.13036895, -0.0071899295, 0.13535106, 0.99077153, -0.03331483, 0.012538657, -0.0919161)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_u1qbl")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
-
-[node name="MeshInstance3D11" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="8"]
-transform = Transform3D(-0.8387303, -0.2310167, 0.49311665, -0.3854714, 0.89150214, -0.23798582, -0.3846355, -0.3896879, -0.8367793, 0.08378622, 0.13697398, 0.03561449)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_u1qbl")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
-
-[node name="MeshInstance3D12" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="9"]
-transform = Transform3D(-0.8387303, -0.23101667, 0.49311662, -0.38547143, 0.89150214, -0.23798585, -0.3846354, -0.38968784, -0.83677924, 0.027917087, 0.07639433, -0.045271724)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_u1qbl")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
-
-[node name="MeshInstance3D9" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="10"]
-transform = Transform3D(0.69554704, 0.10198784, -0.7112057, -0.30676493, 0.937268, -0.16560557, 0.6497005, 0.33335918, 0.68319947, -0.056773096, -0.052656613, -0.07662486)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_u1qbl")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_shkaw")
-
-[node name="MeshInstance3D10" type="MeshInstance3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="11"]
-transform = Transform3D(0.7178938, 0.1145578, -0.6866634, -0.32008094, 0.93024164, -0.17944418, 0.61820555, 0.34860933, 0.7044815, 0.06077315, 0.0064401627, -0.05579398)
-cast_shadow = 0
-mesh = SubResource("SphereMesh_u1qbl")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="metarig/Skeleton3D/BoneAttachmentCollar/HSLights2" index="12"]
-transform = Transform3D(0.5517675, 8.940697e-08, 1.899898e-07, 0, 0.5517672, -3.0323863e-06, 1.8626451e-09, -3.7252903e-09, 0.5517591, 0, 0, 0)
-light_volumetric_fog_energy = 5.0
-shadow_enabled = true
 
 [node name="Cube" parent="metarig/Skeleton3D" index="3"]
 visible = false

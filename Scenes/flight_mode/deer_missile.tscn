@@ -1,13 +1,14 @@
-[gd_scene load_steps=50 format=4 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=61 format=4 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
 [ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="3_eftuo"]
 [ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="3_wfu7b"]
 [ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/action.tres" id="4_5a4eb"]
+[ext_resource type="Texture2D" uid="uid://3f4rgb0n6fyl" path="res://Assets/environment/snowflake.png" id="5_52web"]
 [ext_resource type="PackedScene" uid="uid://cp32yx8421hi" path="res://Scenes/collectibles/collecter.tscn" id="5_j778o"]
+[ext_resource type="PackedScene" uid="uid://c2v0ju7bjedc8" path="res://Scenes/flight_mode/follow_camera.tscn" id="6_5nlby"]
 [ext_resource type="FontFile" uid="uid://ctxa0kyenu80i" path="res://Assets/fonts/Party-Pack-All/Party_Pack_Dots.ttf" id="7_0j4hg"]
-[ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="7_62wey"]
 [ext_resource type="PackedScene" uid="uid://jiyal0xstat3" path="res://Assets/environment/wind_indicator.glb" id="9_eftuo"]
 [ext_resource type="Texture2D" uid="uid://ci0nw4tvpihy" path="res://Assets/environment/wind_indicator_wind_indicator.png" id="10_5a4eb"]
 [ext_resource type="AudioStream" uid="uid://b675jyoibwk3r" path="res://Assets/audio/sfx/VB GWJ 88 - skidding down the ramp A (loop).wav" id="11_y0iyy"]
@@ -24,6 +25,34 @@
 _limits = [0.0, 1.0, 0.0, 1000.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(6.0240974, 1), 0.0, 0.0, 0, 0, Vector2(740.8377, 1), 0.0, 0.0, 0, 0, Vector2(1000, 0), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5nlby"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.5
+initial_velocity_max = 2.0
+gravity = Vector3(0, -2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atssy"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+shading_mode = 2
+albedo_texture = ExtResource("5_52web")
+emission_enabled = true
+emission = Color(0.49, 0.49, 0.49, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_le6g1"]
+material = SubResource("StandardMaterial3D_atssy")
+size = Vector2(0.03, 0.03)
 
 [sub_resource type="Animation" id="Animation_5a4eb"]
 length = 0.001
@@ -112,14 +141,14 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7utkv"]
-states/RESET/node = SubResource("AnimationNodeAnimation_61djx")
-states/RESET/position = Vector2(207, 114)
 states/Start/position = Vector2(72, 114)
+states/idle/node = SubResource("AnimationNodeAnimation_61djx")
+states/idle/position = Vector2(207, 114)
 states/roll_left/node = SubResource("AnimationNodeAnimation_baogq")
 states/roll_left/position = Vector2(349, 35)
 states/roll_right/node = SubResource("AnimationNodeAnimation_niljy")
 states/roll_right/position = Vector2(349, 192)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_tvj0h"), "RESET", "roll_left", SubResource("AnimationNodeStateMachineTransition_y3c05"), "RESET", "roll_right", SubResource("AnimationNodeStateMachineTransition_33sep"), "roll_left", "roll_right", SubResource("AnimationNodeStateMachineTransition_wt145"), "roll_right", "roll_left", SubResource("AnimationNodeStateMachineTransition_5nlby"), "roll_left", "RESET", SubResource("AnimationNodeStateMachineTransition_52web"), "roll_right", "RESET", SubResource("AnimationNodeStateMachineTransition_le6g1")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_tvj0h"), "idle", "roll_left", SubResource("AnimationNodeStateMachineTransition_y3c05"), "idle", "roll_right", SubResource("AnimationNodeStateMachineTransition_33sep"), "roll_left", "roll_right", SubResource("AnimationNodeStateMachineTransition_wt145"), "roll_right", "roll_left", SubResource("AnimationNodeStateMachineTransition_5nlby"), "roll_left", "idle", SubResource("AnimationNodeStateMachineTransition_52web"), "roll_right", "idle", SubResource("AnimationNodeStateMachineTransition_le6g1")]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e1i74"]
 radius = 0.27490234
@@ -129,12 +158,57 @@ height = 1.2705078
 radius = 0.25976563
 height = 0.829834
 
+[sub_resource type="Curve" id="Curve_5nlby"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.13839287, 1), 0.0, 0.0, 0, 0, Vector2(0.87053573, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.078653, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_52web"]
+curve = SubResource("Curve_5nlby")
+
+[sub_resource type="Curve" id="Curve_le6g1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3147208, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7utkv"]
+curve = SubResource("Curve_le6g1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xqegw"]
+resource_local_to_scene = true
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 20)
+direction = Vector3(0, 0, 1)
+spread = 0.0
+gravity = Vector3(0, -1, 0)
+attractor_interaction_enabled = false
+scale_curve = SubResource("CurveTexture_52web")
+turbulence_enabled = true
+turbulence_noise_strength = 100.0
+turbulence_noise_scale = 1.0
+turbulence_influence_over_life = SubResource("CurveTexture_7utkv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfk3q"]
+shading_mode = 2
+emission_enabled = true
+emission = Color(0.49, 0.49, 0.49, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+fixed_size = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_i6olr"]
+material = SubResource("StandardMaterial3D_rfk3q")
+size = Vector2(0.005, 0.005)
+
 [sub_resource type="Animation" id="Animation_j778o"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%CameraFollowMark:position")
+tracks/0/path = NodePath("../CameraFollowMark:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +220,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%CameraFollowMark:quaternion")
+tracks/1/path = NodePath("../CameraFollowMark:quaternion")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -162,7 +236,7 @@ length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%CameraFollowMark:position")
+tracks/0/path = NodePath("../CameraFollowMark:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -174,7 +248,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%CameraFollowMark:quaternion")
+tracks/1/path = NodePath("../CameraFollowMark:quaternion")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -298,14 +372,25 @@ contact_monitor = true
 max_contacts_reported = 10
 angular_damp = 0.1
 script = ExtResource("2_vmpjy")
-ramp_downforce = 3.2
+ramp_downforce = 4.5
 control_envelope = SubResource("Curve_wqsbj")
+show_debug_ui = true
 movement = ExtResource("3_eftuo")
 boost = ExtResource("4_5a4eb")
 
 [node name="CenterOfMassMarker" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
+
+[node name="GPUParticlesSnowDebris" type="GPUParticles3D" parent="CenterOfMassMarker"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69667876, 2)
+top_level = true
+emitting = false
+amount = 2000
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_5nlby")
+draw_pass_1 = SubResource("QuadMesh_le6g1")
 
 [node name="BarrelRoll" type="Node3D" parent="CenterOfMassMarker"]
 
@@ -316,7 +401,8 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, -0.8708739, -0.10414052)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterOfMassMarker/BarrelRoll"]
+[node name="BarrelRollAnimationPlayer" type="AnimationPlayer" parent="CenterOfMassMarker/BarrelRoll"]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_y0iyy")
 }
@@ -326,7 +412,7 @@ unique_name_in_owner = true
 deterministic = false
 root_node = NodePath("%BarrelRollAnimationTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_7utkv")
-anim_player = NodePath("../AnimationPlayer")
+anim_player = NodePath("../BarrelRollAnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.080442436, -0.99675924, 0, 0.99675924, 0.080442436, 0, 0.47332117, 0.0827937)
@@ -357,28 +443,34 @@ grow_vertical = 0
 [node name="PhysicsStats" type="Label" parent="DebugUi"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="FollowCamera" type="Camera3D" parent="."]
-transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.4202485e-07, 0.07109706, -0.9974694, 0, 1.432, -3.5)
-current = true
-script = ExtResource("7_62wey")
-max_fov = 75
-attach_point = NodePath("../CameraFollowMark")
+[node name="FollowCamera" parent="." instance=ExtResource("6_5nlby")]
+transform = Transform3D(-1, 2.1281561e-08, -1.506137e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.5174561e-07, 0.07109706, -0.9974694, 0, 1.432, -3.5)
 
-[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="FollowCamera"]
+[node name="CameraSnow" type="GPUParticles3D" parent="FollowCamera"]
 unique_name_in_owner = true
+transform = Transform3D(1, 6.9112005e-10, -9.696194e-09, -6.911156e-10, 1, 0, 9.696166e-09, 0, 1, 1.15131115e-07, 0, -11.87384)
+amount = 25
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_xqegw")
+draw_pass_1 = SubResource("QuadMesh_i6olr")
+
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../FollowCamera")
 libraries = {
 &"": SubResource("AnimationLibrary_g2hql")
 }
 autoplay = "camera_intro"
 
-[node name="DeerSide" type="Camera3D" parent="."]
-transform = Transform3D(0.49999997, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.49999997, 7.665641, 1, -1.3093293)
-
 [node name="CameraFollowMark" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-0.9999998, -1.110223e-15, -8.7422805e-08, -6.098303e-09, 0.9975641, 0.069756486, 8.72098e-08, 0.06975646, -0.99756444, 1.4305115e-06, 1.4324219, -2.9223132)
+transform = Transform3D(-0.99999976, -1.110223e-15, -8.7422805e-08, -6.0983028e-09, 0.9975641, 0.069756486, 8.720979e-08, 0.06975646, -0.99756444, 1.4305115e-06, 1.4324219, -2.9223132)
 rotation_edit_mode = 1
+
+[node name="DeerSide" type="Camera3D" parent="."]
+transform = Transform3D(0.49999997, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.49999997, 7.665641, 1, -1.3093293)
 
 [node name="FlightStateTimer" type="Timer" parent="."]
 autostart = true
@@ -407,6 +499,11 @@ vertical_alignment = 2
 [node name="CollisionShape3D" parent="Collecter" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067443848, 0.4212036, 0.20367432)
 shape = SubResource("BoxShape3D_g2hql")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+unique_name_in_owner = true
+strength = 0.0
+radius = 100.0
 
 [node name="WindIndicator" type="Node3D" parent="."]
 unique_name_in_owner = true
