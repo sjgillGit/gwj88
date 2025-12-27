@@ -5,7 +5,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ibyil"]
 resource_local_to_scene = true
-radius = 3.75
+radius = 11.25
 
 [sub_resource type="Animation" id="Animation_d0plv"]
 length = 0.001
@@ -79,7 +79,6 @@ shape = SubResource("SphereShape3D_ibyil")
 debug_color = Color(0.76496416, 0.44135654, 0.2332983, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Item")
 libraries = {
 &"": SubResource("AnimationLibrary_jhty4")
 }
