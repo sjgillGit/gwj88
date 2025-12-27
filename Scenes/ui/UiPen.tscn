@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://i4hgl17h5n1r"]
+[gd_scene load_steps=25 format=3 uid="uid://i4hgl17h5n1r"]
 
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="1_s3urb"]
 [ext_resource type="Script" uid="uid://bmlda1l4oad05" path="res://Scenes/ui/ui_pen.gd" id="1_twpca"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://dbkq6x3h6him5" path="res://Scripts/upgrades/wings.tres" id="13_wwodq"]
 [ext_resource type="Resource" uid="uid://d3yx2qjrylqse" path="res://Scripts/upgrades/antlers_big.tres" id="15_3b3mm"]
 [ext_resource type="Resource" uid="uid://dbe41hj187ejm" path="res://Scripts/upgrades/ornaments.tres" id="17_da4ha"]
+[ext_resource type="StyleBox" uid="uid://b5davwrjdekqg" path="res://Scenes/ui/panel_menu_sm.tres" id="20_o27j7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e2ty7"]
 font = ExtResource("13_2rr6g")
@@ -202,9 +203,9 @@ stretch_mode = 5
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 768.0
-offset_top = 111.0
-offset_right = 1100.0
-offset_bottom = 537.0
+offset_top = 84.0
+offset_right = 1116.0
+offset_bottom = 585.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -253,33 +254,30 @@ vertical_alignment = 1
 
 [node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/PlayContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 84.02)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
-focus_neighbor_top = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
 focus_neighbor_right = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
-focus_neighbor_bottom = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
-focus_next = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
-focus_previous = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
+text = "Play"
 script = ExtResource("6_d1etx")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/PlayContainer/PlayButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Play"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/PlayContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
+focus_neighbor_right = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
+text = "Settings
+"
+script = ExtResource("6_d1etx")
 
 [node name="MoneyContainer" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 450.0
-offset_bottom = 166.0
+offset_right = 282.0
+offset_bottom = 159.0
+theme_override_styles/panel = ExtResource("20_o27j7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MoneyContainer"]
 layout_mode = 2
@@ -306,3 +304,5 @@ horizontal_alignment = 1
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/PlayContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/PlayContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/PlayContainer/SettingsButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/PlayContainer/SettingsButton" to="." method="_on_play_button_2_pressed"]

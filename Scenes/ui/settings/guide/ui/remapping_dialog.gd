@@ -1,5 +1,5 @@
 ## The remapping dialog.
-extends MarginContainer
+extends Control
 
 signal closed(applied_config:GUIDERemappingConfig)
 

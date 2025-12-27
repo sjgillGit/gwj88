@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://drl0iy354d6uv"]
+[gd_scene load_steps=5 format=3 uid="uid://drl0iy354d6uv"]
 
 [ext_resource type="Script" uid="uid://ckmgjgvldw4r4" path="res://Scripts/upgrades/upgrade.gd" id="1_65fce"]
+[ext_resource type="Script" uid="uid://c4o3mof68eqvf" path="res://addons/lines_and_trails_3d/trail_3d.gd" id="2_dwr0p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_65fce"]
 size = Vector3(2.51, 0.063, 0.605)
 
+[sub_resource type="Curve" id="Curve_jw52a"]
+_data = [Vector2(0, 1), 0.0, -1.18033, 0, 0, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
 [node name="Wings" type="Node3D"]
-transform = Transform3D(-1.0000001, -3.0432605e-07, -4.339408e-07, 4.5285444e-07, -0.06519203, -0.9978878, 2.754088e-07, -0.9978577, 0.065196745, 0, 0, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 0.999985, 0, 0, 0, 1.0000153, 0, 0, 0)
 script = ExtResource("1_65fce")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1.0000004, 1.6940659e-21, -7.1054274e-14, 4.760325e-19, 0.99999964, -2.842171e-14, 0, -5.684342e-14, 0.9999996, 1.0256327e-07, -0.18416691, 1.173184)
+transform = Transform3D(1.0000004, 1.6940659e-21, -7.1054274e-14, 4.760325e-19, 0.99999964, -2.842171e-14, 0, -5.684342e-14, 0.9999995, -7.355482e-14, -2.9421927e-14, 1.0351915)
 radius = 1.6381836
 height = 0.025
 sides = 32
@@ -23,5 +28,21 @@ height = 0.025
 sides = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, -1.3529444e-08, 1.7435669e-08, 1.414756e-08, 0.9993543, -0.03583309, -1.6939374e-08, 0.035830952, 0.99935424, 8.5981696e-08, -0.18239854, 0.40875235)
+transform = Transform3D(1, 0, 0, 0, 0.9999964, 0, 0, 0, 0.9999964, 0, 0, 0.25695312)
 shape = SubResource("BoxShape3D_65fce")
+
+[node name="trail" type="MeshInstance3D" parent="."]
+process_priority = 9999
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6222259, 0, 0.86051595)
+script = ExtResource("2_dwr0p")
+time_limit = 0.05
+width = 0.01
+width_curve = SubResource("Curve_jw52a")
+
+[node name="trail2" type="MeshInstance3D" parent="."]
+process_priority = 9999
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.622, 0, 0.861)
+script = ExtResource("2_dwr0p")
+time_limit = 0.05
+width = 0.01
+width_curve = SubResource("Curve_jw52a")

@@ -94,6 +94,36 @@ text = "Results"
 label_settings = SubResource("LabelSettings_kjhvq")
 horizontal_alignment = 1
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect" type="TextureRect" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 5
+texture = ExtResource("3_vyvps")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinMoney" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = " : {0}"
+label_settings = SubResource("LabelSettings_kjhvq")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_kjhvq")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -171,36 +201,6 @@ text = " : {0}"
 label_settings = SubResource("LabelSettings_kjhvq")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_bottom = 8
-
-[node name="TextureRect" type="TextureRect" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_vertical = 5
-texture = ExtResource("3_vyvps")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="CoinMoney" type="Label" parent="MainBox/MainVBox/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 5
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = " : {0}"
-label_settings = SubResource("LabelSettings_kjhvq")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("4_kjhvq")
 
 [node name="Button" type="Button" parent="MainBox/MainVBox"]
 unique_name_in_owner = true

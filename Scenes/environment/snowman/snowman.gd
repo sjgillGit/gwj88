@@ -1,3 +1,4 @@
+@tool
 extends StaticBody3D
 
 const SNOWBALL = preload("res://Scenes/environment/snowman/snowball.tscn")
@@ -8,13 +9,20 @@ const SNOWBALL = preload("res://Scenes/environment/snowman/snowball.tscn")
 @export var projectile_speed: float = 300
 @export var shot_delay: float = 6
 @export var snowball_container: Node3D
+@export var show_killzone := false:
+	set(value):
+		show_killzone = value
+		if is_node_ready():
+			for ri in find_children("RangeIndicator"):
+				ri.visible = show_killzone && Engine.is_editor_hint()
 
 var target: RigidBody3D
 var gravity: float = 0#9.8
 
 func _ready() -> void:
-	%RangeIndicator.visible = false
+	show_killzone = show_killzone
 	assert(snowball_container != null, "ERROR: snowball_container must be set. %s" % get_path())
+
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	target = body
@@ -28,6 +36,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func _on_timer_timeout() -> void:
+	if Engine.is_editor_hint():
+		return
 	var aim := CalculateIntercept(target.global_position, target.linear_velocity, marker_3d.global_position, projectile_speed + randf_range(-40, 40))
 	var accuracy = PI/500
 	aim = aim + Vector3(randf_range(-accuracy, accuracy), randf_range(-accuracy, accuracy), 0)

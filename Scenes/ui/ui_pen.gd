@@ -52,7 +52,8 @@ func _update_labels(upgrade: UpgradeStats):
 
 
 func _ready():
-	GameStats.money = 10000
+	if EngineDebugger.is_active():
+		GameStats.money = 10000
 	orig_money_label_text = money_label.text
 	orig_price_label_text = price_label.text
 	_update_money_label()
@@ -79,3 +80,7 @@ func _on_visibility_changed() -> void:
 	$Shop.set_camera_position()
 	if visible:
 		%PlayButton.grab_focus()
+
+
+func _on_play_button_2_pressed() -> void:
+	GameState.current = GameState.State.SETTINGS

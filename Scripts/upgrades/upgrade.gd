@@ -25,7 +25,7 @@ var _thrusting := false
 
 func _ready():
 	enabled = enabled
-	_fuel_seconds = stats.fuel_capacity_seconds
+	_fuel_seconds = stats.fuel_capacity_seconds if stats else 0
 
 
 ## allow getting collision shapes to add when this upgrade is enabled

@@ -1,27 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm7pja7sld27"]
+[gd_scene load_steps=7 format=3 uid="uid://cm7pja7sld27"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://bhjlk0y1u7hg6" path="res://Scenes/flight_mode/deer_feet_physmat.tres" id="1_qayv8"]
 [ext_resource type="Script" uid="uid://dew4x2pl8l3ol" path="res://Scenes/environment/icicle_cluster.gd" id="2_khuew"]
 [ext_resource type="PackedScene" uid="uid://dla4j3yggya2y" path="res://Scenes/environment/icicle_debris.tscn" id="3_s08tc"]
-[ext_resource type="ArrayMesh" uid="uid://tb4kx5pahuh7" path="res://Scenes/environment/snowblock.tres" id="4_ndjx7"]
+[ext_resource type="PackedScene" uid="uid://c7o05sema0qje" path="res://Assets/environment/snow_block.gltf" id="4_s08tc"]
+[ext_resource type="CylinderMesh" uid="uid://ydwrhm7aesqk" path="res://Scenes/environment/icicle_mesh.tres" id="5_ndjx7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fygv4"]
 size = Vector3(0.5, 0.1, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inor1"]
-transparency = 1
-albedo_color = Color(0.69, 0.91733336, 1, 0.6901961)
-refraction_enabled = true
-refraction_scale = 0.01
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5nfyj"]
-material = SubResource("StandardMaterial3D_inor1")
-top_radius = 0.125
-bottom_radius = 0.0
-height = 1.0
-radial_segments = 16
-rings = 0
-cap_bottom = false
 
 [node name="Node3D" type="Node3D"]
 
@@ -35,10 +21,8 @@ replace_with = ExtResource("3_s08tc")
 destroy_after = 1
 metadata/_edit_group_ = true
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="IcicleCluster"]
-transform = Transform3D(0.3, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-mesh = ExtResource("4_ndjx7")
-skeleton = NodePath("../..")
+[node name="snow_block" parent="IcicleCluster" instance=ExtResource("4_s08tc")]
+transform = Transform3D(1.75, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="IcicleCluster"]
 shape = SubResource("BoxShape3D_fygv4")
@@ -53,16 +37,14 @@ replace_with = ExtResource("3_s08tc")
 destroy_after = 1
 metadata/_edit_group_ = true
 
+[node name="snow_block" parent="IcicleCluster7" instance=ExtResource("4_s08tc")]
+transform = Transform3D(1.75, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="IcicleCluster7"]
 shape = SubResource("BoxShape3D_fygv4")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="IcicleCluster7"]
-transform = Transform3D(0.3, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-mesh = ExtResource("4_ndjx7")
-skeleton = NodePath("../..")
-
 [node name="IcicleCluster2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458601, -0.002830267, -0.26013094)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458601, -0.002830267, -0.21018004)
 physics_material_override = ExtResource("1_qayv8")
 contact_monitor = true
 max_contacts_reported = 2
@@ -77,17 +59,17 @@ depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster2/CollisionShape3D4"]
-transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0.2741788, 2.3966404e-08)
-mesh = SubResource("CylinderMesh_5nfyj")
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, -2.3283064e-10, 0.21962835, -0.033265658)
+mesh = ExtResource("5_ndjx7")
 
 [node name="IcicleCluster3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24101007, -0.002830267, -0.20001717)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24101007, -0.002830267, -0.15006626)
 physics_material_override = ExtResource("1_qayv8")
 contact_monitor = true
 max_contacts_reported = 2
 script = ExtResource("2_khuew")
 replace_with = ExtResource("3_s08tc")
-destroy_after = 1
+destroy_after = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster3"]
@@ -96,17 +78,17 @@ depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster3/CollisionShape3D4"]
-transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0.2741788, 2.3966404e-08)
-mesh = SubResource("CylinderMesh_5nfyj")
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, -2.3283064e-10, 0.21962835, -0.033265658)
+mesh = ExtResource("5_ndjx7")
 
 [node name="IcicleCluster4" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012344595, -0.002830267, -0.20001717)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012344595, -0.002830267, -0.15006626)
 physics_material_override = ExtResource("1_qayv8")
 contact_monitor = true
 max_contacts_reported = 2
 script = ExtResource("2_khuew")
 replace_with = ExtResource("3_s08tc")
-destroy_after = 1
+destroy_after = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster4"]
@@ -115,17 +97,17 @@ depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster4/CollisionShape3D4"]
-transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0.2741788, 2.3966404e-08)
-mesh = SubResource("CylinderMesh_5nfyj")
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, -2.3283064e-10, 0.21962835, -0.033265658)
+mesh = ExtResource("5_ndjx7")
 
 [node name="IcicleCluster5" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22649527, -0.002830267, -0.20001717)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22649527, -0.002830267, -0.15006626)
 physics_material_override = ExtResource("1_qayv8")
 contact_monitor = true
 max_contacts_reported = 2
 script = ExtResource("2_khuew")
 replace_with = ExtResource("3_s08tc")
-destroy_after = 1
+destroy_after = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster5"]
@@ -134,17 +116,17 @@ depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster5/CollisionShape3D4"]
-transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0.2741788, 2.3966404e-08)
-mesh = SubResource("CylinderMesh_5nfyj")
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, -2.3283064e-10, 0.21962835, -0.033265658)
+mesh = ExtResource("5_ndjx7")
 
 [node name="IcicleCluster6" type="RigidBody3D" parent="."]
-transform = Transform3D(0.9907526, 0, -0.13568099, 0, 1, 0, 0.13568099, 0, 0.9907526, 0.47281188, -0.002830267, -0.2701897)
+transform = Transform3D(0.9907526, 0, -0.13568099, 0, 1, 0, 0.13568099, 0, 0.9907526, 0.4660345, -0.002830267, -0.22070071)
 physics_material_override = ExtResource("1_qayv8")
 contact_monitor = true
 max_contacts_reported = 2
 script = ExtResource("2_khuew")
 replace_with = ExtResource("3_s08tc")
-destroy_after = 1
+destroy_after = 5
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D4" type="CollisionPolygon3D" parent="IcicleCluster6"]
@@ -153,5 +135,5 @@ depth = 0.025
 polygon = PackedVector2Array(-0.125, 0, 0.125, 0, 0, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IcicleCluster6/CollisionShape3D4"]
-transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0.2741788, 2.3966404e-08)
-mesh = SubResource("CylinderMesh_5nfyj")
+transform = Transform3D(0.5, 0, 0, 0, -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, -2.3283064e-10, 0.21962835, -0.033265658)
+mesh = ExtResource("5_ndjx7")

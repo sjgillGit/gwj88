@@ -1,6 +1,6 @@
 [gd_resource type="FogMaterial" format=3 uid="uid://crikjnvec7gpd"]
 
 [resource]
-density = 0.02
+density = 0.01
 emission = Color(0.288518, 0.288518, 0.28851795, 1)
 edge_fade = 0.98491484

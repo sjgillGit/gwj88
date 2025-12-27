@@ -1,7 +1,13 @@
+class_name Debris
 extends RigidBody3D
 
 @export var replace_with: PackedScene
 @export var destroy_after := 2
+@export var mesh_scale := 1.0:
+	set(v):
+		mesh_scale = v
+		if is_node_ready():
+			$snow_block.transform.basis = $snow_block.transform.basis.scaled(Vector3.ONE * v)
 
 var _hit_count := 0
 
