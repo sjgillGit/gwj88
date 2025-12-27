@@ -652,10 +652,10 @@ tracks/0/path = NodePath(".:horns_down")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_shkaw"]
@@ -697,9 +697,9 @@ bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.999835
 bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
 bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
 bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.37647852, -0.024958313, -0.030629573, 0.92558247)
-bones/8/rotation = Quaternion(-0.07075812, -0.007725384, 0.0033234195, 0.99745816)
-bones/9/rotation = Quaternion(0.54029197, 0.17709011, -0.2275104, 0.7905459)
+bones/7/rotation = Quaternion(-0.41509408, -0.015684206, -0.05004711, 0.90826553)
+bones/8/rotation = Quaternion(-0.08420431, 0.00902882, -0.008872063, 0.99636817)
+bones/9/rotation = Quaternion(0.55483305, 0.19511682, -0.25894573, 0.7661834)
 bones/10/rotation = Quaternion(-0.10381317, -0.170628, 0.61718214, 0.76104873)
 bones/11/rotation = Quaternion(-0.10381446, 0.17062953, -0.6171818, 0.7610485)
 bones/12/position = Vector3(0.0780042, 0.23866656, -0.055951495)
@@ -713,7 +713,7 @@ bones/19/rotation = Quaternion(-0.2599413, 0.011224373, -0.032679897, 0.965006)
 bones/20/rotation = Quaternion(-0.0506018, -0.023735443, 0.022546005, 0.99818224)
 bones/21/rotation = Quaternion(-0.005801933, 0.8009831, -0.5986583, 0.0009571037)
 bones/24/position = Vector3(-2.358284e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.35371038, -0.009238666, -0.024782041, 0.9349811)
+bones/24/rotation = Quaternion(-0.36231083, -0.007528604, -0.028762376, 0.9315831)
 bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
 bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.604624e-07, 4.8117187e-07, 0.7587796)
@@ -751,7 +751,7 @@ stats = ExtResource("7_vlw85")
 transform = Transform3D(-1.0000001, 1.0036416e-13, 8.7422876e-08, -8.715337e-08, -0.07845911, -0.99691737, 6.8589006e-09, -0.9969177, 0.07845908, -0.0025459745, 0.087706886, -0.055452432)
 
 [node name="BoneAttachmentOrnaments" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="1"]
-transform = Transform3D(0.8337985, 0.55034214, -0.043635774, 0.027066827, -0.11969811, -0.99245703, -0.55140555, 0.8263154, -0.11469564, 0.036517356, 1.5492445, 0.6542936)
+transform = Transform3D(0.7333152, 0.6747066, -0.08378639, -0.027818143, -0.093358696, -0.9952596, -0.6793198, 0.7321585, -0.049688846, 0.054850474, 1.5707774, 0.60909873)
 bone_name = "spine.011"
 bone_idx = 9
 
@@ -857,7 +857,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
 [node name="BoneAttachmentCollar" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.9968781, 0.07549146, -0.023137735, -0.0749152, 0.8117401, -0.5792208, -0.024943797, 0.5791347, 0.81485033, -2.3556638e-08, 1.1271229, 0.4011804)
+transform = Transform3D(0.99449885, 0.10393138, 0.013058997, -0.08281021, 0.8564274, -0.5096132, -0.06414768, 0.5057181, 0.8603107, -2.3556638e-08, 1.1271229, 0.4011804)
 bone_name = "spine.009"
 bone_idx = 7
 

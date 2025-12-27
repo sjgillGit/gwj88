@@ -122,6 +122,8 @@ func _on_action_triggered():
 	if len(_quick_time_events_queue) > 0:
 		print(Engine.get_frames_drawn(), ' triggered action ', _quick_time_events_queue.map(func(e): return e.event_text))
 		print_stack()
+	else:
+		return
 	var qte: QTE = _quick_time_events_queue.get(0)
 	if qte && qte.event_text == 'Do a Barrel Roll':
 		pass

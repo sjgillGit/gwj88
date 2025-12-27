@@ -3,17 +3,12 @@ extends Control
 
 @export_multiline var all_unlocked_decription := ""
 
-@onready var upgrade_button: TextureButton = $UpgradeButton
 @onready var money_label = %MoneyLabel
 @onready var price_label = %PriceLabel
 @onready var description_label = %DescriptionLabel
 
 var orig_money_label_text: String
 var orig_price_label_text: String
-
-func _update_button_enablement() -> void:
-	if not DeerUpgrades.upgrade_available_for_purchase():
-		upgrade_button.queue_free()
 
 
 func _on_play_button_pressed() -> void:
@@ -22,7 +17,6 @@ func _on_play_button_pressed() -> void:
 
 func _on_upgrade_button_pressed() -> void:
 	DeerUpgrades.increment_upgrade()
-	_update_button_enablement()
 
 
 func _update_money_label():
