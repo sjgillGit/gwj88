@@ -60,6 +60,13 @@ func _process(delta: float) -> void:
 	_frame_time = delta
 
 func _on_distance_updated():
+	var menu := _get_menu()
+	if menu:
+		menu.flight_speed = _player.linear_velocity.length()
+		var end_pos: Vector3 = %EndingWin.global_position
+		var start_pos: Vector3 = %DeerEmitter.global_position
+		var dist := end_pos.distance_to(start_pos)
+		menu.completion_percent = 1.0 - (_player.global_position.distance_to(end_pos) / dist)
 	# TODO: update flight menu ui here?
 	%FlightStats.text = "\n".join([
 		_player.speed_str,
