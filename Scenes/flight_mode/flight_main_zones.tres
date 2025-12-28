@@ -1,4 +1,4 @@
-[gd_resource type="ZonesResource" load_steps=271 format=3 uid="uid://dq7mowtumyvy6"]
+[gd_resource type="ZonesResource" load_steps=253 format=3 uid="uid://dq7mowtumyvy6"]
 
 [ext_resource type="Image" uid="uid://data0v05la1y8" path="res://Assets/terrain/Foliage_0_0_0.res" id="1_0ib3d"]
 [ext_resource type="Image" uid="uid://cqd5jmb4lskbw" path="res://Assets/terrain/Foliage_0_0_1.res" id="2_s7qhf"]
@@ -212,28 +212,13 @@
 [ext_resource type="Image" uid="uid://ujxgujqb1xig" path="res://Assets/terrain/Object_2_-5_1.res" id="177_ev1qr"]
 [ext_resource type="Image" uid="uid://dv2d3kjemmlcc" path="res://Assets/terrain/Splatmap_-2_-7_0.res" id="178_ivmk1"]
 [ext_resource type="Image" uid="uid://6yxoybjqdsbd" path="res://Assets/terrain/Object_2_-6_1.res" id="182_gceni"]
-[ext_resource type="Image" uid="uid://c5lq207j8klem" path="res://Assets/terrain/Heightmap_0_-8.res" id="187_16kr4"]
 [ext_resource type="Image" uid="uid://cttjhe7jnkhy5" path="res://Assets/terrain/Object_1_-7_1.res" id="187_ruaw3"]
-[ext_resource type="Image" uid="uid://cut1xqo6pv1ux" path="res://Assets/terrain/Object_0_-8_0.res" id="188_f1qac"]
-[ext_resource type="Image" uid="uid://bo4qbqjrmxsyj" path="res://Assets/terrain/Snow_0_-8.res" id="189_c1v2p"]
-[ext_resource type="Image" uid="uid://dji5vlk3b2e60" path="res://Assets/terrain/Splatmap_0_-8_0.res" id="190_jf6yk"]
-[ext_resource type="Image" uid="uid://nsdaacw4t1e0" path="res://Assets/terrain/Heightmap_-1_-8.res" id="191_a3sw1"]
-[ext_resource type="Image" uid="uid://b0lskwlv24mn8" path="res://Assets/terrain/Object_-1_-8_0.res" id="192_bjdxa"]
 [ext_resource type="Image" uid="uid://cis7hse0u8nw7" path="res://Assets/terrain/Object_2_-7_1.res" id="192_lxrto"]
-[ext_resource type="Image" uid="uid://behb7il0mau7q" path="res://Assets/terrain/Snow_-1_-8.res" id="193_eo170"]
-[ext_resource type="Image" uid="uid://dqhrbkpw6igre" path="res://Assets/terrain/Splatmap_-1_-8_0.res" id="194_q1ayn"]
-[ext_resource type="Image" uid="uid://btuum7vsocrdo" path="res://Assets/terrain/Heightmap_1_-8.res" id="195_ll3ni"]
-[ext_resource type="Image" uid="uid://t0dr4v24gv2h" path="res://Assets/terrain/Object_1_-8_0.res" id="196_63med"]
 [ext_resource type="Image" uid="uid://caxqgr72e8ala" path="res://Assets/terrain/Object_0_-7_1.res" id="197_cqquf"]
-[ext_resource type="Image" uid="uid://dgwhahx535xrv" path="res://Assets/terrain/Snow_1_-8.res" id="197_oqjik"]
-[ext_resource type="Image" uid="uid://ni1o1gsocl4c" path="res://Assets/terrain/Splatmap_1_-8_0.res" id="198_6cj1m"]
 [ext_resource type="Image" uid="uid://22gbpeewnwmf" path="res://Assets/terrain/Object_-1_-7_1.res" id="202_pulrt"]
 [ext_resource type="Image" uid="uid://bq41sh1simcgd" path="res://Assets/terrain/Object_-2_-7_1.res" id="207_sjmo2"]
 [ext_resource type="Image" uid="uid://dq3hhkj1twqb6" path="res://Assets/terrain/Object_-2_-6_1.res" id="212_bn3wv"]
 [ext_resource type="Image" uid="uid://c1v2nudk21ave" path="res://Assets/terrain/Object_-2_-5_1.res" id="217_boxu7"]
-[ext_resource type="Image" uid="uid://ujf4y3h038ac" path="res://Assets/terrain/Object_0_-8_1.res" id="222_vgmhm"]
-[ext_resource type="Image" uid="uid://bdqr3ogpp3w8f" path="res://Assets/terrain/Object_-1_-8_1.res" id="227_46en5"]
-[ext_resource type="Image" uid="uid://dit8v0lcqa3x8" path="res://Assets/terrain/Object_1_-8_1.res" id="232_uuv6l"]
 
 [sub_resource type="ZoneResource" id="ZoneResource_vimpv"]
 heightMapImage = ExtResource("4_qt0mg")
@@ -483,26 +468,5 @@ splatmapsImage = Array[Image]([ExtResource("154_1b7ti")])
 objectsImage = Array[Image]([ExtResource("152_31sca"), ExtResource("217_boxu7")])
 snowImage = ExtResource("153_jtktr")
 
-[sub_resource type="ZoneResource" id="ZoneResource_j0vhs"]
-zonePosition = Vector2i(0, -8)
-heightMapImage = ExtResource("187_16kr4")
-splatmapsImage = Array[Image]([ExtResource("190_jf6yk")])
-objectsImage = Array[Image]([ExtResource("188_f1qac"), ExtResource("222_vgmhm")])
-snowImage = ExtResource("189_c1v2p")
-
-[sub_resource type="ZoneResource" id="ZoneResource_ci0jr"]
-zonePosition = Vector2i(-1, -8)
-heightMapImage = ExtResource("191_a3sw1")
-splatmapsImage = Array[Image]([ExtResource("194_q1ayn")])
-objectsImage = Array[Image]([ExtResource("192_bjdxa"), ExtResource("227_46en5")])
-snowImage = ExtResource("193_eo170")
-
-[sub_resource type="ZoneResource" id="ZoneResource_5gcvr"]
-zonePosition = Vector2i(1, -8)
-heightMapImage = ExtResource("195_ll3ni")
-splatmapsImage = Array[Image]([ExtResource("198_6cj1m")])
-objectsImage = Array[Image]([ExtResource("196_63med"), ExtResource("232_uuv6l")])
-snowImage = ExtResource("197_oqjik")
-
 [resource]
-zones = Array[ZoneResource]([SubResource("ZoneResource_vimpv"), SubResource("ZoneResource_6kcn7"), SubResource("ZoneResource_eqw4n"), SubResource("ZoneResource_fai4h"), SubResource("ZoneResource_eypid"), SubResource("ZoneResource_ghw72"), SubResource("ZoneResource_tnk4g"), SubResource("ZoneResource_ch3ob"), SubResource("ZoneResource_u40a1"), SubResource("ZoneResource_a5r6f"), SubResource("ZoneResource_fdf8h"), SubResource("ZoneResource_n73do"), SubResource("ZoneResource_brwxm"), SubResource("ZoneResource_ewgrc"), SubResource("ZoneResource_snkb1"), SubResource("ZoneResource_rai8g"), SubResource("ZoneResource_gpcit"), SubResource("ZoneResource_gq5x6"), SubResource("ZoneResource_c1xu8"), SubResource("ZoneResource_peyfg"), SubResource("ZoneResource_6rxjc"), SubResource("ZoneResource_u0buu"), SubResource("ZoneResource_be2qn"), SubResource("ZoneResource_w12na"), SubResource("ZoneResource_24mcw"), SubResource("ZoneResource_agepy"), SubResource("ZoneResource_h07ex"), SubResource("ZoneResource_gpecy"), SubResource("ZoneResource_lgnwh"), SubResource("ZoneResource_1q0ga"), SubResource("ZoneResource_typ2a"), SubResource("ZoneResource_h16yq"), SubResource("ZoneResource_navwm"), SubResource("ZoneResource_j0vhs"), SubResource("ZoneResource_ci0jr"), SubResource("ZoneResource_5gcvr")])
+zones = Array[ZoneResource]([SubResource("ZoneResource_vimpv"), SubResource("ZoneResource_6kcn7"), SubResource("ZoneResource_eqw4n"), SubResource("ZoneResource_fai4h"), SubResource("ZoneResource_eypid"), SubResource("ZoneResource_ghw72"), SubResource("ZoneResource_tnk4g"), SubResource("ZoneResource_ch3ob"), SubResource("ZoneResource_u40a1"), SubResource("ZoneResource_a5r6f"), SubResource("ZoneResource_fdf8h"), SubResource("ZoneResource_n73do"), SubResource("ZoneResource_brwxm"), SubResource("ZoneResource_ewgrc"), SubResource("ZoneResource_snkb1"), SubResource("ZoneResource_rai8g"), SubResource("ZoneResource_gpcit"), SubResource("ZoneResource_gq5x6"), SubResource("ZoneResource_c1xu8"), SubResource("ZoneResource_peyfg"), SubResource("ZoneResource_6rxjc"), SubResource("ZoneResource_u0buu"), SubResource("ZoneResource_be2qn"), SubResource("ZoneResource_w12na"), SubResource("ZoneResource_24mcw"), SubResource("ZoneResource_agepy"), SubResource("ZoneResource_h07ex"), SubResource("ZoneResource_gpecy"), SubResource("ZoneResource_lgnwh"), SubResource("ZoneResource_1q0ga"), SubResource("ZoneResource_typ2a"), SubResource("ZoneResource_h16yq"), SubResource("ZoneResource_navwm")])

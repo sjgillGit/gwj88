@@ -2,22 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baox3iy17p4dl"
-path.s3tc="res://.godot/imported/ending_beach.jpg-950bbcb042061bce93b636f7aaf1f3fa.s3tc.ctex"
-path.etc2="res://.godot/imported/ending_beach.jpg-950bbcb042061bce93b636f7aaf1f3fa.etc2.ctex"
+uid="uid://cvlxugj3bomgf"
+path="res://.godot/imported/sand_rough.jpg-e335ad8e6739833532479f25fc075021.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/ui/endings/ending_beach.jpg"
-dest_files=["res://.godot/imported/ending_beach.jpg-950bbcb042061bce93b636f7aaf1f3fa.s3tc.ctex", "res://.godot/imported/ending_beach.jpg-950bbcb042061bce93b636f7aaf1f3fa.etc2.ctex"]
+source_file="res://Assets/material_testers/sand_rough.jpg"
+dest_files=["res://.godot/imported/sand_rough.jpg-e335ad8e6739833532479f25fc075021.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
