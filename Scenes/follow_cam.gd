@@ -92,10 +92,10 @@ func _physics_process(_delta):
 
 
 
-		look_at_from_position(pos, target, Vector3.UP)
 
 		# Turn a little up or down
 		var t = transform
 		t.basis = Basis(t.basis[0], deg_to_rad(angle_v_adjust)) * t.basis
 		transform = t
 		global_position = _safe_global_pos(body, state, false)
+		look_at_from_position(global_position, target, Vector3.UP)

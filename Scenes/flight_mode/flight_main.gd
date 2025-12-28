@@ -60,6 +60,13 @@ func _process(delta: float) -> void:
 	_frame_time = delta
 
 func _on_distance_updated():
+	var menu := _get_menu()
+	if menu:
+		menu.flight_speed = _player.linear_velocity.length()
+		var end_pos: Vector3 = %EndingWin.global_position
+		var start_pos: Vector3 = %DeerEmitter.global_position
+		var dist := end_pos.distance_to(start_pos)
+		menu.completion_percent = 1.0 - (_player.global_position.distance_to(end_pos) / dist)
 	# TODO: update flight menu ui here?
 	%FlightStats.text = "\n".join([
 		_player.speed_str,
@@ -164,6 +171,7 @@ func _on_music_elf_finished() -> void:
 func _on_ending_win_body_entered(body: Node3D) -> void:
 	if body is DeerMissile:
 		%EndTimer.start()
+		_player.end_timer_running = true
 
 
 func _on_ending_space_body_entered(body: Node3D) -> void:
@@ -179,3 +187,7 @@ func _on_ending_hole_body_entered(body: Node3D) -> void:
 func _on_ending_beach_body_entered(body: Node3D) -> void:
 	if body is DeerMissile:
 		GameState.current = GameState.State.ENDING_BEACH
+
+
+func _on_end_timer_timeout() -> void:
+	GameState.current = GameState.State.ENDING_WIN

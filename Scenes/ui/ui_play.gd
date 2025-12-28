@@ -7,12 +7,44 @@ extends Control
 var orig_flight_money_label_text: String
 var orig_roll_money_label_text: String
 
+var completion_percent: float:
+	set(v):
+		completion_percent = v
+		if is_node_ready():
+			var dt:Control = %DeerThumb
+			var dtp:Control = dt.get_parent()
+			var max_pos: float = dtp.size.x - dt.size.x
+
+			%DeerThumb.position.x = clampf(completion_percent, 0.0, 1.0) * max_pos
+
+var flight_speed: float:
+	set(v):
+		flight_speed = v
+		if is_node_ready():
+			%FlightSpeedMeter.value = flight_speed
+
+
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 
 var flight_state: FlightState = FlightState.PRE_FLIGHT:
 	set(value):
 		flight_state = value
-		%MainBox.visible = flight_state == FlightState.POST_FLIGHT
+
+		%EndBox.visible = flight_state == FlightState.POST_FLIGHT
+		var tween_duration := 0.5
+		var f_ui := %FlightUI as Control
+		match flight_state:
+			FlightState.PRE_FLIGHT:
+				f_ui.modulate = Color.TRANSPARENT
+			FlightState.FLIGHT:
+				f_ui.pivot_offset = f_ui.size * tween_duration
+				f_ui.scale = Vector2.ONE * 3.0
+				create_tween().tween_property(f_ui, "modulate", Color.WHITE, tween_duration)
+				create_tween().tween_property(f_ui, "scale", Vector2.ONE, tween_duration)
+			_:
+				create_tween().tween_property(f_ui, "modulate", Color.TRANSPARENT, 0.5)
+				create_tween().tween_property(f_ui, "scale", Vector2.ONE * 3.0, tween_duration)
+
 
 var flight_money: int:
 	set(v):
@@ -54,15 +86,15 @@ func _visibility_changed():
 
 
 func _on_button_pressed() -> void:
-	%MainBox.hide()
+	%EndBox.hide()
 	GameState.current = GameState.State.PEN
 
 
 func _on_button_2_pressed() -> void:
-	%MainBox.hide()
+	%EndBox.hide()
 	GameState.current = GameState.State.REPLAY
 
 
 func _on_main_box_visibility_changed() -> void:
-	if %MainBox.visible && visible:
+	if %EndBox.visible && visible:
 		%Button.grab_focus()

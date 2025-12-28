@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=75 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -31,6 +31,9 @@
 [ext_resource type="SnowResource" uid="uid://gpl0df2xtjwi" path="res://Scenes/flight_mode/flight_main_terrain_snow.tres" id="13_ydv3d"]
 [ext_resource type="ZonesResource" uid="uid://dq7mowtumyvy6" path="res://Scenes/flight_mode/flight_main_zones.tres" id="14_meee6"]
 [ext_resource type="PackedScene" uid="uid://b4hqahtd7nmog" path="res://Scenes/flight_mode/villiage.tscn" id="25_phe0t"]
+[ext_resource type="Material" uid="uid://dlyyi1i85mxu5" path="res://Assets/material_testers/sand.tres" id="32_cn3vy"]
+[ext_resource type="PackedScene" uid="uid://chdkega0lj3lf" path="res://Assets/environment/palm_tree.tscn" id="33_c5u5f"]
+[ext_resource type="Texture2D" uid="uid://baox3iy17p4dl" path="res://Scenes/ui/endings/ending_beach.jpg" id="34_c5u5f"]
 [ext_resource type="PackedScene" uid="uid://c4wlvqxeux131" path="res://Scenes/environment/icicle_cluster.tscn" id="134_mp7iw"]
 [ext_resource type="Script" uid="uid://bkb4pnsolfh03" path="res://Scenes/flight_mode/staging_area.gd" id="136_f6rav"]
 [ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
@@ -70,10 +73,10 @@ _data = {
 point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hcd8f"]
-size = Vector3(1000, 400, 1560)
+size = Vector3(1000, 435.31042, 1560)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vqvor"]
-size = Vector3(1200, 468.0039, 1296.3801)
+size = Vector3(1200, 501.66296, 1296.3801)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phe0t"]
 radius = 16.549
@@ -83,6 +86,23 @@ size = Vector3(1000, 400, 1560)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_meee6"]
 size = Vector3(1000, 400, 1560)
+
+[sub_resource type="SphereMesh" id="SphereMesh_40fe5"]
+material = ExtResource("32_cn3vy")
+radius = 200.0
+height = 20.0
+rings = 16
+is_hemisphere = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40fe5"]
+shading_mode = 0
+albedo_texture = ExtResource("34_c5u5f")
+uv1_scale = Vector3(2, 1.5, 2)
+uv1_offset = Vector3(0.5, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_r72i1"]
+material = SubResource("StandardMaterial3D_40fe5")
+size = Vector2(4000, 4000)
 
 [sub_resource type="Gradient" id="Gradient_68ld0"]
 
@@ -102,7 +122,7 @@ material = SubResource("StandardMaterial3D_y5w0d")
 size = Vector2(5000, 5000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cn3vy"]
-size = Vector3(1000, 400, 400)
+size = Vector3(1000, 494.93872, 400)
 
 [sub_resource type="Animation" id="Animation_40fe5"]
 length = 0.001
@@ -184,70 +204,61 @@ environment = ExtResource("2_7afml")
 [node name="WindSide" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, 324.4095, 325.27792, 54.14614)
 area_size = Vector3(500, 200, 30)
-strength = 100.0
 
 [node name="WindSide9" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.8660254, -2.1855694e-08, 0.5, -2.1855694e-08, 1, 5.856217e-09, -0.5, -5.8562164e-09, -0.8660254, -227.85016, 325.27792, 288.64154)
 area_size = Vector3(300, 200, 30)
-strength = 100.0
 
 [node name="WindSide10" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.8660254, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, -0.8660254, 217.63118, 325.27792, 318.64154)
 area_size = Vector3(300, 200, 30)
-strength = 100.0
 
 [node name="WindSide11" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, -7.109494, 325.27792, 361.50568)
 area_size = Vector3(300, 200, 30)
-strength = 100.0
 
 [node name="WindSide2" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.48447, 281.39075, -257.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide4" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.4845, 281.39075, -554.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide5" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.48453, 281.39075, -859.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide6" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.03336, 281.39075, -257.56552)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide7" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.03336, 281.39075, -554.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide8" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.0333, 281.39075, -859.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide3" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.2588189, 0, 0.96592575, 0, 1, 0, -0.96592575, 0, -0.2588189, -369.14798, 313.9383, 14.019161)
 area_size = Vector3(500, 200, 30)
-strength = 100.0
 
 [node name="RampWind" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, -3.0894756, 272.61798, 223.06964)
-area_size = Vector3(200, 50, 200)
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, -3.0894756, 285.3061, 223.06964)
+area_size = Vector3(100, 30, 100)
 strength = 1.0
 
 [node name="WindStart" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -163.36319, 234.34697, -135.1036)
 area_size = Vector3(200, 100, 200)
+strength = 10.0
 
 [node name="WindStart2" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, 108.2236, 234.34697, -118.895226)
 area_size = Vector3(200, 100, 200)
+strength = 10.0
 
 [node name="WindStart4" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.7620454e-08, 0, 1, 0, 1, 0, -1, 0, -5.7620454e-08, -38.50708, 221.34697, -42.493435)
@@ -255,24 +266,31 @@ area_size = Vector3(75, 75, 75)
 strength = 5.0
 
 [node name="Wind4" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 117.30375, 276.20688, -412.42282)
+transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 174.77553, 276.20688, -427.82236)
 area_size = Vector3(300, 200, 200)
+strength = 20.0
+
+[node name="Wind5" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.9968774, 0, 0.07896369, 0, 1, 0, -0.07896369, 0, 0.9968774, -39.040768, 171.451, -824.45715)
+area_size = Vector3(80, 100, 300)
+strength = 20.0
 
 [node name="Wind7" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, -121.12686, 301.9218, -432.49283)
-area_size = Vector3(300, 200, 200)
+transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, -121.12686, 388.20044, -432.49283)
+area_size = Vector3(400, 200, 200)
+strength = 20.0
 
 [node name="WindCeiling" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 16.255539, 367.02304, -429.54886)
-area_size = Vector3(500, 10, 500)
-direction = Vector3(0, -1, 0)
-strength = 100.0
+transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 16.255539, 417.85013, -429.54886)
+area_size = Vector3(300, 20, 300)
+direction = Vector3(0, -0.7071068, 0.7071068)
+strength = 20.0
 
 [node name="WindCeiling2" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(0.9659257, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.9659257, 18.46212, 367.02304, -12.776642)
-area_size = Vector3(500, 10, 500)
-direction = Vector3(0, -1, 0)
-strength = 100.0
+area_size = Vector3(300, 20, 300)
+direction = Vector3(0, -0.7071068, 0.7071068)
+strength = 20.0
 
 [node name="Collectibles" type="Node3D" parent="."]
 
@@ -468,8 +486,9 @@ transform = Transform3D(-0.99658406, 0, 0.08258194, 0, 1, 0, -0.08258194, 0, -0.
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman3" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
-transform = Transform3D(-0.775617, 0, 0.6312038, 0, 1, 0, -0.6312038, 0, -0.775617, 197.8414, 97.95399, -288.40506)
+transform = Transform3D(-0.67632335, 0, 0.7366047, 0, 1, 0, -0.7366047, 0, -0.67632335, 196.98312, 141.52934, -244.58255)
 snowball_container = NodePath("../SnowballContainer")
+show_killzone = true
 
 [node name="Snowman1" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.2897358, -152.96298, -1602.2772)
@@ -758,37 +777,37 @@ decal_scale = 0.5
 speed_boost = 2.25
 
 [node name="PlayArea" type="Area3D" parent="."]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.368958, 247.10342, -267.59796)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.368958, 264.75864, -267.59796)
 shape = SubResource("BoxShape3D_hcd8f")
 debug_color = Color(0, 0.98039216, 0.30980393, 0.79607844)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="PlayArea"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 16.368958, 48.936108, -1281.8269)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 16.368958, 65.192184, -1286.1827)
 shape = SubResource("BoxShape3D_vqvor")
 debug_color = Color(0, 0.98, 0.31033328, 0.79607844)
 
+[node name="Villiage" parent="." instance=ExtResource("25_phe0t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1991386, -152.71121, -1522.7797)
+
 [node name="EndingWin" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.356342, -148.42445, -1512.8367)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EndingWin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.470901, -3.7654877, -10.131592)
-shape = SubResource("CylinderShape3D_phe0t")
-debug_color = Color(0.3402298, 0.47217667, 1, 0.79607844)
-
-[node name="Villiage" parent="EndingWin" instance=ExtResource("25_phe0t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.157204, -4.2867584, -9.942993)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.168867, -151.99808, -1522.7893)
+linear_damp_space_override = 1
+linear_damp = 0.9
 
 [node name="EndTimer" type="Timer" parent="EndingWin"]
 unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndingWin"]
+shape = SubResource("CylinderShape3D_phe0t")
+debug_color = Color(0.3402298, 0.47217667, 1, 0.79607844)
+
 [node name="EndingSpace" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 412, -944.17267)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 447.30664, -944.17267)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndingSpace"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 234.58612, 627.25085)
@@ -802,7 +821,6 @@ debug_color = Color(0.98, 0.06533333, 0, 0.79607844)
 
 [node name="EndingHole" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -412.53598, 0)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndingHole"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.368958, 255.85342, 112.97383)
@@ -816,14 +834,102 @@ debug_color = Color(0.98, 0.06533333, 0, 0.79607844)
 
 [node name="EndingBeach" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -142.07143, -2111.036)
-visible = false
+
+[node name="Beach" type="StaticBody3D" parent="EndingBeach"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EndingBeach/Beach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.30115, -58.11319, 221.82251)
+mesh = SubResource("SphereMesh_40fe5")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="palm tree" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, -88.82054, -38.230103, 221.82251)
+
+[node name="palm tree2" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.86490107, 0.33837968, -0.3707366, -0.3339385, 0.9393371, 0.078300506, 0.3747419, 0.05608102, 0.9254314, -36.859016, -39.29445, 191.82251)
+
+[node name="palm tree3" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.8546946, 0, 0.5191312, 0, 1, 0, -0.5191312, 0, 0.8546946, -27.622025, -39.29445, 197.86316)
+
+[node name="palm tree4" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.4299214, -0.15231071, 0.88992643, -0.33393848, 0.9425949, 0, -0.8388401, -0.29718068, -0.4561041, -103.636536, -39.29445, 196.85535)
+
+[node name="palm tree5" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.6723539, -0.061490227, 0.73767143, 3.7252903e-09, 0.99654377, 0.0830691, -0.74022985, 0.055851836, -0.6700301, -91.69519, -39.29445, 203.80188)
+
+[node name="palm tree8" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.8481683, -0.044003934, 0.527896, 0, 0.99654377, 0.0830691, -0.5297268, 0.07045658, -0.84523684, -77.48023, -39.29445, 210.42517)
+
+[node name="palm tree6" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.8067983, 0.28582904, -0.5170864, -0.33393848, 0.9425949, -1.4901161e-08, 0.48740298, 0.17267506, 0.8559332, -51.756866, -39.29445, 218.3153)
+
+[node name="palm tree7" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.9986304, 0, -0.052318573, 0, 1, 0, 0.052318573, 0, 0.9986304, -44.51599, -39.29445, 205.8352)
+
+[node name="palm tree9" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.77995324, -0.32200965, 0.5366403, -0.33393848, 0.939337, 0.07830051, -0.5292997, -0.11813411, -0.8401703, -87.62306, -38.230103, 212.81555)
+
+[node name="palm tree10" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.9927573, 0, 0.120137006, 0, 1, 0, -0.120137006, 0, 0.9927573, -35.661533, -39.29445, 182.81555)
+
+[node name="palm tree11" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.99986315, -0.0013743632, 0.016487638, 0, 0.99654377, 0.0830691, -0.016544819, -0.08305773, 0.9964074, -26.424541, -39.29445, 188.8562)
+
+[node name="palm tree12" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.92805684, -0.328788, 0.17495435, -0.3339385, 0.9425949, 0, -0.16491108, -0.058423992, -0.98457664, -102.43906, -39.29445, 187.84839)
+
+[node name="palm tree13" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.910763, 0, -0.41292962, 0, 1, 0, 0.41292962, 0, -0.910763, -90.49771, -39.29445, 194.79492)
+
+[node name="palm tree14" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.99528337, 0.008058509, -0.0966744, 0, 0.99654377, 0.0830691, 0.09700969, 0.082677305, -0.99184346, -76.282745, -39.29445, 201.41821)
+
+[node name="palm tree15" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.88176805, 0.31238902, 0.35340944, -0.3339385, 0.9425949, 0, -0.33312193, -0.11801701, 0.9354688, -50.559383, -39.29445, 209.30835)
+
+[node name="palm tree16" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.40643376, 0, 0.91368026, 0, 1, 0, -0.91368026, 0, 0.40643376, -43.31851, -39.29445, 196.82825)
+
+[node name="palm tree17" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.7573371, -0.054246128, 0.6507671, -3.7252903e-09, 0.99654377, 0.0830691, -0.6530242, 0.06291131, -0.75471956, -86.47369, -38.230103, 203.27771)
+
+[node name="palm tree18" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.9175744, 0, -0.39756414, 0, 1, 0, 0.39756414, 0, 0.9175744, -34.512157, -39.29445, 173.27771)
+
+[node name="palm tree19" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.8546946, 0, 0.5191312, 0, 1, 0, -0.5191312, 0, 0.8546946, -25.275166, -39.29445, 179.31836)
+
+[node name="palm tree20" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.75911224, 0, 0.6509598, 0, 1, 0, -0.6509598, 0, -0.75911224, -101.28968, -39.29445, 178.31055)
+
+[node name="palm tree21" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.9942467, 0, 0.107114404, 0, 1, 0, -0.107114404, 0, -0.9942467, -89.348335, -39.29445, 185.25708)
+
+[node name="palm tree22" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(-0.8481683, 0, 0.52972686, 0, 1, 0, -0.52972686, 0, -0.8481683, -75.13337, -39.29445, 191.88037)
+
+[node name="palm tree23" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.9299756, 0, 0.36762127, 0, 1, 0, -0.36762127, 0, 0.9299756, -49.410007, -39.29445, 199.77051)
+
+[node name="palm tree24" parent="EndingBeach/Beach" instance=ExtResource("33_c5u5f")]
+transform = Transform3D(0.8121549, 0, 0.583442, 0, 1, 0, -0.583442, 0, 0.8121549, -42.169132, -39.29445, 187.2904)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="EndingBeach/Beach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.494434, 60.514053, 41.601563)
+light_energy = 300.0
+shadow_enabled = true
+omni_range = 303.69028
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EndingBeach/Beach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1124.1582, -404.88965)
+mesh = SubResource("QuadMesh_r72i1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EndingBeach"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -28.126266, -2150.7427)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -39.7405, -2150.7427)
 mesh = SubResource("PlaneMesh_jxov2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndingBeach"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, -15.193649, 4.071045)
 shape = SubResource("BoxShape3D_cn3vy")
 debug_color = Color(0.98, 0.06533333, 0, 0.79607844)
 
@@ -852,6 +958,7 @@ transform = Transform3D(0.9382336, 0.18174252, 0.29442713, -0.34600243, 0.492820
 
 [node name="FlightStats" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = 811.0
 offset_top = 42.0
 offset_right = 812.0
@@ -931,6 +1038,7 @@ bus = &"Music"
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
 [connection signal="body_entered" from="EndingWin" to="." method="_on_ending_win_body_entered"]
+[connection signal="timeout" from="EndingWin/EndTimer" to="." method="_on_end_timer_timeout"]
 [connection signal="body_entered" from="EndingSpace" to="." method="_on_ending_space_body_entered"]
 [connection signal="body_entered" from="EndingHole" to="." method="_on_ending_hole_body_entered"]
 [connection signal="body_entered" from="EndingBeach" to="." method="_on_ending_beach_body_entered"]

@@ -11,14 +11,14 @@ func _ready():
 	var upgrades: Array[DeerUpgrades.Category]
 	upgrades.assign([DeerUpgrades.Category.SMALL_ANTLERS])
 	$DeerMissile.set_enabled_upgrades(upgrades)
-	$Timer.wait_time = $Snowman.shot_delay * 0.8
+	$Timer.wait_time = $Snowman.shot_interval * 0.8
 	$Timer.start()
-	await get_tree().create_timer($Snowman.shot_delay * 0.1)
+	await get_tree().create_timer($Snowman.shot_interval * 0.1)
 	$Snowman._on_timer_timeout()
 
 
 func _on_timer_timeout() -> void:
-	$Timer.wait_time = $Snowman.shot_delay
+	$Timer.wait_time = $Snowman.shot_interval
 	$DeerMissile.linear_velocity = Vector3.MODEL_FRONT * 50.0
 	$DeerMissile.angular_velocity = Vector3.ZERO
 	$DeerMissile.global_transform = $DeerMissileStart.global_transform

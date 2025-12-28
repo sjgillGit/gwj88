@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://d1t0irvo1tq7i"]
+[gd_scene load_steps=65 format=4 uid="uid://d1t0irvo1tq7i"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://lstnlgl40uhj" path="res://Scenes/flight_mode/deer_body_physmat.tres" id="1_k7jrr"]
 [ext_resource type="Script" uid="uid://c6lr6h2gib2gb" path="res://Scenes/flight_mode/deer_missile.gd" id="2_vmpjy"]
@@ -33,15 +33,16 @@ direction = Vector3(0, 1, 0)
 initial_velocity_min = 1.5
 initial_velocity_max = 2.0
 gravity = Vector3(0, -2, 0)
+attractor_interaction_enabled = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atssy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52web"]
 transparency = 3
 alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 shading_mode = 2
 albedo_texture = ExtResource("5_52web")
 emission_enabled = true
-emission = Color(0.49, 0.49, 0.49, 1)
+emission = Color(0.6830772, 0.6830774, 0.6830771, 1)
 disable_receive_shadows = true
 billboard_mode = 3
 billboard_keep_scale = true
@@ -51,7 +52,7 @@ particles_anim_loop = false
 fixed_size = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_le6g1"]
-material = SubResource("StandardMaterial3D_atssy")
+material = SubResource("StandardMaterial3D_52web")
 size = Vector2(0.03, 0.03)
 
 [sub_resource type="Animation" id="Animation_5a4eb"]
@@ -208,26 +209,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CameraFollowMark:position")
+tracks/0/path = NodePath("%CameraFollowMark:quaternion")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.4305115e-06, 1.4324219, -2.9223132)]
+"values": [Quaternion(0, 1, 0, 4.371139e-08)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../CameraFollowMark:quaternion")
-tracks/1/interp = 2
+tracks/1/path = NodePath("%CameraFollowMark:position")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Quaternion(-1.5255056e-09, 0.99939084, 0.03489949, -4.3684757e-08)]
+"values": [Vector3(3.4342918, -35.488495, 73.75244)]
 }
 
 [sub_resource type="Animation" id="Animation_wfu7b"]
@@ -236,26 +237,26 @@ length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CameraFollowMark:position")
+tracks/0/path = NodePath("%CameraFollowMark:quaternion")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5, 5.5, 5.99),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(3.4342918, -35.488495, 73.75244), Vector3(8.000002, 3.5409117, 4.385276), Vector3(6.0117383, 1.4281651, -2.0612302), Vector3(0, 1.432, -3.5)]
+"values": [Quaternion(-0.2078277, 0.36596197, 0.111885846, 0.90020055), Quaternion(0.027687637, 0.6083907, 0.021245472, 0.79287), Quaternion(0, 1, 0, 4.371139e-08)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../CameraFollowMark:quaternion")
+tracks/1/path = NodePath("%CameraFollowMark:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 5, 5.99),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 5, 5.5, 5.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Quaternion(-0.2078277, 0.36596197, 0.111885846, 0.90020055), Quaternion(0.027687637, 0.6083907, 0.021245472, 0.79287), Quaternion(-1.5255056e-09, 0.99939084, 0.03489949, -4.3684757e-08)]
+"values": [Vector3(3.4342918, -35.488495, 73.75244), Vector3(8.000002, 3.5409117, 4.385276), Vector3(6.0117383, 1.4281651, -2.0612302), Vector3(0, 1.432, -3.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g2hql"]
@@ -273,6 +274,25 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g2hql"]
 size = Vector3(0.75006104, 1.3638916, 1.4073486)
+
+[sub_resource type="Gradient" id="Gradient_52web"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.5019608, 0.5019608, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_le6g1"]
+noise_type = 5
+frequency = 0.0005
+fractal_type = 0
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_7utkv"]
+width = 4
+height = 4
+depth = 4
+noise = SubResource("FastNoiseLite_le6g1")
+color_ramp = SubResource("Gradient_52web")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_52web"]
+radius = 25.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6s42y"]
 resource_name = "Material"
@@ -386,6 +406,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69667876, 2)
 top_level = true
+cast_shadow = 0
 emitting = false
 amount = 2000
 lifetime = 2.0
@@ -446,7 +467,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="FollowCamera" parent="." instance=ExtResource("6_5nlby")]
-transform = Transform3D(-1, 2.1281561e-08, -1.506137e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.5174561e-07, 0.07109706, -0.9974694, 0, 1.432, -3.5)
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 0.99999994, 0, -8.742278e-08, 0, -0.99999994, 5.6405483e-08, 2.2767158, -3.3115616)
 
 [node name="CameraSnow" type="GPUParticles3D" parent="FollowCamera"]
 unique_name_in_owner = true
@@ -466,7 +487,7 @@ autoplay = "camera_intro"
 
 [node name="CameraFollowMark" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-0.99999976, -1.110223e-15, -8.7422805e-08, -6.0983028e-09, 0.9975641, 0.069756486, 8.720979e-08, 0.06975646, -0.99756444, 1.4305115e-06, 1.4324219, -2.9223132)
+transform = Transform3D(-0.99999976, 0, 8.74228e-08, 0, 0.99999994, 0, -8.7422755e-08, 0, -1.0000002, 3.4342918, -35.488495, 73.75244)
 rotation_edit_mode = 1
 
 [node name="DeerSide" type="Camera3D" parent="."]
@@ -500,10 +521,21 @@ vertical_alignment = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067443848, 0.4212036, 0.20367432)
 shape = SubResource("BoxShape3D_g2hql")
 
-[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+[node name="GPUParticlesAttractorVectorField3D" type="GPUParticlesAttractorVectorField3D" parent="."]
 unique_name_in_owner = true
-strength = 0.0
-radius = 100.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.89011, -1.3406525, 36.356537)
+strength = 100.0
+size = Vector3(75, 75, 75)
+texture = SubResource("NoiseTexture3D_7utkv")
+
+[node name="WindDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+collision_layer = 0
+collision_mask = 64
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WindDetector"]
+shape = SubResource("SphereShape3D_52web")
 
 [node name="WindIndicator" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -537,11 +569,14 @@ bus = &"Hoofbeats"
 
 [node name="AudioCollision" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("13_baogq")
+unit_size = 50.0
+max_db = -15.0
 max_polyphony = 6
 bus = &"SFX"
 
 [node name="AudioSnowSlide" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("14_wt145")
+unit_size = 50.0
 pitch_scale = 0.5
 bus = &"SFX"
 
@@ -571,6 +606,8 @@ stream = ExtResource("16_33sep")
 [connection signal="timeout" from="FlightStateTimer" to="." method="_on_flight_state_timer_timeout"]
 [connection signal="timeout" from="HSCooldown" to="." method="_on_hs_cooldown_timeout"]
 [connection signal="item_collected" from="Collecter" to="." method="_on_collecter_item_collected"]
+[connection signal="area_entered" from="WindDetector" to="." method="_on_wind_detector_area_entered"]
+[connection signal="area_exited" from="WindDetector" to="." method="_on_wind_detector_area_exited"]
 
 [editable path="Collecter"]
 [editable path="WindIndicator/wind_indicator"]

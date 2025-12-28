@@ -7,7 +7,7 @@ const SNOWBALL = preload("res://Scenes/environment/snowman/snowball.tscn")
 @onready var timer: Timer = $Timer
 
 @export var projectile_speed: float = 300
-@export var shot_delay: float = 6
+@export var shot_interval: float = 6
 @export var snowball_container: Node3D
 @export var show_killzone := false:
 	set(value):
@@ -26,7 +26,8 @@ func _ready() -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	target = body
-	timer.start(shot_delay)
+	_shoot_snowball(true)
+	timer.start(shot_interval)
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
@@ -36,10 +37,13 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 
 
 func _on_timer_timeout() -> void:
+	_shoot_snowball()
+
+func _shoot_snowball(warning_shot := false):
 	if Engine.is_editor_hint():
 		return
 	var aim := CalculateIntercept(target.global_position, target.linear_velocity, marker_3d.global_position, projectile_speed + randf_range(-40, 40))
-	var accuracy = PI/500
+	var accuracy := PI / 250.0 if warning_shot else PI / 500.0
 	aim = aim + Vector3(randf_range(-accuracy, accuracy), randf_range(-accuracy, accuracy), 0)
 
 	var projectile: Node3D = SNOWBALL.instantiate()

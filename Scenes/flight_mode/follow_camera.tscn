@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://c88aij3a2s167" path="res://Scenes/follow_cam.gd" id="1_6sweb"]
 
 [node name="FollowCamera" type="Camera3D"]
-transform = Transform3D(-1, 2.0590445e-08, -1.4091755e-07, 1.0519516e-08, 0.9974694, 0.07109706, 1.4202485e-07, 0.07109706, -0.9974694, 0, 0, 0)
 current = true
 script = ExtResource("1_6sweb")
 max_fov = 75

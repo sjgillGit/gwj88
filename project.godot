@@ -139,6 +139,7 @@ action={
 3d_physics/layer_4="Snowball"
 3d_physics/layer_5="Collectable"
 3d_physics/layer_6="Obstacle"
+3d_physics/layer_7="WindArea"
 
 [physics]
 
