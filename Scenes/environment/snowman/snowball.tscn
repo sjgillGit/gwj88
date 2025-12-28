@@ -1,7 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsovid6f4r4ca"]
+[gd_scene load_steps=14 format=3 uid="uid://dsovid6f4r4ca"]
 
 [ext_resource type="Script" uid="uid://beurenunflrrf" path="res://Scenes/environment/snowman/snowball.gd" id="1_kttmf"]
 [ext_resource type="Material" uid="uid://c0mme56hm1glk" path="res://Scenes/environment/snowblock_mat.tres" id="2_xxcmh"]
+[ext_resource type="Texture2D" uid="uid://3f4rgb0n6fyl" path="res://Assets/environment/snowflake.png" id="3_eewaj"]
+[ext_resource type="AudioStream" uid="uid://bs0q3qu7y22ce" path="res://Assets/audio/sfx/VB GWJ 88 - wind howling (loop).wav" id="4_wgosy"]
+[ext_resource type="AudioStream" uid="uid://bq7m0b0pf6wex" path="res://Assets/audio/sfx/VB GWJ 88 - hit the ground snowball.wav" id="5_0v0ld"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_6bmc5"]
 material = ExtResource("2_xxcmh")
@@ -13,85 +16,47 @@ rings = 4
 [sub_resource type="SphereShape3D" id="SphereShape3D_kttmf"]
 radius = 5.0
 
-[sub_resource type="Curve" id="Curve_kttmf"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 100), 0.0, 0.0, 0, 0, Vector2(0.34347826, 0), -276.28067, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_xxcmh"]
-curve = SubResource("Curve_kttmf")
-
 [sub_resource type="Curve" id="Curve_eewaj"]
-_data = [Vector2(0, 1), 0.0, -0.50743014, 0, 0, Vector2(1, 0), -1.6398424, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.3376005, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_wgosy"]
 curve = SubResource("Curve_eewaj")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kttmf"]
-resource_local_to_scene = true
-emission_shape = 1
-emission_sphere_radius = 15.0
-direction = Vector3(0, 0, -1)
-spread = 6.0
-initial_velocity_min = 15.0
-initial_velocity_max = 15.0
-radial_accel_min = -1.5000021
-radial_accel_max = -1.0000023
-radial_accel_curve = SubResource("CurveTexture_xxcmh")
-scale_min = 2.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_wgosy")
-sub_emitter_mode = 1
-sub_emitter_frequency = 4.0
-sub_emitter_keep_velocity = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_xxcmh"]
-material = ExtResource("2_xxcmh")
-radial_segments = 8
-rings = 4
-
-[sub_resource type="Curve" id="Curve_xxcmh"]
-_data = [Vector2(0.010000005, 1), 0.0, 0.0, 0, 0, Vector2(0.705, 0.9325843), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.309791, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_eewaj"]
-curve = SubResource("Curve_xxcmh")
-
-[sub_resource type="Curve" id="Curve_wgosy"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3147208, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_0v0ld"]
-curve = SubResource("Curve_wgosy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3p3np"]
-resource_local_to_scene = true
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wgosy"]
 emission_shape = 1
 emission_sphere_radius = 5.0
-direction = Vector3(0, 1, 0)
-spread = 180.0
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+radial_velocity_min = 4.9999776
+radial_velocity_max = 4.9999776
 gravity = Vector3(0, -2, 0)
-scale_curve = SubResource("CurveTexture_eewaj")
-turbulence_enabled = true
-turbulence_noise_strength = 100.0
-turbulence_noise_scale = 1.0
-turbulence_influence_over_life = SubResource("CurveTexture_0v0ld")
+attractor_interaction_enabled = false
+scale_curve = SubResource("CurveTexture_wgosy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atssy"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 shading_mode = 2
-albedo_color = Color(1, 1, 1, 0.8117647)
+albedo_texture = ExtResource("3_eewaj")
 emission_enabled = true
-emission = Color(0.49, 0.49, 0.49, 1)
+emission = Color(0.6830772, 0.6830774, 0.6830771, 1)
 disable_receive_shadows = true
 billboard_mode = 3
+billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+fixed_size = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_7kmca"]
+[sub_resource type="QuadMesh" id="QuadMesh_0v0ld"]
 material = SubResource("StandardMaterial3D_atssy")
-size = Vector2(0.25, 0.25)
+size = Vector2(0.03, 0.03)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eewaj"]
+radius = 7.5
 
 [node name="Snowball" type="CharacterBody3D"]
 collision_layer = 8
@@ -104,25 +69,40 @@ mesh = SubResource("SphereMesh_6bmc5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_kttmf")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-emitting = false
-amount = 50
-sub_emitter = NodePath("../SnowParticles")
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.9
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_kttmf")
-draw_pass_1 = SubResource("SphereMesh_xxcmh")
-
 [node name="SnowParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
+cast_shadow = 0
 emitting = false
-amount = 500
+amount = 5000
+lifetime = 0.35000000000000003
 one_shot = true
-randomness = 1.0
-visibility_aabb = AABB(-11.895, -9, -6.605, 23.79, 18, 13.21)
-process_material = SubResource("ParticleProcessMaterial_3p3np")
-draw_pass_1 = SubResource("QuadMesh_7kmca")
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_wgosy")
+draw_pass_1 = SubResource("QuadMesh_0v0ld")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_eewaj")
+
+[node name="AudioStreamPlayerWhistle" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_wgosy")
+unit_size = 100.0
+max_db = -5.0
+pitch_scale = 5.0
+autoplay = true
+max_distance = 200.0
+doppler_tracking = 2
+
+[node name="AudioStreamPlayerHit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_0v0ld")
+volume_db = 80.0
+unit_size = 50.0
+pitch_scale = 0.6
+max_distance = 100.0
+max_polyphony = 3
 
 [connection signal="finished" from="SnowParticles" to="." method="_on_snow_particles_finished"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

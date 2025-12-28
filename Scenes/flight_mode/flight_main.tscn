@@ -451,34 +451,43 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.78691, 172.83727, -497.2
 
 [node name="Snowman" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-1, 0, -8.742278e-08, -1.7059827e-08, 0.98077506, 0.19514167, 8.574208e-08, 0.19514167, -0.98077506, 21.75808, 261.63397, -393.90256)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman2" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-0.61832595, 0, -0.7859217, 0, 1, 0, 0.7859217, 0, -0.61832595, -304.95062, 140.01169, -179.55333)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman4" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-0.97791827, 0, 0.20898697, 0, 1, 0, -0.20898697, 0, -0.97791827, 213.28242, 6.5509186, -969.9314)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman5" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-0.99658406, 0, 0.08258194, 0, 1, 0, -0.08258194, 0, -0.99658406, -215.95813, -45.61914, -1133.9088)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman3" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
-transform = Transform3D(-0.775617, 0, 0.6312038, 0, 1, 0, -0.6312038, 0, -0.775617, 197.8414, 97.95399, -288.40506)
+transform = Transform3D(-0.67632335, 0, 0.7366047, 0, 1, 0, -0.7366047, 0, -0.67632335, 196.98312, 141.52934, -244.58255)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
+show_killzone = true
 
 [node name="Snowman1" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.2897358, -152.96298, -1602.2772)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman6" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-0.9920406, -0.1254645, -0.010689616, -0.12584034, 0.9908428, 0.048942596, 0.0044509172, 0.0498982, -0.9987443, 95.735855, 117.31974, -672.3887)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Snowman7" parent="Snowmen" node_paths=PackedStringArray("snowball_container") instance=ExtResource("9_ydv3d")]
 transform = Transform3D(-0.9773975, -0.1254645, 0.17015505, -0.11482274, 0.99084264, 0.071041584, -0.17751022, 0.049898192, -0.9828532, -157.54575, 140.35698, -819.81226)
+shot_delay = 6.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="Terrain" type="Node3D" parent="."]

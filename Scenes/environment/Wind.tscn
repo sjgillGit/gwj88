@@ -252,7 +252,6 @@ debug_color = Color(0.95, 0, 0.6016665, 1)
 [node name="WindParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-layers = 8192
 cast_shadow = 0
 amount = 250
 amount_ratio = 0.75
@@ -277,7 +276,6 @@ draw_pass_1 = SubResource("QuadMesh_wxiuv")
 
 [node name="CloudParticles" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
-layers = 8192
 extra_cull_margin = 50.0
 amount = 40
 sub_emitter = NodePath("../CloudParticles2")
@@ -291,7 +289,7 @@ draw_pass_1 = SubResource("QuadMesh_ej8b2")
 
 [node name="GPUParticlesCollisionBox3D_Zminus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
-cull_mask = 8192
+cull_mask = 1
 size = Vector3(200, 200, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D_Zminus"]
@@ -301,7 +299,7 @@ mesh = SubResource("BoxMesh_wxiuv")
 [node name="GPUParticlesCollisionBox3D2_Zplus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
 layers = 128
-cull_mask = 8192
+cull_mask = 1
 size = Vector3(200, 200, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D2_Zplus"]
@@ -311,7 +309,7 @@ mesh = SubResource("BoxMesh_wxiuv")
 [node name="GPUParticlesCollisionBox3D3_Xminus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, 0)
 layers = 128
-cull_mask = 8192
+cull_mask = 1
 size = Vector3(1, 200, 200)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D3_Xminus"]
@@ -322,7 +320,7 @@ mesh = SubResource("BoxMesh_wxiuv")
 [node name="GPUParticlesCollisionBox3D4_Xplus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
 layers = 128
-cull_mask = 8192
+cull_mask = 1
 size = Vector3(1, 200, 200)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D4_Xplus"]
@@ -333,7 +331,7 @@ mesh = SubResource("BoxMesh_wxiuv")
 [node name="GPUParticlesCollisionBox3D6_Yminus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 layers = 128
-cull_mask = 8192
+cull_mask = 1
 size = Vector3(200, 1, 200)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D6_Yminus"]
@@ -344,7 +342,7 @@ mesh = SubResource("BoxMesh_wxiuv")
 [node name="GPUParticlesCollisionBox3D5_Yplus" type="GPUParticlesCollisionBox3D" parent="CloudParticles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
 layers = 128
-cull_mask = 8192
+cull_mask = 1
 size = Vector3(200, 1, 200)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CloudParticles/GPUParticlesCollisionBox3D5_Yplus"]
@@ -370,9 +368,9 @@ material = ExtResource("2_b7dpt")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_atssy")
 max_db = -9.0
-pitch_scale = 1.4092999
+pitch_scale = 1.4312379
 autoplay = true
-max_distance = 0.8660254
+max_distance = 86.60254
 max_polyphony = 20
 bus = &"SFX"
 

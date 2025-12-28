@@ -101,7 +101,8 @@ func _update_audio() -> void:
 	$AudioStreamPlayer3D.pitch_scale = pitch_scale
 	$AudioStreamPlayer3D.volume_db = volume
 	# average of all three sides.. I guess we should try to make them squarish in the editor
-	$AudioStreamPlayer3D.max_distance = (area_size.length() / 3.0) * 1.5
+	$AudioStreamPlayer3D.max_distance = (area_size.length() / 3.0) * 2.0
+	$AudioStreamPlayer3D.unit_size = (area_size.length() / 3.0) * 0.5
 
 func _update_particles(hs_mod := 1.0) -> void:
 	if not particles:

@@ -339,11 +339,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			if tb:
 				var pos := tb.global_transform.affine_inverse() * global_position
 				var ti := tb.getPositionInformation(pos.x, pos.z)
-				var sf := ti.get_snowFactor()
-				on_snow = maxf(sf - tb.snowDefinition.snowFactor, 0.0)
-				if on_snow < 0.0:
-					print(sf)
-					pass
+				if ti:
+					var sf := ti.get_snowFactor()
+					on_snow = maxf(sf - tb.snowDefinition.snowFactor, 0.0)
 
 			if !_landed:
 				_impact_point = global_position
@@ -505,7 +503,7 @@ func _update_snowballs(state: PhysicsDirectBodyState3D):
 					if _snowballs.size() > 0:
 						for sn: Node in _snowballs:
 							if sn.is_inside_tree():
-								sn.parry()
+								sn.deflect()
 						_snowballs.clear()
 				if _qte_snowball:
 					_qte_snowball.queue_free()

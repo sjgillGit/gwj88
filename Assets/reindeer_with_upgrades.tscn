@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://i8r2m0h57x57"]
+[gd_scene load_steps=42 format=3 uid="uid://i8r2m0h57x57"]
 
 [ext_resource type="PackedScene" uid="uid://byy2i68ydoi8d" path="res://Assets/Reindeer.gltf" id="1_34b0x"]
 [ext_resource type="Script" uid="uid://cocohxcqvp1m4" path="res://Assets/reindeer_with_upgrades.gd" id="2_7wal2"]
@@ -52,54 +52,106 @@ animation = &"Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6trtm"]
 animation = &"Running"
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_fahhr"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g3w26"]
-animation = &"Idle"
+animation = &"Fetal Pose Y"
+use_custom_timeline = true
+timeline_length = 0.009999999999999998
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nqpke"]
-animation = &"Wacking Elf off"
+animation = &"Looking LEFT one frame"
+use_custom_timeline = true
+timeline_length = 0.2
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nmsnv"]
-advance_mode = 2
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmsnv"]
+animation = &"Looking RIGHT one frame"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_44d2q"]
+animation = &"T POSING"
+use_custom_timeline = true
+timeline_length = 0.1
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_44d2q"]
 xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t76ml"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_omh4f"]
-states/Idle/node = SubResource("AnimationNodeAnimation_g3w26")
-states/Idle/position = Vector2(460, 210)
-"states/Wacking Elf off/node" = SubResource("AnimationNodeAnimation_nqpke")
-"states/Wacking Elf off/position" = Vector2(460, 84)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_nmsnv"), "Idle", "Wacking Elf off", SubResource("AnimationNodeStateMachineTransition_44d2q"), "Wacking Elf off", "Idle", SubResource("AnimationNodeStateMachineTransition_t76ml")]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t76ml"]
+xfade_time = 0.2
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
 
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_fahhr"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_omh4f"]
+xfade_time = 0.25
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fahhr"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_seofb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_seofb"]
+states/End/position = Vector2(1029, 132)
+"states/Fetal Pose Y/node" = SubResource("AnimationNodeAnimation_g3w26")
+"states/Fetal Pose Y/position" = Vector2(506, 77)
+"states/Looking LEFT one frame/node" = SubResource("AnimationNodeAnimation_nqpke")
+"states/Looking LEFT one frame/position" = Vector2(425, 184)
+"states/Looking RIGHT one frame/node" = SubResource("AnimationNodeAnimation_nmsnv")
+"states/Looking RIGHT one frame/position" = Vector2(700, 126)
+states/Start/position = Vector2(229, 100)
+"states/T POSING/node" = SubResource("AnimationNodeAnimation_44d2q")
+"states/T POSING/position" = Vector2(856, 182)
+transitions = ["Start", "Looking LEFT one frame", SubResource("AnimationNodeStateMachineTransition_44d2q"), "Looking LEFT one frame", "Fetal Pose Y", SubResource("AnimationNodeStateMachineTransition_t76ml"), "Fetal Pose Y", "Looking RIGHT one frame", SubResource("AnimationNodeStateMachineTransition_omh4f"), "Looking RIGHT one frame", "T POSING", SubResource("AnimationNodeStateMachineTransition_fahhr"), "T POSING", "End", SubResource("AnimationNodeStateMachineTransition_seofb")]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_bdedn"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_0j4hg"]
 
 [sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_seofb"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0xbmk"]
-nodes/output/position = Vector2(1080, 180)
+graph_offset = Vector2(-213.67636, -37.30844)
+nodes/output/position = Vector2(1420, 160)
 nodes/running/node = SubResource("AnimationNodeBlend3_seofb")
 nodes/running/position = Vector2(480, 80)
-nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_omh4f")
-nodes/StateMachine/position = Vector2(780, 300)
+nodes/horns_down/node = SubResource("AnimationNodeAdd2_bdedn")
+nodes/horns_down/position = Vector2(1200, 220)
 nodes/Running/node = SubResource("AnimationNodeAnimation_6trtm")
 nodes/Running/position = Vector2(40, 320)
 nodes/run_timescale/node = SubResource("AnimationNodeTimeScale_0j4hg")
 nodes/run_timescale/position = Vector2(240, 280)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_shkaw")
 nodes/Animation/position = Vector2(20, 180)
-nodes/horns_down/node = SubResource("AnimationNodeAdd2_fahhr")
-nodes/horns_down/position = Vector2(760, -20)
+nodes/add_deflect/node = SubResource("AnimationNodeAdd2_fahhr")
+nodes/add_deflect/position = Vector2(900, -20)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_bdedn")
 "nodes/Animation 2/position" = Vector2(160, 20)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_u1qbl")
-"nodes/Animation 3/position" = Vector2(420, 340)
-node_connections = [&"output", 0, &"horns_down", &"running", 0, &"Animation 2", &"running", 1, &"Animation", &"running", 2, &"run_timescale", &"run_timescale", 0, &"Running", &"horns_down", 0, &"running", &"horns_down", 1, &"Animation 3"]
+"nodes/Animation 3/position" = Vector2(740, 420)
+nodes/deflect/node = SubResource("AnimationNodeStateMachine_seofb")
+nodes/deflect/position = Vector2(660, 180)
+node_connections = [&"output", 0, &"horns_down", &"running", 0, &"Animation 2", &"running", 1, &"Animation", &"running", 2, &"run_timescale", &"horns_down", 0, &"add_deflect", &"horns_down", 1, &"Animation 3", &"run_timescale", 0, &"Running", &"add_deflect", 0, &"running", &"add_deflect", 1, &"deflect"]
 
 [sub_resource type="Animation" id="Animation_u1qbl"]
 length = 0.001
@@ -643,43 +695,6 @@ _data = {
 &"holiday_spirit": SubResource("Animation_bdedn")
 }
 
-[sub_resource type="Animation" id="Animation_g3w26"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:horns_down")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_shkaw"]
-resource_name = "deflect"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:horns_down")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.2, 0.46666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3w26"]
-_data = {
-&"RESET": SubResource("Animation_g3w26"),
-&"deflect": SubResource("Animation_shkaw")
-}
-
 [node name="Reindeer" instance=ExtResource("1_34b0x")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_7wal2")
@@ -697,9 +712,9 @@ bones/3/rotation = Quaternion(-0.01813136, 6.234562e-07, 1.6549324e-08, 0.999835
 bones/4/rotation = Quaternion(0.123631135, -1.0577933e-06, 1.2386892e-07, 0.9923282)
 bones/5/rotation = Quaternion(-0.06695665, 9.554976e-08, 1.4966954e-08, 0.9977559)
 bones/6/rotation = Quaternion(-0.08378378, 1.1240556e-06, -9.102583e-08, 0.99648404)
-bones/7/rotation = Quaternion(-0.3167291, -0.038543828, -0.00020593054, 0.9477326)
-bones/8/rotation = Quaternion(-0.050181955, -0.0332916, 0.021948611, 0.99794376)
-bones/9/rotation = Quaternion(0.518988, 0.13954917, -0.16292392, 0.8274258)
+bones/7/rotation = Quaternion(-0.36055478, -0.028670352, -0.022547198, 0.9320246)
+bones/8/rotation = Quaternion(-0.06519946, -0.014645554, 0.008364491, 0.9977297)
+bones/9/rotation = Quaternion(0.53442496, 0.16863443, -0.21288179, 0.80039597)
 bones/10/rotation = Quaternion(-0.10381317, -0.170628, 0.61718214, 0.76104873)
 bones/11/rotation = Quaternion(-0.10381446, 0.17062953, -0.6171818, 0.7610485)
 bones/12/position = Vector3(0.0780042, 0.23866656, -0.055951495)
@@ -713,7 +728,7 @@ bones/19/rotation = Quaternion(-0.2599413, 0.011224373, -0.032679897, 0.965006)
 bones/20/rotation = Quaternion(-0.0506018, -0.023735443, 0.022546005, 0.99818224)
 bones/21/rotation = Quaternion(-0.005801933, 0.8009831, -0.5986583, 0.0009571037)
 bones/24/position = Vector3(-2.358284e-07, 0.41590542, 0.13402234)
-bones/24/rotation = Quaternion(-0.3405675, -0.011074636, -0.016278803, 0.940014)
+bones/24/rotation = Quaternion(-0.3502634, -0.009816479, -0.022836033, 0.93632144)
 bones/25/rotation = Quaternion(0.37291172, 0.75211686, -0.3567494, -0.4098622)
 bones/27/position = Vector3(0.16346815, -0.033711605, 0.03501077)
 bones/27/rotation = Quaternion(0.65134746, -7.604624e-07, 4.8117187e-07, 0.7587796)
@@ -742,7 +757,7 @@ category = 8
 stats = ExtResource("5_kqnlp")
 
 [node name="Wings" parent="metarig/Skeleton3D/BoneAttachment3D" index="1" instance=ExtResource("4_0xbmk")]
-transform = Transform3D(-1.0000002, -4.6080194e-07, -4.0211984e-07, 4.253356e-07, -0.051553365, -0.9986856, 4.3946608e-07, -0.9986552, 0.051554948, -0.00663417, 0.13393043, 0.092761755)
+transform = Transform3D(-1.0000002, -4.6080194e-07, -4.0211984e-07, 4.253356e-07, -0.051553365, -0.9986856, 4.3946608e-07, -0.9986552, 0.051554948, -0.0066340524, 0.14715596, 0.34895727)
 enabled = true
 category = 9
 stats = ExtResource("7_vlw85")
@@ -751,7 +766,7 @@ stats = ExtResource("7_vlw85")
 transform = Transform3D(-1.0000001, 1.0036416e-13, 8.7422876e-08, -8.715337e-08, -0.07845911, -0.99691737, 6.8589006e-09, -0.9969177, 0.07845908, -0.0025459745, 0.087706886, -0.055452432)
 
 [node name="BoneAttachmentOrnaments" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="1"]
-transform = Transform3D(0.9555923, 0.29451466, 0.0102599, 0.068633616, -0.18856215, -0.9796759, -0.28659004, 0.93686056, -0.20039654, 0.0031144477, 1.5085127, 0.715194)
+transform = Transform3D(0.87077135, 0.49088448, -0.028108347, 0.044179797, -0.13505027, -0.98986894, -0.48970008, 0.86069465, -0.13928017, 0.028133612, 1.5391994, 0.67165375)
 bone_name = "spine.011"
 bone_idx = 9
 
@@ -857,7 +872,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_g3w26")
 
 [node name="BoneAttachmentCollar" type="BoneAttachment3D" parent="metarig/Skeleton3D" index="2"]
-transform = Transform3D(0.99702895, 0.024804965, -0.0729264, -0.06772806, 0.733314, -0.67653126, 0.03669624, 0.67944795, 0.7328056, -2.3556638e-08, 1.1271229, 0.4011804)
+transform = Transform3D(0.9973395, 0.062702134, -0.037182443, -0.07239246, 0.79187906, -0.6063974, -0.008578086, 0.6074643, 0.79430085, -2.3556638e-08, 1.1271229, 0.4011804)
 bone_name = "spine.009"
 bone_idx = 7
 
@@ -999,8 +1014,9 @@ root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_0xbmk")
 anim_player = NodePath("../AnimationPlayer")
 parameters/running/blend_amount = 0.0
-parameters/run_timescale/scale = 1.0
 parameters/horns_down/add_amount = 0.0
+parameters/run_timescale/scale = 1.0
+parameters/add_deflect/add_amount = 1.0
 
 [node name="AnimateHolidaySpirit" type="AnimationPlayer" parent="." index="5"]
 unique_name_in_owner = true
@@ -1011,11 +1027,5 @@ libraries = {
 [node name="AudioHolidaySpirit" type="AudioStreamPlayer3D" parent="." index="6"]
 unique_name_in_owner = true
 stream = ExtResource("14_bdedn")
-
-[node name="AnimateDeflect" type="AnimationPlayer" parent="." index="7"]
-unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_g3w26")
-}
 
 [connection signal="visibility_changed" from="metarig/Skeleton3D/Cube" to="." method="_on_cube_visibility_changed"]

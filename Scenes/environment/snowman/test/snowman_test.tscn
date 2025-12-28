@@ -26,7 +26,7 @@ albedo_color = Color(1, 0, 1, 1)
 script = ExtResource("1_xkxt5")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, -18.707413, -100)
+transform = Transform3D(1, 0, 0, 0, 0.9931585, 0.11677474, 0, -0.11677474, 0.9931585, 0, -11.169704, -35.89248)
 collision_layer = 64
 collision_mask = 0
 
@@ -36,11 +36,22 @@ shape = SubResource("BoxShape3D_tslik")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
 mesh = SubResource("BoxMesh_i110u")
 
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.11677478, 0.9931585, 0, -0.9931585, -0.11677478, 0, 3.115799, 85.60437)
+collision_layer = 3
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_tslik")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+mesh = SubResource("BoxMesh_i110u")
+
 [node name="DeerMissileStart" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.95371693, 0.3007058, 0, -0.3007058, 0.95371693, 0, -6.836822, -60.459316)
+transform = Transform3D(1, 0, 0, 0, 0.95371693, 0.3007058, 0, -0.3007058, 0.95371693, 0, -7.5916758, -21.151596)
 
 [node name="DeerMissile" parent="." instance=ExtResource("1_cr8ub")]
-transform = Transform3D(1, 0, 0, 0, 0.95417243, 0.2992573, 0, -0.2992573, 0.95417243, 1.9073486e-06, -7.1311407, -59.807293)
+transform = Transform3D(1, 0, 0, 0, 0.95417243, 0.2992573, 0, -0.2992573, 0.95417243, 1.9073486e-06, -7.9455347, -20.491646)
 collision_layer = 69
 collision_mask = 65
 
@@ -48,7 +59,6 @@ collision_mask = 65
 
 [node name="Snowman" parent="." node_paths=PackedStringArray("snowball_container") instance=ExtResource("2_xkxt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.327, 300)
-shot_delay = 2.0
 snowball_container = NodePath("../SnowballContainer")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

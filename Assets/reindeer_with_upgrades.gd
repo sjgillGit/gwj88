@@ -3,12 +3,11 @@ extends Node3D
 
 @onready var pellet_producer: PelletProducer = %PelletProducer
 
-@export var horns_down: float = 0.0:
+var horns_down: float = 0.0:
 	set(v):
 		horns_down = v
 		if is_inside_tree():
 			%AnimationTree.set("parameters/horns_down/add_amount", horns_down)
-
 
 func show_holiday_spirit(value: bool):
 	if value:
@@ -29,7 +28,8 @@ func set_run_speed(value: float):
 
 
 func deflect():
-	$AnimateDeflect.play("deflect")
+	var pb := %AnimationTree.get("parameters/deflect/playback") as AnimationNodeStateMachinePlayback
+	pb.start("Start", true)
 
 func _ready() -> void:
 	set_run_speed(0)
@@ -58,7 +58,6 @@ func get_upgrades():
 		if c is Upgrade:
 			result.append(c)
 	return result
-
 
 ## hack because elf is made of a bunch of different cubes!
 func _on_cube_visibility_changed() -> void:

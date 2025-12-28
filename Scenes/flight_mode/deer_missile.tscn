@@ -33,15 +33,16 @@ direction = Vector3(0, 1, 0)
 initial_velocity_min = 1.5
 initial_velocity_max = 2.0
 gravity = Vector3(0, -2, 0)
+attractor_interaction_enabled = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_atssy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52web"]
 transparency = 3
 alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 shading_mode = 2
 albedo_texture = ExtResource("5_52web")
 emission_enabled = true
-emission = Color(0.49, 0.49, 0.49, 1)
+emission = Color(0.6830772, 0.6830774, 0.6830771, 1)
 disable_receive_shadows = true
 billboard_mode = 3
 billboard_keep_scale = true
@@ -51,7 +52,7 @@ particles_anim_loop = false
 fixed_size = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_le6g1"]
-material = SubResource("StandardMaterial3D_atssy")
+material = SubResource("StandardMaterial3D_52web")
 size = Vector2(0.03, 0.03)
 
 [sub_resource type="Animation" id="Animation_5a4eb"]
@@ -405,6 +406,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5439081, 0.18441439)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69667876, 2)
 top_level = true
+cast_shadow = 0
 emitting = false
 amount = 2000
 lifetime = 2.0
@@ -567,11 +569,14 @@ bus = &"Hoofbeats"
 
 [node name="AudioCollision" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("13_baogq")
+unit_size = 50.0
+max_db = -15.0
 max_polyphony = 6
 bus = &"SFX"
 
 [node name="AudioSnowSlide" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("14_wt145")
+unit_size = 50.0
 pitch_scale = 0.5
 bus = &"SFX"
 
