@@ -1,5 +1,5 @@
 @tool
-extends Node3D
+extends Area3D
 class_name Collectible
 
 const BIG_PICKUP_SOUND := preload("res://Assets/audio/sfx/VB GWJ 88 - big pickup.wav")
@@ -21,7 +21,7 @@ func _ready() -> void:
 	if item.color == Color.BLACK:
 		item.color = Color.from_ok_hsl(randf(), randf_range(0.5, 1.0), randf_range(0.5, 1.0))
 
-func _in_game() -> bool:
+func _in_flight_area() -> bool:
 	return owner && owner is FlightMain
 
 
@@ -32,10 +32,10 @@ func _update_asset():
 	if item.asset:
 		var ps := item.asset.instantiate() as Node3D
 		ps.name = "Item"
-		add_child(ps, true)
+		$CollectibleContainer.add_child(ps, true)
 		if 'color' in ps:
 			ps.color = item.color
-		if _in_game():
+		if _in_flight_area():
 			ps.transform.basis = ps.transform.basis.scaled(Vector3.ONE * item.game_scale)
 		var aabb := AABB(Vector3.ONE, Vector3.ONE * 2)
 		for mi: MeshInstance3D in ps.find_children("*", "MeshInstance3D"):
