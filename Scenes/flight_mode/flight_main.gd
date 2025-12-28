@@ -164,6 +164,7 @@ func _on_music_elf_finished() -> void:
 func _on_ending_win_body_entered(body: Node3D) -> void:
 	if body is DeerMissile:
 		%EndTimer.start()
+		_player.end_timer_running = true
 
 
 func _on_ending_space_body_entered(body: Node3D) -> void:
@@ -179,3 +180,7 @@ func _on_ending_hole_body_entered(body: Node3D) -> void:
 func _on_ending_beach_body_entered(body: Node3D) -> void:
 	if body is DeerMissile:
 		GameState.current = GameState.State.ENDING_BEACH
+
+
+func _on_end_timer_timeout() -> void:
+	GameState.current = GameState.State.ENDING_WIN

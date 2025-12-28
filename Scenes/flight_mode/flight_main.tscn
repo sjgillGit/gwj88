@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=63 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -7,26 +7,20 @@
 [ext_resource type="Script" uid="uid://m410she5703r" path="res://Scenes/flight_mode/ground.gd" id="3_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://d1mykj4pmspip" path="res://Assets/Flight/Platform.gltf" id="3_ph8sb"]
 [ext_resource type="PackedScene" uid="uid://xx6suxi72mm5" path="res://Assets/environment/Sky Box.glb" id="3_q1o5o"]
-[ext_resource type="Resource" uid="uid://8pvlg3psv1gb" path="res://Scripts/collectibles/star.tres" id="4_5q7js"]
 [ext_resource type="Texture2D" uid="uid://c2tntehikldvi" path="res://Scenes/flight_mode/gridbox.png" id="4_07op2"]
 [ext_resource type="PackedScene" uid="uid://mjsne3xi51hn" path="res://Assets/environment/tree3.gltf" id="5_jn6ig"]
-[ext_resource type="Resource" uid="uid://bqfjlidd3rpss" path="res://Scripts/collectibles/christmas_ball_gold.tres" id="6_1dmtx"]
+[ext_resource type="Resource" uid="uid://8pvlg3psv1gb" path="res://Scripts/collectibles/star.tres" id="5_phe0t"]
 [ext_resource type="Script" uid="uid://cq8tnxuq7c0ab" path="res://Scenes/flight_mode/top_platform.gd" id="6_g1wwy"]
 [ext_resource type="Texture2D" uid="uid://b0oegf6gricgi" path="res://Assets/ui/pen/Pen_Updated_Hay.png" id="6_jp6c4"]
 [ext_resource type="Script" uid="uid://ci5fibeb4q8ya" path="res://Scenes/flight_mode/physical_ramp.gd" id="7_m27rb"]
 [ext_resource type="PackedScene" uid="uid://b4pjvb1ao841e" path="res://Scenes/flight_mode/launch_zone.tscn" id="7_ph8sb"]
 [ext_resource type="PackedScene" uid="uid://csydagtxm53un" path="res://Scenes/flight_mode/cave.tscn" id="8_hcd8f"]
-[ext_resource type="Resource" uid="uid://b2s31dfnwed7n" path="res://Scripts/collectibles/christmas_ball_red.tres" id="8_y5w0d"]
 [ext_resource type="PackedScene" uid="uid://i54xyk4duyd2" path="res://Scenes/environment/booster.tscn" id="9_jp6c4"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="9_jp6c5"]
-[ext_resource type="Resource" uid="uid://chtcd67td0opx" path="res://Scripts/collectibles/christmas_ball_blue.tres" id="9_jxov2"]
 [ext_resource type="PackedScene" uid="uid://dnxusy2ufsi40" path="res://Scenes/environment/snowman/snowman.tscn" id="9_ydv3d"]
-[ext_resource type="Resource" uid="uid://beehu1nb8b2uq" path="res://Scripts/collectibles/christmas_ball_green.tres" id="10_cn3vy"]
-[ext_resource type="Resource" uid="uid://d06tliby3n4bo" path="res://Scripts/collectibles/christmas_ball_purple.tres" id="11_c5u5f"]
 [ext_resource type="PackedScene" uid="uid://c51djvfclnyar" path="res://Scenes/collectibles/collectible.tscn" id="11_d51bt"]
 [ext_resource type="ObjectResource" uid="uid://dktxmq3xdtd3v" path="res://Scenes/flight_mode/flight_main_terrain_obj2.tres" id="11_phe0t"]
 [ext_resource type="TextureSetsResource" uid="uid://cykwtc41je7tc" path="res://Scenes/flight_mode/flight_main_terrain_texsets.tres" id="11_vqvor"]
-[ext_resource type="Resource" uid="uid://bptv8e21pgjb3" path="res://Scripts/collectibles/christmas_ball_silver.tres" id="12_40fe5"]
 [ext_resource type="ObjectResource" uid="uid://cla6r7bxvw8gp" path="res://Scenes/flight_mode/flight_main_terrain_obj1.tres" id="12_phe0t"]
 [ext_resource type="SnowResource" uid="uid://gpl0df2xtjwi" path="res://Scenes/flight_mode/flight_main_terrain_snow.tres" id="13_ydv3d"]
 [ext_resource type="ZonesResource" uid="uid://dq7mowtumyvy6" path="res://Scenes/flight_mode/flight_main_zones.tres" id="14_meee6"]
@@ -70,10 +64,10 @@ _data = {
 point_count = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hcd8f"]
-size = Vector3(1000, 400, 1560)
+size = Vector3(1000, 435.31042, 1560)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vqvor"]
-size = Vector3(1200, 468.0039, 1296.3801)
+size = Vector3(1200, 501.66296, 1296.3801)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_phe0t"]
 radius = 16.549
@@ -102,7 +96,7 @@ material = SubResource("StandardMaterial3D_y5w0d")
 size = Vector2(5000, 5000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cn3vy"]
-size = Vector3(1000, 400, 400)
+size = Vector3(1000, 494.93872, 400)
 
 [sub_resource type="Animation" id="Animation_40fe5"]
 length = 0.001
@@ -184,70 +178,61 @@ environment = ExtResource("2_7afml")
 [node name="WindSide" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.2588191, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.2588191, 324.4095, 325.27792, 54.14614)
 area_size = Vector3(500, 200, 30)
-strength = 100.0
 
 [node name="WindSide9" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.8660254, -2.1855694e-08, 0.5, -2.1855694e-08, 1, 5.856217e-09, -0.5, -5.8562164e-09, -0.8660254, -227.85016, 325.27792, 288.64154)
 area_size = Vector3(300, 200, 30)
-strength = 100.0
 
 [node name="WindSide10" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.8660254, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, -0.8660254, 217.63118, 325.27792, 318.64154)
 area_size = Vector3(300, 200, 30)
-strength = 100.0
 
 [node name="WindSide11" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-1, 0, 2.9802322e-08, 0, 1, 0, -2.9802322e-08, 0, -1, -7.109494, 325.27792, 361.50568)
 area_size = Vector3(300, 200, 30)
-strength = 100.0
 
 [node name="WindSide2" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.48447, 281.39075, -257.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide4" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.4845, 281.39075, -554.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide5" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 366.48453, 281.39075, -859.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide6" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.03336, 281.39075, -257.56552)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide7" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.03336, 281.39075, -554.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide8" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-2.7818132e-08, 0, 1, 0, 1, 0, -1, 0, -2.7818132e-08, -408.0333, 281.39075, -859.56555)
 area_size = Vector3(300, 300, 30)
-strength = 100.0
 
 [node name="WindSide3" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-0.2588189, 0, 0.96592575, 0, 1, 0, -0.96592575, 0, -0.2588189, -369.14798, 313.9383, 14.019161)
 area_size = Vector3(500, 200, 30)
-strength = 100.0
 
 [node name="RampWind" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, -3.0894756, 272.61798, 223.06964)
-area_size = Vector3(200, 50, 200)
+transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, -3.0894756, 285.3061, 223.06964)
+area_size = Vector3(100, 30, 100)
 strength = 1.0
 
 [node name="WindStart" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -163.36319, 234.34697, -135.1036)
 area_size = Vector3(200, 100, 200)
+strength = 10.0
 
 [node name="WindStart2" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, 108.2236, 234.34697, -118.895226)
 area_size = Vector3(200, 100, 200)
+strength = 10.0
 
 [node name="WindStart4" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(-5.7620454e-08, 0, 1, 0, 1, 0, -1, 0, -5.7620454e-08, -38.50708, 221.34697, -42.493435)
@@ -255,24 +240,31 @@ area_size = Vector3(75, 75, 75)
 strength = 5.0
 
 [node name="Wind4" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 117.30375, 276.20688, -412.42282)
+transform = Transform3D(0.96592575, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.96592575, 174.77553, 276.20688, -427.82236)
 area_size = Vector3(300, 200, 200)
+strength = 20.0
+
+[node name="Wind5" parent="Weather" instance=ExtResource("3_7afml")]
+transform = Transform3D(0.9968774, 0, 0.07896369, 0, 1, 0, -0.07896369, 0, 0.9968774, -39.040768, 171.451, -824.45715)
+area_size = Vector3(80, 100, 300)
+strength = 20.0
 
 [node name="Wind7" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, -121.12686, 301.9218, -432.49283)
-area_size = Vector3(300, 200, 200)
+transform = Transform3D(0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, 0.8660253, -121.12686, 388.20044, -432.49283)
+area_size = Vector3(400, 200, 200)
+strength = 20.0
 
 [node name="WindCeiling" parent="Weather" instance=ExtResource("3_7afml")]
-transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 16.255539, 367.02304, -429.54886)
-area_size = Vector3(500, 10, 500)
-direction = Vector3(0, -1, 0)
-strength = 100.0
+transform = Transform3D(0.9659257, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.9659257, 16.255539, 417.85013, -429.54886)
+area_size = Vector3(300, 20, 300)
+direction = Vector3(0, -0.7071068, 0.7071068)
+strength = 20.0
 
 [node name="WindCeiling2" parent="Weather" instance=ExtResource("3_7afml")]
 transform = Transform3D(0.9659257, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.9659257, 18.46212, 367.02304, -12.776642)
-area_size = Vector3(500, 10, 500)
-direction = Vector3(0, -1, 0)
-strength = 100.0
+area_size = Vector3(300, 20, 300)
+direction = Vector3(0, -0.7071068, 0.7071068)
+strength = 20.0
 
 [node name="Collectibles" type="Node3D" parent="."]
 
@@ -758,20 +750,21 @@ decal_scale = 0.5
 speed_boost = 2.25
 
 [node name="PlayArea" type="Area3D" parent="."]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.368958, 247.10342, -267.59796)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.368958, 264.75864, -267.59796)
 shape = SubResource("BoxShape3D_hcd8f")
 debug_color = Color(0, 0.98039216, 0.30980393, 0.79607844)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="PlayArea"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 16.368958, 48.936108, -1281.8269)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 16.368958, 65.192184, -1286.1827)
 shape = SubResource("BoxShape3D_vqvor")
 debug_color = Color(0, 0.98, 0.31033328, 0.79607844)
 
 [node name="EndingWin" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.356342, -148.42445, -1512.8367)
+linear_damp_space_override = 1
+linear_damp = 0.9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndingWin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.470901, -3.7654877, -10.131592)
@@ -787,8 +780,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="EndingSpace" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 412, -944.17267)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 447.30664, -944.17267)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndingSpace"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 234.58612, 627.25085)
@@ -802,7 +794,6 @@ debug_color = Color(0.98, 0.06533333, 0, 0.79607844)
 
 [node name="EndingHole" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -412.53598, 0)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndingHole"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.368958, 255.85342, 112.97383)
@@ -816,14 +807,13 @@ debug_color = Color(0.98, 0.06533333, 0, 0.79607844)
 
 [node name="EndingBeach" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -142.07143, -2111.036)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EndingBeach"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -28.126266, -2150.7427)
 mesh = SubResource("PlaneMesh_jxov2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EndingBeach"]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, -15.193649, 4.071045)
 shape = SubResource("BoxShape3D_cn3vy")
 debug_color = Color(0.98, 0.06533333, 0, 0.79607844)
 
@@ -931,6 +921,7 @@ bus = &"Music"
 
 [connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
 [connection signal="body_entered" from="EndingWin" to="." method="_on_ending_win_body_entered"]
+[connection signal="timeout" from="EndingWin/EndTimer" to="." method="_on_end_timer_timeout"]
 [connection signal="body_entered" from="EndingSpace" to="." method="_on_ending_space_body_entered"]
 [connection signal="body_entered" from="EndingHole" to="." method="_on_ending_hole_body_entered"]
 [connection signal="body_entered" from="EndingBeach" to="." method="_on_ending_beach_body_entered"]

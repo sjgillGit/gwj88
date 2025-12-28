@@ -5,7 +5,7 @@ extends Node3D
 
 @export var horns_down: float = 0.0:
 	set(v):
-		horns_down = v * 0.5
+		horns_down = v
 		if is_inside_tree():
 			%AnimationTree.set("parameters/horns_down/add_amount", horns_down)
 

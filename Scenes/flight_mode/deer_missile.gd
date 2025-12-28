@@ -57,7 +57,7 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @onready var _boost_sfx := $AudioBigBoost as AudioStreamPlayer3D
 @onready var _boost_small_sfx := $AudioSmallBoost as AudioStreamPlayer3D
 @onready var _elf_gib_b_sfx := $AudioElfGibberishB as AudioStreamPlayer3D
-@onready var _particle_repellant := %GPUParticlesAttractorSphere3D as GPUParticlesAttractorSphere3D
+@onready var _particle_repellant := %GPUParticlesAttractorVectorField3D as GPUParticlesAttractorVectorField3D
 @onready var _snow_debris_particles := %GPUParticlesSnowDebris
 
 
@@ -69,6 +69,8 @@ var flight_distance_str := ""
 var roll_distance_str := ""
 var money_collected := 0
 var speed_str := ""
+
+var end_timer_running := false
 
 var _launch_point: Vector3
 var _impact_point: Vector3
@@ -99,6 +101,7 @@ var _holiday_spirit_on_cooldown := false
 
 var _default_angular_damp := angular_damp
 
+var _wind_detector_areas: Array[int]
 var _overlapping_areas: Array[int]
 var _current_flight_state := FlightState.SETUP
 var _setup_time_left := 0.0
@@ -283,18 +286,19 @@ func _is_terrain(b: Node3D) -> Ground:
 
 
 func _setup_quick_time_event_landed():
-	_qte_end = QuickTimeEventScreen.add_quick_time_event(
-		self,
-		"End this run and collect rewards",
-		6,
-		INF,
-		(func(_unused):
-		_flight_state_changed(FlightState.POST_FLIGHT)
-		if _qte_end:
-			_qte_end.queue_free()
-			_qte_end = null
+	if !end_timer_running:
+		_qte_end = QuickTimeEventScreen.add_quick_time_event(
+			self,
+			"End this run and collect rewards",
+			6,
+			INF,
+			(func(_unused):
+			_flight_state_changed(FlightState.POST_FLIGHT)
+			if _qte_end:
+				_qte_end.queue_free()
+				_qte_end = null
+			)
 		)
-	)
 
 
 func activate_holiday_spirit(value: bool):
@@ -303,6 +307,9 @@ func activate_holiday_spirit(value: bool):
 	if value:
 		_holiday_spirit_on_cooldown = true
 		$HSCooldown.start()
+	else:
+		if _qte_wind:
+			_qte_wind.queue_free()
 
 ## 0.0, 1.0, 2.0
 func get_holiday_spirit() -> float:
@@ -408,7 +415,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		_snow_debris_particles.global_position = d.global_position
 		_debris.append(d.get_instance_id())
 		_last_debris_pos = state.transform.origin
-		if len(_debris) > 200 || Engine.get_frames_per_second() < 45:
+		if len(_debris) > 200 || Engine.get_frames_per_second() < 25:
 			var id = _debris.pop_front()
 			d = instance_from_id(id)
 			if d:
@@ -425,26 +432,12 @@ func _update_wind(state: PhysicsDirectBodyState3D):
 			a.apply_physics(state, mass)
 			if a is Wind:
 				var ws = a.get_wind_strength_w_hs(hs)
-				wind_direction += a.get_global_wind_direction() * ws
 				wind_strength += ws
-				var can_use := _current_flight_state == FlightState.FLIGHT && \
-					_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated && \
-					!_holiday_spirit_on_cooldown
-				if !_qte_wind && can_use:
-					_qte_wind = QuickTimeEventScreen.add_quick_time_event(
-						self,
-						"Activate Holiday Spirit",
-						4,
-						4,
-						(func(success):
-						if success:
-							activate_holiday_spirit(true)
-						_qte_wind.queue_free()
-						_qte_wind = null
-						)
-
-					)
-	var wrs := -(hs * 250.0) - 0.01
+				wind_direction += a.get_global_wind_direction() * ws
+				_try_show_hs_qte(hs)
+	if len(_wind_detector_areas):
+		_try_show_hs_qte(hs)
+	var wrs := (hs * 50.0)
 	_particle_repellant.strength = wrs
 	if wind_direction:
 		_wind_amount = wind_direction.length()
@@ -461,6 +454,25 @@ func _update_wind(state: PhysicsDirectBodyState3D):
 		mi.transparency = 1.0 - opacity
 	_wind_indicator.visible = opacity > 0
 
+
+func _try_show_hs_qte(hs: float):
+	var can_use := _current_flight_state == FlightState.FLIGHT && \
+		_upgrade_holiday_spirit > 0 && !_holiday_spirit_activated && \
+		!_holiday_spirit_on_cooldown
+	if !_qte_wind && can_use:
+		_qte_wind = QuickTimeEventScreen.add_quick_time_event(
+			self,
+			"Activate Holiday Spirit",
+			4,
+			4,
+			(func(success):
+			if success:
+				activate_holiday_spirit(true)
+			_qte_wind.queue_free()
+			_qte_wind = null
+			)
+
+		)
 
 func _update_snowballs(state: PhysicsDirectBodyState3D):
 	if _qte_snowball != null || _upgrade_toughness < 1.0 || _current_flight_state != FlightState.FLIGHT:
@@ -643,12 +655,14 @@ func _print_stats():
 	var ps := %PhysicsStats as Label
 	var stats := []
 	for k in _stats:
-		stats.append("%s: %s" % [k, _stats[k]])
+		if _stats[k] is String:
+			stats.append("%s: %s" % [k, _stats[k]])
 	ps.text = "\n".join([
 		speed_str,
 		flight_distance_str,
 		roll_distance_str,
-		"\n".join(stats.filter(func(s): return s is String))
+		"\n".join(stats),
+		"fps: %s" % [Engine.get_frames_per_second()]
 	])
 
 func _update_input(delta) -> void:
@@ -718,9 +732,11 @@ func remove_area(area: Area3D):
 	elif area is StagingArea:
 		_in_staging_area = false
 	elif area is Wind:
-		if _qte_wind:
-			_qte_wind.queue_free()
-		activate_holiday_spirit(false)
+		if !len(_wind_detector_areas) && !_overlapping_areas.any(func(id):
+			var a := instance_from_id(id)
+			return a is Wind && a != area
+		):
+			activate_holiday_spirit(false)
 	_overlapping_areas.erase(area.get_instance_id())
 
 
@@ -772,3 +788,15 @@ func _on_hs_cooldown_timeout() -> void:
 func _on_sleeping_state_changed() -> void:
 	if sleeping:
 		%Reindeer.set_run_speed(0)
+
+
+func _on_wind_detector_area_entered(area: Area3D) -> void:
+	_wind_detector_areas.append(area.get_instance_id())
+
+
+func _on_wind_detector_area_exited(area: Area3D) -> void:
+	_wind_detector_areas.erase(area.get_instance_id())
+	if !len(_wind_detector_areas) && !_overlapping_areas.any(func(id):
+		return instance_from_id(id) is Wind
+	):
+		activate_holiday_spirit(false)

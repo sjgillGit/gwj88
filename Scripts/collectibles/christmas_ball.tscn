@@ -9,6 +9,7 @@ metallic = 1.0
 roughness = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_cb8se"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_a2jl3")
 radial_segments = 16
 rings = 8

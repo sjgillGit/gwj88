@@ -7,7 +7,7 @@ class_name Wind
 @onready var snow_particles: GPUParticles3D = %SnowParticles
 @onready var cloud_particles: GPUParticles3D = %CloudParticles
 @onready var cloud_particles2: GPUParticles3D = %CloudParticles2
-
+@export_tool_button("Reset Clouds") var reset_clouds := _reset_clouds
 @export var area_size: Vector3 = Vector3.ONE:
 	set(value):
 		area_size = value
@@ -34,6 +34,8 @@ static var disable_cloud_alpha := false
 static var last_layer_num := 0
 
 func _ready() -> void:
+	if !Engine.is_editor_hint():
+		$SampleGPUParticlesAttractorVectorField3D.queue_free()
 	area_size = area_size
 	direction = direction
 	strength = strength
@@ -44,7 +46,9 @@ func _ready() -> void:
 	_cloud_layer_num = last_layer_num
 	last_layer_num = (last_layer_num + 1) % 32
 
-
+func _reset_clouds():
+	print("Clouds reset")
+	cloud_particles.restart()
 
 ## direction of wind, unit vector
 func get_global_wind_direction():
@@ -79,9 +83,6 @@ func _physics_process(_delta: float) -> void:
 				elif hs > 0:
 					hs_brightness = 1.0
 				_update_particles(hs_mod)
-				#for p in [particles, snow_particles]:
-					#p.global_position = dm.global_position + dm.linear_velocity.clampf(-25, 25)
-					#p.global_position = dm.global_position + dm.linear_velocity.clampf(-25, 25)
 			body.apply_central_force(global_basis * direction * hs_mod * strength * body.mass)
 
 		var mat := cloud_particles.draw_pass_1.material as StandardMaterial3D
@@ -90,7 +91,6 @@ func _physics_process(_delta: float) -> void:
 
 func _update_shape() -> void:
 	if collision_shape.shape is BoxShape3D:
-		print('updateshape', area_size)
 		collision_shape.shape.size = area_size
 	$FogVolume.size = area_size
 
@@ -103,38 +103,48 @@ func _update_audio() -> void:
 	# average of all three sides.. I guess we should try to make them squarish in the editor
 	$AudioStreamPlayer3D.max_distance = (area_size.length() / 3.0) * 1.5
 
-func _update_particles(hs_mod := 0.0) -> void:
+func _update_particles(hs_mod := 1.0) -> void:
 	if not particles:
 		return
 	var ratio := clampf(area_size.length() / 300.0 + 0.1, 0.25, 1.0)
-	snow_particles.amount_ratio = ratio
 	var strength_percent := minf((strength + 50.0) / 150.0, 1.0)
+
+	for cp in [cloud_particles, cloud_particles2]:
+		var cp_mat := cp.draw_pass_1.material as StandardMaterial3D
+		assert(cp.draw_pass_1.get_local_scene(), 'Resource must be local to scene: %s' % [cp.draw_pass_1.get_id_for_path(cp.get_path())])
+		assert(cp_mat.get_local_scene(), 'Resource must be local to scene: %s' % [cp_mat.get_id_for_path(cp.get_path())])
+		cp_mat.albedo_color.a = strength_percent
+	snow_particles.amount_ratio = ratio
+	particles.amount_ratio = minf(strength_percent * 0.75 + 0.25, 1.0)
+
 	assert(_cloud_layer_num < 32)
-	cloud_particles.layers = 1 << (_cloud_layer_num)
-	print('cloud_layer: ', _cloud_layer_num, ' : ', cloud_particles.layers)
+	cloud_particles.layers = 1 << _cloud_layer_num
+	particles.layers = 1 << _cloud_layer_num
 	for cb: GPUParticlesCollisionBox3D in cloud_particles.get_children():
-		cb.layers = cloud_particles.layers
-	particles.lifetime = (1.0 - strength_percent) + 0.5
+		cb.cull_mask = cloud_particles.layers
+	particles.lifetime = (1.0 - strength_percent) * 0.5 + 0.1
 	for p: GPUParticles3D in [particles, snow_particles]:
 		var mat := p.process_material as ParticleProcessMaterial
+		assert(mat.get_local_scene(), 'Resource must be local to scene: %s' % [mat.get_id_for_path(p.get_path())])
 		# Match emission volume to wind area
 
 		# Push particles in wind direction
-		mat.direction = direction * hs_mod
-		p.amount_ratio = strength_percent
+		assert(hs_mod != 0, "hsmod can't be 0")
+		mat.direction = (direction * hs_mod).normalized()
 		if p == particles:
 			mat.initial_velocity_max = strength_percent * 50.0
-			mat.initial_velocity_max = strength_percent * 40.0
+			mat.initial_velocity_min = strength_percent * 45.0
 		elif p == snow_particles:
-			mat.initial_velocity_max = strength_percent * 30.0
-			mat.initial_velocity_max = strength_percent * 20.0
+			mat.initial_velocity_max = strength_percent * 50.0
+			mat.initial_velocity_min = strength_percent * 40.0
 		else:
 			assert(false, 'unknown particle emitter')
 
 		mat.turbulence_noise_strength = strength * 10
 	# put these particle emitters on the far side so the snow/wind particles are actually inside the particle box...
-	particles.position = -direction * area_size * 0.25
+	particles.position = -direction * area_size * 0.1
 	snow_particles.position = particles.position
+
 	_reset_particle_sizes()
 
 
@@ -142,22 +152,32 @@ func _reset_particle_sizes():
 	var aabb := AABB(Vector3(), Vector3())
 	aabb = aabb.expand(area_size)
 	aabb = aabb.expand(area_size * -1)
-	var cloud_mesh := cloud_particles.draw_pass_1 as QuadMesh
-	cloud_mesh.size = Vector2.ONE * area_size.length() * 0.25
-	cloud_particles.collision_base_size = area_size.length() * 0.1
-	cloud_particles.amount_ratio = minf(0.5, area_size.length() / 200.0) + 0.5
+	for cp: GPUParticles3D in [cloud_particles, cloud_particles2]:
+		var cloud_mesh := cp.draw_pass_1 as QuadMesh
+		cloud_mesh.size = Vector2.ONE * area_size.length() * 0.25
+		cp.collision_base_size = area_size[area_size.min_axis_index()] * 0.1
+		cp.amount_ratio = minf(0.5, area_size.length() / 100.0) + 0.5
+		assert(cloud_mesh.get_local_scene(), 'Resource must be local to scene: %s' % [cloud_mesh.get_id_for_path(cp.get_path())])
+
 	for cb: GPUParticlesCollisionBox3D in cloud_particles.get_children():
-		cb.position = cb.position.normalized() * area_size
+		var pos_n := cb.position.normalized()
+		cb.position = pos_n * area_size
+		var other_axes := (pos_n.abs() * -1.0) + Vector3.ONE
+		cb.size = other_axes * area_size * 2.0 + pos_n.abs()
 
 	for p: GPUParticles3D in [particles, snow_particles, cloud_particles, cloud_particles2]:
 		p.visibility_aabb = aabb
 		var mat := p.process_material as ParticleProcessMaterial
+		assert(mat.get_local_scene(), 'Resource must be local to scene: %s' % [mat.get_id_for_path(p.get_path())])
 		var modifier := Vector3.ONE
 		match p:
 			cloud_particles2: modifier = Vector3.ONE
 			cloud_particles: modifier = Vector3(0.45, 0.35, 0.45)
 			particles: modifier = Vector3.ONE * 0.5
 		mat.emission_box_extents = area_size * modifier
+		# force reset the amount
+		if Engine.is_editor_hint():
+			p.restart()
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -178,13 +198,15 @@ func _on_body_exited(body: Node3D) -> void:
 
 func _on_timer_timeout() -> void:
 	# alpha clouds half the fps, disable them if we have a low frame rate
-	if Engine.get_frames_per_second() < 45 && !Engine.is_editor_hint():
+	if Engine.get_frames_per_second() < 25 && !Engine.is_editor_hint():
 		Wind.disable_cloud_alpha = true
 		_update_cloud_alpha()
 
 
 func _update_cloud_alpha():
 	if Wind.disable_cloud_alpha:
-		$CloudParticles.draw_order = GPUParticles3D.DRAW_ORDER_INDEX
-		var mat := $CloudParticles.draw_pass_1.material as StandardMaterial3D
-		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
+		for cp in [cloud_particles, cloud_particles2]:
+			cp.draw_order = GPUParticles3D.DRAW_ORDER_INDEX
+			var mat := cp.draw_pass_1.material as StandardMaterial3D
+			assert(mat.get_local_scene(), 'Resource must be local to scene: %s' % [mat.get_id_for_path(cp.get_path())])
+			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_HASH
