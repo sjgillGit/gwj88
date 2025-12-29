@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bmqkplxqd8vl5"]
+[gd_scene load_steps=77 format=3 uid="uid://bmqkplxqd8vl5"]
 
 [ext_resource type="Script" uid="uid://b6a8t6ogcsmqy" path="res://Scenes/flight_mode/flight_main.gd" id="1_25o61"]
 [ext_resource type="Environment" uid="uid://yo7josk7ecp2" path="res://Scenes/environment/flight_main_environment.tres" id="2_7afml"]
@@ -34,6 +34,7 @@
 [ext_resource type="Material" uid="uid://dlyyi1i85mxu5" path="res://Assets/material_testers/sand.tres" id="32_cn3vy"]
 [ext_resource type="PackedScene" uid="uid://chdkega0lj3lf" path="res://Assets/environment/palm_tree.tscn" id="33_c5u5f"]
 [ext_resource type="Texture2D" uid="uid://baox3iy17p4dl" path="res://Scenes/ui/endings/ending_beach.jpg" id="34_c5u5f"]
+[ext_resource type="Script" uid="uid://dmk80t1x1pfpb" path="res://Scenes/flight_mode/throw_elf.gd" id="35_40fe5"]
 [ext_resource type="PackedScene" uid="uid://c4wlvqxeux131" path="res://Scenes/environment/icicle_cluster.tscn" id="134_mp7iw"]
 [ext_resource type="Script" uid="uid://bkb4pnsolfh03" path="res://Scenes/flight_mode/staging_area.gd" id="136_f6rav"]
 [ext_resource type="Script" path="res://Scenes/flight_mode/guide_context.gd" id="186_7afml"]
@@ -99,6 +100,9 @@ shading_mode = 0
 albedo_texture = ExtResource("34_c5u5f")
 uv1_scale = Vector3(2, 1.5, 2)
 uv1_offset = Vector3(0.5, 0, 0)
+distance_fade_mode = 1
+distance_fade_min_distance = 775.95
+distance_fade_max_distance = 600.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_r72i1"]
 material = SubResource("StandardMaterial3D_40fe5")
@@ -161,6 +165,10 @@ _data = {
 &"RESET": SubResource("Animation_40fe5"),
 &"water": SubResource("Animation_c5u5f")
 }
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r72i1"]
+height = 40.0
+radius = 200.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d7dld"]
 rough = true
@@ -921,7 +929,7 @@ shadow_enabled = true
 omni_range = 303.69028
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EndingBeach/Beach"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1124.1582, -404.88965)
+transform = Transform3D(1, 0, 0, 0, 0.9987158, -0.050662667, 0, 0.050662667, 0.9987158, 0, -1124.4629, -260.89917)
 mesh = SubResource("QuadMesh_r72i1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EndingBeach"]
@@ -938,6 +946,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_r72i1")
 }
 autoplay = "water"
+
+[node name="ThrowElf" type="Area3D" parent="EndingBeach"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.35307, -6.1229553, 444.8739)
+script = ExtResource("35_40fe5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndingBeach/ThrowElf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.894226, -95.5802)
+shape = SubResource("CylinderShape3D_r72i1")
 
 [node name="FallbackGround" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.98857033, 0.15076049, 0, -0.15076049, 0.98857033, 0, -127.24185, -834.35333)
@@ -998,6 +1014,7 @@ layout_mode = 2
 text = "Emit Cube"
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
 autostart = true
 
 [node name="GuideDebugger" parent="." instance=ExtResource("9_jp6c5")]

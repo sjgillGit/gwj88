@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=51 format=3 uid="uid://cu0dhstc00cj5"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=53 format=3 uid="uid://cu0dhstc00cj5"]
 
 [ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_t2r0o"]
 [ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="2_3d3ve"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://3vqfs786vcsa" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard_actions/switch_to_controller.tres" id="11_8f55u"]
 [ext_resource type="Script" uid="uid://w3fbpe7r01n8" path="res://addons/guide/inputs/guide_input_any.gd" id="12_v4fph"]
 [ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/action.tres" id="13_48d2l"]
+[ext_resource type="Script" uid="uid://b52rqq28tuqpg" path="res://addons/guide/triggers/guide_trigger_pressed.gd" id="14_3d3ve"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="14_pgavw"]
 
 [sub_resource type="Resource" id="Resource_d5vxv"]
@@ -177,9 +178,13 @@ input_mappings = Array[ExtResource("3_3p775")]([SubResource("Resource_oh8td")])
 script = ExtResource("4_pd8a2")
 key = 32
 
+[sub_resource type="Resource" id="Resource_3p775"]
+script = ExtResource("14_3d3ve")
+
 [sub_resource type="Resource" id="Resource_4mv0b"]
 script = ExtResource("3_3p775")
 input = SubResource("Resource_vskey")
+triggers = Array[ExtResource("8_sop4t")]([SubResource("Resource_3p775")])
 
 [sub_resource type="Resource" id="Resource_8hlui"]
 script = ExtResource("1_t2r0o")

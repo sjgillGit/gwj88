@@ -118,6 +118,7 @@ var _qte_start: QuickTimeEventScreen.QTE
 var _qte_end: QuickTimeEventScreen.QTE
 var _qte_wind: QuickTimeEventScreen.QTE
 var _qte_barrel_roll: QuickTimeEventScreen.QTE
+var _qte_throw_elf: QuickTimeEventScreen.QTE
 
 @onready var _wind_indicator := %WindIndicator
 
@@ -721,7 +722,25 @@ func add_area(area: Area3D):
 		_in_launch_zone = true
 	elif area is StagingArea:
 		_in_staging_area = true
+	elif area is ThrowElf && !_qte_throw_elf:
+		_qte_throw_elf = QuickTimeEventScreen.add_quick_time_event(
+			self,
+			"Lighten the load",
+			1,
+			INF,
+			_throw_elf
+		)
 	_overlapping_areas.append(area.get_instance_id())
+
+
+func _throw_elf(success):
+	if success:
+		%Reindeer.throw_elf()
+
+
+func _on_reindeer_elf_thrown() -> void:
+	apply_central_impulse(global_basis * Vector3(0, 250.0, 1500.0))
+	mass -= 10.0
 
 
 func remove_area(area: Area3D):

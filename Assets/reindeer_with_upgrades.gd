@@ -1,6 +1,8 @@
 class_name Reindeer
 extends Node3D
 
+signal elf_thrown()
+
 @onready var pellet_producer: PelletProducer = %PelletProducer
 
 var horns_down: float = 0.0:
@@ -30,6 +32,24 @@ func set_run_speed(value: float):
 func deflect():
 	var pb := %AnimationTree.get("parameters/deflect/playback") as AnimationNodeStateMachinePlayback
 	pb.start("Start", true)
+
+func throw_elf():
+	if !%Elf.freeze:
+		return
+	var pb := %AnimationTree.get("parameters/throw_elf/playback") as AnimationNodeStateMachinePlayback
+	pb.start("Throw", true)
+	%ThrowElfTimer.start()
+
+func _on_throw_elf_timer_timeout() -> void:
+	var elf := %Elf
+	elf.freeze = false
+	elf.sleeping = false
+	elf.top_level = true
+	var cs := elf.get_node_or_null("CollisionShape3D")
+	if cs:
+		cs.disabled = false
+	elf.apply_central_impulse(global_basis * Vector3(-10.0, 0, 0))
+	elf_thrown.emit()
 
 func _ready() -> void:
 	set_run_speed(0)
