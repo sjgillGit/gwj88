@@ -41,8 +41,8 @@ const FlightState = preload("res://Scripts/flight_state.gd").FlightState
 @export var show_debug_ui := false:
 	set(value):
 		show_debug_ui = value
-		if is_node_ready() && EngineDebugger.is_active():
-			%DebugUi.visible = value
+		if is_node_ready():
+			%DebugUi.visible = value && EngineDebugger.is_active()
 
 @export_category("GUIDE")
 @export var movement: GUIDEAction
