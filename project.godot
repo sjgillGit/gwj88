@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GWJ88"
+config/name="Ringo Learns  To Fly - GWJ88"
 run/main_scene="res://Main/RootNode.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://Assets/icon.svg"
+config/icon="uid://bmf5x08fraxro"
 
 [audio]
 
@@ -147,5 +147,6 @@ action={
 
 [rendering]
 
+rendering_device/driver.macos="vulkan"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/screen_space_aa=1
