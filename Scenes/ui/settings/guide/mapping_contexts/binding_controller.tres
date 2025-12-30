@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=35 format=3 uid="uid://dubuepcs1w17f"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=35 format=3 uid="uid://clgj688a2mri1"]
 
 [ext_resource type="Resource" uid="uid://bohjda85owgnc" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_actions/ui_accept.tres" id="1_rokdq"]
 [ext_resource type="Script" uid="uid://rvttn472ix6v" path="res://addons/guide/inputs/guide_input_joy_button.gd" id="2_30snk"]

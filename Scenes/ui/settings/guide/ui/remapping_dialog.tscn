@@ -1,13 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://bq0w7uaotgfct"]
+[gd_scene load_steps=26 format=3 uid="uid://bq0w7uaotgfct"]
 
 [ext_resource type="Script" uid="uid://5crxnd8ysf6" path="res://Scenes/ui/settings/guide/ui/remapping_dialog.gd" id="1_6hgqj"]
-[ext_resource type="Resource" uid="uid://cu0dhstc00cj5" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard_map_context.tres" id="2_cgour"]
+[ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="3_kpuy5"]
 [ext_resource type="Script" uid="uid://db27ccgomq455" path="res://addons/guide/remapping/guide_input_detector.gd" id="3_o0nvn"]
-[ext_resource type="Resource" uid="uid://dxue2qfb0qr24" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_map_context.tres" id="3_tgkdx"]
+[ext_resource type="Resource" path="res://Scenes/ui/settings/guide/mapping_contexts/binding_map_context.tres" id="4_g3g6e"]
 [ext_resource type="PackedScene" uid="uid://bme1y0ikthda7" path="res://Scenes/ui/settings/guide/ui/binding_row.tscn" id="4_iojgu"]
 [ext_resource type="PackedScene" uid="uid://cj1h0wxamje4s" path="res://Scenes/ui/settings/guide/ui/binding_section.tscn" id="5_8v80s"]
-[ext_resource type="Resource" uid="uid://bqd45wwsetlyg" path="res://Scenes/ui/settings/guide/mapping_contexts/binding_keyboard.tres" id="5_tw3jw"]
-[ext_resource type="Resource" uid="uid://dubuepcs1w17f" path="res://Scenes/ui/settings/guide/mapping_contexts/binding_controller.tres" id="6_gdrkn"]
 [ext_resource type="Resource" uid="uid://bcum2m26we6ct" path="res://Scenes/ui/settings/guide/mapping_contexts/shared_actions/close_menu.tres" id="7_djty7"]
 [ext_resource type="Resource" uid="uid://3vqfs786vcsa" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard_actions/switch_to_controller.tres" id="8_lj8gw"]
 [ext_resource type="Resource" uid="uid://ce3ytxn2tcxxe" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_actions/switch_to_keyboard.tres" id="9_brmt1"]
@@ -46,12 +44,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("15_tnwfp")
 script = ExtResource("1_6hgqj")
-keyboard_context = ExtResource("2_cgour")
-controller_context = ExtResource("3_tgkdx")
-binding_keyboard_context = ExtResource("5_tw3jw")
-binding_controller_context = ExtResource("6_gdrkn")
+combined_context = ExtResource("3_kpuy5")
+binding_context = ExtResource("4_g3g6e")
 close_dialog = ExtResource("7_djty7")
 switch_to_controller = ExtResource("8_lj8gw")
 switch_to_keyboard = ExtResource("9_brmt1")
@@ -122,27 +117,21 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("15_tnwfp")
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 clip_tabs = false
 
-[node name="Keyboard" type="Panel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
-visible = false
+[node name="Keyboard" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tnwfp")
 metadata/_tab_index = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Keyboard/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -153,23 +142,20 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Controller" type="Panel" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
+[node name="Controller" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ui755")
 metadata/_tab_index = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer"]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -208,8 +194,9 @@ text = "Deadzone"
 
 [node name="DeadzoneHSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/TabContainer/Controller/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 0.99
 step = 0.01

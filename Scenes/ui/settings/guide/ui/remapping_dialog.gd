@@ -6,10 +6,12 @@ signal closed(applied_config:GUIDERemappingConfig)
 const Utils = preload("../guide_utils.gd")
 
 # Input
-@export var keyboard_context:GUIDEMappingContext
-@export var controller_context:GUIDEMappingContext
-@export var binding_keyboard_context:GUIDEMappingContext
-@export var binding_controller_context:GUIDEMappingContext
+@export var combined_context:GUIDEMappingContext
+#@export var keyboard_context:GUIDEMappingContext
+#@export var controller_context:GUIDEMappingContext
+@export var binding_context:GUIDEMappingContext
+#@export var binding_keyboard_context:GUIDEMappingContext
+#@export var binding_controller_context:GUIDEMappingContext
 @export var close_dialog:GUIDEAction
 @export var switch_to_controller:GUIDEAction
 @export var switch_to_keyboard:GUIDEAction
@@ -46,8 +48,8 @@ var _focused_control:Control = null
 func _ready() -> void:
 	# connect the actions that the remapping dialog uses
 	close_dialog.triggered.connect(_on_close_dialog)
-	switch_to_controller.triggered.connect(_switch.bind(binding_controller_context))
-	switch_to_keyboard.triggered.connect(_switch.bind(binding_keyboard_context))
+	#switch_to_controller.triggered.connect(_switch.bind(binding_controller_context))
+	#switch_to_keyboard.triggered.connect(_switch.bind(binding_keyboard_context))
 	previous_tab.triggered.connect(_switch_tab.bind(-1))
 	next_tab.triggered.connect(_switch_tab.bind(1))
 
@@ -56,12 +58,14 @@ func open() -> void:
 	# switch the tab to the scheme that is currently enabled
 	# to make life a bit easier for the player, and also
 	# enable the correct mapping context for the binding dialog
-	if GUIDE.is_mapping_context_enabled(controller_context):
-		_tab_container.current_tab = 1
-		GUIDE.enable_mapping_context(binding_controller_context, true)
-	else:
-		_tab_container.current_tab = 0
-		GUIDE.enable_mapping_context(binding_keyboard_context, true)
+	_tab_container.current_tab = 0
+	GUIDE.enable_mapping_context(binding_context, true)
+	#if GUIDE.is_mapping_context_enabled(controller_context):
+		#_tab_container.current_tab = 1
+		#GUIDE.enable_mapping_context(binding_controller_context, true)
+	#else:
+		#_tab_container.current_tab = 0
+		#GUIDE.enable_mapping_context(binding_keyboard_context, true)
 
 	# todo provide specific actions for the tab bar controller
 	_tab_container.get_tab_bar().grab_focus()
@@ -70,16 +74,12 @@ func open() -> void:
 	_remapping_config = Utils.load_remapping_config()
 
 	# And initialize the remapper
-	_remapper.initialize([keyboard_context, controller_context], _remapping_config)
+	_remapper.initialize([combined_context], _remapping_config)
 
 	_clear(_keyboard_bindings)
 	_clear(_controller_bindings)
-
-	# fill the keyboard section
-	_fill_remappable_items(keyboard_context, _keyboard_bindings)
-
-	# fill the controller section
-	_fill_remappable_items(controller_context, _controller_bindings)
+	
+	_fill_tabs(combined_context)
 
 	_controller_invert_horizontal.button_pressed = _remapper.get_custom_data("invert_horizontal", false)
 	_controller_invert_vertical.button_pressed = _remapper.get_custom_data("invert_vertical", false)
@@ -90,14 +90,41 @@ func open() -> void:
 
 	visible = true
 
+func _fill_tabs(context:GUIDEMappingContext) -> void:
+	var remappable_items := _remapper.get_remappable_items(context)
+
+	var keyboard_mouse_items: Array = []
+	var controller_items: Array = []
+	for item: GUIDERemapper.ConfigItem in remappable_items:
+		var input_data = item._input_mapping.input
+		if input_data is GUIDEInputKey:
+			print("GUIDEInputKey")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMouseAxis1D:
+			print("GUIDEInputMouseAxis1D")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMouseAxis2D:
+			print("GUIDEInputMouseAxis2D")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMouseButton:
+			print("GUIDEInputMouseButton")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMousePosition:
+			print("GUIDEInputMousePosition")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputJoyBase:
+			print("GUIDEInputMousePosition")
+			controller_items.append(item)
+	
+	_fill_remappable_items(keyboard_mouse_items, _keyboard_bindings)
+	_fill_remappable_items(controller_items, _controller_bindings)
 
 ## Fills remappable items and sub-sections into the given container
-func _fill_remappable_items(context:GUIDEMappingContext, root:Container) -> void:
-	var remappable_items := _remapper.get_remappable_items(context)
+func _fill_remappable_items(remappable_items: Array, root:Container) -> void:
 
 	# Sort by display_category [String, Dictionary]
 	var categories: Dictionary = {}
-	for item in remappable_items:
+	for item: GUIDERemapper.ConfigItem in remappable_items:
 		# [String, Array]
 		var items:Dictionary
 		if categories.has(item.display_category):
@@ -150,8 +177,10 @@ func _rebind_item(item:GUIDERemapper.ConfigItem) -> void:
 	# for keyboard only keys can be bound and for controller
 	# only controller buttons can be bound.
 	var device:Array[GUIDEInputDetector.DeviceType] = [GUIDEInputDetector.DeviceType.KEYBOARD, GUIDEInputDetector.DeviceType.MOUSE]
-	if item.context == controller_context:
+	if item._input_mapping.input is GUIDEInputJoyBase:
 		device = [GUIDEInputDetector.DeviceType.JOY]
+	#if item.context == controller_context:
+		#device = [GUIDEInputDetector.DeviceType.JOY]
 
 	# detect a new input
 	_input_detector.detect(item.value_type, device)
@@ -219,10 +248,11 @@ func _on_return_to_game_pressed() -> void:
 	Utils.save_remapping_config(final_config)
 
 	# restore main mapping context based on what is currently active
-	if GUIDE.is_mapping_context_enabled(binding_keyboard_context):
-		GUIDE.enable_mapping_context(keyboard_context, true)
-	else:
-		GUIDE.enable_mapping_context(controller_context, true)
+	GUIDE.enable_mapping_context(binding_context)
+	#if GUIDE.is_mapping_context_enabled(binding_keyboard_context):
+		#GUIDE.enable_mapping_context(keyboard_context, true)
+	#else:
+		#GUIDE.enable_mapping_context(controller_context, true)
 
 	# and close the dialog
 	visible = false
@@ -231,6 +261,7 @@ func _on_return_to_game_pressed() -> void:
 
 func _switch_tab(index:int) -> void:
 	_tab_container.current_tab = posmod(_tab_container.current_tab + index, 2)
+	_tab_container.get_tab_bar().grab_focus()
 
 func _switch(context:GUIDEMappingContext) -> void:
 	# only do this when the dialog is visible

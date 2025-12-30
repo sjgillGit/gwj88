@@ -1,8 +1,10 @@
+class_name GUIDEActionBinding
 extends PanelContainer
 
 signal rebind(item:GUIDERemapper.ConfigItem)
 
 @onready var _action_binding:RichTextLabel = %ActionBinding
+@onready var button: Button = $Button
 
 var _formatter:GUIDEInputFormatter = GUIDEInputFormatter.new(48)
 var _item:GUIDERemapper.ConfigItem
@@ -12,7 +14,7 @@ func initialize(item:GUIDERemapper.ConfigItem, input:GUIDEInput) -> void:
 	_item.changed.connect(_show_input)
 	_show_input(input)
 
-func _on_texture_button_pressed() -> void:
+func _on_button_pressed() -> void:
 	do_rebind()
 
 func do_rebind() -> void:
