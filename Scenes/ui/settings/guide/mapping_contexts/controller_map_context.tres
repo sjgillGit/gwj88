@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=33 format=3 uid="uid://dxue2qfb0qr24"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=34 format=3 uid="uid://dxue2qfb0qr24"]
 
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="1_l4253"]
 [ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="2_2khbp"]
@@ -75,10 +75,14 @@ script = ExtResource("10_a30o8")
 script = ExtResource("17_0dq74")
 lower_threshold = 0.01
 
+[sub_resource type="Resource" id="Resource_rktbg"]
+script = ExtResource("11_avbpy")
+
 [sub_resource type="Resource" id="Resource_wyflw"]
 script = ExtResource("4_m37gr")
 input = SubResource("Resource_2khbp")
 modifiers = Array[ExtResource("5_3rcwi")]([SubResource("Resource_52jqr")])
+triggers = Array[ExtResource("8_2khbp")]([SubResource("Resource_rktbg")])
 
 [sub_resource type="Resource" id="Resource_tikav"]
 script = ExtResource("5_167oa")

@@ -21,7 +21,7 @@ var flight_speed: float:
 	set(v):
 		flight_speed = v
 		if is_node_ready():
-			%FlightSpeedMeter.value = flight_speed
+			%FlightSpeedMeter.value = flight_speed * 3.0
 
 
 const FlightState = preload("res://Scripts/flight_state.gd").FlightState

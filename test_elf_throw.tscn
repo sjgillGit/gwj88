@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwdyshfkqyh1"]
+
+[ext_resource type="PackedScene" uid="uid://i8r2m0h57x57" path="res://Assets/reindeer_with_upgrades.tscn" id="1_5knl3"]
+[ext_resource type="Script" uid="uid://dicwl55csuip3" path="res://test_elf_throw.gd" id="1_41asw"]
+
+[node name="TestElfThrow" type="Node3D"]
+script = ExtResource("1_41asw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.88600945, 0, -0.4636672, 0, 1, 0, 0.4636672, 0, 0.88600945, 0, 1.7777965, 5.020954)
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Throw"
+
+[node name="Reindeer" parent="." instance=ExtResource("1_5knl3")]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
