@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bme1y0ikthda7"]
+[gd_scene load_steps=8 format=3 uid="uid://bme1y0ikthda7"]
 
 [ext_resource type="Script" uid="uid://cfukq2iogf0k4" path="res://Scenes/ui/settings/guide/ui/binding_row.gd" id="1_mc50g"]
 [ext_resource type="Theme" uid="uid://dot0gi1yoqmrl" path="res://Scenes/ui/settings/guide/settings_ui_theme.tres" id="2_5k5bd"]
@@ -25,15 +25,6 @@ texture_margin_top = 20.0
 texture_margin_right = 20.0
 texture_margin_bottom = 20.0
 
-[sub_resource type="Gradient" id="Gradient_5k5bd"]
-offsets = PackedFloat32Array(0, 0.88064516, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jnmmb"]
-gradient = SubResource("Gradient_5k5bd")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-
 [node name="BindingRow" type="PanelContainer"]
 custom_minimum_size = Vector2(400, 0)
 anchors_preset = 14
@@ -51,13 +42,6 @@ script = ExtResource("1_mc50g")
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5k5bd")
 theme_override_styles/focus = SubResource("StyleBoxTexture_0b387")
-
-[node name="TextureButton" type="TextureButton" parent="."]
-visible = false
-layout_mode = 2
-texture_normal = SubResource("GradientTexture2D_jnmmb")
-texture_focused = SubResource("GradientTexture2D_jnmmb")
-stretch_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -87,4 +71,3 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

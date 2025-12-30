@@ -1,8 +1,10 @@
+class_name GUIDEActionBinding
 extends PanelContainer
 
 signal rebind(item:GUIDERemapper.ConfigItem)
 
 @onready var _action_binding:RichTextLabel = %ActionBinding
+@onready var button: Button = $Button
 
 var _formatter:GUIDEInputFormatter = GUIDEInputFormatter.new(48)
 var _item:GUIDERemapper.ConfigItem

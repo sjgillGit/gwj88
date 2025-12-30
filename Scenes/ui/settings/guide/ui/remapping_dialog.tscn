@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://5crxnd8ysf6" path="res://Scenes/ui/settings/guide/ui/remapping_dialog.gd" id="1_6hgqj"]
 [ext_resource type="Resource" uid="uid://bxku7vfyd1dkg" path="res://Scripts/guide/game_combined_context.tres" id="3_kpuy5"]
 [ext_resource type="Script" uid="uid://db27ccgomq455" path="res://addons/guide/remapping/guide_input_detector.gd" id="3_o0nvn"]
-[ext_resource type="Resource" uid="uid://b3kcv2nkdben2" path="res://Scenes/ui/settings/guide/mapping_contexts/binding_map_context.tres" id="4_g3g6e"]
+[ext_resource type="Resource" path="res://Scenes/ui/settings/guide/mapping_contexts/binding_map_context.tres" id="4_g3g6e"]
 [ext_resource type="PackedScene" uid="uid://bme1y0ikthda7" path="res://Scenes/ui/settings/guide/ui/binding_row.tscn" id="4_iojgu"]
 [ext_resource type="PackedScene" uid="uid://cj1h0wxamje4s" path="res://Scenes/ui/settings/guide/ui/binding_section.tscn" id="5_8v80s"]
 [ext_resource type="Resource" uid="uid://bcum2m26we6ct" path="res://Scenes/ui/settings/guide/mapping_contexts/shared_actions/close_menu.tres" id="7_djty7"]
@@ -44,7 +44,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("15_tnwfp")
 script = ExtResource("1_6hgqj")
 combined_context = ExtResource("3_kpuy5")
 binding_context = ExtResource("4_g3g6e")
