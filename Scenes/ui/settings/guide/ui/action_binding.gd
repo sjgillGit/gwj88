@@ -12,7 +12,7 @@ func initialize(item:GUIDERemapper.ConfigItem, input:GUIDEInput) -> void:
 	_item.changed.connect(_show_input)
 	_show_input(input)
 
-func _on_texture_button_pressed() -> void:
+func _on_button_pressed() -> void:
 	do_rebind()
 
 func do_rebind() -> void:
