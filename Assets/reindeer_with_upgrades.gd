@@ -45,6 +45,8 @@ func _on_throw_elf_timer_timeout() -> void:
 	elf.freeze = false
 	elf.sleeping = false
 	elf.top_level = true
+	var ap := elf.get_node_or_null("NonWilhelmScream") as AudioStreamPlayer3D
+	ap.play()
 	var cs := elf.get_node_or_null("CollisionShape3D")
 	if cs:
 		cs.disabled = false
