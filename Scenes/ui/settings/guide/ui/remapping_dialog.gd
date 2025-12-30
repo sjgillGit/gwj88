@@ -261,6 +261,7 @@ func _on_return_to_game_pressed() -> void:
 
 func _switch_tab(index:int) -> void:
 	_tab_container.current_tab = posmod(_tab_container.current_tab + index, 2)
+	_tab_container.get_tab_bar().grab_focus()
 
 func _switch(context:GUIDEMappingContext) -> void:
 	# only do this when the dialog is visible
