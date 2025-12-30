@@ -71,16 +71,12 @@ func open() -> void:
 	_remapping_config = Utils.load_remapping_config()
 
 	# And initialize the remapper
-	_remapper.initialize([keyboard_context, controller_context], _remapping_config)
+	_remapper.initialize([combined_context], _remapping_config)
 
 	_clear(_keyboard_bindings)
 	_clear(_controller_bindings)
-
-	# fill the keyboard section
-	_fill_remappable_items(keyboard_context, _keyboard_bindings)
-
-	# fill the controller section
-	_fill_remappable_items(controller_context, _controller_bindings)
+	
+	_fill_tabs(combined_context)
 
 	_controller_invert_horizontal.button_pressed = _remapper.get_custom_data("invert_horizontal", false)
 	_controller_invert_vertical.button_pressed = _remapper.get_custom_data("invert_vertical", false)
@@ -94,38 +90,34 @@ func open() -> void:
 func _fill_tabs(context:GUIDEMappingContext) -> void:
 	var remappable_items := _remapper.get_remappable_items(context)
 
-	# Sort by display_category [String, Dictionary]
-	var categories: Dictionary = {}
 	var keyboard_mouse_items: Array = []
 	var controller_items: Array = []
 	for item: GUIDERemapper.ConfigItem in remappable_items:
 		var input_data = item._input_mapping.input
-		match input_data:
-			var input when input_data is GUIDEInputKey:
-				print("GUIDEInputKey")
-				keyboard_mouse_items.append(item)
-			var input when input_data is GUIDEInputMouseAxis1D:
-				print("GUIDEInputMouseAxis1D")
-				keyboard_mouse_items.append(item)
-			var input when input_data is GUIDEInputMouseAxis2D:
-				print("GUIDEInputMouseAxis2D")
-				keyboard_mouse_items.append(item)
-			var input when input_data is GUIDEInputMouseButton:
-				print("GUIDEInputMouseButton")
-				keyboard_mouse_items.append(item)
-			var input when input_data is GUIDEInputMousePosition:
-				print("GUIDEInputMousePosition")
-				keyboard_mouse_items.append(item)
-			var input when input_data is GUIDEInputJoyBase:
-				print("GUIDEInputMousePosition")
-				controller_items.append(item)
-
-func _add_to_tab() -> void:
-	pass
+		if input_data is GUIDEInputKey:
+			print("GUIDEInputKey")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMouseAxis1D:
+			print("GUIDEInputMouseAxis1D")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMouseAxis2D:
+			print("GUIDEInputMouseAxis2D")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMouseButton:
+			print("GUIDEInputMouseButton")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputMousePosition:
+			print("GUIDEInputMousePosition")
+			keyboard_mouse_items.append(item)
+		elif input_data is GUIDEInputJoyBase:
+			print("GUIDEInputMousePosition")
+			controller_items.append(item)
+	
+	_fill_remappable_items(keyboard_mouse_items, _keyboard_bindings)
+	_fill_remappable_items(controller_items, _controller_bindings)
 
 ## Fills remappable items and sub-sections into the given container
-func _fill_remappable_items(context:GUIDEMappingContext, root:Container) -> void:
-	var remappable_items := _remapper.get_remappable_items(context)
+func _fill_remappable_items(remappable_items: Array, root:Container) -> void:
 
 	# Sort by display_category [String, Dictionary]
 	var categories: Dictionary = {}
