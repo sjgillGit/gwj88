@@ -20,3 +20,8 @@ func _on_vsync_pressed() -> void:
 	var toggled_on = DisplayServer.window_get_vsync_mode() != DisplayServer.VSYNC_ENABLED
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if toggled_on else DisplayServer.VSYNC_DISABLED)
 	%Vsync/Label.text = 'vsync %s' % ["☐" if !toggled_on else "☑"]
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		%Controls.grab_focus()

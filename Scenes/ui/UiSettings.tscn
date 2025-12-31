@@ -45,12 +45,13 @@ theme_override_constants/margin_right = 80
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Setting1" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2"]
+[node name="Controls" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer2"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(154, 96)
 layout_mode = 2
 script = ExtResource("4_uv5yq")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/Setting1"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer2/Controls"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,6 +123,7 @@ controller_axis_deadzone = ExtResource("10_q0xcv")
 switch_to_keyboard = ExtResource("11_lj7g5")
 switch_to_controller = ExtResource("12_j668x")
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/Setting1" to="." method="_on_setting_1_pressed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/Controls" to="." method="_on_setting_1_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/Vsync" to="." method="_on_vsync_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
