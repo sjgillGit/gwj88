@@ -1,28 +1,423 @@
-[gd_scene load_steps=19 format=3 uid="uid://gjweqc0stfqh"]
+[gd_scene load_steps=88 format=3 uid="uid://b8c0h587ofgxa"]
 
-[ext_resource type="Script" uid="uid://ba5134rplb4y" path="res://Scenes/ui/settings/guide/example_use_then_delete/remapping.gd" id="1_3d1tp"]
-[ext_resource type="Texture2D" uid="uid://dr0shoj4tl14u" path="res://Scenes/ui/settings/guide/example_use_then_delete/godot_logo.svg" id="1_gkmxq"]
+[ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_oy7ev"]
 [ext_resource type="Resource" uid="uid://qikyr1rgxw2l" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_actions/player_movement_stick_invert.tres" id="2_3dav4"]
-[ext_resource type="Resource" uid="uid://cu0dhstc00cj5" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard_map_context.tres" id="2_issuo"]
-[ext_resource type="Script" uid="uid://bhn2nskt2cgym" path="res://Scenes/ui/settings/guide/example_use_then_delete/player.gd" id="2_n3drv"]
-[ext_resource type="Resource" uid="uid://dxue2qfb0qr24" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_map_context.tres" id="3_apwxt"]
+[ext_resource type="Resource" uid="uid://bf8166h6jqxk3" path="res://Scripts/guide/movement.tres" id="2_oiql5"]
 [ext_resource type="Resource" uid="uid://c65tsmp268vdq" path="res://Scenes/ui/settings/guide/mapping_contexts/shared_actions/open_menu.tres" id="3_g1dlj"]
+[ext_resource type="Script" uid="uid://mtx1unc2aqn7" path="res://addons/guide/guide_input_mapping.gd" id="3_ymxn4"]
+[ext_resource type="Script" uid="uid://cw71o87tvdx3q" path="res://addons/guide/inputs/guide_input_key.gd" id="4_5ue70"]
 [ext_resource type="Resource" uid="uid://chhw5umkd1j2p" path="res://Scenes/ui/settings/guide/mapping_contexts/shared_actions/player_movement_2d.tres" id="4_07jn1"]
 [ext_resource type="Resource" uid="uid://bv2xv48haqh2b" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_actions/player_movement_stick_deadzone.tres" id="5_0d7qx"]
 [ext_resource type="Resource" uid="uid://ce3ytxn2tcxxe" path="res://Scenes/ui/settings/guide/mapping_contexts/controller_actions/switch_to_keyboard.tres" id="5_aqwgr"]
+[ext_resource type="Script" uid="uid://bl8rjl4oaldje" path="res://addons/guide/modifiers/guide_modifier.gd" id="5_fl64b"]
 [ext_resource type="PackedScene" uid="uid://dkr80d2pi0d41" path="res://addons/guide/debugger/guide_debugger.tscn" id="5_kdgir"]
 [ext_resource type="Resource" uid="uid://b1iaet1m2gi2e" path="res://Scenes/ui/settings/guide/mapping_contexts/shared_actions/fire.tres" id="6_esnhm"]
 [ext_resource type="Resource" uid="uid://3vqfs786vcsa" path="res://Scenes/ui/settings/guide/mapping_contexts/keyboard_actions/switch_to_controller.tres" id="6_jncg0"]
+[ext_resource type="Script" uid="uid://bm5gjgadon6hb" path="res://addons/guide/modifiers/guide_modifier_input_swizzle.gd" id="6_n3m0a"]
 [ext_resource type="Theme" uid="uid://wnjx0277ks75" path="res://Assets/ui/main/theme_general.tres" id="7_8t2l7"]
+[ext_resource type="Script" uid="uid://ckggy40lm0vjc" path="res://addons/guide/modifiers/guide_modifier_negate.gd" id="7_fqcw5"]
 [ext_resource type="PackedScene" uid="uid://bq0w7uaotgfct" path="res://Scenes/ui/settings/guide/ui/remapping_dialog.tscn" id="7_g0vxv"]
-[ext_resource type="PackedScene" uid="uid://c36cnvgv2ur60" path="res://Scenes/ui/settings/guide/example_use_then_delete/fireball/fireball.tscn" id="7_w2y2e"]
+[ext_resource type="Script" uid="uid://x74mnwgr08a7" path="res://addons/guide/triggers/guide_trigger.gd" id="8_huv6d"]
+[ext_resource type="Script" uid="uid://biiggjw6tv4uq" path="res://addons/guide/triggers/guide_trigger_released.gd" id="10_8icwl"]
+[ext_resource type="Script" uid="uid://w3fbpe7r01n8" path="res://addons/guide/inputs/guide_input_any.gd" id="12_b0fst"]
+[ext_resource type="Resource" uid="uid://ctlmuan1u8jru" path="res://Scripts/guide/action.tres" id="13_qb4x5"]
 [ext_resource type="Script" uid="uid://bl316qje7y20k" path="res://Scenes/ui/settings/guide/example_use_then_delete/instructions_label.gd" id="14_e0a18"]
+[ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="14_vrygf"]
+[ext_resource type="Script" uid="uid://doauobik3xyea" path="res://addons/guide/inputs/guide_input_joy_axis_2d.gd" id="15_lbrnf"]
 [ext_resource type="Script" uid="uid://cluhc11vixkf1" path="res://addons/guide/guide_action.gd" id="16_7k25w"]
+[ext_resource type="Script" uid="uid://rvttn472ix6v" path="res://addons/guide/inputs/guide_input_joy_button.gd" id="18_liuro"]
+[ext_resource type="Script" uid="uid://b52rqq28tuqpg" path="res://addons/guide/triggers/guide_trigger_pressed.gd" id="20_7vtd1"]
+[ext_resource type="Script" uid="uid://c47lkb48itd6l" path="res://addons/guide/modifiers/guide_modifier_deadzone.gd" id="21_vg8xn"]
+
+[sub_resource type="GDScript" id="GDScript_nps86"]
+script/source = "## This is the main game controller. It enables a control scheme at the start and is
+## responsible for controlling the remapping dialog.
+extends Node
+
+const Utils = preload(\"res://Scenes/ui/settings/guide/guide_utils.gd\")
+
+@export_group(\"Context & Modifiers\")
+@export var keyboard:GUIDEMappingContext
+@export var controller:GUIDEMappingContext
+@export var controller_axis_invert_modifier:GUIDEModifierNegate
+@export var controller_axis_deadzone:GUIDEModifierDeadzone
+
+@export_group(\"Actions\")
+@export var switch_to_keyboard:GUIDEAction
+@export var switch_to_controller:GUIDEAction
+@export var open_menu:GUIDEAction
+
+
+@onready var _remapping_dialog:Control = %RemappingDialog
+
+func _ready() -> void:
+	# React when the open menu action is triggered.
+	open_menu.triggered.connect(_open_menu)
+
+	# and switching to controller / keyboard ...
+	switch_to_controller.triggered.connect(_switch.bind(controller))
+	switch_to_keyboard.triggered.connect(_switch.bind(keyboard))
+
+	# Also listen to when the remapping dialog closes and re-apply the changed
+	# mapping config
+	_remapping_dialog.closed.connect(_load_remapping_config)
+
+	# Start with the keyboard scheme
+	#GUIDE.enable_mapping_context(keyboard)
+
+	# finally enable all controls with the last saved remapping configuration
+	_load_remapping_config(Utils.load_remapping_config())
+
+
+func _open_menu() -> void:
+	# and show the remapping dialog
+	_remapping_dialog.open()
+
+
+func _load_remapping_config(config:GUIDERemappingConfig) -> void:
+	GUIDE.set_remapping_config(config)
+
+	# also apply changes to our modifiers
+	controller_axis_invert_modifier.x = config.custom_data.get(Utils.CUSTOM_DATA_INVERT_HORIZONTAL, false)
+	controller_axis_invert_modifier.y = config.custom_data.get(Utils.CUSTOM_DATA_INVERT_VERTICAL, false)
+
+	controller_axis_deadzone.lower_threshold = config.custom_data.get(Utils.CUSTOM_DATA_MOVEMENT_DEADZONE, 0.2)
+
+
+func _switch(context:GUIDEMappingContext) -> void:
+	# ignore while remapping is active, remapping will take care of it
+	if _remapping_dialog.visible:
+		return
+
+	#GUIDE.enable_mapping_context(context, true)
+"
+
+[sub_resource type="Resource" id="Resource_d5vxv"]
+script = ExtResource("4_5ue70")
+key = 87
+
+[sub_resource type="Resource" id="Resource_d5crb"]
+script = ExtResource("6_n3m0a")
+
+[sub_resource type="Resource" id="Resource_cwfnu"]
+script = ExtResource("7_fqcw5")
+
+[sub_resource type="Resource" id="Resource_u7h55"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Up"
+input = SubResource("Resource_d5vxv")
+modifiers = Array[ExtResource("5_fl64b")]([SubResource("Resource_d5crb"), SubResource("Resource_cwfnu")])
+
+[sub_resource type="Resource" id="Resource_syl0m"]
+script = ExtResource("4_5ue70")
+key = 83
+
+[sub_resource type="Resource" id="Resource_8rcpo"]
+script = ExtResource("6_n3m0a")
+
+[sub_resource type="Resource" id="Resource_te6bu"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Down"
+input = SubResource("Resource_syl0m")
+modifiers = Array[ExtResource("5_fl64b")]([SubResource("Resource_8rcpo")])
+
+[sub_resource type="Resource" id="Resource_erj62"]
+script = ExtResource("4_5ue70")
+key = 65
+
+[sub_resource type="Resource" id="Resource_84clu"]
+script = ExtResource("7_fqcw5")
+
+[sub_resource type="Resource" id="Resource_ho2kd"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Left"
+input = SubResource("Resource_erj62")
+modifiers = Array[ExtResource("5_fl64b")]([SubResource("Resource_84clu")])
+
+[sub_resource type="Resource" id="Resource_ybtim"]
+script = ExtResource("4_5ue70")
+key = 68
+
+[sub_resource type="Resource" id="Resource_bnk54"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Right"
+input = SubResource("Resource_ybtim")
+
+[sub_resource type="Resource" id="Resource_sq8xv"]
+script = ExtResource("4_5ue70")
+
+[sub_resource type="Resource" id="Resource_0a4hf"]
+script = ExtResource("6_n3m0a")
+
+[sub_resource type="Resource" id="Resource_s027y"]
+script = ExtResource("7_fqcw5")
+
+[sub_resource type="Resource" id="Resource_e2a68"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Up"
+input = SubResource("Resource_sq8xv")
+modifiers = Array[ExtResource("5_fl64b")]([SubResource("Resource_0a4hf"), SubResource("Resource_s027y")])
+
+[sub_resource type="Resource" id="Resource_uhhdm"]
+script = ExtResource("4_5ue70")
+
+[sub_resource type="Resource" id="Resource_ea05q"]
+script = ExtResource("6_n3m0a")
+
+[sub_resource type="Resource" id="Resource_2raky"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Down"
+input = SubResource("Resource_uhhdm")
+modifiers = Array[ExtResource("5_fl64b")]([SubResource("Resource_ea05q")])
+
+[sub_resource type="Resource" id="Resource_26y3v"]
+script = ExtResource("4_5ue70")
+
+[sub_resource type="Resource" id="Resource_bax14"]
+script = ExtResource("7_fqcw5")
+
+[sub_resource type="Resource" id="Resource_wa86o"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Left"
+input = SubResource("Resource_26y3v")
+modifiers = Array[ExtResource("5_fl64b")]([SubResource("Resource_bax14")])
+
+[sub_resource type="Resource" id="Resource_hxvmi"]
+script = ExtResource("4_5ue70")
+
+[sub_resource type="Resource" id="Resource_7m8ba"]
+script = ExtResource("3_ymxn4")
+override_action_settings = true
+is_remappable = true
+display_name = "Right"
+input = SubResource("Resource_hxvmi")
+
+[sub_resource type="Resource" id="Resource_358t4"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("2_oiql5")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_u7h55"), SubResource("Resource_te6bu"), SubResource("Resource_ho2kd"), SubResource("Resource_bnk54"), SubResource("Resource_e2a68"), SubResource("Resource_2raky"), SubResource("Resource_wa86o"), SubResource("Resource_7m8ba")])
+metadata/_guide_input_mappings_collapsed = false
+
+[sub_resource type="Resource" id="Resource_la24a"]
+script = ExtResource("4_5ue70")
+key = 4194305
+
+[sub_resource type="Resource" id="Resource_dbmrn"]
+script = ExtResource("10_8icwl")
+
+[sub_resource type="Resource" id="Resource_wr8lq"]
+script = ExtResource("3_ymxn4")
+input = SubResource("Resource_la24a")
+triggers = Array[ExtResource("8_huv6d")]([SubResource("Resource_dbmrn")])
+
+[sub_resource type="Resource" id="Resource_iwmfr"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("3_g1dlj")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_wr8lq")])
+metadata/_guide_input_mappings_collapsed = false
+
+[sub_resource type="Resource" id="Resource_ke2lc"]
+script = ExtResource("12_b0fst")
+joy_buttons = true
+joy_axes = true
+mouse = false
+joy = true
+
+[sub_resource type="Resource" id="Resource_t2r0o"]
+script = ExtResource("10_8icwl")
+
+[sub_resource type="Resource" id="Resource_oh8td"]
+script = ExtResource("3_ymxn4")
+input = SubResource("Resource_ke2lc")
+triggers = Array[ExtResource("8_huv6d")]([SubResource("Resource_t2r0o")])
+
+[sub_resource type="Resource" id="Resource_unkjf"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("6_jncg0")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_oh8td")])
+
+[sub_resource type="Resource" id="Resource_vskey"]
+script = ExtResource("4_5ue70")
+key = 32
+
+[sub_resource type="Resource" id="Resource_4mv0b"]
+script = ExtResource("3_ymxn4")
+input = SubResource("Resource_vskey")
+
+[sub_resource type="Resource" id="Resource_8hlui"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("13_qb4x5")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_4mv0b")])
+
+[sub_resource type="Resource" id="Resource_chofe"]
+script = ExtResource("14_vrygf")
+display_name = "Keyboard and Mouse"
+mappings = Array[ExtResource("1_oy7ev")]([SubResource("Resource_358t4"), SubResource("Resource_iwmfr"), SubResource("Resource_unkjf"), SubResource("Resource_8hlui")])
+
+[sub_resource type="Resource" id="Resource_nr3w6"]
+script = ExtResource("15_lbrnf")
+
+[sub_resource type="Resource" id="Resource_gpn8l"]
+script = ExtResource("3_ymxn4")
+input = SubResource("Resource_nr3w6")
+modifiers = Array[ExtResource("5_fl64b")]([ExtResource("5_0d7qx"), ExtResource("2_3dav4")])
+
+[sub_resource type="Resource" id="Resource_6h1my"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("2_oiql5")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_gpn8l")])
+
+[sub_resource type="Resource" id="Resource_p73kx"]
+script = ExtResource("18_liuro")
+button = 6
+
+[sub_resource type="Resource" id="Resource_uov21"]
+script = ExtResource("10_8icwl")
+
+[sub_resource type="Resource" id="Resource_f4p62"]
+script = ExtResource("3_ymxn4")
+input = SubResource("Resource_p73kx")
+triggers = Array[ExtResource("8_huv6d")]([SubResource("Resource_uov21")])
+
+[sub_resource type="Resource" id="Resource_wa31m"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("3_g1dlj")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_f4p62")])
+
+[sub_resource type="Resource" id="Resource_iwnk1"]
+script = ExtResource("12_b0fst")
+mouse_buttons = true
+keyboard = true
+mouse = true
+joy = false
+
+[sub_resource type="Resource" id="Resource_jwpon"]
+script = ExtResource("20_7vtd1")
+
+[sub_resource type="Resource" id="Resource_limxc"]
+script = ExtResource("3_ymxn4")
+input = SubResource("Resource_iwnk1")
+triggers = Array[ExtResource("8_huv6d")]([SubResource("Resource_jwpon")])
+
+[sub_resource type="Resource" id="Resource_rtwk8"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("5_aqwgr")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_limxc")])
+
+[sub_resource type="Resource" id="Resource_2khbp"]
+script = ExtResource("18_liuro")
+
+[sub_resource type="Resource" id="Resource_52jqr"]
+script = ExtResource("21_vg8xn")
+lower_threshold = 0.01
+
+[sub_resource type="Resource" id="Resource_wyflw"]
+script = ExtResource("3_ymxn4")
+input = SubResource("Resource_2khbp")
+modifiers = Array[ExtResource("5_fl64b")]([SubResource("Resource_52jqr")])
+
+[sub_resource type="Resource" id="Resource_tikav"]
+script = ExtResource("1_oy7ev")
+action = ExtResource("13_qb4x5")
+input_mappings = Array[ExtResource("3_ymxn4")]([SubResource("Resource_wyflw")])
+
+[sub_resource type="Resource" id="Resource_8mxhi"]
+script = ExtResource("14_vrygf")
+display_name = "Controller"
+mappings = Array[ExtResource("1_oy7ev")]([SubResource("Resource_6h1my"), SubResource("Resource_wa31m"), SubResource("Resource_rtwk8"), SubResource("Resource_tikav")])
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wwoad"]
+load_path = "res://.godot/imported/godot_logo.svg-495206c3a670355fe3edf16573c801f0.ctex"
+
+[sub_resource type="GDScript" id="GDScript_031cu"]
+script/source = "## This is  the player script. Note how it has no clue about controllers, axis inversion
+## etc. This is all handled by GUIDE and the remapping dialog.
+extends Node2D
+
+@export var speed:float = 300
+@export var move_action:GUIDEAction
+@export var fire_action:GUIDEAction
+
+@export var fireball_scene:PackedScene
+
+func _ready() -> void:
+	fire_action.triggered.connect(_shoot_fireball)
+
+
+func _process(delta:float) -> void:
+	var vector: Vector2 = move_action.value_axis_2d
+	
+	# Circular length limiting
+	var length: float = vector.length();
+	var modified_vector: Vector2 = Vector2.ZERO
+	if length <= 0:
+		modified_vector = Vector2.ZERO
+	elif length > 1.0:
+		modified_vector = vector / length;
+	else:
+		modified_vector = vector * (inverse_lerp(0.0, 1.0, length) / length)
+	
+	position += modified_vector * speed * delta
+
+
+func _shoot_fireball() -> void:
+	var fireball:Node = fireball_scene.instantiate()
+	fireball.direction = Vector2.UP
+	get_parent().add_child(fireball)
+	
+	fireball.global_transform = global_transform
+"
+
+[sub_resource type="GDScript" id="GDScript_0jvv1"]
+script/source = "extends Node2D
+
+@export var speed:float = 600
+var direction:Vector2 = Vector2.ZERO
+
+
+func _ready() -> void:
+	await get_tree().create_timer(5).timeout
+	queue_free()
+
+
+func _process(delta:float) -> void:
+	position += speed * direction * delta
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s7f0u"]
+load_path = "res://.godot/imported/fireball.svg-fced7c2ac8c0d6a99ec3c82c976e4588.ctex"
+
+[sub_resource type="PackedScene" id="PackedScene_5re7o"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Fireball", "Node2D", "script", "Fireball", "Sprite2D", "texture"),
+"node_count": 2,
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0, 1073741824, 0, 4, 3, -1, 1, 5, 1, 0),
+"variants": [SubResource("GDScript_0jvv1"), SubResource("CompressedTexture2D_s7f0u")],
+"version": 3
+}
 
 [node name="Remapping" type="Node"]
-script = ExtResource("1_3d1tp")
-keyboard = ExtResource("2_issuo")
-controller = ExtResource("3_apwxt")
+script = SubResource("GDScript_nps86")
+keyboard = SubResource("Resource_chofe")
+controller = SubResource("Resource_8mxhi")
 controller_axis_invert_modifier = ExtResource("2_3dav4")
 controller_axis_deadzone = ExtResource("5_0d7qx")
 switch_to_keyboard = ExtResource("5_aqwgr")
@@ -31,11 +426,11 @@ open_menu = ExtResource("3_g1dlj")
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(546, 317)
-texture = ExtResource("1_gkmxq")
-script = ExtResource("2_n3drv")
+texture = SubResource("CompressedTexture2D_wwoad")
+script = SubResource("GDScript_031cu")
 move_action = ExtResource("4_07jn1")
 fire_action = ExtResource("6_esnhm")
-fireball_scene = ExtResource("7_w2y2e")
+fireball_scene = SubResource("PackedScene_5re7o")
 
 [node name="HUD Layer" type="CanvasLayer" parent="."]
 
@@ -63,6 +458,7 @@ actions = Array[ExtResource("16_7k25w")]([ExtResource("4_07jn1"), ExtResource("6
 [node name="RemappingDialog" parent="UI Layer" instance=ExtResource("7_g0vxv")]
 unique_name_in_owner = true
 visible = false
+combined_context = null
 
 [node name="DebugLayer" type="CanvasLayer" parent="."]
 visible = false

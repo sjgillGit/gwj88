@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cillnccaqrc6p"]
+[gd_scene load_steps=4 format=3 uid="uid://cillnccaqrc6p"]
 
 [ext_resource type="Script" uid="uid://hp8ib0xo2psg" path="res://Scenes/ui/settings/guide/ui/action_binding.gd" id="1_hmcci"]
-[ext_resource type="Theme" path="res://Scenes/ui/settings/guide/settings_ui_theme.tres" id="2_o16qw"]
+[ext_resource type="Theme" uid="uid://dot0gi1yoqmrl" path="res://Scenes/ui/settings/guide/settings_ui_theme.tres" id="2_o16qw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o16qw"]
 
 [node name="ActionBinding" type="PanelContainer"]
 custom_minimum_size = Vector2(150, 48)
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_o16qw")
 script = ExtResource("1_hmcci")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
 
 [node name="ActionBinding" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
@@ -22,7 +28,4 @@ scroll_active = false
 autowrap_mode = 0
 shortcut_keys_enabled = false
 
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 2
-
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
