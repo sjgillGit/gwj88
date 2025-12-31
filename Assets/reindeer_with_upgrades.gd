@@ -31,7 +31,7 @@ func set_run_speed(value: float):
 
 func deflect():
 	var pb := %AnimationTree.get("parameters/deflect/playback") as AnimationNodeStateMachinePlayback
-	pb.start("Start", true)
+	pb.start("Deflect", true)
 
 func throw_elf():
 	if !%Elf.freeze:
