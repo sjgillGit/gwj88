@@ -117,6 +117,12 @@ controller_axis_invert_modifier = ExtResource("9_8wt84")
 controller_axis_deadzone = ExtResource("10_q0xcv")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+<<<<<<< HEAD
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/Controls" to="." method="_on_setting_1_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/Vsync" to="." method="_on_vsync_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
+=======
 [connection signal="pressed" from="SettingsPanelContainer/MarginContainer/VBoxContainer2/ControlsButton" to="." method="_on_setting_1_pressed"]
 [connection signal="pressed" from="SettingsPanelContainer/MarginContainer/VBoxContainer2/Vsync" to="." method="_on_vsync_pressed"]
 [connection signal="pressed" from="SettingsPanelContainer/MarginContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
+>>>>>>> origin/main

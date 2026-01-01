@@ -1026,7 +1026,7 @@ game_context = ExtResource("187_cek4m")
 
 [node name="RampIntroJingleAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("188_wtr7q")
-volume_db = -15.0
+volume_db = -17.0
 bus = &"SFX"
 
 [node name="Music1" type="AudioStreamPlayer" parent="."]

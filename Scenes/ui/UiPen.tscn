@@ -258,6 +258,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
 focus_neighbor_right = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
+focus_neighbor_bottom = NodePath("../SettingsButton")
 text = "Play"
 script = ExtResource("6_d1etx")
 
@@ -266,6 +267,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
+focus_neighbor_top = NodePath("../PlayButton")
 focus_neighbor_right = NodePath("../../../../Shop/PanelContainer/MarginContainer/BoxContainer/BoxContainer/UpgradeAntlers1")
 text = "Settings
 "

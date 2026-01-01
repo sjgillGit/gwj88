@@ -597,9 +597,11 @@ stream = ExtResource("17_5nlby")
 
 [node name="AudioCountDown" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_y3c05")
+volume_db = -5.0
 
 [node name="AudioCountDownFinished" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_33sep")
+volume_db = -5.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]
